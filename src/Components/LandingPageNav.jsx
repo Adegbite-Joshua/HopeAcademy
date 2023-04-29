@@ -8,6 +8,11 @@ const LandingPageNav = () => {
         </div>
         <div className='LandingPageNav'>
             <ul>
+                <span>
+                    <img src="vite.svg" style={{float:'left'}} alt="" />
+                    PROADE SCHOOL
+                </span>
+                <li name='staff'>Staff Site</li>
                 <li>Sign Up</li>
                 <li>Sign In</li>
                 <li>Contsct Us</li>
