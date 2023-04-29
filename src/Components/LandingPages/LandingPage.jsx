@@ -5,7 +5,7 @@ const LandingPage = () => {
   return (
     <>
 
-        <h1>Checking git error</h1>
+        <h1>Checking git er</h1>
         <MessageSchool/>          
     </>
   )
