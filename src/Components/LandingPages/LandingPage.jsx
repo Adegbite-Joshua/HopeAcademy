@@ -1,11 +1,12 @@
 import React from 'react'
+import LandingPageNav from '../LandingPageNav'
 import MessageSchool from '../MessageSchool'
 
 const LandingPage = () => {
   return (
     <>
 
-        <h1>Checking git er</h1>
+        <LandingPageNav/>
         <MessageSchool/>          
     </>
   )
