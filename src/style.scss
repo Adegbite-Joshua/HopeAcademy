@@ -1,0 +1,94 @@
+.open-button1 {
+    background-color: #0FBBE6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    /* width: 280px; */
+  }
+  
+  /* The popup chat - hidden by default */
+  .chat-popup1 {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 999999999999999999999999999999;
+  }
+  
+  /* Add styles to the form container */
+  .form-container1 {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+  }
+  
+  /* Full-width textarea */
+  .form-container1 textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+    resize: none;
+    min-height: 200px;
+  }
+  
+  /* When the textarea gets focus, do something */
+  .form-container1 textarea:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  /* Set a style for the submit/send button */
+  .form-container1 .btn1 {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+  
+  /* Add a red background color to the cancel button */
+  .form-container1 .cancel1 {
+    background-color: red;
+  }
+  
+  /* Add some hover effects to buttons */
+  .form-container1 .btn1:hover, .open-button1:hover {
+    opacity: 1;
+  }
+  
+  .signup{
+    background-image: radial-gradient(
+      circle at 20% 25% ,
+      black 30%,
+      rgb(15, 187, 230) 35%
+    );
+    /* url() */
+  
+    padding: 1rem;
+    height: 90vh;
+  }
+  
+  /* The navigation menu links */
+  
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  #main {
+    width: 20vw;
+    transition: margin-left .5s;
+    padding: 20px;
+  }
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }

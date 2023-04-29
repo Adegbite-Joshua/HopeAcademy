@@ -1,0 +1,4 @@
+STUDENTS:  {
+    UI - Landing page, signup, signin, dashboard, edit page, subjects page, eachsubject<CA and Exams>,  Announce page
+    Logics - signup(), signin(), editInfo(), messageTeacher(), messageSchool(),
+} 
