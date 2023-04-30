@@ -10,7 +10,7 @@ const MessageSchool = () => {
     }
   return (
     <>
-        <button className="open-button1 p-2 rounded-pill" onClick={openForm}>Message Us</button>
+        <button className="open-button1 p-2 rounded-full" onClick={openForm}>Message Us</button>
         <div className="chat-popup1" id="myForm1">
         <form action="/action_page.php" className="form-container1">
             <h1>Chat</h1>

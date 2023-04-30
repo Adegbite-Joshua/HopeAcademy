@@ -6,7 +6,7 @@ import SignInPage from './SignInPage'
 const StaffLogin = () => {
   return (
     <>
-        <div className='w-100' style={{paddingTop: '100px'}}>
+        <div className='w-100'>
           <LandingPageNav/>
           <SignInPage/>
           <MessageSchool/>

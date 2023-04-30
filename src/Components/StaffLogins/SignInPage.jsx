@@ -3,15 +3,16 @@ import React from 'react'
 const SignInPage = () => {
   return (
     <>
-        <div className='w-full h-24 h-screen bg-purple-600'>
+        <div className='w-full h-24 h-screen bg-slate-200 pt-24'>
             <div className="w-6/12 h-auto block mx-auto">
-                <label htmlFor="">Email</label>
-                <input type="text" className='w-full form focus:outline-none focus:ring focus:ring-2 focus:ring-red rounded-md placeholder-text-slate-500' placeholder='Email' name='' />
+                <label htmlFor="" className=''>Email</label>
+                <input type="text" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Email' name='' />
                 <label htmlFor="">Id Number</label>
-                <input type="text" className='w-full form focus:outline-none focus:ring focus:ring-2 focus:ring-red rounded-md placeholder-text-slate-500' placeholder='Staff Id' name='' />
+                <input type="text" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Id' name='' />
                 <label htmlFor="">Password</label>
-                <input type="text" className='w-full form focus:outline-none focus:ring focus:ring-2 focus:ring-red rounded-md placeholder-text-slate-500' placeholder='Staff Password' name='' />
-
+                <input type="text" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Password' name='' />
+                <input type="checkbox" className='accent-red-400' name="" id="" /><small>Remenber me</small>
+                <button className='block py-2 bg-orange-500 w-full rounded-full hover:bg-orange-300'>Sign In</button>
             </div>
 
             

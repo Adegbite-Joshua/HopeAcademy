@@ -1,8 +1,15 @@
 import React from 'react'
+import LandingPageNav from "../LandingPageNav";
+import MessageSchool from '../MessageSchool';
+import SignUpPage from './SignUpPage';
 
 const StaffSignUp = () => {
   return (
-    <div className='underline text-3xl font-bold underline text-red-600'>StaffSignUp</div>
+    <div className=''>
+      <LandingPageNav/>
+      <SignUpPage/>
+      <MessageSchool/>
+    </div>
   )
 }
 

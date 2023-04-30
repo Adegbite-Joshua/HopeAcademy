@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 const LandingPageNav = () => {
   return (
@@ -12,11 +13,11 @@ const LandingPageNav = () => {
                     <img src="vite.svg" style={{float:'left'}} alt="" />
                     PROADE SCHOOL
                 </span>
-                <li name='staff'>Staff Site</li>
-                <li>Sign Up</li>
-                <li>Sign In</li>
-                <li>Contsct Us</li>
-                <li>About Us</li>
+                <li name='staff'><Link>Staff Site</Link></li>
+                <li><Link to='/signup'>Sign Up</Link></li>
+                <li><Link to='/signin'>Sign In</Link></li>
+                <li><Link>Contsct Us</Link></li>
+                <li><Link>About Us</Link></li>
             </ul>
         </div>
     </>
