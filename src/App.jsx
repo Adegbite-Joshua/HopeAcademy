@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import LandingPage from './Components/LandingPages/LandingPage';
 import StaffLogin from './Components/StaffLogins/StaffLogin';
 import StaffSignUp from './Components/StaffSignUp/StaffSignUp';
+import StaffDashboard from './Components/StaffDashboard/StaffDashboard';
 
 
 
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage/>}/>
           <Route path="/home" to="/"/>
+          <Route path='/dashboard' element={<StaffDashboard/>}/>
           <Route path='/signin' element={<StaffLogin/>}/>
           <Route path='/signup' element={<StaffSignUp/>}/>
           
