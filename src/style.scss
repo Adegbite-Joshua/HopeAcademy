@@ -100,3 +100,36 @@
     }
   }
 
+
+.DashboardMainDiv::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+}
+@mixin calendarDisp{
+  width: calc(100%/7);
+  aspect-ratio: 1;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // padding: 10px;  
+  text-align: center;  
+  
+}
+
+.weeks, .days{
+  width: 100%;
+  ul{
+      list-style: none;
+      width: 100%;
+      display: flex;
+  }
+  ul{
+      display: flex;
+      flex-wrap: wrap;
+  }
+  ul li{
+      @include calendarDisp
+  }
+}
