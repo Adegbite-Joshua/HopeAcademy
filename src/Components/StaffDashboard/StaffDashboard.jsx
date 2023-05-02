@@ -6,7 +6,7 @@ import DashboardOtherSide from './DashboardOtherSide'
 const StaffDashboard = () => {
   return (
     <>
-        <div className="flex w-screen bg-slate-300">
+        <div className="flex w-screen flex-col md:flex-row bg-slate-300 relative ring-0">
             <DashboardNav/>
             <DashboardMainDiv/>
             <DashboardOtherSide/>

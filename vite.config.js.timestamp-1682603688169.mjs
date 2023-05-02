@@ -1,8 +1,26 @@
 // vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { VitePWA } from "vite-plugin-pwa";
+
 import { defineConfig } from "file:///C:/Users/USER/Desktop/SCHOOL%20PPORTAL/first_vite/node_modules/vite/dist/node/index.js";
 import react from "file:///C:/Users/USER/Desktop/SCHOOL%20PPORTAL/first_vite/node_modules/@vitejs/plugin-react/dist/index.mjs";
 var vite_config_default = defineConfig({
-  plugins: [react()]
+  plugins: [react()],
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name].[ext]',
+        chunkFileNames: 'assets/[name].[hash].js',
+        entryFileNames: 'assets/[name].[hash].js',
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        },
+      },
+    },
+  }
 });
 export {
   vite_config_default as default

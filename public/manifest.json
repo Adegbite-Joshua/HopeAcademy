@@ -1,0 +1,20 @@
+{
+    "name": "SCHOOL STAFF",
+    "short_name": "SCHOOL STAFF",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#333333",
+    "icons": [
+        {
+            "src": "proade.jpg",
+            "sizes": "192x192",
+            "type": "image/jpg"
+        },
+        {
+            "src": "proade.jpg",
+            "sizes": "512x512",
+            "types": "image/jpg"
+        }
+    ]
+}

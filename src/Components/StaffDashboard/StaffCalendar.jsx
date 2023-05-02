@@ -61,7 +61,7 @@ const StaffCalendar = () => {
     });
   return (
     <>
-        <div className='StaffCalendar w-[300px] aspect-square mx-auto my-auto border border-2 topSpace'>
+        <div className='StaffCalendar w-[300px] aspect-square mx-auto my-auto topSpace'>
             <header className='flex justify-between px-5'>
                 <h3 id='header'>September 23</h3>
                 <span>

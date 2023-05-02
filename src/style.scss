@@ -133,3 +133,29 @@
       @include calendarDisp
   }
 }
+
+.nobreak{
+  word-wrap: normal;
+  word-break: keep-all;
+  word-break: normal;
+}
+
+// @media (max-width: 768px) {
+//   .navbar{
+//     // display: none !important;
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     left: 0;
+//     height: 48px !important;
+//   }
+//   .otherDiv{
+//     // display: none;
+//     // flex-basis: 100% !important;
+//     // height: auto;
+//   }
+//   // .mainDiv{
+//   //   flex-basis: 100% !important;
+//   //   height: auto;
+//   // }
+// }
