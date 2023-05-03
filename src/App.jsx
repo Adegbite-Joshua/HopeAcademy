@@ -10,6 +10,7 @@ import StaffLogin from './Components/StaffLogins/StaffLogin';
 import StaffSignUp from './Components/StaffSignUp/StaffSignUp';
 import StaffDashboard from './Components/StaffDashboard/StaffDashboard';
 import StaffInbox from './Components/StaffInbox/StaffInbox';
+import Student from './Components/Student/Student';
 
 
 
@@ -36,6 +37,7 @@ function App() {
           <Route path='/signin' element={<StaffLogin/>}/>
           <Route path='/signup' element={<StaffSignUp/>}/>
           <Route path='/inbox' element={<StaffInbox/>}/>
+          <Route path='/student' element={<Student/>}/>
           
           
         </Routes>
