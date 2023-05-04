@@ -14,6 +14,7 @@ const DashboardNav = () => {
                 <li className='my-3 px-4 text-slate-400'><Link to='/inbox'><i className='fa fa-inbox'></i> Inbox</Link></li>
                 <li className='my-3 px-4 text-slate-400'><Link><i className='fab fa-room'></i> Class</Link></li>
                 <li className='my-3 px-4 text-slate-400'><Link to='/student'><i className='fab fa-room'></i> Students</Link></li>
+                <li className='my-3 px-4 text-slate-400'><Link to='/message'><i className='fab fa-room'></i> Messages</Link></li>
                 <li className='my-3 px-4 text-slate-400'><Link><i className='fas fa'></i> Tests</Link></li>
                 <li className='my-3 px-4 text-slate-400'><Link><i className='fas fa'></i> Files</Link></li>
                 <li className='my-3 px-4 text-slate-400'><Link><i className='fas fa'></i> Settings</Link></li>
