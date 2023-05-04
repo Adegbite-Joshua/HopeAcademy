@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-// import './style.css'
 import './style.scss'
 import './../node_modules/font-awesome/css/font-awesome.css'
 // import '../node_modules/bootstrap/dist/css/bootstrap.css'
@@ -11,6 +10,8 @@ import StaffSignUp from './Components/StaffSignUp/StaffSignUp';
 import StaffDashboard from './Components/StaffDashboard/StaffDashboard';
 import Student from './Components/Student/Student';
 import StaffMessage from './Components/StaffMessage/StaffMessage';
+import StaffSubmit from './Components/StaffSubmit/StaffSubmit';
+import StaffFile from './Components/StaffFile/StaffFile';
 
 
 
@@ -38,7 +39,8 @@ function App() {
           <Route path='/signup' element={<StaffSignUp/>}/>
           <Route path='/inbox' element={<StaffMessage/>}/>
           <Route path='/student' element={<Student/>}/>
-          
+          <Route path='/submit' element={<StaffSubmit/>}/>
+          <Route path='/uploadfile' element={<StaffFile/>}/>
           
         </Routes>
     </>
