@@ -12,6 +12,7 @@ import Student from './Components/Student/Student';
 import StaffMessage from './Components/StaffMessage/StaffMessage';
 import StaffSubmit from './Components/StaffSubmit/StaffSubmit';
 import StaffFile from './Components/StaffFile/StaffFile';
+import StaffSetting from './Components/StaffSetting/StaffSetting';
 
 
 
@@ -41,6 +42,7 @@ function App() {
           <Route path='/student' element={<Student/>}/>
           <Route path='/submit' element={<StaffSubmit/>}/>
           <Route path='/uploadfile' element={<StaffFile/>}/>
+          <Route path='/setting' element={<StaffSetting/>}/>
           
         </Routes>
     </>
