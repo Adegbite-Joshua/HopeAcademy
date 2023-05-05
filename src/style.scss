@@ -166,6 +166,8 @@
   @apply flex w-screen flex-col md:flex-row bg-slate-300 relative ring-0
 }
 
+@import './popup.scss';
+
 .nobreak{
   word-wrap: normal;
   word-break: keep-all;
