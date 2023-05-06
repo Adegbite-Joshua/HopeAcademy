@@ -19,8 +19,8 @@ const ProfiileUpdate = () => {
             <input type='text' className=' w-full p-2 text-slate-600 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-600' placeholder='Local Goverment' id='firstName' />
             <label htmlFor='firstName'>State</label>
             <input type='text' className=' w-full p-2 text-slate-600 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-600' placeholder='State' id='firstName' />
-
-            <button className='w-full bg-blue-600 hover:bg-blue-500 rounded-md p-2 my-1'>Update Profile</button>
+            <button className='w-full bg-blue-600 hover:bg-blue-500 rounded-md p-2 my-2'>Update Profile</button>
+            <button className='w-full bg-blue-600 hover:bg-blue-500 rounded-md p-2 my-2'>Reset Information</button>
         </div>
     </>
   )

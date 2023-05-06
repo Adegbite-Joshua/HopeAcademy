@@ -1,7 +1,9 @@
 import React from 'react'
+import Calendar from 'react-calendar'
 import StaffCalendar from './StaffCalendar'
 import StaffInformation from './StaffInformation'
 import StaffTimeline from './StaffTimeline'
+import 'react-calendar/dist/Calendar.css';
 
 const DashboardOtherSide = () => {
   return (
@@ -10,7 +12,8 @@ const DashboardOtherSide = () => {
             <StaffInformation/>
             <hr className='my-2'/>
             <div className="flex w-full">
-                <StaffCalendar/>
+                {/* <StaffCalendar/> */}
+                <Calendar/>
             </div>
             <StaffTimeline/>
 
