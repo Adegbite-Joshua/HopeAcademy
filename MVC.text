@@ -2,3 +2,47 @@ STUDENTS:  {
     UI - Landing page, signup, signin, dashboard, edit page, subjects page, eachsubject<CA and Exams>,  Announce page
     Logics - signup(), signin(), editInfo(), messageTeacher(), messageSchool(),
 } 
+
+STAFFS - 
+
+allStaffs = array [staffInfo]
+staffInfo = object {
+    name,
+    phonenumber,
+    email,
+    password,
+    staffId,
+    address,
+    localGovernment,
+    State,
+    subjectInfo : {
+        subjectName,
+        subjectDescription,
+        subjectPicUrl
+    },
+    activeStatus: false,
+    messages: [message],
+    submittedWorks = [work],
+    timelines = [timeline],
+    groups = [group],
+    files = [file]
+}
+message = object {
+    messageSender,
+    messageRecipient,
+    messageSubject,
+    messageDate
+}
+
+timeline = object {
+    timelineBody,
+    timelinePlace,
+    timelineDate
+}
+
+file = object {
+    fileTitle,
+    fileDescription,
+    fileUrl,
+    fileDate
+}

@@ -25,7 +25,6 @@ const UploadedFile = () => {
             <video src="vid.mp4"  width="100%" className=' aspect-video' controls pause='true'></video>
         </div>
         
-
         <div className="containerp">
         <div className="popup" id="popup">
             <button type="button" className=" ms-auto block my-2" onClick={closeFileView} aria-label="Close">X</button>
