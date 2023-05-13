@@ -15,6 +15,12 @@ staffInfo = object {
     address,
     localGovernment,
     State,
+    links: {
+        facebook,
+        twitter,
+        whatsapp,
+        other
+    }
     subjectInfo : {
         subjectName,
         subjectDescription,
