@@ -25,9 +25,7 @@ const SignInPage = () => {
                 <input onChange={formik.handleChange} type="text" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Password' name='password' />
                 <input type="checkbox" className='accent-red-400' name="" id="" /><small>Remenber me</small>
                 <button type='submit' className='block py-2 bg-orange-500 w-full rounded-full hover:bg-orange-300'>Sign In</button>
-            </form>
-
-            
+            </form>            
         </div>
     </>
   )
