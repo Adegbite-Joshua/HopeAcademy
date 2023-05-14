@@ -1,11 +1,27 @@
 import { useFormik } from 'formik';
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom";
-import { Value } from 'sass';
-
 
 
 const SignUpPage = () => {
+  const subjects = [
+    'MATHEMATICS',
+    'ENGLISH LANGUAGE',
+    'YORUBA',
+    'CIVIC',
+    'COMPUTER',
+    'GEOGRAPHY',
+    'ECONOMICS',
+    'PHYSICS',
+    'CHEMISTRY',
+    'BIOLOGY',
+    'ANIMAL',
+    'FURTHER MATHS',
+    'TECHNICAL'
+  ]
+  // const findIndex =(e)=>{
+  //   console.log(subjects.indexOf(e.target.value))
+  // }
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -13,7 +29,7 @@ const SignUpPage = () => {
       phonenumber: '',
       email: '',
       password: '',
-      staffId: '',
+      staffIndex: -1,
       address: '',
       localGovernment: '',
       state: '',
@@ -51,6 +67,22 @@ const SignUpPage = () => {
                 <input type="text" name='email' onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Email' />
                 <label htmlFor="" className=''>Phone Number</label>
                 <input type="text" name='phoneNumber' onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Phone Number' />
+                <label htmlFor="" className=''>Subject To Offer</label>
+                <select  name="staffIndex" onChange={formik.handleChange} id="" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50 px-6'>
+                  <option value={subjects.indexOf('MATHEMATICS')}>MATHEMATICS</option>
+                  <option value={subjects.indexOf('ENGLISH LANGUAGE')}>ENGLISH LANGUAGE</option>
+                  <option value={subjects.indexOf('YORUBA')}>YORUBA</option>
+                  <option value={subjects.indexOf('CIVIC')}>CIVIC</option>
+                  <option value={subjects.indexOf('COMPUTER')}>COMPUTER</option>
+                  <option value={subjects.indexOf('GEOGRAPHY')}>GEOGRAPHY</option>
+                  <option value={subjects.indexOf('ECONOMICS')}>ECONOMICS</option>
+                  <option value={subjects.indexOf('PHYSICS')}>PHYSICS</option>
+                  <option value={subjects.indexOf('CHEMISTRY')}>CHEMISTRY</option>
+                  <option value={subjects.indexOf('BIOLOGY')}>BIOLOGY</option>
+                  <option value={subjects.indexOf('ANIMAL')}>ANIMAL</option>
+                  <option value={subjects.indexOf('FURTHER MATHS')}>FURTHER MATHS</option>
+                  <option value={subjects.indexOf('TECHNICA')}>TECHNICA</option>
+                </select>
                 <label htmlFor="">Address</label>
                 <input type="text" name='address' onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Address' />
                 <label htmlFor="">Password</label>
