@@ -29,7 +29,21 @@ const SignUpPage = () => {
       phonenumber: '',
       email: '',
       password: '',
-      staffIndex: -1,
+      staffIndex: 0,
+      // address: '',
+    },
+    onSubmit: (values)=>{
+      submit(values);
+    }
+  })
+  const submit =(values)=>{
+    let details = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      phonenumber: values.phonenumber,
+      email: values.email,
+      password: values.password,
+      staffIndex: values.staffIndex,
       address: '',
       localGovernment: '',
       state: '',
@@ -40,7 +54,7 @@ const SignUpPage = () => {
           other: ''
       },
       subjectInfo: {
-          subjectName: '',
+          subjectName: subjects[values.staffIndex],
           subjectDescription: '',
           subjectPicUrl: ''
       },
@@ -50,11 +64,9 @@ const SignUpPage = () => {
       timelines: [],
       groups: [],
       files: []
-    },
-    onSubmit: (values)=>{
-      console.log(values)
     }
-  })
+    console.log(details);
+  }
   return (
     <>
         <div className='w-full h-24 h-screen bg-slate-200 pt-24'>
@@ -67,6 +79,15 @@ const SignUpPage = () => {
                 <input type="text" name='email' onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Email' />
                 <label htmlFor="" className=''>Phone Number</label>
                 <input type="text" name='phoneNumber' onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Phone Number' />
+                <label htmlFor="">Class</label>
+                <select name="class" id="class">
+                  <option value="0">JSS1</option>
+                  <option value="1">JSS2</option>
+                  <option value="2">JSS3</option>
+                  <option value="3">SSS1</option>
+                  <option value="4">SSS2</option>
+                  <option value="5">SSS3</option>
+                </select>
                 <label htmlFor="" className=''>Subject To Offer</label>
                 <select  name="staffIndex" onChange={formik.handleChange} id="staffIndex" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50 px-6'>
                   <option  value={subjects.indexOf('MATHEMATICS')}>MATHEMATICS</option>
