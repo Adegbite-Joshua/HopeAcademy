@@ -34,13 +34,13 @@ import { Link } from 'react-router-dom'
 const LandingPageNav = ({percent}) => {
     // const [percentage, setpercentage] = useState(0)
     // window.onscroll=()=>setpercentage((window.scrollY/(document.documentElement.scrollHeight - window.innerHeight))*100)
-    // const showSideBar =()=>{
-    //     document.getElementById('navUl').classList.toggle('responsive')
-    // }
+    const showSideBar =()=>{
+        document.getElementById('navUl').classList.toggle('responsive')
+    }
   return (
     <>
         <div className="sticky top-0 w-full" style={{zIndex: '9999999999'}}>
-        <div className='LandingPageNav w-full blue500 flex relative '>
+        <div className='LandingPageNav w-full bg-blue-500 flex relative '>
             <div className='flex h-full items-center'>
                 <img src="vite.svg" alt="" style={{height: '50px', width: '50px'}} />
                 <h3>PROADE SCHOOL</h3>
@@ -73,7 +73,7 @@ const LandingPageNav = ({percent}) => {
                     <Link className="" to='/aboutus'>About Us</Link>
                 </li>
             </ul>
-            <span><i className='fa fa-bars'></i></span>
+            <span onClick={showSideBar}><i className='fa fa-bars'></i></span>
         </div>
         {/* <div className='w-full bg-danger' style={{height: '8px'}}>
             <div style={{width: `${percentage}%`}} className='h-full bg-warning'>
