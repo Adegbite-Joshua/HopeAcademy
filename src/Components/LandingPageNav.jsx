@@ -73,7 +73,7 @@ const LandingPageNav = ({percent}) => {
                     <Link className="" to='/aboutus'>About Us</Link>
                 </li>
             </ul>
-            <span onClick={showSideBar}><i className='fa fa-bars'></i></span>
+            <span><i className='fa fa-bars'></i></span>
         </div>
         {/* <div className='w-full bg-danger' style={{height: '8px'}}>
             <div style={{width: `${percentage}%`}} className='h-full bg-warning'>
