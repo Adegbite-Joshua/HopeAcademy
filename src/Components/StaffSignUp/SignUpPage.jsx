@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useFormik, validateYupSchema, validationSchema } from 'formik';
+import { useFormik, validateYupSchema } from 'formik';
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 // import * as Yup from 'yup';
@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 //     'MATHEMATICS': {}
 //     'ENGLISH LANGUAGE': {}
 //     'YORUBA': {}
-//     'CIVIC': {}
-//     'COMPUTER': {}
+//     'CIVIC EDUCATION': {}
+//     'COMPUTER STUDIES': {}
 //     'GEOGRAPHY': {}
 //     'ECONOMICS': {}
 //     'PHYSICS': {}
@@ -27,16 +27,16 @@ const SignUpPage = () => {
     'MATHEMATICS',
     'ENGLISH LANGUAGE',
     'YORUBA',
-    'CIVIC',
-    'COMPUTER',
+    'CIVIC EDUCATION',
+    'COMPUTER STUDIES',
     'GEOGRAPHY',
     'ECONOMICS',
     'PHYSICS',
     'CHEMISTRY',
     'BIOLOGY',
-    'ANIMALHUSBANDRY',
-    'FURTHERMATHEMATICS',
-    'TECHNICALDRAWING '
+    'ANIMAL HUSBANDRY',
+    'FURTHER MATHEMATICS',
+    'TECHNICAL DRAWING '
   ]
   // const findIndex =(e)=>{
   //   console.log(subjects.indexOf(e.target.value))
@@ -103,13 +103,14 @@ const SignUpPage = () => {
     }
     let endpoint = 'http://localhost:7777/staff/signup'
     console.log(details)
-    // axios.post(endpoint, details)
-    // .then((res)=>{
-    //     console.log('success');
-    // })
-    // .catch((err)=>{
-
-    // })
+    axios.post(endpoint, details)
+    .then((res)=>{
+        console.log('success');
+        console.log(res);
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
   }
   return (
     <>
@@ -139,15 +140,15 @@ const SignUpPage = () => {
                   <option  value={subjects.indexOf('ENGLISH LANGUAGE')}>ENGLISH LANGUAGE</option>
                   <option  value={subjects.indexOf('YORUBA')}>YORUBA</option>
                   <option  value={subjects.indexOf('CIVICEDUCATION')}>CIVIC EDUCATION</option>
-                  <option  value={subjects.indexOf('COMPUTER')}>COMPUTER STUDY</option>
+                  <option  value={subjects.indexOf('COMPUTER STUDIES')}>COMPUTER STUDIES</option>
                   <option  value={subjects.indexOf('GEOGRAPHY')}>GEOGRAPHY</option>
                   <option  value={subjects.indexOf('ECONOMICS')}>ECONOMICS</option>
                   <option  value={subjects.indexOf('PHYSICS')}>PHYSICS</option>
                   <option  value={subjects.indexOf('CHEMISTRY')}>CHEMISTRY</option>
                   <option  value={subjects.indexOf('BIOLOGY')}>BIOLOGY</option>
-                  <option  value={subjects.indexOf('ANIMALHUSBANDRY')}>ANIMAL HUSBANDRY</option>
-                  <option  value={subjects.indexOf('FURTHERMATHEMATICS')}>FURTHER MATHEMATICS</option>
-                  <option  value={subjects.indexOf('TECHNICALDRAWING ')}>TECHNICAL DRAWING</option>
+                  <option  value={subjects.indexOf('ANIMAL HUSBANDRY')}>ANIMAL HUSBANDRY</option>
+                  <option  value={subjects.indexOf('FURTHER MATHEMATICS')}>FURTHER MATHEMATICS</option>
+                  <option  value={subjects.indexOf('TECHNICAL DRAWING ')}>TECHNICAL DRAWING</option>
                 </select>
                 <label htmlFor="">Address</label>
                 <input type="text" required name='address' onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Address' />
