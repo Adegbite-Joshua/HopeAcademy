@@ -2,26 +2,8 @@ import axios from 'axios';
 import { useFormik, validateYupSchema } from 'formik';
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 
-
-// [
-//   {
-//     'MATHEMATICS': {}
-//     'ENGLISH LANGUAGE': {}
-//     'YORUBA': {}
-//     'CIVIC EDUCATION': {}
-//     'COMPUTER STUDIES': {}
-//     'GEOGRAPHY': {}
-//     'ECONOMICS': {}
-//     'PHYSICS': {}
-//     'CHEMISTRY': {}
-//     'BIOLOGY': {}
-//     'ANIMALHUSBANDRY': {}
-//     'FURTHER MATHS': {}
-//     'TECHNICALDRAWING ': {}
-//   }
-// ]
 const SignUpPage = () => {
   const subjects = [
     'MATHEMATICS',
@@ -53,19 +35,19 @@ const SignUpPage = () => {
       address: '',
       localGovernment: '',
     },
-    // validationSchema: Yup.object().shape({
-    //   firstName: Yup.string()
-    //     .min(2, 'Too Short!')
-    //     .max(50, 'Too Long!')
-    //     .type(!string, 'String required')
-    //     .required('Required'),
-    //   lastName: Yup.string()
-    //     .min(2, 'Too Short!')
-    //     .max(50, 'Too Long!')
-    //     .type(!string, 'String required')
-    //     .required('Required'),
-    //   email: Yup.string().email('Invalid email').required('Required'),
-    // }),
+    validationSchema: Yup.object({
+      firstName: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!')
+        // .type(!string, 'String required')
+        .required('Required'),
+      lastName: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!')
+        // .type(!string, 'String required')
+        .required('Required'),
+      email: Yup.string().email('Invalid email').required('Required'),
+    }),
     onSubmit: (values)=>{
       // console.log(values);
       submit(values);
@@ -117,8 +99,8 @@ const SignUpPage = () => {
         <div className='w-full h-24 h-screen bg-slate-200 pt-24'>
             <form onSubmit={formik.handleSubmit} className="w-full md:w-6/12 px-5 h-auto block mx-auto">
                 <label htmlFor="" className=''>First Name</label>
-                <input type="text" required name='firstName' onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='First Name' />
-                <small>{formik.errors.firstName}</small>
+                <input type="text" required name='firstName' {...formik.getFieldProps('firstName')} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='First Name' />
+                <small>{formik.touched.firstName && formik.errors.firstName}</small>
                 <label htmlFor="" className=''>Last Name</label>
                 <input type="text" required name='lastName' onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Last Name' />
                 <label htmlFor="" className=''>Email</label>
@@ -136,19 +118,19 @@ const SignUpPage = () => {
                 </select>
                 <label htmlFor="" className=''>Subject To Offer</label>
                 <select  name="staffIndex" required onChange={formik.handleChange} id="staffIndex" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50 px-6'>
-                  <option  value={subjects.indexOf('MATHEMATICS')} selected>MATHEMATICS</option>
-                  <option  value={subjects.indexOf('ENGLISH LANGUAGE')}>ENGLISH LANGUAGE</option>
-                  <option  value={subjects.indexOf('YORUBA')}>YORUBA</option>
-                  <option  value={subjects.indexOf('CIVICEDUCATION')}>CIVIC EDUCATION</option>
-                  <option  value={subjects.indexOf('COMPUTER STUDIES')}>COMPUTER STUDIES</option>
-                  <option  value={subjects.indexOf('GEOGRAPHY')}>GEOGRAPHY</option>
-                  <option  value={subjects.indexOf('ECONOMICS')}>ECONOMICS</option>
-                  <option  value={subjects.indexOf('PHYSICS')}>PHYSICS</option>
-                  <option  value={subjects.indexOf('CHEMISTRY')}>CHEMISTRY</option>
-                  <option  value={subjects.indexOf('BIOLOGY')}>BIOLOGY</option>
-                  <option  value={subjects.indexOf('ANIMAL HUSBANDRY')}>ANIMAL HUSBANDRY</option>
-                  <option  value={subjects.indexOf('FURTHER MATHEMATICS')}>FURTHER MATHEMATICS</option>
-                  <option  value={subjects.indexOf('TECHNICAL DRAWING ')}>TECHNICAL DRAWING</option>
+                  <option  value='0' selected>MATHEMATICS</option>
+                  <option  value='1'>ENGLISH LANGUAGE</option>
+                  <option  value='2'>YORUBA</option>
+                  <option  value='3'>CIVIC EDUCATION</option>
+                  <option  value='4'>COMPUTER STUDIES</option>
+                  <option  value='5'>GEOGRAPHY</option>
+                  <option  value='6'>ECONOMICS</option>
+                  <option  value='7'>PHYSICS</option>
+                  <option  value='8'>CHEMISTRY</option>
+                  <option  value='9'>BIOLOGY</option>
+                  <option  value='10'>ANIMAL HUSBANDRY</option>
+                  <option  value='11'>FURTHER MATHEMATICS</option>
+                  <option  value='12 '>TECHNICAL DRAWING</option>
                 </select>
                 <label htmlFor="">Address</label>
                 <input type="text" required name='address' onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Address' />
