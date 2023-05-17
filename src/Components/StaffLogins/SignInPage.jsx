@@ -1,8 +1,11 @@
 import React from 'react'
 import { Formik, useFormik } from 'formik'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 
 const SignInPage = () => {
+  const navigate = useNavigate()
   const formik  = useFormik({
     initialValues: {
       email: '',
@@ -12,11 +15,13 @@ const SignInPage = () => {
     onSubmit: (values)=>{
       console.log(values);
       let endpoint = 'http://localhost:7777/staff/signin'
-      console.log(details)
-      axios.post(endpoint, details)
+      axios.post(endpoint, values)
       .then((res)=>{
           console.log('success');
           console.log(res);
+          if (res.status==200) {
+            navigate('/dashboard')
+          }
       })
       .catch((err)=>{
           console.log(err);
