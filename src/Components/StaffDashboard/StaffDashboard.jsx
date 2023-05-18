@@ -1,10 +1,29 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React , {useEffect, useState} from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import DashboardMainDiv from './DashboardMainDiv'
 import DashboardNav from './DashboardNav'
 import DashboardOtherSide from './DashboardOtherSide'
+import {useSelector, useDispatch} from 'react-redux'
+import {fetchStaff} from '../../redux/staffInformation'
+
+
 
 const StaffDashboard = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [staffInfo, setstaffInfo] = useState([])
+  useSelector((state)=>state.staffInformation.staffInformation)
+  const decide = ()=>{
+    dispatch(fetchStaff())
+    console.log(staffInfo);
+    if (staffInfo == 'error') {
+      navigate('/signin')
+    }
+  }
+  useEffect(() => {
+    decide()
+  }, [])
+  
   let values = useParams()
   return (
     <>

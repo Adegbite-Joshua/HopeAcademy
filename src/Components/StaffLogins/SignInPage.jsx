@@ -20,6 +20,9 @@ const SignInPage = () => {
           console.log('success');
           console.log(res);
           if (res.status==200) {
+            localStorage.setItem('staffemail', values.email)
+            localStorage.setItem('staffpassword', values.password)
+            localStorage.setItem('staffclass', values.class)
             navigate('/dashboard')
           }
       })
