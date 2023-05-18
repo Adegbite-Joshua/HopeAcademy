@@ -11,17 +11,6 @@ const DashboardMainDiv = () => {
   const dispatch = useDispatch()
   // const [staffInfo, setstaffInfo] = useState(useSelector((state)=>state.staffInformation.staffInformation))
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
-  
-  const decide = ()=>{
-    dispatch(fetchStaff())
-    // console.log(staffInfo);
-    if (staffInfo == 'error') {
-      navigate('/signin')
-    }
-  }
-  useEffect(() => {
-    // decide()
-  }, [])
   return (
     <>
         <div className='DashboardMainDiv mt-16 md:mt-0 h-screen basis-full md:basis-7/12 px-5 overflow-y-auto'>

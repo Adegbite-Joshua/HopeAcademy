@@ -1,7 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import TestOverView from './TestOverView'
+import TestOverViewNone from './TestOverViewNone'
 
 const SubmittedTest = () => {
+  let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
+  let SubmittedWork = staffInfo.submittedWorks.filter((submits, index)=>index<5)
+
   return (
     <>
         <div className='w-full px-5 bg-white rounded-lg mt-5 py-5'>
@@ -17,10 +22,11 @@ const SubmittedTest = () => {
                     </tr>
                 </thead>
                 <tbody>
+                    {SubmittedWork.lenght>0?SubmittedWork.map(()=>(<>
                     <TestOverView/>
                     <TestOverView/>
                     <TestOverView/>
-                    <TestOverView/>
+                    <TestOverView/></>)): <TestOverViewNone/> }
                 </tbody>
             </table>
         </div>

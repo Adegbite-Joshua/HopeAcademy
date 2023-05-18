@@ -15,7 +15,6 @@ const StaffDashboard = () => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   
   const decide = ()=>{
-    
     let endpoint = 'http://localhost:7777/staff/dashboard'
             let staffEmail = localStorage.getItem('staffemail')
             let staffPassword = localStorage.getItem('staffpassword')
@@ -46,7 +45,6 @@ const StaffDashboard = () => {
     // }
   }
   useEffect(() => {
-    // setTimeout(()=>decide, 10);
     decide()
   }, [])
   
