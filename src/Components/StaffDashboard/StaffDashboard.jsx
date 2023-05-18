@@ -12,7 +12,7 @@ import axios from 'axios'
 const StaffDashboard = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [staffInfo, setstaffInfo] = useState(useSelector((state)=>state.staffInformation.staffInformation))
+  let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   
   const decide = ()=>{
     
@@ -30,7 +30,7 @@ const StaffDashboard = () => {
                 console.log(res)
                 if (res.status==200) {
                   dispatch(fetchStaff(res.data))
-                  console.log(staffInfo);
+                  // console.log(staffInfo);
                     // Object.assign(state.staffInformation=res.data)
                     // state.staffInformation = res.data
                 } else if(res.status != 200){
