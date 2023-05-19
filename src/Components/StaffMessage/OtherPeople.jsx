@@ -6,6 +6,7 @@ const OtherPeople = () => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let allStudentsInfo = useSelector((state)=>state.staffInformation.allStudents)
   const [viewing, setviewing] = useState(0)
+  console.log(allStudentsInfo[0][0].firstName);
   const setViewingMessage =(viewingMessage)=>{
 
   }
