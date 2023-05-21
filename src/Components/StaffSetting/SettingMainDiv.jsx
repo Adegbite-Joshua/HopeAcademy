@@ -3,13 +3,16 @@ import ProfiileUpdate from './ProfiileUpdate'
 import SocialMediaUpdate from './SocialMediaUpdate'
 import SubjectSetting from './SubjectSetting'
 
-const SettingMainDiv = () => {
+const SettingMainDiv = ({disp}) => {
   return (
     <>
         <div className="SettingMainDiv middleDiv">
-            <ProfiileUpdate/>
+            {disp=='allSettings'?<><ProfiileUpdate/>
             <SocialMediaUpdate/>
-            <SubjectSetting/>
+            <SubjectSetting/></>: ''}
+            {disp=='profile'?<ProfiileUpdate/>:''}
+            {disp=='social'?<SocialMediaUpdate/>:''}
+            {disp=='subject'?<SubjectSetting/>:''}
         </div>
     </>
   )
