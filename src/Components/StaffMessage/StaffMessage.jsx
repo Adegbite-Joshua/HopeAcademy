@@ -61,7 +61,9 @@ const StaffMessage = () => {
     
   }
   useEffect(() => {
-    decide()
+    if(staffInfo.length==0){
+      decide()
+    }
   }, []);
   const setViewingMessage =(category, mainindex, individualindex)=>{
     console.log(staffInfo.messages)
