@@ -2,14 +2,11 @@ import React , {useState} from 'react'
 import { useSelector } from 'react-redux'
 import People from './People'
 
-const OtherPeople = () => {
+const OtherPeople = ({func}) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let allStudentsInfo = useSelector((state)=>state.staffInformation.allStudents)
   const [viewing, setviewing] = useState(0)
-  console.log(allStudentsInfo[0][0].firstName)
-  const setViewingMessage =(viewingMessage)=>{
-
-  }
+  // console.log(allStudentsInfo[0][0].firstName)
   return (
     <>
         <div className="w-full p-2">
@@ -22,9 +19,9 @@ const OtherPeople = () => {
               <option value="4">SSS2</option>
               <option value="5">SSS3</option>
             </select>
-            {allStudentsInfo[viewing].length>0?allStudentsInfo[viewing].map((student, index)=>(
-            <People name={`${student.firstName} ${student.lastName}`} img='jkd' index={index} func={setViewingMessage}/>
-            )): <People name='No name' img='jkd' index={0} func={setViewingMessage}/>}
+            {/* {allStudentsInfo[viewing].length>0?allStudentsInfo[viewing].map((student, index)=>(
+            <People key={index} mainindex={viewing} name={`${student.firstName} ${student.lastName}`} img='jkd' index={index} func={func}/>
+            )): <People name='No name' img='jkd' index={0} func={setViewingMessage}/>} */}
         </div>
     </>
   )

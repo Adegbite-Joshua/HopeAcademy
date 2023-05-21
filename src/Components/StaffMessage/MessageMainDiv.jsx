@@ -7,9 +7,6 @@ import { useSelector } from 'react-redux'
 const MessageMainDiv = () => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let allStudentsInfo = useSelector((state)=>state.staffInformation.allStudents)
-  const setViewingMessage = (viewingMessage)=>{
-
-  }
   const [category, setcategory] = useState('');
   const [mainindex, setmainindex] = useState('');
   const [index, setindex] = useState('');

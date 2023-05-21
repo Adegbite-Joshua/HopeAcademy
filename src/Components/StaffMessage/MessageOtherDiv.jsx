@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import OtherPeople from './OtherPeople'
 import OtherStaff from './OtherStaff'
 
-const MessageOtherDiv = () => {
+const MessageOtherDiv = ({func}) => {
   const [messaging, setmessaging] = useState('other')
   return (
     <>
@@ -12,8 +12,8 @@ const MessageOtherDiv = () => {
                 <button onClick={()=>setmessaging('staff')} className=' bg-blue-600 hover:bg-blue-500 rounded-md p-2'>Staff</button>
                 <button className=' bg-blue-600 hover:bg-blue-500 rounded-md p-2'>Admin</button>
             </div>
-            {messaging=='other'?<OtherPeople/>: ''}
-            {messaging=='staff'?<OtherStaff/>:''}
+            {messaging=='other'?<OtherPeople func={func}/>: ''}
+            {messaging=='staff'?<OtherStaff func={func}/>:''}
         </div>
     </>
   )

@@ -4,11 +4,12 @@ import DashboardNav from '../StaffDashboard/DashboardNav'
 import MessageMainDiv from './MessageMainDiv'
 import MessageOtherDiv from './MessageOtherDiv'
 import { fetchStaff, fetchAllStaffs, fetchAllStudents } from '../../redux/staffInformation'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 
 const StaffMessage = () => {
   const dispatch = useDispatch()
+  let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   const decide = ()=>{
     let endpoint = 'http://localhost:7777/staff/dashboard'
     let allstaffsendpoint = 'http://localhost:7777/staff/allstaffs'
@@ -61,13 +62,24 @@ const StaffMessage = () => {
   }
   useEffect(() => {
     decide()
-  }, [])
+  }, []);
+  const setViewingMessage =(category, mainindex, individualindex)=>{
+    console.log(staffInfo.messages)
+    let found = false
+    // if (staffInfo.messages.length>0) {
+    //   staffInfo.messages.map((individual, index)=>{
+      
+    //   })
+    // } else{
+
+    // }
+  }
   return (
     <>
         <div className="StaffMessage flex w-screen flex-col md:flex-row bg-slate-300 relative ring-0">
             <DashboardNav/>
             <MessageMainDiv/>
-            <MessageOtherDiv/>
+            <MessageOtherDiv func={setViewingMessage}/>
         </div>
     </>
   )
