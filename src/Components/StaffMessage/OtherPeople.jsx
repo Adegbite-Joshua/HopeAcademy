@@ -6,7 +6,7 @@ const OtherPeople = () => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let allStudentsInfo = useSelector((state)=>state.staffInformation.allStudents)
   const [viewing, setviewing] = useState(0)
-  console.log(allStudentsInfo[0][0].firstName);
+  console.log(allStudentsInfo[0][0].firstName)
   const setViewingMessage =(viewingMessage)=>{
 
   }
@@ -22,9 +22,9 @@ const OtherPeople = () => {
               <option value="4">SSS2</option>
               <option value="5">SSS3</option>
             </select>
-            {allStudentsInfo[viewing]>0?allStudentsInfo[viewing].map((student, index)=>(
+            {allStudentsInfo[viewing].length>0?allStudentsInfo[viewing].map((student, index)=>(
             <People name={`${student.firstName} ${student.lastName}`} img='jkd' index={index} func={setViewingMessage}/>
-            )): <People/>}
+            )): <People name='No name' img='jkd' index={0} func={setViewingMessage}/>}
         </div>
     </>
   )
