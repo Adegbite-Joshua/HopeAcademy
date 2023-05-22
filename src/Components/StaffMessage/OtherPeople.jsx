@@ -23,7 +23,7 @@ const OtherPeople = ({func, func2}) => {
             </select>
             {allStudentsInfo.length>0?allStudentsInfo[viewing].length>0?allStudentsInfo[viewing].map((student, index)=>(
             <People key={index} mainindex={viewing} name={`${student.firstName} ${student.lastName}`} img='jkd' index={index} func={func}/>
-            )): <People name='No name' img='jkd' index={0} func={setViewingMessage}/>:func}
+            )): <People name='No name' img='jkd' index={0} func={func}/>:func}
         </div>
     </>
   )

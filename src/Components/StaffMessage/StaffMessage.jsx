@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import DashboardNav from '../StaffDashboard/DashboardNav'
 import MessageMainDiv from './MessageMainDiv'
 import MessageOtherDiv from './MessageOtherDiv'
@@ -66,22 +66,21 @@ const StaffMessage = () => {
     // }
   }, []);
   window.decide = decide
-  const setViewingMessage =(category, mainindex, individualindex)=>{
-    console.log(staffInfo.messages)
-    let found = false
-    // if (staffInfo.messages.length>0) {
-    //   staffInfo.messages.map((individual, index)=>{
-      
-    //   })
-    // } else{
-
-    // }
+  const [category, setcategory] = useState(null)
+  const [mainindex, setmainindex] = useState(null)
+  const [individualIndex, setindividualIndex] = useState(null)
+  const setViewingMessage =(cat, main, ind)=>{
+    // console.log(staffInfo.messages)
+    console.log(cat, main, ind);
+    category!=''?setcategory(cat):''
+    mainindex!=''?setmainindex(main):''
+    individualIndex!=''?setindividualIndex(ind):''
   }
   return (
     <>
         <div className="StaffMessage flex w-screen flex-col md:flex-row bg-slate-300 relative ring-0">
             <DashboardNav/>
-            <MessageMainDiv/>
+            <MessageMainDiv mainindex={mainindex} category={category} individualIndex={individualIndex} />
             <MessageOtherDiv func={setViewingMessage} func2={decide}/>
         </div>
     </>

@@ -4,7 +4,7 @@ import SenderMessages from './SenderMessages'
 import { useSelector } from 'react-redux' 
 // import StaffMessages from './StaffMessages'
 
-const MessageMainDiv = () => {
+const MessageMainDiv = ({mainindexRec, categoryRec, individualIndexRec}) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let allStudentsInfo = useSelector((state)=>state.staffInformation.allStudents)
   const [category, setcategory] = useState('');
