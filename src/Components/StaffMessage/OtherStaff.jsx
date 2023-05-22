@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import People from './People'
 
 
 const OtherStaff = () => {
+  const dispatch = useDispatch()
   let allStaffsInfo = useSelector((state)=>state.staffInformation.allStaffs)
   const [viewing, setviewing] = useState(0)
   const setViewingMessage =(viewingMessage)=>{
@@ -21,9 +22,12 @@ const OtherStaff = () => {
               <option value="4">SSS2</option>
               <option value="5">SSS3</option>
             </select>
-            {allStaffsInfo[viewing].length>0?allStaffsInfo[viewing].map((staff, index)=>(
+            {/* {allStaffsInfo[viewing].length>0?allStaffsInfo[viewing].map((staff, index)=>(
               <People name={`${staff.firstName} ${staff.lastName}`} img='jkd' index={index} func={setViewingMessage}/>
-              )): <People name='No name' img='jkd' index={0} func={setViewingMessage}/>}
+              )): <People name='No name' img='jkd' index={0} func={setViewingMessage}/>} */}
+              {allStaffsInfo.length>0?allStaffsInfo[viewing].length>0?allStaffsInfo[viewing].map((staff, index)=>(
+              <People name={`${staff.firstName} ${staff.lastName}`} img='jkd' index={index} func={setViewingMessage}/>
+              )): <People name='No name' img='jkd' index={0} func={setViewingMessage}/>:dispatch}
             
         </div>
     </>

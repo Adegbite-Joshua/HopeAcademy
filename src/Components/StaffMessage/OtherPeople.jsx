@@ -1,11 +1,12 @@
 import React , {useState} from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import People from './People'
 
 const OtherPeople = ({func}) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let allStudentsInfo = useSelector((state)=>state.staffInformation.allStudents)
   const [viewing, setviewing] = useState(0)
+  const dispatch = useDispatch()
   // console.log(allStudentsInfo[0][0].firstName)
   return (
     <>
@@ -19,9 +20,9 @@ const OtherPeople = ({func}) => {
               <option value="4">SSS2</option>
               <option value="5">SSS3</option>
             </select>
-            {/* {allStudentsInfo[viewing].length>0?allStudentsInfo[viewing].map((student, index)=>(
+            {allStudentsInfo.length>0?allStudentsInfo[viewing].length>0?allStudentsInfo[viewing].map((student, index)=>(
             <People key={index} mainindex={viewing} name={`${student.firstName} ${student.lastName}`} img='jkd' index={index} func={func}/>
-            )): <People name='No name' img='jkd' index={0} func={setViewingMessage}/>} */}
+            )): <People name='No name' img='jkd' index={0} func={setViewingMessage}/>:dispatch}
         </div>
     </>
   )
