@@ -61,10 +61,11 @@ const StaffMessage = () => {
     
   }
   useEffect(() => {
-    if(staffInfo.length==0){
+    // if(staffInfo.length==0){
       decide()
-    }
+    // }
   }, []);
+  window.decide = decide
   const setViewingMessage =(category, mainindex, individualindex)=>{
     console.log(staffInfo.messages)
     let found = false
@@ -81,7 +82,7 @@ const StaffMessage = () => {
         <div className="StaffMessage flex w-screen flex-col md:flex-row bg-slate-300 relative ring-0">
             <DashboardNav/>
             <MessageMainDiv/>
-            <MessageOtherDiv func={setViewingMessage}/>
+            <MessageOtherDiv func={setViewingMessage} func2={decide}/>
         </div>
     </>
   )

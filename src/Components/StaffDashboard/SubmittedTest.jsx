@@ -5,7 +5,10 @@ import TestOverViewNone from './TestOverViewNone'
 
 const SubmittedTest = () => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
-  let SubmittedWork = staffInfo.submittedWorks.filter((submits, index)=>index<5)
+  let SubmittedWork;
+  if (staffInfo.firstName!='') {
+    SubmittedWork = staffInfo.submittedWorks.filter((submits, index)=>index<5)
+  }
 
   return (
     <>
@@ -22,11 +25,11 @@ const SubmittedTest = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {SubmittedWork.lenght>0?SubmittedWork.map(()=>(<>
+                    {SubmittedWork.length>0?SubmittedWork.lenght>0?SubmittedWork.map(()=>(<>
                     <TestOverView/>
                     <TestOverView/>
                     <TestOverView/>
-                    <TestOverView/></>)): <TestOverViewNone/> }
+                    <TestOverView/></>)): <TestOverViewNone/>: 'hjehwjh' }
                 </tbody>
             </table>
         </div>
