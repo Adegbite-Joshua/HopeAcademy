@@ -68,19 +68,19 @@ const StaffMessage = () => {
   window.decide = decide
   const [category, setcategory] = useState(null)
   const [mainindex, setmainindex] = useState(null)
-  const [individualIndex, setindividualIndex] = useState(null)
-  const setViewingMessage =(cat, main, ind)=>{
+  const [individualEmail, setemail] = useState(null)
+  const setViewingMessage =(cat, main, email)=>{
     // console.log(staffInfo.messages)
-    console.log(cat, main, ind);
+    console.log(cat, main, email);
     category!=''?setcategory(cat):''
     mainindex!=''?setmainindex(main):''
-    individualIndex!=''?setindividualIndex(ind):''
+    individualEmail!=''?setemail(email):''
   }
   return (
     <>
         <div className="StaffMessage flex w-screen flex-col md:flex-row bg-slate-300 relative ring-0">
             <DashboardNav/>
-            <MessageMainDiv mainindex={mainindex} category={category} individualIndex={individualIndex} />
+            <MessageMainDiv mainindex={mainindex} category={category} email={individualEmail} />
             <MessageOtherDiv func={setViewingMessage} func2={decide}/>
         </div>
     </>

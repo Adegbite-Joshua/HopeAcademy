@@ -12,7 +12,7 @@ const MessageMainDiv = ({mainindex, category, email}) => {
   // const [mainindex, setmainindex] = useState('');
   // const [index, setindex] = useState('');
   const sendMessage = async()=>{
-    let sendMessageEndpoint = 'http://localhost:7777/staff/dashboard'
+    let sendMessageEndpoint = 'http://localhost:7777/staff/message'
     let messageBody = {
       messageSenderClass: staffInfo.class,
       messageSenderEmail: staffInfo.email,
@@ -25,6 +25,7 @@ const MessageMainDiv = ({mainindex, category, email}) => {
     console.log(messageBody);
     try {
       const response = await axios.post(sendMessageEndpoint, messageBody)
+      console.log(response);
     } catch (error) {
       console.log(error)
     }
