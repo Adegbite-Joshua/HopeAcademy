@@ -71,7 +71,7 @@ const StaffMessage = () => {
   const [individualIndex, setindividualIndex] = useState(null)
   const setViewingMessage =(cat, main, ind)=>{
     // console.log(staffInfo.messages)
-    console.log(cat, main, ind);
+    // console.log(cat, main, ind);
     category!=''?setcategory(cat):''
     mainindex!=''?setmainindex(main):''
     individualIndex!=''?setindividualIndex(ind):''
