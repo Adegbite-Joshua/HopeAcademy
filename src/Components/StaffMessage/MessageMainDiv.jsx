@@ -5,18 +5,21 @@ import { useSelector } from 'react-redux'
 import axios from 'axios'
 // import StaffMessages from './StaffMessages'
 
-const MessageMainDiv = ({mainindexRec, categoryRec, individualIndexRec}) => {
+const MessageMainDiv = ({mainindex, category, email}) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let allStudentsInfo = useSelector((state)=>state.staffInformation.allStudents)
-  const [category, setcategory] = useState('');
-  const [mainindex, setmainindex] = useState('');
-  const [index, setindex] = useState('');
+  // const [category, setcategory] = useState('');
+  // const [mainindex, setmainindex] = useState('');
+  // const [index, setindex] = useState('');
   const sendMessage = async()=>{
     let sendMessageEndpoint = 'http://localhost:7777/staff/dashboard'
     let messageBody = {
       messageSenderClass: staffInfo.class,
       messageSenderEmail: staffInfo.email,
-      relationship: 'staff',
+      receiverRelationship: mainindex==1?'staff':'student',
+      receiverClass: category,
+      receiverEmail: email,
+      senderRelationship: 'staff',
       messageBody: document.getElementById('message').value
     }
     console.log(messageBody);
@@ -31,7 +34,7 @@ const MessageMainDiv = ({mainindexRec, categoryRec, individualIndexRec}) => {
         <div className='MessageMainDiv mt-16 md:mt-0 h-screen basis-full md:basis-7/12 px-5 overflow-y-auto'>
             <div className='w-full h-full bg-white overflow-y-auto p-2'>
                 <div className=' h-3/6 overflow-y-auto border border-3 border-blue-400'>
-                  {mainindexRec!=''&& categoryRec!=''&& individualIndexRec!=''?<>
+                  {mainindex!='' && category!='' && email!=''?<>
                   <SenderMessages/>
                   <ReceiverMessages/>
                   <SenderMessages/>
