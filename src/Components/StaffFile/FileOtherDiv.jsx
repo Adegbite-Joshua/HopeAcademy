@@ -17,7 +17,7 @@ const FileOtherDiv = () => {
                 <UploadedFile/>
               </>)):'No file uploaded yet':'hhh'} */}
               <div className=' overflow-hidden' style={{width: '100%', height: '200px'}}>
-                <FileViewer fileType='.mp3, .pdf'/>
+                <FileViewer fileType='.jpeg, .pdf'/>
               </div>
             </div>
         </div>
