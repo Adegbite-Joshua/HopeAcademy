@@ -23,6 +23,7 @@ const UploadedFile = () => {
                 <p>Alternative text - include a link <a href="port.pdf">to the PDF!</a></p>
             </object> */}
             <video src="vid.mp4"  width="100%" className=' aspect-video' controls pause='true'></video>
+            
         </div>
         
         <div className="containerp">
