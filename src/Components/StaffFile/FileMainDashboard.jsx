@@ -27,7 +27,8 @@ const FileMainDashboard = () => {
       fileBase64,
       fileName,
       class: staffInfo.class,
-      email: staffInfo.email
+      email: staffInfo.email,
+      fileType
     }
     console.log(fileDetails);
     let fileEndpoint = 'http://localhost:7777/staff/upload'

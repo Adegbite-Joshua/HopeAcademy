@@ -10,14 +10,11 @@ const FileOtherDiv = () => {
         <div className="FileOtherDiv otherDiv">
             <h3 className=' text-center font-bold underline'>Upload Files</h3>
             <div className=''>
-              {/* {staffInfo!={}?staffInfo.files.length>0?staffInfo.files.map((file, index) =>(<>
-                <UploadedFile/>
-                <UploadedFile/>
-                <UploadedFile/>
-                <UploadedFile/>
-              </>)):'No file uploaded yet':'hhh'} */}
+              {staffInfo!={}||undefined?staffInfo.files.length>0?staffInfo.files.map((file, index) =>(<>
+                <FileViewer fileLink={file.fileLink} fileType={file.fileType} />
+              </>)):'No file uploaded yet':''}
               <div className=' overflow-hidden' style={{width: '100%', height: '200px'}}>
-                <FileViewer fileType='.jpeg, .pdf'/>
+                <FileViewer fileLink='vite.svg' fileType='.jpeg, .pdf'/>
               </div>
             </div>
         </div>

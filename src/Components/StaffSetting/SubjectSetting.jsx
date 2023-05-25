@@ -1,14 +1,16 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import ButtonComp from '../ButtonComp'
 
 const SubjectSetting = () => {
+    let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   return (
     <>
         <div className="SubjectSetting w-full ">
             <label htmlFor="subjectName">Change Subject</label>
             <input type="text" className='w-full block p-2 text-slate-500 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-500' defaultValue='Mathematics' />
             <label htmlFor="subjectTeacher">Change Subject Information</label>
-            <input type="text" className='w-full block p-2 text-slate-500 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-500' defaultValue='jfjkrkfkhkxfkdjskjrkejrkdjdfkjfksxruserjkjhkchxjdfisjuireirfkjkjvnfehrjhszj' />
+            <input type="text" className='w-full block p-2 text-slate-500 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-500' defaultValue='' />
             <div className=' w-full md:w-3/6 aspect-square block mx-auto'>
                 <object data="sound.p3" width="100%" height="100%" className=' rounded-lg my-2'>  
                     <div className=' bg-black flex w-full h-full items-center justify-center'>
