@@ -60,6 +60,10 @@ const FileMainDashboard = () => {
                   <option value=".mp4a, .flac, .mp4, .mp3, .wav">Audio</option>
                   <option selected value=".txt, .pdf, .doc, .docx, .rtf, .ppt, .pptx">Documents</option>
                 </select>
+                <label htmlFor="" className='w-full'>
+                    <span className="sr-only">Choose Fil To Upload</span>
+                    <input type="file" accept={fileType} onChange={(e)=>selectFile(e)} className=' w-full my-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100' />
+                </label>
                 <div className=' w-full md:w-3/6 aspect-square block mx-auto'>
                   {fileBase64 && fileType?<>
                     <FileViewer fileLink={fileBase64} fileType={fileType} />
@@ -69,10 +73,6 @@ const FileMainDashboard = () => {
                     </div>
                   </>}
                 </div>
-                <label htmlFor="" className='w-full'>
-                    <span className="sr-only">Choose Fil To Upload</span>
-                    <input type="file" accept={fileType} onChange={(e)=>selectFile(e)} className=' w-full my-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100' />
-                </label>
                 <button type='button' onClick={uploadFile} className=' w-3/6 block mx-auto p-2 my-1 bg-blue-600 hover:bg-blue-500 rounded-md'>Send File</button>
               </form>
               
