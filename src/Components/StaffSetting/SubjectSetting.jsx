@@ -1,9 +1,10 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import axios from 'axios'
+import React , {useEffect}from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchStaff } from '../../redux/staffInformation'
 import ButtonComp from '../ButtonComp'
 
 const SubjectSetting = () => {
-    let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
     // const setSubject =()=>{document.getElementById('staffIndex')[staffInfo.staffIndex].selected = 'true'}
     const subjects = [
         'MATHEMATICS',
@@ -20,6 +21,43 @@ const SubjectSetting = () => {
         'FURTHER MATHEMATICS',
         'TECHNICAL DRAWING '
       ]
+      const dispatch = useDispatch()
+      let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
+      
+      const decide = ()=>{
+        let endpoint = 'http://localhost:7777/staff/dashboard'
+        let staffEmail = localStorage.getItem('staffemail')
+        let staffPassword = localStorage.getItem('staffpassword')
+        let staffClass = localStorage.getItem('staffclass')
+        let details = {
+            staffClass,
+            staffEmail,
+            staffPassword
+        }
+        axios.post(endpoint, details)
+        .then((res)=>{
+            console.log(res)
+            if (res.status==200) {
+              dispatch(fetchStaff(res.data))
+              // console.log(staffInfo);
+                // Object.assign(state.staffInformation=res.data)
+                // state.staffInformation = res.data
+            } else if(res.status != 200){
+                state.staffInformation = 'error'
+            }
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+        // console.log(staffInfo);
+        // if (staffInfo == 'error') {
+        //   navigate('/signin')
+        // }
+      }
+    //   window.decide = decide
+      useEffect(() => {
+        decide()
+      }, [])
   return (
     <>
         <div className="SubjectSetting w-full ">
