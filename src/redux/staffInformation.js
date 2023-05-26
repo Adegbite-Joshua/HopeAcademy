@@ -1,7 +1,7 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 
 export const staffInformation = createSlice({
-    name: 'counter',
+    name: 'staff',
     initialState: {
         staffInformation: {},
         allStaffs: [],
