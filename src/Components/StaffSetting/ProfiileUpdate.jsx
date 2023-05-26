@@ -5,35 +5,37 @@ import axios from 'axios'
 
 const ProfiileUpdate = () => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
-  const [firstName, setfirstName] = useState('')
-  const [lastName, setlastName] = useState('')
-  const [email, setemail] = useState('')
-  const [phoneNumber, setphoneNumber] = useState('')
-  const [password, setpassword] = useState('')
-  const [address, setaddress] = useState('')
-  const [localGovernment, setlocalGovernment] = useState('')
-  const [state, setstate] = useState('')
+  const [firstName, setfirstName] = useState(staffInfo.firstName)
+  const [lastName, setlastName] = useState(staffInfo.lastName)
+  const [email, setemail] = useState(staffInfo.email)
+  const [phoneNumber, setphoneNumber] = useState(staffInfo.phoneNumber)
+  const [password, setpassword] = useState(staffInfo.password)
+  const [address, setaddress] = useState(staffInfo.address)
+  const [localGovernment, setlocalGovernment] = useState(staffInfo.address)
+  const [state, setstate] = useState(staffInfo.address)
   const [showpassword, setshowpassword] = useState(false)
   const updateInfo =()=>{
     let updateDetails = {
       firstName,
       lastName,
       email,
+      class: staffInfo.class,
+      password,
       phoneNumber,
       address,
       localGovernment,
       state
     }
-    let spread = staffInfo
+    let spread = {...updateDetails}
     console.log(spread);
-    // let infoendpoint = 'http://localhost:7777/staff/updateinfo'
-    // axios.post(infoendpoint, updateDetails)
-    // .then((res)=>{
-    //   console.log(res.data);
-    // })
-    // .catch((error)=>{
-    //   console.log(error);
-    // })
+    let infoendpoint = 'http://localhost:7777/staff/updateinfo'
+    axios.post(infoendpoint, updateDetails)
+    .then((res)=>{
+      console.log(res.data);
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
   }
 
   

@@ -46,6 +46,7 @@ const StaffSetting = () => {
     //   navigate('/signin')
     // }
   }
+  window.decide = decide
   useEffect(() => {
     decide()
   }, [])

@@ -3,6 +3,8 @@ import React , {useEffect, useState}from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchStaff } from '../../redux/staffInformation'
 import ButtonComp from '../ButtonComp'
+import FileViewer from '../StaffFile/FileViewer'
+
 
 const SubjectSetting = () => {
     // const setSubject =()=>{document.getElementById('staffIndex')[staffInfo.staffIndex].selected = 'true'}
@@ -54,22 +56,41 @@ const SubjectSetting = () => {
         //   navigate('/signin')
         // }
       }
-    //   window.decide = decide
       useEffect(() => {
         decide()
       }, [])
 
-      const [staffIndex, setstaffIndex] = useState('')
-      const [subjectDescription, setsubjectDescription] = useState('')
-      const [imageUrl, setimageUrl] = useState('')
+      const [staffIndex, setstaffIndex] = useState(staffInfo.staffIndex)
+      const [subjectDescription, setsubjectDescription] = useState(staffInfo.subjectDescription)
+      const [imageBase64, setimageBase64] = useState('')
+    //   const [imageUrl, setimageUrl] = useState(staffInfo.subjectInfo.subjectPicUrl)
       const updateSubjectInfo =()=>{
         let details = {
             staffIndex,
             subjectDescription,
-            imageUrl
+            imageUrl,
+            class: staffInfo.class,
+            email: staffInfo.email
         }
-        console.log(details);
+        let endpoint = 'http://localhost:7777/staff/updateinfo'
+        axios.post(endpoint, details)
+        .then((response)=>{
+            console.log(response);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
       }
+      const selectPicture = (e)=>{
+        let file = e.target.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file)
+        reader.onload =()=>{
+            console.log(reader.result);
+            setimageBase64(reader.result)
+        }
+    }
+
   return (
     <>
         <div className="SubjectSetting w-full ">
@@ -84,15 +105,15 @@ const SubjectSetting = () => {
             <label htmlFor="subjectTeacher">Change Subject Information</label>
             <input type="text" onChange={(e)=>setsubjectDescription(e.target.value)} className='w-full block p-2 text-slate-500 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-500' defaultValue='' />
             <div className=' w-full md:w-3/6 aspect-square block mx-auto'>
-                <object data="sound.p3" width="100%" height="100%" className=' rounded-lg my-2'>  
+                {imageBase64?<> <FileViewer fileLink={imageBase64} fileType='.jpeg'/> </>:<>
                     <div className=' bg-black flex w-full h-full items-center justify-center'>
                         <p className=' text-white'>The Choosed File Wil Appear Here</p>
                     </div>
-                </object>
+                </>}
             </div>
             <label htmlFor="" className='w-full'>
                 <span className="sr-only">Choose Fil To Upload</span>
-                <input type="file" className=' w-full my-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100' />
+                <input type="file" onChange={(e)=>selectPicture(e)} accept='.jpeg, .jpg' className=' w-full my-1 block text-sm text-slate-500 file:mr-4 file:py-2 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100' />
             </label>
             <ButtonComp onClick={updateSubjectInfo} name='Update Subject Info'/>
         </div>
