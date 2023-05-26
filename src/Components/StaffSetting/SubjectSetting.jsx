@@ -63,16 +63,22 @@ const SubjectSetting = () => {
       const [staffIndex, setstaffIndex] = useState(staffInfo.staffIndex)
       const [subjectDescription, setsubjectDescription] = useState(staffInfo.subjectDescription)
       const [imageBase64, setimageBase64] = useState('')
+      const [subjectName, setsubjectName] = useState(staffInfo.subjectInfo.subjectName)
+      const [file, setfile] = useState('')
+
     //   const [imageUrl, setimageUrl] = useState(staffInfo.subjectInfo.subjectPicUrl)
       const updateSubjectInfo =()=>{
         let details = {
             staffIndex,
             subjectDescription,
-            imageUrl,
+            imageBase64,
+            imageName: file.name,
             class: staffInfo.class,
-            email: staffInfo.email
+            email: staffInfo.email,
+            subjectName: subjects[staffIndex]
         }
-        let endpoint = 'http://localhost:7777/staff/updateinfo'
+        // console.log(details);
+        let endpoint = 'http://localhost:7777/staff/updatesubject'
         axios.post(endpoint, details)
         .then((response)=>{
             console.log(response);
@@ -82,15 +88,15 @@ const SubjectSetting = () => {
         })
       }
       const selectPicture = (e)=>{
-        let file = e.target.files[0];
+        setfile(e.target.files[0])
+        let file = e.target.files[0]
         let reader = new FileReader();
         reader.readAsDataURL(file)
         reader.onload =()=>{
-            console.log(reader.result);
             setimageBase64(reader.result)
         }
-    }
-
+      }
+   
   return (
     <>
         <div className="SubjectSetting w-full ">

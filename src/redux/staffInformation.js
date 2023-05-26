@@ -1,5 +1,4 @@
 import { createSlice, current } from "@reduxjs/toolkit";
-import axios from "axios";
 
 export const staffInformation = createSlice({
     name: 'counter',
