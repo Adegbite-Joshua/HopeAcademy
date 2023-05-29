@@ -63,7 +63,7 @@ const SubjectSetting = () => {
       const [staffIndex, setstaffIndex] = useState(staffInfo.staffIndex)
       const [subjectDescription, setsubjectDescription] = useState(staffInfo.subjectDescription)
       const [imageBase64, setimageBase64] = useState('')
-      const [subjectName, setsubjectName] = useState(staffInfo.subjectInfo.subjectName)
+    //   const [subjectName, setsubjectName] = useState(staffInfo.subjectInfo.subjectName)
       const [file, setfile] = useState('')
 
     //   const [imageUrl, setimageUrl] = useState(staffInfo.subjectInfo.subjectPicUrl)
