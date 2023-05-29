@@ -5,8 +5,8 @@ import StudentScoreTable from './StudentScoreTable'
 import { useSelector } from 'react-redux'
 
 
-const StudentMainDIv = () => {
-  // let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
+const StudentMainDIv = ({category, mainindex, individualEmail }) => {
+  let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
 
   return (
     <>
@@ -16,7 +16,7 @@ const StudentMainDIv = () => {
                 <StudentScoreTable/>
             </div>
             <StudentLastPerformance/>
-            <MessageStudent/>
+            <MessageStudent  category={category} mainindex={mainindex} individualEmail={individualEmail}/>
             
         </div>
     </>
