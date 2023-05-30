@@ -19,7 +19,7 @@ const Student = () => {
     individualEmail!=''?setemail(email):''
   }
   const decide = ()=>{
-    let classStudents = 'http://localhost:7777/staff/allstudents'
+    let classStudents = 'http://localhost:7777/staff/fetchclassstudents'
     axios.post(classStudents, {class:staffInfo.class})
     .then((res)=>{
         console.log(res)
