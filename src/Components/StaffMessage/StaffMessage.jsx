@@ -61,9 +61,7 @@ const StaffMessage = () => {
     
   }
   useEffect(() => {
-    // if(staffInfo.length==0){
       decide()
-    // }
   }, []);
   window.decide = decide
   const [category, setcategory] = useState(null)
