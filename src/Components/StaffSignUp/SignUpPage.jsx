@@ -49,7 +49,7 @@ const SignUpPage = () => {
       email: Yup.string().email('Invalid email').required('Required'),
     }),
     onSubmit: (values)=>{
-      // console.log(values);
+      console.log(values);
       submit(values);
     }
   })
@@ -62,7 +62,7 @@ const SignUpPage = () => {
       password: values.password,
       staffIndex: values.staffIndex,
       class: values.class,
-      address: '',
+      address: values.address,
       localGovernment: '',
       state: '',
       links: {
@@ -117,7 +117,7 @@ const SignUpPage = () => {
                   <option value="5">SSS3</option>
                 </select>
                 <label htmlFor="" className=''>Subject To Offer</label>
-                <select  name="staffIndex" required onChange={formik.handleChange} id="staffIndex" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50 px-6'>
+                <select  name="staffIndex" onChange={formik.handleChange} id="staffIndex" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50 px-6'>
                   <option  value='0' selected>MATHEMATICS</option>
                   <option  value='1'>ENGLISH LANGUAGE</option>
                   <option  value='2'>YORUBA</option>
