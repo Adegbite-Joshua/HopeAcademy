@@ -77,9 +77,11 @@ const StaffMessage = () => {
   return (
     <>
         <div className="StaffMessage flex w-screen flex-col md:flex-row bg-slate-300 relative ring-0">
-            <DashboardNav/>
-            <MessageMainDiv mainindex={mainindex} category={category} email={individualEmail} />
-            <MessageOtherDiv func={setViewingMessage} func2={decide}/>
+            <DashboardNav className=' order-1'/>
+            <div className=' flex basis-12 md:basis-11/12 flex-col-reverse md:flex-row h-screen'>
+              <MessageMainDiv mainindex={mainindex} category={category} email={individualEmail} />
+              <MessageOtherDiv func={setViewingMessage} func2={decide}/>
+            </div>
         </div>
     </>
   )

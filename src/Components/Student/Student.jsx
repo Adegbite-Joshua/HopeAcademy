@@ -20,7 +20,7 @@ const Student = () => {
   }
   const decide = ()=>{
     let classStudents = 'http://localhost:7777/staff/fetchclassstudents'
-    axios.post(classStudents, {class:staffInfo.class})
+    axios.post(classStudents, {class:localStorage.staffclass})
     .then((res)=>{
         console.log(res)
         if (res.status==200) {
