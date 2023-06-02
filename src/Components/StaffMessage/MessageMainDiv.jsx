@@ -32,7 +32,7 @@ const MessageMainDiv = ({mainindex, category, email}) => {
   }
   return (
     <>
-        <div className='MessageMainDiv mt-16 md:mt-0 h-5/6 md:h-full basis-full md:basis-8/12 px-5 overflow-y-auto'>
+        <div className='MessageMainDiv mt-16 md:mt-0 h-5/6 md:h-full basis-full md:basis-8/12 px-5 overflow-y-auto border-2 border-green-500'>
             <div className='w-full h-full bg-white overflow-y-auto p-2'>
                 <div className=' h-5/6 overflow-y-auto border border-3 border-blue-400'>
                   {mainindex!='' && category!='' && email!=''?<>
