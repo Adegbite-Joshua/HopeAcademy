@@ -12,7 +12,6 @@ const StudentMainDIv = ({category, mainindex, individualEmail }) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   const [assessment, setassessment] = useState({})
   const recieveAssessment =(value)=>{
-    // console.log(value)
     setassessment(value)
   }
   const saveStudentsAssesment =()=>{

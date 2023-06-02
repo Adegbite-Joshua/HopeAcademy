@@ -6,6 +6,7 @@ import DashboardOtherSide from './DashboardOtherSide'
 import {useSelector, useDispatch} from 'react-redux'
 import {fetchStaff} from '../../redux/staffInformation'
 import axios from 'axios'
+// import {Redirect} from 'react-router-dom'
 
 
 
@@ -13,6 +14,7 @@ const StaffDashboard = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
+  // console.log(Redirect)
   
   const decide = ()=>{
     let endpoint = 'http://localhost:7777/staff/dashboard'
