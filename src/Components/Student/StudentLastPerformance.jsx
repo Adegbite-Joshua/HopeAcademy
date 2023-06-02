@@ -18,7 +18,7 @@ const StudentLastPerformance = () => {
                 <input type="text" placeholder='Last student exam' className=' w-full text-center focus:outline-0 rounded-md focus:ring-2 focus:ring-blue-600' />
             </div> */}
         </div>
-        <ButtonComp name='Save Data'/>
+        {/* <ButtonComp name='Save Data'/> */}
     </>
   )
 }

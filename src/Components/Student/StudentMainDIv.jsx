@@ -3,13 +3,29 @@ import MessageStudent from './MessageStudent'
 import StudentLastPerformance from './StudentLastPerformance'
 import StudentScoreTable from './StudentScoreTable'
 import { useSelector } from 'react-redux'
+import ButtonComp from '../ButtonComp'
+import axios from 'axios'
+
 
 
 const StudentMainDIv = ({category, mainindex, individualEmail }) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   const [assessment, setassessment] = useState({})
   const recieveAssessment =(value)=>{
-    console.log(value)
+    // console.log(value)
+    setassessment(value)
+  }
+  const saveStudentsAssesment =()=>{
+    console.log(assessment)
+    let allAssessment = {...assessment, staffClass: staffInfo.class, studentEmail: individualEmail }
+    let endpoint = 'http://localhost:7777/staff/submitstudentsassessment'
+    axios.post(endpoint, allAssessment)
+    .then((res)=>{
+      console.log(res)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
   }
   return (
     <>
@@ -19,6 +35,7 @@ const StudentMainDIv = ({category, mainindex, individualEmail }) => {
                 <StudentScoreTable index={mainindex} func={recieveAssessment}/>
             </div>
             <StudentLastPerformance/>
+            <ButtonComp onClick={saveStudentsAssesment} name='Save Data'/>
             <MessageStudent category={category} mainindex={mainindex} individualEmail={individualEmail}/>
         </div>
     </>
