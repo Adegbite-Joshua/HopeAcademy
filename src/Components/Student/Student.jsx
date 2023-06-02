@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { fetchClassStudents } from '../../redux/staffInformation'
 import DashboardNav from '../StaffDashboard/DashboardNav'
 import StudentMainDIv from './StudentMainDIv'
@@ -10,6 +10,7 @@ const Student = () => {
   const [category, setcategory] = useState(null)
   const [mainindex, setmainindex] = useState(null)
   const [individualEmail, setemail] = useState(null)
+  const dispatch = useDispatch()
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   const setViewingMessage =(cat, main, email)=>{
     // console.log(staffInfo.messages)
@@ -20,7 +21,8 @@ const Student = () => {
   }
   const decide = ()=>{
     let classStudents = 'http://localhost:7777/staff/fetchclassstudents'
-    axios.post(classStudents, {class:localStorage.staffclass})
+    let staffClass = Number(localStorage.getItem('staffclass'))
+    axios.post(classStudents, {class:staffClass})
     .then((res)=>{
         console.log(res)
         if (res.status==200) {

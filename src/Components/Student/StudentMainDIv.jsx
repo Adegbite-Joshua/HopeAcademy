@@ -16,7 +16,7 @@ const StudentMainDIv = ({category, mainindex, individualEmail }) => {
                 <StudentScoreTable/>
             </div>
             <StudentLastPerformance/>
-            <MessageStudent  category={category} mainindex={mainindex} individualEmail={individualEmail}/>
+            <MessageStudent category={category} mainindex={mainindex} individualEmail={individualEmail}/>
             
         </div>
     </>
