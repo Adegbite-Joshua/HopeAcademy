@@ -20,7 +20,7 @@ const StaffDashboard = () => {
     let endpoint = 'http://localhost:7777/staff/dashboard'
     let staffEmail = localStorage.getItem('staffemail')
     let staffPassword = localStorage.getItem('staffpassword')
-    let staffClass = localStorage.getItem('staffclass')
+    let staffClass = Number(localStorage.getItem('staffclass'))
     let details = {
         staffClass,
         staffEmail,

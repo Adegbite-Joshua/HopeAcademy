@@ -8,18 +8,6 @@ const SubmitOtherDiv = () => {
             <h3 className=' font-bold text-center'>Choose Student</h3>
             <div className=''>
                 <Student/>
-                <Student/>
-                <Student/>
-                <Student/>
-                <Student/>
-                <Student/>
-                <Student/>
-                <Student/>
-                <Student/>
-                <Student/>
-                <Student/>
-                <Student/>
-                <Student/>
             </div>
         </div>
     </>
