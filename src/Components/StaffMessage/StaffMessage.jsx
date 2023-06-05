@@ -3,67 +3,79 @@ import React, { useEffect, useState } from 'react'
 import DashboardNav from '../StaffDashboard/DashboardNav'
 import MessageMainDiv from './MessageMainDiv'
 import MessageOtherDiv from './MessageOtherDiv'
-import { fetchStaff, fetchAllStaffs, fetchAllStudents } from '../../redux/staffInformation'
+import { fetchStaff, fetchAllStaffs, fetchAllStudents, setFetching } from '../../redux/staffInformation'
 import { useSelector, useDispatch } from 'react-redux'
+import Loader from '../../Loader'
 
 
 const StaffMessage = () => {
   const dispatch = useDispatch()
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
-  const decide = ()=>{
+  let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
+  let allStaffs = useSelector((state)=>state.staffInformation.allStaffs)
+  let allStudents = useSelector((state)=>state.staffInformation.allStudents)
+  
+  const fetchStaffInformation = ()=>{
     let endpoint = 'http://localhost:7777/staff/dashboard'
-    let allstaffsendpoint = 'http://localhost:7777/staff/allstaffs'
-    let allstudentsendpoint = 'http://localhost:7777/staff/allstudents'
     let staffEmail = localStorage.getItem('staffemail')
     let staffPassword = localStorage.getItem('staffpassword')
-    let staffClass = localStorage.getItem('staffclass')
+    let staffClass = Number(localStorage.getItem('staffclass'))
     let details = {
         staffClass,
         staffEmail,
         staffPassword
     }
-    axios.post(endpoint, details)
-    .then((res)=>{
-        console.log(res)
-        if (res.status==200) {
-          dispatch(fetchStaff(res.data))
-        } else if(res.status != 200){
-            state.staffInformation = 'error'
-        }
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-    axios.get(allstaffsendpoint, details)
-    .then((res)=>{
-        console.log(res)
-        if (res.status==200) {
-          dispatch(fetchAllStaffs(res.data))
-        } else if(res.status != 200){
-            state.staffInformation = 'error'
-        }
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-    axios.get(allstudentsendpoint, details)
-    .then((res)=>{
-        console.log(res)
-        if (res.status==200) {
-          dispatch(fetchAllStudents(res.data))
-        } else if(res.status != 200){
-            state.staffInformation = 'error'
-        }
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-    
+    if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
+      axios.post(endpoint, details)
+      .then((res)=>{
+          console.log(res)
+          if (res.status==200) {
+            dispatch(fetchStaff(res.data))
+            dispatch(setFetching(false))
+          } else if(res.status != 200){
+              state.staffInformation = 'error'
+          }
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
+      if (allStaffs.length==0) {
+        dispatch(setFetching(true))
+        axios.get(allstaffsendpoint, details)
+        .then((res)=>{
+            console.log(res)
+            if (res.status==200) {
+              dispatch(fetchAllStaffs(res.data))
+              dispatch(setFetching(false))
+            } else if(res.status != 200){
+                state.staffInformation = 'error'
+            }
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+      }
+      if (allStudents.length==0) {
+        dispatch(setFetching(true))
+        axios.get(allstudentsendpoint, details)
+        .then((res)=>{
+            console.log(res)
+            if (res.status==200) {
+              dispatch(fetchAllStudents(res.data))
+              dispatch(setFetching(false))
+            } else if(res.status != 200){
+                state.staffInformation = 'error'
+            }
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+      }
+    }
   }
   useEffect(() => {
-      decide()
-  }, []);
-  window.decide = decide
+    fetchStaffInformation()
+  }, [])
   const [category, setcategory] = useState(null)
   const [mainindex, setmainindex] = useState(null)
   const [individualEmail, setemail] = useState(null)
@@ -78,10 +90,13 @@ const StaffMessage = () => {
     <>
         <div className="StaffMessage flex w-screen flex-col md:flex-row bg-slate-300 relative ring-0">
             <DashboardNav className=' order-1'/>
-            <div className=' flex basis-12 md:basis-11/12 flex-col-reverse md:flex-row h-screen'>
-              <MessageMainDiv mainindex={mainindex} category={category} email={individualEmail} />
-              <MessageOtherDiv func={setViewingMessage} func2={decide}/>
-            </div>
+            {fetching && <Loader/>}
+            {fetching==false && <>
+              <div className=' flex basis-12 md:basis-11/12 flex-col-reverse md:flex-row h-screen'>
+                <MessageMainDiv mainindex={mainindex} category={category} email={individualEmail} />
+                <MessageOtherDiv func={setViewingMessage} func2={fetchStaffInformation}/>
+              </div>
+            </>}
         </div>
     </>
   )

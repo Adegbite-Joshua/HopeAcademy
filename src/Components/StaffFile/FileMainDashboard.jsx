@@ -39,6 +39,16 @@ const FileMainDashboard = () => {
       console.log(error);
     }
   }
+  let aa = [1, 2];
+  let num = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  let bb = [];
+
+  for (let i = 0; i < num.length; i++) {
+    if (!aa.includes(num[i])) {
+      bb.push(num[i]);
+    }
+  }
+  
   return (
     <>
         <div className="FileMainDashboard middleDiv">

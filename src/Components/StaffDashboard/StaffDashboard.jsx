@@ -4,8 +4,9 @@ import DashboardMainDiv from './DashboardMainDiv'
 import DashboardNav from './DashboardNav'
 import DashboardOtherSide from './DashboardOtherSide'
 import {useSelector, useDispatch} from 'react-redux'
-import {fetchStaff} from '../../redux/staffInformation'
+import {fetchStaff, setFetching} from '../../redux/staffInformation'
 import axios from 'axios'
+import Loader from '../../Loader'
 // import {Redirect} from 'react-router-dom'
 
 
@@ -14,9 +15,9 @@ const StaffDashboard = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
-  // console.log(Redirect)
+  let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
   
-  const decide = ()=>{
+  const fetchStaffInformation = ()=>{
     let endpoint = 'http://localhost:7777/staff/dashboard'
     let staffEmail = localStorage.getItem('staffemail')
     let staffPassword = localStorage.getItem('staffpassword')
@@ -26,28 +27,24 @@ const StaffDashboard = () => {
         staffEmail,
         staffPassword
     }
-    axios.post(endpoint, details)
-    .then((res)=>{
-        console.log(res)
-        if (res.status==200) {
-          dispatch(fetchStaff(res.data))
-          // console.log(staffInfo);
-            // Object.assign(state.staffInformation=res.data)
-            // state.staffInformation = res.data
-        } else if(res.status != 200){
-            state.staffInformation = 'error'
-        }
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-    // console.log(staffInfo);
-    // if (staffInfo == 'error') {
-    //   navigate('/signin')
-    // }
+    if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
+      axios.post(endpoint, details)
+      .then((res)=>{
+          console.log(res)
+          if (res.status==200) {
+            dispatch(fetchStaff(res.data))
+            dispatch(setFetching(false))
+          } else if(res.status != 200){
+              state.staffInformation = 'error'
+          }
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
+    }
   }
   useEffect(() => {
-    decide()
+    fetchStaffInformation()
   }, [])
   
   let values = useParams()
@@ -55,8 +52,11 @@ const StaffDashboard = () => {
     <>
         <div className="flex w-screen flex-col md:flex-row bg-slate-300 relative ring-0">
             <DashboardNav/>
-            <DashboardMainDiv name='' submittedTest={[]} topStudents={[]} groups={[]}/>
-            <DashboardOtherSide/>
+            {fetching && <Loader/>}
+            {!fetching && <>
+              <DashboardMainDiv name='' submittedTest={[]} topStudents={[]} groups={[]}/>
+              <DashboardOtherSide/>
+            </>}
         </div>
     </>
   )
