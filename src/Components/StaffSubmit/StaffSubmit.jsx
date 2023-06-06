@@ -3,15 +3,19 @@ import DashboardNav from '../StaffDashboard/DashboardNav'
 import SubmitMainDIv from './SubmitMainDIv'
 import SubmitOtherDiv from './SubmitOtherDiv'
 import {useSelector, useDispatch} from 'react-redux'
+import { fetchClassStudents, fetchStaff, setFetching } from '../../redux/staffInformation'
+import Loader from '../../Loader'
+import axios from 'axios'
 
 
 const StaffSubmit = () => {
   const dispatch = useDispatch()
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
+  let classStudents = useSelector((state)=>state.staffInformation.classStudents)
+  let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
   const decide = ()=>{
     let endpoint = 'http://localhost:7777/staff/dashboard'
     let allstaffsendpoint = 'http://localhost:7777/staff/allstaffs'
-    let allstudentsendpoint = 'http://localhost:7777/staff/allstudents'
     let staffEmail = localStorage.getItem('staffemail')
     let staffPassword = localStorage.getItem('staffpassword')
     let staffClass = localStorage.getItem('staffclass')
@@ -20,55 +24,51 @@ const StaffSubmit = () => {
         staffEmail,
         staffPassword
     }
-    axios.post(endpoint, details)
-    .then((res)=>{
-        console.log(res)
-        if (res.status==200) {
-          dispatch(fetchStaff(res.data))
-        } else if(res.status != 200){
-            state.staffInformation = 'error'
-        }
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-    axios.get(allstaffsendpoint, details)
-    .then((res)=>{
-        console.log(res)
-        if (res.status==200) {
-          dispatch(fetchAllStaffs(res.data))
-        } else if(res.status != 200){
-            state.staffInformation = 'error'
-        }
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-    axios.get(allstudentsendpoint, details)
-    .then((res)=>{
-        console.log(res)
-        if (res.status==200) {
-          dispatch(fetchAllStudents(res.data))
-        } else if(res.status != 200){
-            state.staffInformation = 'error'
-        }
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-    
+    if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
+      dispatch(setFetching(true))
+      axios.post(endpoint, details)
+      .then((res)=>{
+          console.log(res)
+          if (res.status==200) {
+            dispatch(fetchStaff(res.data))
+            dispatch(setFetching(false))
+          } else if(res.status != 200){
+              state.staffInformation = 'error'
+          }
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
+    } 
+    if (classStudents.length==0) {
+      let classStudentsEndpoint = 'http://localhost:7777/staff/fetchclassstudents'
+      dispatch(setFetching(true))
+      axios.post(classStudentsEndpoint, {class: Number(localStorage.getItem('staffclass'))})
+      .then((res)=>{
+          if (res.status==200) {
+            dispatch(fetchClassStudents(res.data))
+            dispatch(setFetching(false))
+          } else if(res.status != 200){
+              state.staffInformation = 'error'
+          }
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
+    }
   }
   useEffect(() => {
-    if(staffInfo.length==0){
       decide()
-    }
   }, []);
   return (
     <>
         <div className=' StaffSubmit containerAll'>
             <DashboardNav/>
-            <SubmitMainDIv/>
-            <SubmitOtherDiv/>
+            {fetching && <Loader/>}
+            {fetching==false && <>
+              <SubmitMainDIv/>
+              <SubmitOtherDiv/>
+            </>}
         </div>
     </>
   )

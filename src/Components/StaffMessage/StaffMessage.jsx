@@ -39,38 +39,40 @@ const StaffMessage = () => {
       .catch((err)=>{
           console.log(err);
       })
-      if (allStaffs.length==0) {
-        dispatch(setFetching(true))
-        axios.get(allstaffsendpoint, details)
-        .then((res)=>{
-            console.log(res)
-            if (res.status==200) {
-              dispatch(fetchAllStaffs(res.data))
-              dispatch(setFetching(false))
-            } else if(res.status != 200){
-                state.staffInformation = 'error'
-            }
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-      }
-      if (allStudents.length==0) {
-        dispatch(setFetching(true))
-        axios.get(allstudentsendpoint, details)
-        .then((res)=>{
-            console.log(res)
-            if (res.status==200) {
-              dispatch(fetchAllStudents(res.data))
-              dispatch(setFetching(false))
-            } else if(res.status != 200){
-                state.staffInformation = 'error'
-            }
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-      }
+    }
+    if (allStaffs.length==0) {
+      let allstaffsendpoint = 'http://localhost:7777/staff/allstaffs'
+      dispatch(setFetching(true))
+      axios.get(allstaffsendpoint, details)
+      .then((res)=>{
+          console.log(res)
+          if (res.status==200) {
+            dispatch(fetchAllStaffs(res.data))
+            dispatch(setFetching(false))
+          } else if(res.status != 200){
+              state.staffInformation = 'error'
+          }
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
+    }
+    if (allStudents.length==0) {
+      let allstudentsendpoint = 'http://localhost:7777/staff/allstudents'
+      dispatch(setFetching(true))
+      axios.get(allstudentsendpoint, details)
+      .then((res)=>{
+          console.log(res)
+          if (res.status==200) {
+            dispatch(fetchAllStudents(res.data))
+            dispatch(setFetching(false))
+          } else if(res.status != 200){
+              state.staffInformation = 'error'
+          }
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
     }
   }
   useEffect(() => {

@@ -38,9 +38,7 @@ const Student = () => {
     if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
       axios.post(endpoint, details)
       .then((res)=>{
-          console.log(res)
           if (res.status==200) {
-            console.log('staffinfo');
             dispatch(fetchStaff(res.data))
             dispatch(setFetching(false))
           } else if(res.status != 200){
@@ -51,26 +49,22 @@ const Student = () => {
           console.log(err);
       })
     }
-      if (classStudents.length==0) {
-        let classStudentsEndpoint = 'http://localhost:7777/staff/fetchclassstudents'
-        dispatch(setFetching(true))
-        // let potdetails = {class: Number(localStorage.getItem('staffclass'))}
-        // console.log(potdetails);
-        axios.post(classStudentsEndpoint, {class: Number(localStorage.getItem('staffclass'))})
-        .then((res)=>{
-            console.log(res)
-            if (res.status==200) {
-              console.log('classstudent');
-              dispatch(fetchClassStudents(res.data))
-              dispatch(setFetching(false))
-            } else if(res.status != 200){
-                state.staffInformation = 'error'
-            }
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-      }
+    if (classStudents.length==0) {
+      let classStudentsEndpoint = 'http://localhost:7777/staff/fetchclassstudents'
+      dispatch(setFetching(true))
+      axios.post(classStudentsEndpoint, {class: Number(localStorage.getItem('staffclass'))})
+      .then((res)=>{
+          if (res.status==200) {
+            dispatch(fetchClassStudents(res.data))
+            dispatch(setFetching(false))
+          } else if(res.status != 200){
+              state.staffInformation = 'error'
+          }
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
+    }
   }
   useEffect(() => {
     fetchStaffInformation()
