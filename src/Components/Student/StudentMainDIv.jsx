@@ -8,7 +8,7 @@ import axios from 'axios'
 
 
 
-const StudentMainDIv = ({category, mainindex, individualEmail }) => {
+const StudentMainDIv = ({category, mainindex, individualEmail, partnerName}) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   const [assessment, setassessment] = useState({})
   const recieveAssessment =(value)=>{
@@ -35,7 +35,7 @@ const StudentMainDIv = ({category, mainindex, individualEmail }) => {
             </div>
             <StudentLastPerformance/>
             <ButtonComp onClick={saveStudentsAssesment} name='Save Data'/>
-            <MessageStudent category={category} mainindex={mainindex} individualEmail={individualEmail}/>
+            <MessageStudent category={category} mainindex={mainindex} individualEmail={individualEmail} partnerName={partnerName}/>
         </div>
     </>
   )
