@@ -6,9 +6,12 @@ import MessageOtherDiv from './MessageOtherDiv'
 import { fetchStaff, fetchAllStaffs, fetchAllStudents, setFetching } from '../../redux/staffInformation'
 import { useSelector, useDispatch } from 'react-redux'
 import Loader from '../../Loader'
+import { useParams } from 'react-router-dom'
+
 
 
 const StaffMessage = () => {
+  let paramsValue = useParams();
   const dispatch = useDispatch()
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
@@ -32,6 +35,7 @@ const StaffMessage = () => {
           if (res.status==200) {
             dispatch(fetchStaff(res.data))
             dispatch(setFetching(false))
+            setDefault()
           } else if(res.status != 200){
               state.staffInformation = 'error'
           }
@@ -77,6 +81,7 @@ const StaffMessage = () => {
   }
   useEffect(() => {
     fetchStaffInformation()
+    setDefault()
   }, [])
   const [category, setcategory] = useState(null)
   const [mainindex, setmainindex] = useState(null)
@@ -87,6 +92,14 @@ const StaffMessage = () => {
     category!=''?setcategory(cat):''
     mainindex!=''?setmainindex(main):''
     individualEmail!=''?setemail(email):''
+  }
+  const setDefault=()=>{
+    console.log(paramsValue)
+    if(paramsValue.email && Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object){
+      setcategory(0);
+      setmainindex(staffInfo.class);
+      setemail(paramsValue.email);
+    }
   }
   return (
     <>

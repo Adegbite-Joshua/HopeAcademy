@@ -2,11 +2,14 @@ import React from 'react'
 import ButtonComp from '../ButtonComp'
 import FileView from './FileView'
 import FileViewer from '../../FileViewer'
+import { useNavigate } from 'react-router-dom'
+
 
 
 const SubmitMainDIv = ({studentSubmit}) => {
-    if(studentSubmit){
-        console.log(studentSubmit)
+    const  navigate = useNavigate();
+    const messageStudent =()=>{
+        navigate(`/inbox/${studentSubmit.studentEmail}`)
     }
   return (
     <>
@@ -19,7 +22,7 @@ const SubmitMainDIv = ({studentSubmit}) => {
             <div className='  h-3/6'>
                 {/* <FileView/> */}
                 {Object.keys(studentSubmit).length >=1  && studentSubmit.constructor === Object?<FileViewer fileType='.docx' fileLink={studentSubmit.fileLink} />:''}
-                <ButtonComp name={`Message ${studentSubmit.studentName?studentSubmit.studentName:'Select A Submit'}`}/>
+                <ButtonComp onClick={messageStudent} name={`Message ${studentSubmit.studentName?studentSubmit.studentName:'Select A Submit'}`}/>
                 <ButtonComp name='Go to Grading'/>
             </div>
         </div>

@@ -7,14 +7,16 @@ const SubmitOtherDiv = ({func}) => {
   let classStudents = useSelector((state)=>state.staffInformation.classStudents)
   let studentsSubmit = [];
   // const [studentsSubmit, setstudentsSubmit] = useState([])
-  staffInfo.submittedWorks.map((stud, ind)=>{
-    let studentName = `${classStudents.find((student, index)=>student.email == stud.studentEmail).firstName} ${classStudents.find((student, index)=>student.email == stud.studentEmail).lastName}`
-    studentsSubmit.push({
-      studentName,
-      ...stud
+  if(classStudents.length>0){
+    staffInfo.submittedWorks.map((stud, ind)=>{
+      let studentName = `${classStudents.find((student, index)=>student.email == stud.studentEmail).firstName} ${classStudents.find((student, index)=>student.email == stud.studentEmail).lastName}`
+      studentsSubmit.push({
+        studentName,
+        ...stud
+      })
+      // setstudentsSubmit([...studentsSubmit,{studentName,...stud} ])
     })
-    // setstudentsSubmit([...studentsSubmit,{studentName,...stud} ])
-  })
+  }
   console.log(studentsSubmit);
   return (
     <>

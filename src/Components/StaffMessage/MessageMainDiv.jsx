@@ -58,7 +58,7 @@ const MessageMainDiv = ({mainindex, category, email}) => {
                   </>} 
                 </div>
                 <div className=' h-1/6 w-full'>
-                  <h3 className=' text-center font-bold'>Adegbite Joshua</h3>
+                  <h3 className=' text-center font-bold'>{email}</h3>
                   <d className="flex">
                     <textarea name="" id="message" className=' w-full border border-3 border-red-400' rows="2"></textarea>
                     <button onClick={sendMessage} className=' p-2 rounded-md bg-blue-500 hover:bg-blue-400 block mx-auto'>Send Message</button>

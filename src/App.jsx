@@ -39,6 +39,7 @@ function App() {
           <Route path='/signin' element={<StaffLogin/>}/>
           <Route path='/signup' element={<StaffSignUp/>}/>
           <Route path='/inbox' element={<StaffMessage/>}/>
+          <Route path='/inbox/:email' element={<StaffMessage/>}/>
           <Route path='/student' element={<Student/>}/>
           <Route path='/submit' element={<StaffSubmit/>}/>
           <Route path='/uploadfile' element={<StaffFile/>}/>

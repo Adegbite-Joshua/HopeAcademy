@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import FileViewer from './FileViewer'
+import FileViewer from '../../FileViewer'
 import UploadedFile from './UploadedFile'
 
 const FileOtherDiv = () => {
