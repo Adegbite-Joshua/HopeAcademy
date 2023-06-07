@@ -1,8 +1,13 @@
 import React from 'react'
 import ButtonComp from '../ButtonComp'
 import FileView from './FileView'
+import FileViewer from '../../FileViewer'
 
-const SubmitMainDIv = () => {
+
+const SubmitMainDIv = ({studentSubmit}) => {
+    if(studentSubmit){
+        console.log(studentSubmit)
+    }
   return (
     <>
         <div className="SubmitMainDIv middleDiv relative">
@@ -12,19 +17,10 @@ const SubmitMainDIv = () => {
                 <h4 className=' text-center'>From: Adegbite Joshua</h4>
             </div>
             <div className='  h-3/6'>
-                {/* <embed src="port.pdf" type="application/pdf" width={400} height={400}>
-                    <noembed>
-                        <p>
-                            Your browser does not support PDF files.
-                            <a href="mypdf.pdf">Download the file instead</a>
-                        </p>
-                    </noembed>
-                </embed> */}
-                <FileView/>
-                <ButtonComp name='Message Adegbite'/>
+                {/* <FileView/> */}
+                {Object.keys(studentSubmit).length >=1  && studentSubmit.constructor === Object?<FileViewer fileType='.docx' fileLink={studentSubmit.fileLink} />:''}
+                <ButtonComp name={`Message ${studentSubmit.studentName?studentSubmit.studentName:'Select A Submit'}`}/>
                 <ButtonComp name='Go to Grading'/>
-                {/* <button className=' p-2 bg-blue-600 hover:bg-blue-500 rounded-md w-3/6 m-2' ></button>
-                <button className=' p-2 bg-blue-600 hover:bg-blue-500 rounded-md w-3/6 m-2' name=''>Message Adegbite</button> */}
             </div>
         </div>
         

@@ -60,14 +60,20 @@ const StaffSubmit = () => {
   useEffect(() => {
       decide()
   }, []);
+
+  const [studentSubmit, setstudentSubmit] = useState({})
+  const setViewingSubmit =(work)=>{
+    setstudentSubmit(work)
+    // console.log(work)
+  }
   return (
     <>
         <div className=' StaffSubmit containerAll'>
             <DashboardNav/>
             {fetching && <Loader/>}
             {fetching==false && <>
-              <SubmitMainDIv/>
-              <SubmitOtherDiv/>
+              <SubmitMainDIv studentSubmit={studentSubmit} />
+              <SubmitOtherDiv func={setViewingSubmit}/>
             </>}
         </div>
     </>
