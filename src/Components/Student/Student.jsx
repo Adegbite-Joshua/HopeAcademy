@@ -6,6 +6,9 @@ import { fetchStaff, fetchClassStudents, setFetching } from '../../redux/staffIn
 import DashboardNav from '../StaffDashboard/DashboardNav'
 import StudentMainDIv from './StudentMainDIv'
 import StudentOtherDiv from './StudentOtherDiv'
+import { useParams } from 'react-router-dom'
+
+
 
 const Student = () => {
   const [category, setcategory] = useState(null)
@@ -13,11 +16,11 @@ const Student = () => {
   const [individualEmail, setemail] = useState(null)
   const [partnerName, setpartnerName] = useState('')
   const dispatch = useDispatch()
+  let paramsValue = useParams();
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
   let classStudents = useSelector((state)=>state.staffInformation.classStudents)
   const setViewingMessage =(cat, main, email)=>{
-    // console.log(staffInfo.messages)
     console.log(cat, main, email);
     category!=''?setcategory(cat):''
     mainindex!=''?setmainindex(main):''
@@ -41,6 +44,7 @@ const Student = () => {
           if (res.status==200) {
             dispatch(fetchStaff(res.data))
             dispatch(setFetching(false))
+            setDefault()
           } else if(res.status != 200){
               state.staffInformation = 'error'
           }
@@ -68,9 +72,21 @@ const Student = () => {
   }
   useEffect(() => {
     fetchStaffInformation()
+    setDefault()
   }, [])
   const setPartnerName =(value)=>{
     setpartnerName(value);
+  }
+
+  const setDefault=()=>{
+    if(paramsValue.email && Object.keys(staffInfo).length > 0 && staffInfo.constructor === Object){
+      console.log(paramsValue)
+      setcategory(0);
+      setmainindex(staffInfo.class);
+      setemail(paramsValue.email);
+      console.log(classStudents.find((student, index)=>student.email==paramsValue.email).firstName)
+      setpartnerName(classStudents.find((student, index)=>student.email==paramsValue.email).firstName)
+    }
   }
   return (
     <>

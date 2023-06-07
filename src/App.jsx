@@ -41,6 +41,7 @@ function App() {
           <Route path='/inbox' element={<StaffMessage/>}/>
           <Route path='/inbox/:email' element={<StaffMessage/>}/>
           <Route path='/student' element={<Student/>}/>
+          <Route path='/student/:email' element={<Student/>}/>
           <Route path='/submit' element={<StaffSubmit/>}/>
           <Route path='/uploadfile' element={<StaffFile/>}/>
           <Route path='/setting' element={<StaffSetting/>}/>

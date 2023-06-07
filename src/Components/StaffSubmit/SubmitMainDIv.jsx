@@ -7,9 +7,16 @@ import { useNavigate } from 'react-router-dom'
 
 
 const SubmitMainDIv = ({studentSubmit}) => {
-    const  navigate = useNavigate();
+    const navigate = useNavigate();
     const messageStudent =()=>{
-        navigate(`/inbox/${studentSubmit.studentEmail}`)
+        if(Object.keys(studentSubmit).length >=1  && studentSubmit.constructor === Object){
+            navigate(`/inbox/${studentSubmit.studentEmail}`)
+        }
+    }
+    const gradeStudent =()=>{
+        if(Object.keys(studentSubmit).length >=1  && studentSubmit.constructor === Object){
+            navigate(`/student/${studentSubmit.studentEmail}`)
+        }
     }
   return (
     <>
@@ -23,7 +30,7 @@ const SubmitMainDIv = ({studentSubmit}) => {
                 {/* <FileView/> */}
                 {Object.keys(studentSubmit).length >=1  && studentSubmit.constructor === Object?<FileViewer fileType='.docx' fileLink={studentSubmit.fileLink} />:''}
                 <ButtonComp onClick={messageStudent} name={`Message ${studentSubmit.studentName?studentSubmit.studentName:'Select A Submit'}`}/>
-                <ButtonComp name='Go to Grading'/>
+                <ButtonComp onClick={gradeStudent} name={`Grade ${studentSubmit.studentName?studentSubmit.studentName:'Select A Submit'}`} />
             </div>
         </div>
         
