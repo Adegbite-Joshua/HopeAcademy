@@ -18,13 +18,14 @@ const StudentMainDIv = ({category, mainindex, individualEmail, partnerName}) => 
     console.log(assessment)
     let allAssessment = {...assessment, staffClass: staffInfo.class, studentEmail: individualEmail }
     let endpoint = 'http://localhost:7777/staff/submitstudentsassessment'
-    axios.post(endpoint, allAssessment)
-    .then((res)=>{
-      console.log(res)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
+    // axios.post(endpoint, allAssessment)
+    // .then((res)=>{
+    //   console.log(res)
+    // })
+    // .catch((err)=>{
+    //   console.log(err)
+    // })
+    console.log(allAssessment);
   }
   return (
     <>
@@ -34,7 +35,7 @@ const StudentMainDIv = ({category, mainindex, individualEmail, partnerName}) => 
                 <StudentScoreTable index={mainindex} func={recieveAssessment}/>
             </div>
             <StudentLastPerformance/>
-            <ButtonComp onClick={saveStudentsAssesment} name='Save Data'/>
+            <ButtonComp onClick={saveStudentsAssesment} name={individualEmail?`Save ${partnerName}'s Data`:'Select A Students Name'}/>
             <MessageStudent category={category} mainindex={mainindex} individualEmail={individualEmail} partnerName={partnerName}/>
         </div>
     </>

@@ -1,23 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 const StudentScoreTable = ({func, index}) => {
     let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
     let classStudents = useSelector((state)=>state.staffInformation.classStudents)
-    // let subjectIndex = index&&classStudents?classStudents[index].subjects.findIndex({'subject.subjectInde': staffInfo.class}):''
-    // let subjectIndex = index&&classStudents?classStudents[index].subjects.filter((subject, index)=>{
-    //     return subject.subjectIndex = staffInfo.class
-    // }):''
+
+    useEffect(() => {
+        index?updateStudentAssessment():''
+    }, [index])
+    
     let subjectInd = index&&classStudents?classStudents[index].subjects.map((subject, index)=>{
         if (subject.subjectIndex==0) {
-            console.log(index);
+            // console.log(index);
             return index
         }
     }):''
     let subjectIndex = subjectInd[0]
-    window.subjectIndex = subjectIndex
 
-    console.log(subjectIndex);
     const [ca1,setca1] = useState('')
     const [ca2,setca2] = useState('')
     const [ca3,setca3] = useState('')
