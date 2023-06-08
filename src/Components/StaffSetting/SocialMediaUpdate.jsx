@@ -1,13 +1,22 @@
 import axios from 'axios'
-import React , { useState}from 'react'
+import React , { useState, useEffect}from 'react'
 import { useSelector } from 'react-redux'
 
 const SocialMediaUpdate = () => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   const [twitter, settwitter] = useState('')
   const [facebook, setfacebook] = useState('')
-  const [whatsapp, setwhatsapp] = useState('')
+  const [whatsapp, setwhatsapp] = useState()
   const [other, setother] = useState('')
+  useEffect(() => {
+    if (Object.keys(staffInfo).length > 0 && staffInfo.links.constructor===Object) {
+      settwitter(staffInfo.links.twitter)
+      setfacebook(staffInfo.links.facebook)
+      setwhatsapp(staffInfo.links.whatsapp)
+      setother(staffInfo.links.other)
+    }
+  }, [])
+  
   const updateMediaDetails =()=>{
     let updateDetails = {
       'links.twitter':twitter,

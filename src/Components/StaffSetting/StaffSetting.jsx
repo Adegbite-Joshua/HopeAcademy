@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React , {useState, useEffect}from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchStaff } from '../../redux/staffInformation'
+import Loader from '../../Loader'
+import { fetchStaff, setFetching } from '../../redux/staffInformation'
 import DashboardNav from '../StaffDashboard/DashboardNav'
 import SettingMainDiv from './SettingMainDiv'
 import SettingOtherDiv from './SettingOtherDiv'
@@ -15,47 +16,47 @@ const StaffSetting = () => {
   }
   const dispatch = useDispatch()
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
+  let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
   
-  const decide = ()=>{
+  const fetchStaffInformation = async()=>{
+    console.log(staffInfo);
     let endpoint = 'http://localhost:7777/staff/dashboard'
     let staffEmail = localStorage.getItem('staffemail')
     let staffPassword = localStorage.getItem('staffpassword')
-    let staffClass = localStorage.getItem('staffclass')
+    let staffClass = Number(localStorage.getItem('staffclass'))
     let details = {
         staffClass,
         staffEmail,
         staffPassword
     }
-    axios.post(endpoint, details)
-    .then((res)=>{
-        console.log(res)
-        if (res.status==200) {
-          dispatch(fetchStaff(res.data))
-          // console.log(staffInfo);
-            // Object.assign(state.staffInformation=res.data)
-            // state.staffInformation = res.data
-        } else if(res.status != 200){
-            state.staffInformation = 'error'
-        }
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-    // console.log(staffInfo);
-    // if (staffInfo == 'error') {
-    //   navigate('/signin')
-    // }
+    if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
+      dispatch(setFetching(true))
+      axios.post(endpoint, details)
+      .then((res)=>{
+          if (res.status==200) {
+            dispatch(fetchStaff(res.data))
+            dispatch(setFetching(false))
+          } else if(res.status != 200){
+              state.staffInformation = 'error'
+          }
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
+    }
   }
-  window.decide = decide
   useEffect(() => {
-    decide()
+    fetchStaffInformation()
   }, [])
   return (
     <>
         <div className='StaffSetting containerAll overflow-y-hidden'>
             <DashboardNav/>
-            <SettingMainDiv disp={displaying}/>
-            <SettingOtherDiv func={viewSetting}/>
+            {fetching && <Loader/>}
+            {fetching==false && <>
+              <SettingMainDiv disp={displaying}/>
+              <SettingOtherDiv func={viewSetting}/>
+            </>}
         </div>
     </>
   )
