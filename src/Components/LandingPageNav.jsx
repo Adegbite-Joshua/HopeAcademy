@@ -1,5 +1,5 @@
 // import React from 'react'
-// import { Link } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 // const LandingPageNav = () => {
 //   return (
@@ -13,11 +13,11 @@
 //                     <img src="vite.svg" style={{float:'left'}} alt="" />
 //                     PROADE SCHOOL
 //                 </span>
-//                 <li name='staff'><Link>Staff Site</Link></li>
-//                 <li><Link to='/signup'>Sign Up</Link></li>
-//                 <li><Link to='/signin'>Sign In</Link></li>
-//                 <li><Link>Contsct Us</Link></li>
-//                 <li><Link>About Us</Link></li>
+//                 <li name='staff'><NavLink>Staff Site</NavLink></li>
+//                 <li><NavLink to='/signup'>Sign Up</NavLink></li>
+//                 <li><NavLink to='/signin'>Sign In</NavLink></li>
+//                 <li><NavLink>Contsct Us</NavLink></li>
+//                 <li><NavLink>About Us</NavLink></li>
 //             </ul>
 //         </div>
 //     </>
@@ -27,7 +27,7 @@
 // export default LandingPageNav
 
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -45,32 +45,32 @@ const LandingPageNav = ({percent}) => {
                 <img src="vite.svg" alt="" style={{height: '50px', width: '50px'}} />
                 <h3>PROADE SCHOOL</h3>
             </div>
-            <ul id='navUl' className=''>
+            <ul id='navUl' className='navUl'>
                 <li className="">
-                    <Link className="" aria-current="page" to='/'>Home</Link>
+                    <NavLink className="" aria-current="page" to='/'>Home</NavLink>
                 </li>
                 <li class="signUpDropDown">
                     <a>Sign Up</a>
                     <ul>
-                        <li><Link to='http://localhost:2000/signup'>Staff</Link></li>
-                        <li><Link to='/signup'>Student</Link></li>
+                        <li><NavLink to='http://localhost:2000/signup'>Staff</NavLink></li>
+                        <li><NavLink to='/signup'>Student</NavLink></li>
                     </ul>
                 </li>
-                <li className="">
-                    <Link className="">Staff Portal</Link>
-                </li>
+                {/* <li className="">
+                    <NavLink className="">Staff Portal</NavLink>
+                </li> */}
                 <li class="signInDropDown">
                     <a>Sign In </a>
                     <ul>
-                        <li><Link to='http://localhost:2000/signin'>Staff</Link></li>
-                        <li><Link to='/signin'>Student</Link></li>
+                        <li><NavLink to='http://localhost:2000/signin'>Staff</NavLink></li>
+                        <li><NavLink to='/signin'>Student</NavLink></li>
                     </ul>
                 </li>
                 <li className="">
-                    <Link className="" to='/contactus'>Contact Us</Link>
+                    <NavLink className="" to='/contactus'>Contact Us</NavLink>
                 </li>
                 <li className="">
-                    <Link className="" to='/aboutus'>About Us</Link>
+                    <NavLink className="" to='/aboutus'>About Us</NavLink>
                 </li>
             </ul>
             <span onClick={showSideBar}><i className='fa fa-bars'></i></span>
