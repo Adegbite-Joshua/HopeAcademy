@@ -16,15 +16,15 @@ const StudentMainDIv = ({category, mainindex, individualEmail, partnerName}) => 
   }
   const saveStudentsAssesment =()=>{
     console.log(assessment)
-    let allAssessment = {...assessment, staffClass: staffInfo.class, studentEmail: individualEmail }
+    let allAssessment = {...assessment, staffClass: Number(staffInfo.class), studentEmail: individualEmail, subjectIndex: Number(staffInfo.class) }
     let endpoint = 'http://localhost:7777/staff/submitstudentsassessment'
-    // axios.post(endpoint, allAssessment)
-    // .then((res)=>{
-    //   console.log(res)
-    // })
-    // .catch((err)=>{
-    //   console.log(err)
-    // })
+    axios.post(endpoint, allAssessment)
+    .then((res)=>{
+      console.log(res)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
     console.log(allAssessment);
   }
   return (

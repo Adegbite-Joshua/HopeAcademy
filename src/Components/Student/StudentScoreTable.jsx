@@ -1,3 +1,4 @@
+import { useFormik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -6,7 +7,7 @@ const StudentScoreTable = ({func, index}) => {
     let classStudents = useSelector((state)=>state.staffInformation.classStudents)
 
     useEffect(() => {
-        index?updateStudentAssessment():''
+        index&&subjectIndex?updateStudentAssessment():''
     }, [index])
     
     let subjectInd = index&&classStudents?classStudents[index].subjects.map((subject, index)=>{
@@ -74,6 +75,77 @@ const StudentScoreTable = ({func, index}) => {
         func(newAssessment)
         // alert('yes')
     }
+    const showTable =()=>{
+        console.log(index)
+        console.log(subjectIndex);
+        return (<>
+            <tr>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].ca1} id='ca1' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' name="" onChange={(e)=>{
+                    setca1(e.target.value)
+                    updateStudentAssessment()
+                    }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].ca2} id='ca2' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
+                    setca2(e.target.value)
+                    updateStudentAssessment()
+                }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].ca3} id='ca3' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
+                    setca3(e.target.value)
+                    updateStudentAssessment()
+                }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].ca4} id='ca4' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
+                    setca4(e.target.value)
+                    updateStudentAssessment()
+                }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].ca5} id='ca5' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
+                    setca5(e.target.value)
+                    updateStudentAssessment()
+                }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].ass1} id='ass1' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
+                    setass1(e.target.value)
+                    updateStudentAssessment()
+                }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].ass2} id='ass2' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
+                    setass2(e.target.value)
+                    updateStudentAssessment()
+                }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].ass3} id='ass3' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
+                    setass3(e.target.value)
+                    updateStudentAssessment()
+                }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].ass4} id='ass4' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
+                    setass4(e.target.value)
+                    updateStudentAssessment()
+                }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].ass5} id='ass5' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
+                    setass5(e.target.value)
+                    updateStudentAssessment()
+                }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].test1} id='test1' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
+                    settest1(e.target.value)
+                    updateStudentAssessment()
+                }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].test2} id='test2' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
+                    settest2(e.target.value)
+                    updateStudentAssessment()
+                }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].test3} id='test3' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
+                    settest3(e.target.value)
+                    updateStudentAssessment()
+                }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].bonus1} id='bonus1' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
+                    setbonus1(e.target.value)
+                    updateStudentAssessment()
+                }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].bonus2} id='bonus2' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
+                    setbonus2(e.target.value)
+                    updateStudentAssessment()
+                }} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].total:'00'} className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" value={Number(ca1)+Number(ca2)+Number(ca3)+Number(ca4)+Number(ca5)+Number(ass1)+Number(ass2)+Number(ass3)+Number(ass4)+Number(ass5)+Number(test1)+Number(test2)+Number(test3)+Number(bonus1)+Number(bonus2)} id='total' /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].percent:'00'} className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" value={percent} /></td>
+                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].position:'00'} className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>setposition(e.target.value)} /></td>
+            </tr>
+        </>)
+    }
   return (
     <>
         <table className=' w-full'>
@@ -100,71 +172,8 @@ const StudentScoreTable = ({func, index}) => {
                 </tr>
             </thead>
             <tbody id='result'>
-            <tr>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].ca1:'00'} id='ca1' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' name="" onChange={(e)=>{
-                    setca1(e.target.value)
-                    updateStudentAssessment()
-                    }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].ca2:'00'} id='ca2' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
-                    setca2(e.target.value)
-                    updateStudentAssessment()
-                }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].ca3:'00'} id='ca3' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
-                    setca3(e.target.value)
-                    updateStudentAssessment()
-                }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].ca4:'00'} id='ca4' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
-                    setca4(e.target.value)
-                    updateStudentAssessment()
-                }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].ca5:'00'} id='ca5' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
-                    setca5(e.target.value)
-                    updateStudentAssessment()
-                }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].ass1:'00'} id='ass1' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
-                    setass1(e.target.value)
-                    updateStudentAssessment()
-                }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].ass2:'00'} id='ass2' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
-                    setass2(e.target.value)
-                    updateStudentAssessment()
-                }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].ass3:'00'} id='ass3' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
-                    setass3(e.target.value)
-                    updateStudentAssessment()
-                }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].ass4:'00'} id='ass4' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
-                    setass4(e.target.value)
-                    updateStudentAssessment()
-                }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].ass5:'00'} id='ass5' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
-                    setass5(e.target.value)
-                    updateStudentAssessment()
-                }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].test1:'00'} id='test1' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
-                    settest1(e.target.value)
-                    updateStudentAssessment()
-                }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].test2:'00'} id='test2' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
-                    settest2(e.target.value)
-                    updateStudentAssessment()
-                }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].test3:'00'} id='test3' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
-                    settest3(e.target.value)
-                    updateStudentAssessment()
-                }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].bonus1:'00'} id='bonus1' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
-                    setbonus1(e.target.value)
-                    updateStudentAssessment()
-                }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].bonus2:'00'} id='bonus2' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>{
-                    setbonus2(e.target.value)
-                    updateStudentAssessment()
-                }} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].total:'00'} className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" value={Number(ca1)+Number(ca2)+Number(ca3)+Number(ca4)+Number(ca5)+Number(ass1)+Number(ass2)+Number(ass3)+Number(ass4)+Number(ass5)+Number(test1)+Number(test2)+Number(test3)+Number(bonus1)+Number(bonus2)} id='total' /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].percent:'00'} className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" value={percent} /></td>
-                <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={subjectIndex?classStudents[index].subjects[subjectIndex].position:'00'} className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' max={5} min={0} name="" onChange={(e)=>setposition(e.target.value)} /></td>
-            </tr>
+            {subjectIndex!='' && <tr>Click On a student</tr>}
+            {subjectIndex==''?showTable():''}
         </tbody>
         </table>
     </>
