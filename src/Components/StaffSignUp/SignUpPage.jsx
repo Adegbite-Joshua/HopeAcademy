@@ -8,7 +8,7 @@ import FileViewer from '../../FileViewer'
 
 const SignUpPage = () => {
   const [fileType, setfileType] = useState('.jpeg, .jpg, .gif, .tif, .psd')
-  const [fileBase64, setfileBase64] = useState('')
+  const [imageBase64, setfileBase64] = useState('')
   const [fileName, setfileName] = useState('')
   const subjects = [
     'MATHEMATICS',
@@ -77,8 +77,7 @@ const SignUpPage = () => {
       email: values.email,
       password: values.password,
       staffIndex: values.staffIndex,
-      fileBase64,
-      fileName,
+      imageBase64,
       class: values.class,
       address: values.address,
       localGovernment: '',
@@ -163,8 +162,8 @@ const SignUpPage = () => {
                     <input type="file" accept={fileType} onChange={(e)=>selectFile(e)} className=' w-full my-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100' />
                 </label>
                 <div className=' w-full md:w-3/6 aspect-square block mx-auto'>
-                  {fileBase64 && fileType?<>
-                    <FileViewer fileLink={fileBase64} fileType={fileType} />
+                  {imageBase64 && fileType?<>
+                    <FileViewer fileLink={imageBase64} fileType={fileType} />
                   </>: <>
                     <div className=' bg-black flex w-full h-full items-center justify-center'>
                         <p className=' text-white text-center'>The Choosed File Wil Appear Here</p>

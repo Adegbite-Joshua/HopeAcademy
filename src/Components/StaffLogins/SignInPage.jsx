@@ -2,6 +2,9 @@ import React from 'react'
 import { Formik, useFormik } from 'formik'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import * as Yup from 'yup';
+
+
 
 
 const SignInPage = () => {
@@ -9,9 +12,18 @@ const SignInPage = () => {
   const formik  = useFormik({
     initialValues: {
       email: '',
-      class: '',
+      class: 0,
       password: ''
     },
+    validationSchema: Yup.object({
+      password: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!')
+        .required('Required'),
+      email: Yup.string()
+        .email('Invalid email')
+        .required('Required'),
+    }),
     onSubmit: (values)=>{
       console.log(values);
       let endpoint = 'http://localhost:7777/staff/signin'
@@ -23,6 +35,9 @@ const SignInPage = () => {
             localStorage.setItem('staffemail', values.email)
             localStorage.setItem('staffpassword', values.password)
             localStorage.setItem('staffclass', values.class)
+            localStorage.setItem('token', res.data.token)
+            localStorage.token = res.data.token
+            // alert('found')
             navigate('/dashboard')
           }
       })
@@ -40,12 +55,12 @@ const SignInPage = () => {
                 <label htmlFor="">Class</label>
                 {/* <input onChange={formik.handleChange} type="text" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Id' name='staffId' /> */}
                 <select name="class" id="class" required onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50'>
-                  <option value="0" selected>JSS1</option>
-                  <option value="1">JSS2</option>
-                  <option value="2">JSS3</option>
-                  <option value="3">SSS1</option>
-                  <option value="4">SSS2</option>
-                  <option value="5">SSS3</option>
+                  <option value={0} selected>JSS1</option>
+                  <option value={1}>JSS2</option>
+                  <option value={2}>JSS3</option>
+                  <option value={3}>SSS1</option>
+                  <option value={4}>SSS2</option>
+                  <option value={5}>SSS3</option>
                 </select>
                 <label htmlFor="">Password</label>
                 <input onChange={formik.handleChange} type="text" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Password' name='password' />
