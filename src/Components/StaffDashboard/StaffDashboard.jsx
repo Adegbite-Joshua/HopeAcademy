@@ -18,16 +18,8 @@ const StaffDashboard = () => {
   let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
   
   const fetchStaffInformation = ()=>{
-    let endpoint = 'http://localhost:7777/staff/dashboard'
-    let staffEmail = localStorage.getItem('staffemail')
-    let staffPassword = localStorage.getItem('staffpassword')
-    let staffClass = Number(localStorage.getItem('staffclass'))
-    let details = {
-        staffClass,
-        staffEmail,
-        staffPassword
-    }
     if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
+      let endpoint = 'http://localhost:7777/staff/dashboard'
       let token = localStorage.token
       axios.post(endpoint, {token})
       .then((res)=>{
@@ -45,13 +37,13 @@ const StaffDashboard = () => {
     }
   }
   useEffect(() => {
-    fetchStaffInformation()
+    validateStudent()
   }, [])
   
 
   const validateStudent =()=>{
     let token = localStorage.token
-    let validateEndpoint = 'http://localhost:7777/staff/validatedashboard'
+    let validateEndpoint = 'http://localhost:7777/staff/validatetoken'
     axios.get(validateEndpoint, {headers : {
       "Authorization": `Bearer ${token}`,
       "Content-Toe": "application/json",
@@ -59,7 +51,9 @@ const StaffDashboard = () => {
     }})
     .then((res)=>{
       console.log(res);
-      if (res.status != 200) {
+      if (res.status == 200) {
+        fetchStaffInformation()
+      } else{
         navigate('/signin')
       }
     })
