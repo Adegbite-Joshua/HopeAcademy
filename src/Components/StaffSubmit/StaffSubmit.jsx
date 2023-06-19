@@ -13,7 +13,7 @@ const StaffSubmit = () => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let classStudents = useSelector((state)=>state.staffInformation.classStudents)
   let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
-  const decide = ()=>{
+  const fetchStaffInformation = ()=>{
     let endpoint = 'http://localhost:7777/staff/dashboard'
     let allstaffsendpoint = 'http://localhost:7777/staff/allstaffs'
     let staffEmail = localStorage.getItem('staffemail')
@@ -57,8 +57,29 @@ const StaffSubmit = () => {
       })
     }
   }
+  const validateStaff =()=>{
+    let token = localStorage.token
+    let validateEndpoint = 'http://localhost:7777/staff/validatetoken'
+    axios.get(validateEndpoint, {headers : {
+      "Authorization": `Bearer ${token}`,
+      "Content-Toe": "application/json",
+      "Accept": "application/json"
+    }})
+    .then((res)=>{
+      console.log(res);
+      if (res.status == 200) {
+        fetchStaffInformation()
+      } else{
+        navigate('/signin')
+      }
+    })
+    .catch((error)=>{
+      navigate('/signin')
+      console.log(error);
+    })
+  }
   useEffect(() => {
-      decide()
+      validateStaff()
   }, []);
 
   const [studentSubmit, setstudentSubmit] = useState({})

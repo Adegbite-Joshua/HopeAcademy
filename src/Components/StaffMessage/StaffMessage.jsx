@@ -79,8 +79,30 @@ const StaffMessage = () => {
       })
     }
   }
+
+  const validateStaff =()=>{
+    let token = localStorage.token
+    let validateEndpoint = 'http://localhost:7777/staff/validatetoken'
+    axios.get(validateEndpoint, {headers : {
+      "Authorization": `Bearer ${token}`,
+      "Content-Toe": "application/json",
+      "Accept": "application/json"
+    }})
+    .then((res)=>{
+      console.log(res);
+      if (res.status == 200) {
+        fetchStaffInformation()
+      } else{
+        navigate('/signin')
+      }
+    })
+    .catch((error)=>{
+      navigate('/signin')
+      console.log(error);
+    })
+  }
   useEffect(() => {
-    fetchStaffInformation()
+    validateStaff()
     setDefault()
   }, [])
   const [category, setcategory] = useState(null)

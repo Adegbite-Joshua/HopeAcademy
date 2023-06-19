@@ -38,11 +38,11 @@ const StaffDashboard = () => {
     }
   }
   useEffect(() => {
-    validateStudent()
+    validateStaff()
   }, [])
   
 
-  const validateStudent =()=>{
+  const validateStaff =()=>{
     let token = localStorage.token
     let validateEndpoint = 'http://localhost:7777/staff/validatetoken'
     axios.get(validateEndpoint, {headers : {
