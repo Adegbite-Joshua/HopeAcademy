@@ -31,7 +31,8 @@ const StaffSetting = () => {
     }
     if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
       dispatch(setFetching(true))
-      axios.post(endpoint, details)
+      let token = localStorage.token
+      axios.post(endpoint, token)
       .then((res)=>{
           if (res.status==200) {
             dispatch(fetchStaff(res.data))

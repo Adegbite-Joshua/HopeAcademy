@@ -28,7 +28,8 @@ const StaffDashboard = () => {
         staffPassword
     }
     if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
-      axios.post(endpoint, details)
+      let token = localStorage.token
+      axios.post(endpoint, {token})
       .then((res)=>{
           console.log(res)
           if (res.status==200) {
