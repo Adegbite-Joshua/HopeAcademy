@@ -7,10 +7,13 @@ import axios from 'axios'
 
 const MessageMainDiv = ({mainindex, category, email}) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
-  let allStudentsInfo = useSelector((state)=>state.staffInformation.allStudents)
+  let allStudents = useSelector((state)=>state.staffInformation.allStudents)
+  let allStaffs = useSelector((state)=>state.staffInformation.allStaffs)
+  const [receiverName, setreceiverName] = useState('Select A Name')
   // const [category, setcategory] = useState('');
   // const [mainindex, setmainindex] = useState('');
   // const [index, setindex] = useState('');
+  console.log(allStudents);
   const sendMessage = async()=>{
     let sendMessageEndpoint = 'http://localhost:7777/staff/message'
     let messageBody = {
@@ -30,6 +33,27 @@ const MessageMainDiv = ({mainindex, category, email}) => {
       console.log(error)
     }
   }
+  const showReceiverName =()=>{
+    if (mainindex==0) {
+      if (email) {
+        let receiver = allStudents[category].find((student)=>student.email==email)
+        setreceiverName(`${receiver.firstName} ${receiver.lastName}`)
+      } else{
+        setreceiverName('Select A Name')
+      }
+    } else if (mainindex==1){
+      if (email) {
+        let receiver = allStaffs[category].find((staff)=>staff.email==email)
+        setreceiverName(`${receiver.firstName} ${receiver.lastName}`)
+      } else{
+        setreceiverName('Select A Name')
+      }
+    }
+  }
+  useEffect(() => {
+    showReceiverName()
+  }, [email])
+  
   return (
     <>
         <div className='MessageMainDiv mt-16 md:mt-0 h-5/6 md:h-full basis-full md:basis-8/12 px-5 overflow-y-auto border-2 border-green-500'>
@@ -58,7 +82,7 @@ const MessageMainDiv = ({mainindex, category, email}) => {
                   </>} 
                 </div>
                 <div className=' h-1/6 w-full'>
-                  <h3 className=' text-center font-bold'>{email}</h3>
+                  <h3 className=' text-center font-bold'>{receiverName}</h3>
                   <d className="flex">
                     <textarea name="" id="message" className=' w-full border border-3 border-red-400' rows="2"></textarea>
                     <button onClick={sendMessage} className=' p-2 rounded-md bg-blue-500 hover:bg-blue-400 block mx-auto'>Send Message</button>
