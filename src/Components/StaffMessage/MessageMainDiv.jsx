@@ -9,6 +9,8 @@ const MessageMainDiv = ({mainindex, category, email}) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let allStudents = useSelector((state)=>state.staffInformation.allStudents)
   let allStaffs = useSelector((state)=>state.staffInformation.allStaffs)
+  // const [staffMessages, setstaffMessages] = useState()
+  let staffMessages = useSelector((state)=>state.staffInformation.staffInformation).messages
   const [receiverName, setreceiverName] = useState('Select A Name')
   // const [category, setcategory] = useState('');
   // const [mainindex, setmainindex] = useState('');
@@ -51,6 +53,7 @@ const MessageMainDiv = ({mainindex, category, email}) => {
     }
   }
   useEffect(() => {
+    // setstaffMessages(staffInfo.messages)
     showReceiverName()
   }, [email])
   
@@ -59,27 +62,11 @@ const MessageMainDiv = ({mainindex, category, email}) => {
         <div className='MessageMainDiv mt-16 md:mt-0 h-5/6 md:h-full basis-full md:basis-8/12 px-5 overflow-y-auto border-2 border-green-500'>
             <div className='w-full h-full bg-white overflow-y-auto p-2'>
                 <div className=' h-5/6 overflow-y-auto border border-3 border-blue-400'>
-                  {mainindex!='' && category!='' && email!=''?<>
-                  <SenderMessages/>
-                  <ReceiverMessages/>
-                  <SenderMessages/>
-                  <SenderMessages/>
-                  <ReceiverMessages/>
-                  <SenderMessages/>
-                  <SenderMessages/>
-                  <ReceiverMessages/>
-                  <SenderMessages/>
-                  <SenderMessages/>
-                  <ReceiverMessages/>
-                  <SenderMessages/>
-                  <SenderMessages/>
-                  <ReceiverMessages/>
-                  <SenderMessages/>
-                  </>:<>
-                    <div className=' w-full h-80 m-auto flex justify-center items-center'>
-                      <h2 className=' p-2 bg-blue-500 rounded-md'>Select A Name To Chat With </h2>
-                    </div>
-                  </>} 
+                  {staffMessages.length>0?<>
+                  {staffMessages.map((message)=>(
+                    <ReceiverMessages message='Hello. How are you today?' date='10:00 PM' src='vite.svg'/>
+                  ))}
+                  </>:<><SenderMessages message={`Hello ${staffInfo.firstName} ${staffInfo.lastName},  you do not have any message yet`} date={new Date().toLocaleTimeString()} src='vite.svg'/></>} 
                 </div>
                 <div className=' h-1/6 w-full'>
                   <h3 className=' text-center font-bold'>{receiverName}</h3>
