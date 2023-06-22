@@ -21,14 +21,6 @@ const StaffSetting = () => {
   const fetchStaffInformation = async()=>{
     console.log(staffInfo);
     let endpoint = 'http://localhost:7777/staff/dashboard'
-    let staffEmail = localStorage.getItem('staffemail')
-    let staffPassword = localStorage.getItem('staffpassword')
-    let staffClass = Number(localStorage.getItem('staffclass'))
-    let details = {
-        staffClass,
-        staffEmail,
-        staffPassword
-    }
     if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
       dispatch(setFetching(true))
       let token = localStorage.token

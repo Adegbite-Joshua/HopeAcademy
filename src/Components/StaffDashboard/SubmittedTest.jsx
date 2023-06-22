@@ -8,7 +8,7 @@ const SubmittedTest = () => {
   let fetchingData = useSelector((state)=>state.staffInformation.staffFetchingState)
   let SubmittedWork;
   if (!fetchingData) {
-    SubmittedWork = staffInfo.submittedWorks.filter((submits, index)=>index<5)
+    SubmittedWork = staffInfo.submittedWorks?.filter((submits, index)=>index<5)
   }
 
   return (
@@ -26,7 +26,7 @@ const SubmittedTest = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {!fetchingData?SubmittedWork.lenght>0?SubmittedWork.map(()=>(<>
+                    {!fetchingData?SubmittedWork?.lenght>0?SubmittedWork.map(()=>(<>
                     <TestOverView/>
                     <TestOverView/>
                     <TestOverView/>

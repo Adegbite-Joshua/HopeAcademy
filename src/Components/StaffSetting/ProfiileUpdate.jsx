@@ -9,11 +9,9 @@ const ProfiileUpdate = () => {
   const [lastName, setlastName] = useState(staffInfo.lastName)
   const [email, setemail] = useState(staffInfo.email)
   const [phoneNumber, setphoneNumber] = useState(staffInfo.phoneNumber)
-  const [password, setpassword] = useState(staffInfo.password)
   const [address, setaddress] = useState(staffInfo.address)
   const [localGovernment, setlocalGovernment] = useState(staffInfo.address)
   const [state, setstate] = useState(staffInfo.address)
-  const [showpassword, setshowpassword] = useState(false)
   const updateInfo =()=>{
     let updateDetails = {
       firstName,
@@ -51,10 +49,10 @@ const ProfiileUpdate = () => {
             <input type='text' defaultValue={staffInfo.email} onChange={(e)=>setemail(e.target.value)} className=' w-full p-2 text-slate-600 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-600' placeholder='Email' id='email' />
             <label htmlFor='firstName'>Phone Number</label>
             <input type='text' defaultValue={staffInfo.phoneNumber} onChange={(e)=>setphoneNumber(e.target.value)} className=' w-full p-2 text-slate-600 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-600' placeholder='Phone Number' id='phoneNumber' />
-            <label htmlFor='password'>Password</label>
+            {/* <label htmlFor='password'>Password</label>
             <input type={showpassword?'text':'password'} onChange={(e)=>setpassword(e.target.value)} defaultValue={staffInfo.password} className=' w-full p-2 text-slate-600 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-600' placeholder='Password' id='password' />
             <input type="checkbox" style={{accentColor: 'blue'}} id='passwordShow' onChange={(e)=>setshowpassword(e.target.checked)} />
-            <label htmlFor="passwordShow">Show password</label> <br />
+            <label htmlFor="passwordShow">Show password</label> <br /> */}
             <label htmlFor='firstName'>Address</label>
             <input type='text' defaultValue={staffInfo.address?staffInfo.address:''} onChange={(e)=>setaddress(e.target.value)} className=' w-full p-2 text-slate-600 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-600' placeholder='Address' id='address' />
             <label htmlFor='firstName'>Local Goverment</label>
