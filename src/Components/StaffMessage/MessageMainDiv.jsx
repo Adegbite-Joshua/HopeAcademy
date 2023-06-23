@@ -22,10 +22,14 @@ const MessageMainDiv = ({mainindex, category, email}) => {
       messageSenderClass: staffInfo.class,
       messageSenderEmail: staffInfo.email,
       receiverRelationship: mainindex==1?'staff':'student',
+      messageSenderName: `${staffInfo.firstName} ${staffInfo.lastName}`,
       receiverClass: category,
       receiverEmail: email,
       senderRelationship: 'staff',
-      messageBody: document.getElementById('message').value
+      messageBody: document.getElementById('message').value,
+      messageDate: new Date().toLocaleDateString(),
+      messageTime: new Date().toLocaleTimeString()
+
     }
     console.log(messageBody);
     try {
@@ -65,7 +69,7 @@ const MessageMainDiv = ({mainindex, category, email}) => {
                 <div id='messageContainer' className=' h-5/6 overflow-y-auto border border-3 border-blue-400'>
                   {staffMessages?.length>0?<>
                   {staffMessages.map((message)=>(
-                    <ReceiverMessages message={message.messageBody} date='10:00 PM' src='vite.svg'/>
+                    <ReceiverMessages message={message.messageBody} date={`Date: ${message.messageDate} Time: ${message.messageTime}`} src='vite.svg'/>
                   ))}
                   </>:<><SenderMessages message={`Hello ${staffInfo.firstName} ${staffInfo.lastName},  you do not have any message yet`} date={new Date().toLocaleTimeString()} src='vite.svg'/></>} 
                 </div>
