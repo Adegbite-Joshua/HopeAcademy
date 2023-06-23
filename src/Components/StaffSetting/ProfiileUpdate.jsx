@@ -18,14 +18,13 @@ const ProfiileUpdate = () => {
       lastName,
       email,
       class: staffInfo.class,
-      password,
       phoneNumber,
       address,
       localGovernment,
       state
     }
-    let spread = {...updateDetails}
-    console.log(spread);
+    // let spread = {...updateDetails}
+    console.log(updateDetails);
     let infoendpoint = 'http://localhost:7777/staff/updateinfo'
     axios.post(infoendpoint, updateDetails)
     .then((res)=>{
@@ -54,9 +53,9 @@ const ProfiileUpdate = () => {
             <input type="checkbox" style={{accentColor: 'blue'}} id='passwordShow' onChange={(e)=>setshowpassword(e.target.checked)} />
             <label htmlFor="passwordShow">Show password</label> <br /> */}
             <label htmlFor='firstName'>Address</label>
-            <input type='text' defaultValue={staffInfo.address?staffInfo.address:''} onChange={(e)=>setaddress(e.target.value)} className=' w-full p-2 text-slate-600 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-600' placeholder='Address' id='address' />
+            <input type='text' defaultValue={staffInfo.address} onChange={(e)=>setaddress(e.target.value)} className=' w-full p-2 text-slate-600 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-600' placeholder='Address' id='address' />
             <label htmlFor='firstName'>Local Goverment</label>
-            <input type='text' defaultValue={staffInfo.localGovernment?staffInfo.localGovernment:''} onChange={(e)=>setlocalGovernment(e.target.value)} className=' w-full p-2 text-slate-600 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-600' placeholder='Local Goverment' id='localStorage' />
+            <input type='text' defaultValue={staffInfo.localGovernment} onChange={(e)=>setlocalGovernment(e.target.value)} className=' w-full p-2 text-slate-600 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-600' placeholder='Local Goverment' id='localStorage' />
             <label htmlFor='firstName'>State</label>
             <input type='text' defaultValue={staffInfo.state?staffInfo.state:''} onChange={(e)=>setstate(e.target.value)} className=' w-full p-2 text-slate-600 rounded-md focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-600' placeholder='State' id='state' />
             <button onClick={updateInfo} className='w-full bg-blue-600 hover:bg-blue-500 rounded-md p-2 my-2'>Update Profile</button>

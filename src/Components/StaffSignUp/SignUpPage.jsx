@@ -10,6 +10,9 @@ const SignUpPage = () => {
   const [fileType, setfileType] = useState('.jpeg, .jpg, .gif, .tif, .psd')
   const [imageBase64, setfileBase64] = useState('')
   const [fileName, setfileName] = useState('')
+  const [snacksBarBody, setsnacksBarBody] = useState('')
+  const [snacksBarType, setsnacksBarType] = useState('info')
+
   const subjects = [
     'MATHEMATICS',
     'ENGLISH LANGUAGE',
@@ -105,13 +108,38 @@ const SignUpPage = () => {
     
     axios.post(endpoint, details)
     .then((res)=>{
-        console.log('success');
-        console.log(res);
+      if(res.status==200){
+        setsnacksBarBody('Account Successfully Created')
+        setsnacksBarType('info')
+        showSnackBar()
+        setTimeout(() =>navigate("/signin"), 1500);
+      } else if(res.status==11000){
+        setsnacksBarBody('Email Entered Already Exists')
+        setsnacksBarType('error')
+        showSnackBar()
+        setsigningUp(false)
+      } else if(res.status==401){
+        setsnacksBarBody('Error! Ensure You Fill All Reqired Informations Correctly')
+        setsnacksBarType('error')
+        showSnackBar()
+        setsigningUp(false)
+      }
     })
     .catch((err)=>{
         console.log(err);
+        setsnacksBarBody('An Error Occured')
+        setsnacksBarType('error')
+        showSnackBar()
     })
   }
+
+  const showSnackBar = () => {
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbarContainer");
+    x.className = "show";
+  
+    setTimeout(()=>{ x.className = x.className.replace("show", ""); }, 3000);
+}
   return (
     <>
         <div className='w-full h-24 h-screen bg-slate-200 pt-24'>
@@ -174,6 +202,7 @@ const SignUpPage = () => {
                 <button type='submit' className='block py-2 bg-orange-500 w-full rounded-full hover:bg-orange-300'>Sign Up</button>
             </form>      
         </div>
+        <div id='snackbarContainer'><SnackBar body={snacksBarBody} type={snacksBarType}/></div>
     </>
   )
 }

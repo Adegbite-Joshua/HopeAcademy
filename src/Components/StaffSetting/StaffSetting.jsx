@@ -18,17 +18,17 @@ const StaffSetting = () => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
   
-  const fetchStaffInformation = async()=>{
-    console.log(staffInfo);
-    let endpoint = 'http://localhost:7777/staff/dashboard'
+  const fetchStaffInformation = ()=>{
     if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
-      dispatch(setFetching(true))
+      let endpoint = 'http://localhost:7777/staff/dashboard'
       let token = localStorage.token
-      axios.post(endpoint, token)
+      axios.post(endpoint, {token})
       .then((res)=>{
+          console.log(res)
           if (res.status==200) {
             dispatch(fetchStaff(res.data))
             dispatch(setFetching(false))
+            console.log(`${staffInfo.pictureUrl.split('upload/')[0]}upload/r_max,q_50/${staffInfo.pictureUrl.split('upload/')[1]}`)
           } else if(res.status != 200){
               state.staffInformation = 'error'
           }

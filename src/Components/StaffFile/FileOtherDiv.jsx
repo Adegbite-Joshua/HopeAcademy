@@ -61,13 +61,13 @@ const FileOtherDiv = () => {
               </div> */}
             </div>
         </div>
-        <div className="containerp" style={{marginTop: '200px'}}>
+        <div className="containerp">
           <div className="popup" id="popup">
-              <button type="button" className=" ms-auto block my-2" onClick={()=>closeFileView()} aria-label="Close">X</button>
+              <button type="button" className=" ms-auto close-button my-2" onClick={()=>closeFileView()} aria-label="Close">X</button>
               {/* <object data="vid.mp4" controls type="video/webm" width="100%" height="100%">
                   <p>Alternative text - include a link <a href="port.pdf">to the PDF!</a></p>
               </object> */}
-              <FileViewer fileLink={fileLink} fileType={fileType} width='100%' />
+              <FileViewer fileLink={fileLink} fileType={fileType} width='100%' height='60%' />
               <input type="text" defaultValue={fileTitle} placeholder='File Title' />
               <input type='text' defaultValue={fileDescription} placeholder='Fie Description' />
               <p className=' text-right'><small>10:20PM</small></p>
