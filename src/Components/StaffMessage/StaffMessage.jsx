@@ -116,7 +116,7 @@ const StaffMessage = () => {
     individualEmail!=''?setemail(email):''
   }
   const setDefault=()=>{
-    console.log(paramsValue)
+    // console.log(paramsValue)
     if(paramsValue.email && Object.keys(staffInfo).length > 0 && staffInfo.constructor === Object){
       setcategory(0);
       setmainindex(staffInfo.class);

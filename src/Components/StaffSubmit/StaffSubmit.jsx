@@ -14,19 +14,11 @@ const StaffSubmit = () => {
   let classStudents = useSelector((state)=>state.staffInformation.classStudents)
   let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
   const fetchStaffInformation = ()=>{
-    let endpoint = 'http://localhost:7777/staff/dashboard'
     let allstaffsendpoint = 'http://localhost:7777/staff/allstaffs'
-    let staffEmail = localStorage.getItem('staffemail')
-    let staffPassword = localStorage.getItem('staffpassword')
-    let staffClass = localStorage.getItem('staffclass')
-    let details = {
-        staffClass,
-        staffEmail,
-        staffPassword
-    }
     if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
-      dispatch(setFetching(true))
-      axios.post(endpoint, details)
+      let endpoint = 'http://localhost:7777/staff/dashboard'
+      let token = localStorage.token
+      axios.post(endpoint, {token})
       .then((res)=>{
           console.log(res)
           if (res.status==200) {
@@ -39,7 +31,7 @@ const StaffSubmit = () => {
       .catch((err)=>{
           console.log(err);
       })
-    } 
+    }
     if (classStudents.length==0) {
       let classStudentsEndpoint = 'http://localhost:7777/staff/fetchclassstudents'
       dispatch(setFetching(true))

@@ -19,27 +19,23 @@ const StaffFile = () => {
       staffPassword
   }
   const fetchStaffInformation = ()=>{
-    let endpoint = 'http://localhost:7777/staff/dashboard'
-    let staffEmail = localStorage.getItem('staffemail')
-    let staffPassword = localStorage.getItem('staffpassword')
-    let staffClass = localStorage.getItem('staffclass')
-    let details = {
-        staffClass,
-        staffEmail,
-        staffPassword
+    if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
+      let endpoint = 'http://localhost:7777/staff/dashboard'
+      let token = localStorage.token
+      axios.post(endpoint, {token})
+      .then((res)=>{
+          console.log(res)
+          if (res.status==200) {
+            dispatch(fetchStaff(res.data))
+            dispatch(setFetching(false))
+          } else if(res.status != 200){
+              state.staffInformation = 'error'
+          }
+      })
+      .catch((err)=>{
+          console.log(err);
+      })
     }
-    axios.post(endpoint, details)
-    .then((res)=>{
-        console.log(res)
-        if (res.status==200) {
-          dispatch(fetchStaff(res.data))
-        } else if(res.status != 200){
-            state.staffInformation = 'error'
-        }
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
   }
 
   const validateStaff =()=>{

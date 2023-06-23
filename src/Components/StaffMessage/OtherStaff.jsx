@@ -7,9 +7,7 @@ const OtherStaff = ({func ,func2}) => {
   const dispatch = useDispatch()
   let allStaffsInfo = useSelector((state)=>state.staffInformation.allStaffs)
   const [viewing, setviewing] = useState(0)
-  const setViewingMessage =(viewingMessage)=>{
 
-  }
   return (
     <>
         <div className="w-full p-2">
@@ -26,7 +24,7 @@ const OtherStaff = ({func ,func2}) => {
               <People name={`${staff.firstName} ${staff.lastName}`} img='jkd' index={index} func={setViewingMessage}/>
               )): <People name='No name' img='jkd' index={0} func={setViewingMessage}/>} */}
               {allStaffsInfo.length>0?allStaffsInfo[viewing].length>0?allStaffsInfo[viewing].map((staff, index)=>(
-              <People name={`${staff.firstName} ${staff.lastName}`} mainindex={viewing} img='jkd' email={staff.email} func={func}/>
+              <People name={`${staff.firstName} ${staff.lastName}`} mainindex={viewing} img='jkd' email={staff.email} func={func} identity='Staff'/>
               )): <People name='No name' img='jkd' email={0} func={func2}/>:func}
             
         </div>

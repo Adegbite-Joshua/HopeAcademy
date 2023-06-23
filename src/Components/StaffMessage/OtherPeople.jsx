@@ -22,7 +22,7 @@ const OtherPeople = ({func, func2}) => {
               <option value="5">SSS3</option>
             </select>
             {allStudentsInfo.length>0?allStudentsInfo[viewing].length>0?allStudentsInfo[viewing].map((student, index)=>(
-            <People key={index} mainindex={viewing} name={`${student.firstName} ${student.lastName}`} img='jkd' email={student.email} func={func}/>
+            <People key={index} mainindex={viewing} name={`${student.firstName} ${student.lastName}`} img='jkd' email={student.email} func={func} identity='Student'/>
             )): <People name='No name' img='jkd' email={0} func={func}/>:func}
         </div>
     </>

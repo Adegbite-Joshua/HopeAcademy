@@ -8,7 +8,7 @@ const FileMainDashboard = () => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   const [fileType, setfileType] = useState('.txt, .pdf, .doc, .docx, .rtf, .ppt, .pptx')
   const [fileTitle, setfileTitle] = useState('')
-  const [fileDesceription, setfileDesceription] = useState('')
+  const [fileDescription, setfileDescription] = useState('')
   const [fileBase64, setfileBase64] = useState('')
   const [fileName, setfileName] = useState('')
   const selectFile =(e)=>{
@@ -23,7 +23,7 @@ const FileMainDashboard = () => {
   const uploadFile = async()=>{
     let fileDetails = {
       fileTitle,
-      fileDesceription,
+      fileDescription,
       fileBase64,
       fileName,
       class: staffInfo.class,
@@ -60,7 +60,7 @@ const FileMainDashboard = () => {
                 <label htmlFor="fileTitle">File Title</label>
                 <input type="text" onKeyUp={(e)=>setfileTitle(e.target.value)} className=' my-1 w-full rounded-md p-2 focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-500' placeholder='File Title' />
                 <label htmlFor="">File's Description</label>
-                <textarea name="" id="" onKeyUp={(e)=>setfileDesceription(e.target.value)} className=' my-1 w-full h-24 focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-500 p-2' placeholder='Post Describtion'></textarea>
+                <textarea name="" id="" onKeyUp={(e)=>setfileDescription(e.target.value)} className=' my-1 w-full h-24 focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-500 p-2' placeholder='Post Describtion'></textarea>
                 <label htmlFor="fileType">File Type</label>
                 <select name="" id="" onChange={(e)=>{
                   setfileType(e.target.value);

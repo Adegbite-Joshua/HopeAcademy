@@ -1,9 +1,9 @@
 import React from 'react'
 
-const FileViewer = ({fileLink, fileType}) => {
+const FileViewer = ({fileLink, fileType, width, height}) => {
   return (
     <>
-        <div className='FileViewer'>
+        <div className='FileViewer' style={{width, height}}>
             {fileType.includes('.docx')?
             <>
                 <object data={fileLink} type="application/pdf" width="100%" height="100%">
@@ -20,7 +20,7 @@ const FileViewer = ({fileLink, fileType}) => {
             </>: ''}
             {fileType.includes('.jpeg')?
             <>
-                <img src={fileLink} alt="" />
+                <img src={fileLink} alt="" style={{width: '100%', height: '100%'}} />
             </>: ''}
         </div>
     </>

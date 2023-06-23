@@ -8,7 +8,7 @@ const SubmitOtherDiv = ({func}) => {
   let studentsSubmit = [];
   // const [studentsSubmit, setstudentsSubmit] = useState([])
   if(classStudents.length>0){
-    staffInfo.submittedWorks.map((stud, ind)=>{
+    staffInfo.submittedWorks?.map((stud, ind)=>{
       let studentName = `${classStudents.find((student, index)=>student.email == stud.studentEmail).firstName} ${classStudents.find((student, index)=>student.email == stud.studentEmail).lastName}`
       studentsSubmit.push({
         studentName,
