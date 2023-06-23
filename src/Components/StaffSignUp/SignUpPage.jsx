@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import * as Yup from 'yup';
 import FileViewer from '../../FileViewer'
+import SnackBar from '../SnackBar'
 
 
 const SignUpPage = () => {
@@ -54,7 +55,28 @@ const SignUpPage = () => {
         .max(50, 'Too Long!')
         // .type(!string, 'String required')
         .required('Required'),
-      email: Yup.string().email('Invalid email').required('Required'),
+      email: Yup.string()
+        .email('Invalid email')
+        .required('Required'),
+        email: Yup.string()
+        .email('Invalid email')
+        .required('Required'),
+      password: Yup.string()
+        .min(5, 'Too Short')
+        .max(40, 'Too Long')
+        .required('Required'),
+      address: Yup.string()
+        .min(2, 'Too Short')
+        .max(230, 'Too Long')
+        .required('Required'),
+      localGovernment: Yup.string()
+        .min(2, 'Too Short')
+        .max(230, 'Too Long')
+        .required('Required'),
+      state: Yup.string()
+        .min(2, 'Too Short')
+        .max(230, 'Too Long')
+        .required('Required')
     }),
     onSubmit: (values)=>{
       console.log(values);
@@ -146,15 +168,19 @@ const SignUpPage = () => {
             <form onSubmit={formik.handleSubmit} className="w-full md:w-6/12 px-5 h-auto block mx-auto">
                 <label htmlFor="" className=''>First Name</label>
                 <input type="text" required name='firstName' {...formik.getFieldProps('firstName')} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='First Name' />
-                <small>{formik.touched.firstName && formik.errors.firstName}</small>
+                <small className='text-red-500'>{formik.touched.firstName && formik.errors.firstName}</small><br/>
                 <label htmlFor="" className=''>Last Name</label>
-                <input type="text" required name='lastName' onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Last Name' />
+                <input type="text" required name='lastName' {...formik.getFieldProps('lastName')} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Last Name' />
+                <small className='text-red-500'>{formik.touched.lastName && formik.errors.lastName}</small><br/>
                 <label htmlFor="" className=''>Email</label>
-                <input type="text" required name='email' onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Email' />
+                <input type="text" required name='email' {...formik.getFieldProps('email')} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Email' />
+                <small className='text-red-500'>{formik.touched.email && formik.errors.email}</small><br/>
                 <label htmlFor="" className=''>Phone Number</label>
-                <input type="text" required name='phoneNumber' onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Phone Number' />
+                <input type="text" required name='phoneNumber' {...formik.getFieldProps('phoneNumber')} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Phone Number' />
+                <small className='text-red-500'>{formik.touched.phoneNumber && formik.errors.phoneNumber}</small><br/>
                 <label htmlFor="">Password</label>
-                <input type="text" required name='password' onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Password' />
+                <input type="text" required name='password' {...formik.getFieldProps('password')} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Password' />
+                <small className='text-red-500'>{formik.touched.password && formik.errors.password}</small><br/>
                 <label htmlFor="">Class</label>
                 <select name="class" id="class" required onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50'>
                   <option value="0" selected>JSS1</option>
@@ -184,7 +210,8 @@ const SignUpPage = () => {
                   <option  value='12 '>TECHNICAL DRAWING</option> */}
                 </select>
                 <label htmlFor="">Address</label>
-                <input type="text" required name='address' onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Address' />
+                <input type="text" required name='address' {...formik.getFieldProps('address')} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Address' />
+                <small className='text-red-500'>{formik.touched.address && formik.errors.address}</small><br/>
                 <label htmlFor="" className='w-full'>
                     <span className="sr-only">Choose Fil To Upload</span>
                     <input type="file" accept={fileType} onChange={(e)=>selectFile(e)} className=' w-full my-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100' />
@@ -198,7 +225,7 @@ const SignUpPage = () => {
                     </div>
                   </>}
                 </div>
-                <input type="checkbox" className='accent-red-400' name="" id="" /><small>Agreed to <Link>Terms</Link> and <Link>Cond</Link></small>
+                <input type="checkbox" className='accent-red-400' name="" id="" /><small className='text-red-500'>Agreed to <Link>Terms</Link> and <Link>Cond</Link></small>
                 <button type='submit' className='block py-2 bg-orange-500 w-full rounded-full hover:bg-orange-300'>Sign Up</button>
             </form>      
         </div>
