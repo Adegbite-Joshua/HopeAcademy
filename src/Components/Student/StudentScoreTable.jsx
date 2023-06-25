@@ -172,7 +172,7 @@ const StudentScoreTable = ({func, index}) => {
                 </tr>
             </thead>
             <tbody id='result'>
-            {subjectIndex!='' && <tr>Click On a student</tr>}
+            {subjectIndex!='' && <tr className='w-full'><td colSpan={15}>Select A Student</td></tr>}
             {subjectIndex==''?showTable():''}
         </tbody>
         </table>

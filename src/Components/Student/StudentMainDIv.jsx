@@ -5,7 +5,7 @@ import StudentScoreTable from './StudentScoreTable'
 import { useSelector } from 'react-redux'
 import ButtonComp from '../ButtonComp'
 import axios from 'axios'
-
+import SnackBar from '../SnackBar'
 
 
 const StudentMainDIv = ({category, mainindex, individualEmail, partnerName}) => {
@@ -21,11 +21,28 @@ const StudentMainDIv = ({category, mainindex, individualEmail, partnerName}) => 
     axios.post(endpoint, allAssessment)
     .then((res)=>{
       console.log(res)
+      setsnacksBarBody("Student's Assessments Updated Successfully")
+      setsnacksBarType('info')
+      showSnackBar()
     })
     .catch((err)=>{
       console.log(err)
+      setsnacksBarBody("Error Updating Student's Assessments")
+      setsnacksBarType('error')
+      showSnackBar()
     })
-    console.log(allAssessment);
+    // console.log(allAssessment);
+  }
+  const [snacksBarBody, setsnacksBarBody] = useState('Email')
+  const [snacksBarType, setsnacksBarType] = useState('info')
+
+  const showSnackBar = () => {
+      // Get the snackbar DIV
+      // alert('showing')
+      var x = document.getElementById("snackbarContainer");
+      x.className = "show";
+    
+      setTimeout(()=>{ x.className = x.className.replace("show", ""); }, 3000);
   }
   return (
     <>
@@ -38,6 +55,7 @@ const StudentMainDIv = ({category, mainindex, individualEmail, partnerName}) => 
             <ButtonComp onClick={saveStudentsAssesment} name={individualEmail?`Save ${partnerName}'s Data`:'Select A Students Name'}/>
             <MessageStudent category={category} mainindex={mainindex} individualEmail={individualEmail} partnerName={partnerName}/>
         </div>
+        <div id='snackbarContainer'><SnackBar body={snacksBarBody} type={snacksBarType}/></div>
     </>
   )
 }
