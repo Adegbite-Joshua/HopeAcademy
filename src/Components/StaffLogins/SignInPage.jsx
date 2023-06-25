@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Formik, useFormik } from 'formik'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup';
+import SnackBar from '../SnackBar';
 
 
 
@@ -32,13 +33,22 @@ const SignInPage = () => {
           console.log('success');
           console.log(res);
           if (res.status==200) {
-            localStorage.setItem('staffemail', values.email)
-            localStorage.setItem('staffpassword', values.password)
-            localStorage.setItem('staffclass', values.class)
             localStorage.setItem('token', res.data.token)
             localStorage.token = res.data.token
             // alert('found')
-            navigate('/dashboard')
+            // navigate('/dashboard')
+            setTimeout(() => navigate("/dashboard"), 3000);
+            setsnacksBarBody('Successfully Signed In')
+            setsnacksBarType('info')
+            showSnackBar()
+          } else if(res.status==11000){
+            setsnacksBarBody('Email Already Exixts')
+            setsnacksBarType('error')
+            showSnackBar()
+          } else if(res.status==401){
+            setsnacksBarBody('Error Logging You In')
+            setsnacksBarType('error')
+            showSnackBar()
           }
       })
       .catch((err)=>{
@@ -46,6 +56,18 @@ const SignInPage = () => {
       })
       }
   })
+  const [snacksBarBody, setsnacksBarBody] = useState('Email')
+  const [snacksBarType, setsnacksBarType] = useState('info')
+
+  const showSnackBar = () => {
+      // Get the snackbar DIV
+      // alert('showing')
+      var x = document.getElementById("snackbarContainer");
+      x.className = "show";
+    
+      setTimeout(()=>{ x.className = x.className.replace("show", ""); }, 3000);
+  }
+  window.showSnackBar = showSnackBar
   return (
     <>
         <div className='w-full h-24 h-screen bg-slate-200 pt-24'>
@@ -68,6 +90,7 @@ const SignInPage = () => {
                 <button type='submit' className='block py-2 bg-orange-500 w-full rounded-full hover:bg-orange-300'>Sign In</button>
             </form>            
         </div>
+        <div id='snackbarContainer'><SnackBar body={snacksBarBody} type={snacksBarType}/></div>
     </>
   )
 }

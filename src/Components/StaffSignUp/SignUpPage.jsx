@@ -27,7 +27,7 @@ const SignUpPage = () => {
     'BIOLOGY',
     'ANIMAL HUSBANDRY',
     'FURTHER MATHEMATICS',
-    'TECHNICAL DRAWING '
+    'TECHNICAL DRAWING'
   ]
   // const findIndex =(e)=>{
   //   console.log(subjects.indexOf(e.target.value))
@@ -55,10 +55,11 @@ const SignUpPage = () => {
         .max(50, 'Too Long!')
         // .type(!string, 'String required')
         .required('Required'),
-      email: Yup.string()
-        .email('Invalid email')
+      phoneNumber: Yup.string()
+        .min(2, 'Invalid Phone Number')
+        .max(14, 'Invalid Phone Number')
         .required('Required'),
-        email: Yup.string()
+      email: Yup.string()
         .email('Invalid email')
         .required('Required'),
       password: Yup.string()
@@ -79,7 +80,6 @@ const SignUpPage = () => {
         .required('Required')
     }),
     onSubmit: (values)=>{
-      console.log(values);
       submit(values);
     }
   })
@@ -134,7 +134,7 @@ const SignUpPage = () => {
         setsnacksBarBody('Account Successfully Created')
         setsnacksBarType('info')
         showSnackBar()
-        setTimeout(() =>navigate("/signin"), 1500);
+        setTimeout(() =>navigate("/signin"), 3000);
       } else if(res.status==11000){
         setsnacksBarBody('Email Entered Already Exists')
         setsnacksBarType('error')
