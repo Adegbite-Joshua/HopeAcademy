@@ -76,8 +76,6 @@ const StudentScoreTable = ({func, index}) => {
         // alert('yes')
     }
     const showTable =()=>{
-        console.log(index)
-        console.log(subjectIndex);
         return (<>
             <tr>
                 <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].ca1} id='ca1' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' name="" onChange={(e)=>{

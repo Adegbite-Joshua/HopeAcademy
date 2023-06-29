@@ -15,13 +15,13 @@ const DashboardNav = () => {
             </div>
             <ul id='navLinks' className='navLinks hidden md:block text-start bg-black md:bg-inherit absolute md:relative top-16 right-0 left-0 z-50'>
                 <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/dashboard'><i className='fa fa-house'></i>Home</NavLink></li>
-                <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/inbox'><i className='fa fa-inbox'></i> Inbox</NavLink></li>
+                <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/inbox'><i className='fa fa-comment'></i> Inbox</NavLink></li>
                 {/* <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3'><i className='fab fa-room'></i> Class</NavLink></li> */}
-                <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/student'><i className='fab fa-room'></i> Students</NavLink></li>
-                <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/inbox'><i className='fab fa-room'></i> Messages</NavLink></li>
-                <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/submit'><i className='fas fa'></i> Submits</NavLink></li>
-                <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/uploadfile'><i className='fas fa'></i> Files</NavLink></li>
-                <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/setting'><i className='fas fa'></i> Settings</NavLink></li>
+                <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/student'><i className='fa fa-user'></i> Students</NavLink></li>
+                <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/inbox'><i className='fa-thin fa-user-group'></i> Messages</NavLink></li>
+                <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/submit'><i className='fa fa-file'></i> Submits</NavLink></li>
+                <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/uploadfile'><i className='fa fa-folder-open fa-bounce'></i> Files</NavLink></li>
+                <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/setting'><i className='fa fa-gear fa-spin'></i> Settings</NavLink></li>
             </ul>
         </div>
     </>

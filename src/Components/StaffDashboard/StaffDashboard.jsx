@@ -39,7 +39,7 @@ const StaffDashboard = () => {
     }
   }
   useEffect(() => {
-    validateStaff()
+    // validateStaff()
   }, [])
   
 
@@ -72,11 +72,11 @@ const StaffDashboard = () => {
     <>
         <div className="flex w-screen flex-col md:flex-row bg-slate-300 relative ring-0">
             <DashboardNav/>
-            {fetching && <Loader/>}
-            {!fetching && <>
+            {/* {fetching && <Loader/>}
+            {!fetching && <> */}
               <DashboardMainDiv name='' submittedTest={[]} topStudents={[]} groups={[]}/>
               <DashboardOtherSide/>
-            </>}
+            {/* </>} */}
         </div>
     </>
   )
