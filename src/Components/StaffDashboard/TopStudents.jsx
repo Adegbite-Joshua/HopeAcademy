@@ -11,7 +11,7 @@ const TopStudents = () => {
             <h3><span className="font-bold">Top Students</span> <span className=' float-right'>{classes[staffInfo.class]} Class</span></h3>
             <TopStudentView/>
             <TopStudentView/>
-            <TopStudentView/>
+            {/* <TopStudentView/> */}
         </div>
     </>
   )

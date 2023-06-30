@@ -9,7 +9,7 @@ const DashboardNav = () => {
     <>
         <div className='absolute basis-0 w-screen md:relative md:basis-1/12 flex flex-col justify-center align-middle h-16 md:h-screen bg-blue-500 hover:bg-blue-700 px-4 navbar'> 
             <div className='flex items-center justify-center md:contents relative'>
-              <img src="vite.svg" className=' float-left h-12 w-12' alt="" />
+              <img src="vite.svg" className=' float-left h-12 w-12 md:mx-auto' alt="" />
               <h3 className='text-center font-extrabold'>PROADE</h3>
               <button onClick={toggleNavBar} className=' h-12 w-12 outline outline-2 outline-slate-400 ms-auto rounded-md md:hidden'><i className='fa fa-bars'></i></button>
             </div>
