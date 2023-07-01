@@ -127,7 +127,7 @@
 }
 
 // Signup page Styling
-.mainSignupDiv{
+.mainSignupDiv, .signinMainDiv{
   flex-basis: 40%;
   background-image: radial-gradient(
     circle at 20% 25% ,
@@ -142,7 +142,7 @@
 }
 }
 
-.signupOtherDiv{
+.signupOtherDiv, .signinOtherDiv{
   flex-basis: 60%;
   background-image: url(vite.svg);
   background-position: cover;
