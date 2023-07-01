@@ -102,7 +102,7 @@
       }
   }    
 }
-.signUpDropDown, .signInDropDown{
+.signUpDropDown, .signInDropDown {
   position: relative;
   ul{
       display: none;
@@ -125,6 +125,38 @@
       }
   }
 }
+
+// Signup page Styling
+.mainSignupDiv{
+  flex-basis: 40%;
+  background-image: radial-gradient(
+    circle at 20% 25% ,
+    black 30%,
+    rgb(15, 187, 230) 65%
+  );
+  /* url(teachers/gallary4.png); */
+  background-blend-mode: darken;
+  padding: 1rem;
+  @media (max-width: 768px) {
+    flex-basis: 100%;
+}
+}
+
+.signupOtherDiv{
+  flex-basis: 60%;
+  background-image: url(vite.svg);
+  background-position: cover;
+  background-size: 100% 100%;
+  display: flex;
+  justify-content: end;
+  align-items: start;
+  padding: 2rem;
+  @media (max-width: 768px) {
+      flex-basis: 0;
+      display: none;
+  }
+}
+
 
 
 // Dashboadr Nav Design
