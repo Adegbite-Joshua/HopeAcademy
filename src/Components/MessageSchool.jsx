@@ -93,11 +93,11 @@ const MessageSchool = () => {
         <form className="form-container1" onSubmit={formik.handleSubmit}>
             <h1>Chat</h1>
             <small>Having any question, suggestion or issue?</small>
-            <label for="message"><b>Message Hope Academy Admin</b></label>
+            <label for="message"><b>Message Hope Academy Admin</b></label><br />
             <label htmlFor="name">Name</label>
-            <input  type="text" name='name' {...formik.getFieldProps('name')} placeholder='Your Name ' required className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' />
+            <input  type="text" name='name' {...formik.getFieldProps('name')} placeholder='Your Name ' required className='w-full border-slate-900 focus:ring-4 border-2 border-slate-600 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' />
             <label htmlFor="email">Email</label>
-            <input  type="email" name='email' {...formik.getFieldProps('email')} placeholder='Your email' required className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' />
+            <input  type="email" name='email' {...formik.getFieldProps('email')} placeholder='Your email' required className='w-full border-slate-900 focus:ring-4 border-2 border-slate-600 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' />
             <textarea placeholder="Type message.." {...formik.getFieldProps('message')} className='form-control mt-1' name="message" required></textarea>
             <button type="submit" className="btn1"><i className='fas fa-send'></i></button>
             <button type="button" className="btn1 cancel1 btn rounded-pill" onClick={closeForm}>Close</button>

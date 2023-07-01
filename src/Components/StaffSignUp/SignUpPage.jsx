@@ -43,6 +43,7 @@ const SignUpPage = () => {
       class: 0,
       address: '',
       localGovernment: '',
+      // agreement: false
     },
     validationSchema: Yup.object({
       firstName: Yup.string()
@@ -78,8 +79,12 @@ const SignUpPage = () => {
         .min(2, 'Too Short')
         .max(230, 'Too Long')
         .required('Required')
+      // agreement: Yup.string()
+      //   .required('Required')
+        // .boolean('Agree to Terms and Conditions')
     }),
     onSubmit: (values)=>{
+      console.log(values)
       submit(values);
     }
   })
@@ -95,6 +100,12 @@ const SignUpPage = () => {
   }
 
   const submit =(values)=>{
+    if(fileName=='' || imageBase64==''){
+      setsnacksBarBody('Please Select An Image')
+      setsnacksBarType('error')
+      showSnackBar()
+      return
+    }
     let details = {
       firstName: values.firstName,
       lastName: values.lastName,
@@ -103,6 +114,7 @@ const SignUpPage = () => {
       password: values.password,
       staffIndex: values.staffIndex,
       imageBase64,
+      fileName,
       class: values.class,
       address: values.address,
       localGovernment: '',
@@ -127,7 +139,6 @@ const SignUpPage = () => {
     }
     let endpoint = 'http://localhost:7777/staff/signup'
     console.log(details)
-    
     axios.post(endpoint, details)
     .then((res)=>{
       if(res.status==200){
@@ -179,7 +190,7 @@ const SignUpPage = () => {
                 <input type="text" required name='phoneNumber' {...formik.getFieldProps('phoneNumber')} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Phone Number' />
                 <small className='text-red-500'>{formik.touched.phoneNumber && formik.errors.phoneNumber}</small><br/>
                 <label htmlFor="">Password</label>
-                <input type="text" required name='password' {...formik.getFieldProps('password')} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Password' />
+                <input type="password" required name='password' {...formik.getFieldProps('password')} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Password' />
                 <small className='text-red-500'>{formik.touched.password && formik.errors.password}</small><br/>
                 <label htmlFor="">Class</label>
                 <select name="class" id="class" required onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50'>
@@ -225,7 +236,7 @@ const SignUpPage = () => {
                     </div>
                   </>}
                 </div>
-                <input type="checkbox" className='accent-red-400' name="" id="" /><small className='text-red-500'>Agreed to <Link>Terms</Link> and <Link>Cond</Link></small>
+                <input type="checkbox" className='accent-red-400' name="agreement" id="" /><small className='text-red-500'>Agreed to <Link>Terms</Link> and <Link>Cond</Link></small>
                 <button type='submit' className='block py-2 bg-orange-500 w-full rounded-full hover:bg-orange-300'>Sign Up</button>
             </form>      
         </div>
