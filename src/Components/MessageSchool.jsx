@@ -32,6 +32,7 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
 import React, { useState } from 'react'
+import SnackBar from './SnackBar';
 // import SnackBar from '../SnackBar';
 
 const MessageSchool = () => {
@@ -103,7 +104,7 @@ const MessageSchool = () => {
             <button type="button" className="btn1 cancel1 btn rounded-pill" onClick={closeForm}>Close</button>
         </form>
         </div>
-        {/* <div id='snackbarContainer'><SnackBar body={snackbarMessage} type={snackbarType}/></div> */}
+        <div id='snackbarContainer'><SnackBar body={snackbarMessage} type={snackbarType}/></div>
     </>
   )
 }

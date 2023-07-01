@@ -7,17 +7,28 @@ import { fetchStaff, fetchAllStaffs, fetchAllStudents, setFetching } from '../..
 import { useSelector, useDispatch } from 'react-redux'
 import Loader from '../../Loader'
 import { useParams } from 'react-router-dom'
+import SnackBar from '../SnackBar'
 
 
 
 const StaffMessage = () => {
   let paramsValue = useParams();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
   let allStaffs = useSelector((state)=>state.staffInformation.allStaffs)
   let allStudents = useSelector((state)=>state.staffInformation.allStudents)
+  const [snacksBarBody, setsnacksBarBody] = useState('')
+  const [snacksBarType, setsnacksBarType] = useState('info')
   
+  const showSnackBar = () => {
+      // Get the snackbar DIV
+      var x = document.getElementById("snackbarContainer");
+      x.className = "show";
+      setTimeout(()=>{ x.className = x.className.replace("show", ""); }, 3000);
+  }
+
+
   const fetchStaffInformation = ()=>{
     let endpoint = 'http://localhost:7777/staff/dashboard'
     let staffEmail = localStorage.getItem('staffemail')
@@ -93,17 +104,23 @@ const StaffMessage = () => {
       if (res.status == 200) {
         fetchStaffInformation()
       } else{
-        navigate('/signin')
+        setsnacksBarBody('Invalid Acesss Token')
+        setsnacksBarType('error')
+        showSnackBar()
+        setTimeout(() => navigate('/signin'), 3000);
       }
     })
     .catch((error)=>{
-      navigate('/signin')
+      setsnacksBarBody('Invalid Acesss Token')
+      setsnacksBarType('error')
+      showSnackBar()
+      setTimeout(() => navigate('/signin'), 3000);
       console.log(error);
     })
   }
   useEffect(() => {
-    validateStaff()
-    setDefault()
+    // validateStaff()
+    // setDefault()
   }, [])
   const [category, setcategory] = useState(null)
   const [mainindex, setmainindex] = useState(null)
@@ -127,14 +144,15 @@ const StaffMessage = () => {
     <>
         <div className="StaffMessage flex w-screen flex-col md:flex-row bg-slate-300 relative ring-0">
             <DashboardNav className=' order-1'/>
-            {fetching && <Loader/>}
-            {fetching==false && <>
-              <div className=' flex basis-12 md:basis-11/12 flex-col-reverse md:flex-row h-screen'>
+            {/* {fetching && <Loader/>}
+            {fetching==false && <> */}
+              <div className='flex  md:basis-11/12 flex-col-reverse md:flex-row h-screen border-2'>
                 <MessageMainDiv mainindex={mainindex} category={category} email={individualEmail} />
                 <MessageOtherDiv func={setViewingMessage} func2={fetchStaffInformation}/>
               </div>
-            </>}
+            {/* </>} */}
         </div>
+        <div id='snackbarContainer'><SnackBar body={snacksBarBody} type={snacksBarType}/></div>
     </>
   )
 }

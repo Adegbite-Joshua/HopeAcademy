@@ -7,6 +7,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {fetchStaff, setFetching} from '../../redux/staffInformation'
 import axios from 'axios'
 import Loader from '../../Loader'
+import SnackBar from '../SnackBar'
 
 // import {Redirect} from 'react-router-dom'
 
@@ -17,6 +18,8 @@ const StaffDashboard = () => {
   const dispatch = useDispatch()
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
+  const [snacksBarBody, setsnacksBarBody] = useState('')
+  const [snacksBarType, setsnacksBarType] = useState('info')
   
   const fetchStaffInformation = ()=>{
     if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
@@ -39,9 +42,15 @@ const StaffDashboard = () => {
     }
   }
   useEffect(() => {
-    // validateStaff()
+    validateStaff()
   }, [])
-  
+
+  const showSnackBar = () => {
+      // Get the snackbar DIV
+      var x = document.getElementById("snackbarContainer");
+      x.className = "show";
+      setTimeout(()=>{ x.className = x.className.replace("show", ""); }, 3000);
+  }
 
   // https://res.cloudinary.com/dc9o9pwld/image/upload/q_50/cld-sample.jpg (quality)
   // https: r_max (rouded)
@@ -58,11 +67,17 @@ const StaffDashboard = () => {
       if (res.status == 200) {
         fetchStaffInformation()
       } else{
-        navigate('/signin')
+        setsnacksBarBody('Invalid Acesss Token')
+        setsnacksBarType('error')
+        showSnackBar()
+        setTimeout(() => navigate('/signin'), 3000);
       }
     })
     .catch((error)=>{
-      navigate('/signin')
+      setsnacksBarBody('Invalid Acesss Token')
+      setsnacksBarType('error')
+      showSnackBar()
+      setTimeout(() => navigate('/signin'), 3000);
       console.log(error);
     })
   }
@@ -72,12 +87,13 @@ const StaffDashboard = () => {
     <>
         <div className="flex w-screen flex-col md:flex-row bg-slate-300 relative ring-0">
             <DashboardNav/>
-            {/* {fetching && <Loader/>}
-            {!fetching && <> */}
+            {fetching && <Loader/>}
+            {!fetching && <>
               <DashboardMainDiv name='' submittedTest={[]} topStudents={[]} groups={[]}/>
               <DashboardOtherSide/>
-            {/* </>} */}
+            </>}
         </div>
+        <div id='snackbarContainer'><SnackBar body={snacksBarBody} type={snacksBarType}/></div>
     </>
   )
 }
