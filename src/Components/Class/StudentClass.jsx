@@ -1,6 +1,7 @@
 import React from 'react'
 import DashboardNav from '../StaffDashboard/DashboardNav'
 import ClassMainDiv from './ClassMainDiv'
+import ClassOtherDiv from './ClassOtherDiv'
 
 
 
@@ -11,6 +12,8 @@ const StudentClass = () => {
             <DashboardNav/>
             {/* {fetching && <Loader/>} */}
             <ClassMainDiv />
+            <ClassOtherDiv />
+
         </div>
     </>
   )
