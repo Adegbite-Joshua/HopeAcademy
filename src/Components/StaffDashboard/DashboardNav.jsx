@@ -16,7 +16,7 @@ const DashboardNav = () => {
             <ul id='navLinks' className='navLinks hidden md:block text-start bg-black md:bg-inherit absolute md:relative top-16 right-0 left-0 z-50'>
                 <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/dashboard'><i className='fa-solid fa-house-user'></i>Home</NavLink></li>
                 <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/inbox'><i className='fa fa-comment fa-fade'></i> Inbox</NavLink></li>
-                {/* <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3'><i className='fab fa-room'></i> Class</NavLink></li> */}
+                <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/class'><i className='fab fa-room'></i> Class</NavLink></li>
                 <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/student'><i className='fa fa-user fa-fade'></i> Students</NavLink></li>
                 <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/inbox'><i className='fa-thin fa-user-group fa-fade'></i> Messages</NavLink></li>
                 <li className='my-3 px-4 text-slate-400 text-white hover:text-slate-200'><NavLink className='pl-3' to='/submit'><i className='fa fa-file fa-fade'></i> Submits</NavLink></li>

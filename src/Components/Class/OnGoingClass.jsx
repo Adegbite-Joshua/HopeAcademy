@@ -4,7 +4,7 @@ const OnGoingClass = () => {
   return (
     <>
         <div className="">
-            <p className='text-center'>Ongoing Class</p>
+            <p className='ms-4'>Ongoing Class</p>
             <p>Joined Students</p>
             <ul style={{listStyleType: 'auto'}}>
                 <li>Aderej filldfmnmrj <i className='fa fa-trash'></i><i className='fa fa-speak'></i></li>
