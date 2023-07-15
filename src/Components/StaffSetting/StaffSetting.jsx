@@ -45,11 +45,11 @@ const StaffSetting = () => {
     <>
         <div className='StaffSetting containerAll overflow-y-hidden'>
             <DashboardNav/>
-            {fetching && <Loader/>}
-            {fetching==false && <>
+            {/* {fetching && <Loader/>}
+            {fetching==false && <> */}
               <SettingMainDiv disp={displaying}/>
               <SettingOtherDiv func={viewSetting}/>
-            </>}
+            {/* </>} */}
         </div>
     </>
   )
