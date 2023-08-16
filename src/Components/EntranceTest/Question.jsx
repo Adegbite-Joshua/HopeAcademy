@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 
-const Question = ({ data }) => {
+const Question = ({ data , handleOptionChange}) => {
   const { question, options, correctAnswer } = data;
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  const handleOptionChange = (optionIndex) => {
-    setSelectedOption(optionIndex);
-  };
+  
 
   return (
     <div className="mb-6">
@@ -19,7 +15,7 @@ const Question = ({ data }) => {
               id={`option${index}`}
               name="answer"
               value={index}
-            //   checked={selectedOption === index}
+              checked={data.selectedAnswer&&data.selectedAnswer==index?true:false}
               onChange={() => handleOptionChange(index)}
               className="mr-2 accent-blue-500"
             />
