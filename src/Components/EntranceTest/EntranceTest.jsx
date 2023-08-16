@@ -1,6 +1,7 @@
 import React , {useEffect, useState} from 'react'
 import axios from 'axios'
 import LandingPageNav from "../LandingPageNav";
+import Calculator from "./Calculator";
 
 
 
@@ -28,6 +29,7 @@ const EntranceTest = () => {
   return (
     <>
         <LandingPageNav/>
+        <Calculator/>
     </>
   )
 }
