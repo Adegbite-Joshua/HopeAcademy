@@ -96,7 +96,7 @@ const TestPage = () => {
         </div>
         <QuestionNav
         questionCount={data.length}
-        currentQuestion={currentQuestion + 1} // Add 1 to match question number
+        currentQuestion={currentQuestion + 1} 
         navigateToQuestion={navigateToQuestion}
       />
     </>
