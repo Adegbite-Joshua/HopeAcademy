@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LandingPageNav from "../LandingPageNav";
 import Question from './Question';
 import Timer from './Timer';
+import QuestionNav from './QuestionNav';
 
 const data = [
     {
@@ -35,6 +36,7 @@ const data = [
 const TestPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [remainingTime, setRemainingTime] = useState(15 * 60);
+  
 
   useEffect(() => {
     if (remainingTime > 0) {
@@ -52,6 +54,10 @@ const TestPage = () => {
 
   const prevQuestion = () => {
     setCurrentQuestion(prevQuestion => prevQuestion - 1);
+  };
+
+  const navigateToQuestion = (questionNumber) => {
+    setCurrentQuestion(questionNumber - 1); // Subtract 1 to match array index
   };
 
   return (
@@ -86,13 +92,13 @@ const TestPage = () => {
 
         <Timer remainingTime={remainingTime} />
 
-        <button
-            className="mt-4 px-6 py-3 text-base bg-green-500 text-white rounded cursor-pointer transition duration-300 hover:bg-green-600"
-            // Add submission logic here
-        >
-            Submit
-        </button>
+        <button className="mt-4 px-6 py-3 text-base bg-green-500 text-white rounded cursor-pointer transition duration-300 hover:bg-green-600">Submit</button>
         </div>
+        <QuestionNav
+        questionCount={data.length}
+        currentQuestion={currentQuestion + 1} // Add 1 to match question number
+        navigateToQuestion={navigateToQuestion}
+      />
     </>
   );
 };
