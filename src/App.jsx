@@ -14,6 +14,9 @@ import StaffSubmit from './Components/StaffSubmit/StaffSubmit';
 import StaffFile from './Components/StaffFile/StaffFile';
 import StaffSetting from './Components/StaffSetting/StaffSetting';
 import ScheduleClass from './Components/Class/StudentClass';
+import EntranceTest from './Components/EntranceTest/EntranceTest';
+import TestPage from './Components/EntranceTest/TestPage';
+import TestInstructions from './Components/EntranceTest/TestInstructions';
 
 
 
@@ -47,7 +50,13 @@ function App() {
           <Route path='/uploadfile' element={<StaffFile/>}/>
           <Route path='/setting' element={<StaffSetting/>}/>
           <Route path='/class' element={<ScheduleClass/>}/>
-          
+          <Route path='/entrance_test/'>
+            <Route path='instructions' element={<TestInstructions/>}/>
+            <Route path='test' element={<TestPage/>}/>
+            <Route path='' element={<EntranceTest/>}/>
+
+            
+          </Route>
         </Routes>
     </>
   )
