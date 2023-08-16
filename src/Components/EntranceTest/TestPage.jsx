@@ -57,7 +57,7 @@ const TestPage = () => {
   };
 
   const navigateToQuestion = (questionNumber) => {
-    setCurrentQuestion(questionNumber - 1); // Subtract 1 to match array index
+    setCurrentQuestion(questionNumber - 1);
   };
 
   return (
