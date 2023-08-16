@@ -21,7 +21,7 @@ const Question = ({ data }) => {
               value={index}
             //   checked={selectedOption === index}
               onChange={() => handleOptionChange(index)}
-              className="mr-2"
+              className="mr-2 accent-blue-500"
             />
             <label htmlFor={`option${index}`} className="cursor-pointer">
               {option}
