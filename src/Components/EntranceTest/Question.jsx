@@ -29,7 +29,7 @@ const Question = ({ data, questions, handleOptionChange, currentQuestion, naviga
             </div>
           ))}
         </div>
-        <QuestionNav questionCount={questions.length} currentQuestion={currentQuestion + 1}  navigateToQuestion={navigateToQuestion} />
+        <QuestionNav questions={questions} questionCount={questions.length} currentQuestion={currentQuestion + 1}  navigateToQuestion={navigateToQuestion} />
       </div>
 
     </>

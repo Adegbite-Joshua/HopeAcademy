@@ -545,3 +545,8 @@ input[type=number] {
   from {bottom: 30px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
 }
+
+.selected_option {
+  background-image: linear-gradient(grey 65%, blue 35%);
+  @apply text-white;
+}

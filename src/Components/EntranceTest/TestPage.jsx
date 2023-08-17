@@ -388,7 +388,7 @@ const TestPage = () => {
   };
 
   const navigateToQuestion = (questionNumber) => {
-    setCurrentQuestion(questionNumber - 1);
+    setCurrentQuestion(questionNumber);
   };
 
   const handleOptionChange = (answerIndex) => { 
