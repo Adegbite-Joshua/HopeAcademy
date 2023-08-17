@@ -420,7 +420,7 @@ const TestPage = () => {
         <div className="w-full mx-auto p-6">
         <h2 className="text-2xl font-semibold mb-4 text-center">Test Page</h2>
         <div class="flex justify-end">
-          <i class='fa fa-calculator text-3xl' onClick={()=>setDialog(true)}></i>
+          <i class='fa fa-calculator my-auto' style={{fontSize: 30}} onClick={()=>setDialog(true)}></i>
           <Timer remainingTime={remainingTime} />
         </div>
         
