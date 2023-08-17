@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import LandingPageNav from "../LandingPageNav";
 import Question from './Question';
 import Timer from './Timer';
-import QuestionNav from './QuestionNav';
+import Calculator from './Calculator';
 import axios from 'axios';
 
 
@@ -391,9 +391,7 @@ const TestPage = () => {
     setCurrentQuestion(questionNumber - 1);
   };
 
-  const handleOptionChange = (answerIndex) => {
-    
-    // questions[currentQuestion].selectedAnswer = answerIndex;
+  const handleOptionChange = (answerIndex) => { 
     setquestions([...questions, questions[currentQuestion].selectedAnswer=answerIndex]);
     let values = {
       currentQuestion,
@@ -411,21 +409,28 @@ const TestPage = () => {
       })
   };
 
+  const [showDialog, setshowDialog] = useState(false);
+  const setDialog =(value)=>{
+    setshowDialog(value)
+  }
+
   return (
     <>  
         <LandingPageNav />
-        <div className="max-w-xl mx-auto p-6">
-        <h2 className="text-2xl font-semibold mb-4">Test Page</h2>
+        <div className="w-full mx-auto p-6">
+        <h2 className="text-2xl font-semibold mb-4 text-center">Test Page</h2>
+        <div class="flex justify-end">
+          <i class='fa fa-calculator text-3xl' onClick={()=>setDialog(true)}></i>
+          <Timer remainingTime={remainingTime} />
+        </div>
+        
 
-        {questions.length >= 1 && <Question data={questions[currentQuestion]} handleOptionChange={handleOptionChange}  />}
+        {questions.length >= 1 && <Question navigateToQuestion={navigateToQuestion} currentQuestion={currentQuestion} questions={questions} data={questions[currentQuestion]} handleOptionChange={handleOptionChange}  />}
 
-        <div className="flex flex-row justify-between mt-4">
+        <div className=" w-full sm:w-3/6 mx-auto flex flex-row justify-between mt-4">
             {currentQuestion > 0 && (
             <button className="px-4 py-2 text-base bg-blue-500 text-white rounded cursor-pointer transition duration-300 hover:bg-blue-600" onClick={prevQuestion}>Previous</button>
             )}
-
-            <div className="text-lg font-semibold">Question {currentQuestion + 1}</div>
-
             {currentQuestion < questions.length - 1 && (
             <button className="px-4 py-2 text-base bg-blue-500 text-white rounded cursor-pointer transition duration-300 hover:bg-blue-600" onClick={nextQuestion}
             >
@@ -433,13 +438,10 @@ const TestPage = () => {
             </button>
             )}
         </div>
-
-        <Timer remainingTime={remainingTime} />
-
         <button className="mt-4 px-6 py-3 text-base bg-green-500 text-white rounded cursor-pointer transition duration-300 hover:bg-green-600">Submit</button>
-        <QuestionNav questionCount={questions.length} currentQuestion={currentQuestion + 1}  navigateToQuestion={navigateToQuestion} />
-        
         </div>
+
+        <Calculator setDialog={setDialog} showDialog={showDialog} />
     </>
   );
 };

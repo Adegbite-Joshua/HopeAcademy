@@ -4,7 +4,7 @@ const QuestionNav = ({ questionCount, currentQuestion, navigateToQuestion }) => 
   const questionNumbers = Array.from({ length: questionCount }, (_, index) => index + 1);
 
   return (
-    <div className="w-72 grid grid-cols-5 justify-center mt-4">
+    <div className="max-w-sm ms-auto me-10 grid grid-cols-5 justify-center mt-4">
       {questionNumbers.map((number) => (
         <button
           key={number}

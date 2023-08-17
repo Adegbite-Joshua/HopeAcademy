@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import {useEffect, useState} from 'react';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import { useNavigate } from 'react-router-dom';
 
-const Calculator = () => {
+
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="down" ref={ref} {...props} />;
+});
+
+export default function AlertDialogSlide({showDialog, setDialog, text}) {
+  const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
   const [input, setInput] = useState('');
-
-  const handleButtonClick = (value) => {
-    setInput((prevInput) => prevInput + value);
-  };
-
   const handleCalculate = () => {
     try {
       setInput(eval(input).toString());
@@ -19,8 +31,26 @@ const Calculator = () => {
     setInput('');
   };
 
+  const handleButtonClick = (value) => {
+    setInput((prevInput) => prevInput + value);
+  };
+
+  useEffect(() => {
+    setOpen(showDialog)
+  }, [showDialog])
+
+
   return (
-    <div className="w-72 mt-4 p-4 border rounded shadow-md">
+      <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={()=> setDialog(false)}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle>{"Calculator"}</DialogTitle>
+        <DialogContent>
+        <div className="w-72 mt-4 p-4 border rounded shadow-md">
       <input
         type="text"
         value={input}
@@ -46,7 +76,9 @@ const Calculator = () => {
         <button className="p-2 bg-red-400 hover:bg-red-500 text-white text-center col-span-2" onClick={handleClear}>Clear</button>
       </div>
     </div>
+        </DialogContent>
+      </Dialog>
   );
-};
+}
 
-export default Calculator;
+
