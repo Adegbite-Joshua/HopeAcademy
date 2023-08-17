@@ -15,7 +15,7 @@ const Question = ({ data , handleOptionChange}) => {
               id={`option${index}`}
               name="answer"
               value={index}
-              checked={data.selectedAnswer&&data.selectedAnswer==index?true:false}
+              checked={data.selectedAnswer!=null&&data.selectedAnswer==index?true:false}
               onChange={() => handleOptionChange(index)}
               className="mr-2 accent-blue-500"
             />
