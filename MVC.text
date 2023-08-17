@@ -52,3 +52,16 @@ file = object {
     fileUrl,
     fileDate
 }
+
+
+// student
+
+entrance_test: {
+    test_taken: true,
+    ongoing_answers: [
+        {
+            correctAnswer: 0,
+            selectedAnswer: 0
+        }
+    ]
+}
