@@ -339,10 +339,23 @@ const TestPage = () => {
   const [timeLeft, setTimeLeft] = useState(0);
   const studentDetails = JSON.parse(sessionStorage.getItem('entrance_test_login'))
 
+  const [isVisible, setIsVisible] = useState(true);
+
+  const handleVisibilityChange = () => {
+    if (document.hidden) {
+      console.log(document.hidden);
+    }
+  };
+
+
   useEffect(() => {
     // startCountDown()
     fetchQuestions()
-    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   const fetchQuestions =()=>{
