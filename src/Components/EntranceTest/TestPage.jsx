@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import LandingPageNav from "../LandingPageNav";
 import Question from './Question';
 import Timer from './Timer';
@@ -331,18 +331,39 @@ const questions = [
 
 const TestPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [remainingTime, setRemainingTime] = useState(15 * 60);
+  const [remainingTime, setremainingTime] = useState({minutes:15, seconds: 20})
+  
+  const [targetTime, setTargetTime] = useState(new Date()); // Set your target time here
+  const [timeLeft, setTimeLeft] = useState(0);
+  const studentDetails = JSON.parse(sessionStorage.getItem('entrance_test_login'))
   
 
   useEffect(() => {
-    if (remainingTime > 0) {
-      const timer = setInterval(() => {
-        setRemainingTime(prevTime => prevTime - 1);
-      }, 1000);
+    // startCountDown()
+    
+  }, []);
 
-      return () => clearInterval(timer);
-    }
-  }, [remainingTime]);
+  const startCountDown =()=>{
+    const startTime = parseInt(localStorage.getItem('startingTime'))
+    const countDownInterval = setInterval(() => {
+      const currentTime = Date.now();
+      const timeElapsed = Math.floor((currentTime-startTime)/1000)
+      const remainingTime = 900 - timeElapsed;
+      ;
+      if (remainingTime <= 0) {
+        clearInterval(countDownInterval);
+        window.location.href = '/'
+      } else{
+        const minutes = Math.floor(remainingTime/60)
+        const seconds = remainingTime%60;
+        setremainingTime({minutes, seconds})
+        if (minutes==0 && seconds<=30) {
+          alert('30 seconds left')
+        }
+      }
+    }, 1000);
+  }
+
 
   const nextQuestion = () => {
     setCurrentQuestion(prevQuestion => prevQuestion + 1);
@@ -360,6 +381,8 @@ const TestPage = () => {
     questions[currentQuestion].selectedAnswer = answerIndex;
     let values = {
       currentQuestion,
+      // questionNumber: 
+      studentEmail: studentDetails.email,
       selectedAnswer: answerIndex
     }
     let endpoint = 'http://localhost:7777/student/select_answer'

@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
-import AlertDialogSlide from './ConfirmationComponent';
+import { useNavigate } from 'react-router-dom';
 
 
 const TestWelcomeAndInput = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const navigate = useNavigate();
 
     const handleStartTest = () => {
         if (email.trim() && password.trim()) {
@@ -15,11 +15,11 @@ const TestWelcomeAndInput = () => {
           .then((res)=>{
             if (res.status==200) {
                 sessionStorage.setItem('entrance_test_login', JSON.stringify({email,password}))
-                window.location.href += 'instructions'
+                navigate('/entrance_test/instructions')
             }
           })
           .catch((error)=>{
-            console.log(error);
+            alert('error')
           })
         } else {
           alert('Please enter both email and password.');
@@ -64,10 +64,7 @@ const TestWelcomeAndInput = () => {
               >
                   Start Test
               </button>
-              {/* <AlertDialogSlide text={<>
-                <p className="mb-2">You are about to start a test with 20 questions to be completed in 15 minutes.</p>
-                <p className="mb-4">Are you ready to begin?</p>
-          </>} /> */}
+              
           </div>
     </>
   )

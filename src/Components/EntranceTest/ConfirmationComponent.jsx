@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useEffect} from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -6,44 +7,65 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
+  return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide({}) {
+export default function AlertDialogSlide({showDialog, setDialog, text}) {
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const startTest =()=>{
+    localStorage.setItem('startingTime', Date.now())
+    let studentDetails = JSON.parse(sessionStorage.getItem('entrance_test_login'));
+    let studentEntranceDetails = {
+        startingTime: Date.now(),
+        email: studentDetails.email
+    }
+    axios.post('http://localhost:7777/student/start_entrance_test', studentEntranceDetails)
+    .then((res)=>{
+        if (res.status==200) {
+            navigate('/entrance_test/test')
+            
+        } else{
+            console.log(res);
+        }
+    })
+    .catch((error)=>{
+        console.log(error);
+    })
+  }
+  useEffect(() => {
+    setOpen(showDialog)
+  }, [showDialog])
 
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      {/* <Button variant="outlined" onClick={handleClickOpen}>
         Slide in alert dialog
-      </Button>
+      </Button> */}
       <Dialog
         open={open}
         TransitionComponent={Transition}
         keepMounted
-        onClose={handleClose}
+        onClose={()=> setDialog(false)}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle>{"Confirmation Request"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+            {(<>{text}</>)}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose}>Agree</Button>
+          <Button onClick={()=> setDialog(false)}>No</Button>
+          <Button onClick={startTest}>Start Test</Button>
         </DialogActions>
       </Dialog>
     </div>
