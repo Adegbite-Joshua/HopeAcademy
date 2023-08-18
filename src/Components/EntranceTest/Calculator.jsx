@@ -77,6 +77,7 @@ export default function AlertDialogSlide({showDialog, setDialog, text}) {
           className="w-full p-2 mb-2 text-lg rounded border"
         />
       <div className="grid grid-cols-4 gap-2">
+        <button className="p-2 bg-gray-200 hover:bg-gray-300 text-center" onClick={() => setDialog(false)}>x</button>
         <button className="p-2 bg-gray-200 hover:bg-gray-300 text-center" onClick={() => handleButtonClick('7')}>7</button>
         <button className="p-2 bg-gray-200 hover:bg-gray-300 text-center" onClick={() => handleButtonClick('8')}>8</button>
         <button className="p-2 bg-gray-200 hover:bg-gray-300 text-center" onClick={() => handleButtonClick('9')}>9</button>
@@ -90,10 +91,10 @@ export default function AlertDialogSlide({showDialog, setDialog, text}) {
         <button className="p-2 bg-gray-200 hover:bg-gray-300 text-center" onClick={() => handleButtonClick('3')}>3</button>
         <button className="p-2 bg-blue-400 hover:bg-blue-500 text-white text-center" onClick={() => handleButtonClick('*')}>*</button>
         <button className="p-2 bg-gray-200 hover:bg-gray-300 text-center" onClick={() => handleButtonClick('0')}>0</button>
-        <button className="p-2 bg-blue-400 hover:bg-blue-500 text-white text-center" onClick={() => handleButtonClick('/')}>/</button>
+        <button className="p-2 bg-blue-400 hover:bg-blue-500 text-white row-span-2 text-center" onClick={() => handleCalculate()}>=</button>
+        <button className="p-2 bg-red-400 hover:bg-red-500 text-white text-center row-span-2" onClick={handleClear}>Clear</button>
         <button className="p-2 bg-blue-400 hover:bg-blue-500 text-white text-center" onClick={() => handleButtonClick('/')}>/</button>
         <button className="p-2 bg-blue-400 hover:bg-blue-500 text-white text-center" onClick={handleDelete}>De</button>
-        <button className="p-2 bg-red-400 hover:bg-red-500 text-white text-center col-span-2" onClick={handleClear}>Clear</button>
       </div>
     </div>
         </DialogContent>

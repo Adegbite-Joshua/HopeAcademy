@@ -427,6 +427,16 @@ const TestPage = () => {
     setshowDialog(value)
   }
 
+  const submitTest =()=>{
+    axios.post('http://localhost:7777/student/submit_entrance_test', {email:studentDetails.email})
+    .then((res)=>{
+      console.log(res);
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  }
+
   return (
     <>  
         <LandingPageNav />
@@ -451,7 +461,7 @@ const TestPage = () => {
             </button>
             )}
         </div>
-        <button className="mt-4 px-6 py-3 text-base bg-green-500 text-white rounded cursor-pointer transition duration-300 hover:bg-green-600">Submit</button>
+        <button onClick={submitTest} className="mt-4 px-6 py-3 text-base bg-green-500 text-white rounded cursor-pointer transition duration-300 hover:bg-green-600">Submit</button>
         </div>
 
         <Calculator setDialog={setDialog} showDialog={showDialog} />
