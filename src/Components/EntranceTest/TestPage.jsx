@@ -338,7 +338,7 @@ const TestPage = () => {
   const [startTime, setstartTime] = useState(parseInt(localStorage.getItem('startingTime')))  
   const [targetTime, setTargetTime] = useState(new Date()); // Set your target time here
   const [timeLeft, setTimeLeft] = useState(0);
-  const [showNotification, setshowNotification] = useState(false);
+  const [showNotification, setshowNotification] = useState(true);
   const [notificationIcon, setnotificationIcon] = useState('success');
   const [notificationTitle, setnotificationTitle] = useState('success');
   const [notificationBody, setnotificationBody] = useState('success');
@@ -455,6 +455,7 @@ const TestPage = () => {
         <LandingPageNav />
         <div className="w-full mx-auto p-6">
         <h2 className="text-2xl font-semibold mb-4 text-center">Test Page</h2>
+        <NotificationAlert show={showNotification} icon={notificationIcon} notificationTitle={notificationTitle} notificationBody={notificationBody} />
         <div class="flex justify-end">
           <i class='fa fa-calculator my-auto' style={{fontSize: 30}} onClick={()=>setDialog(true)}></i>
           <Timer remainingTime={remainingTime} />
@@ -478,8 +479,7 @@ const TestPage = () => {
         </div>
 
         <Calculator setDialog={setDialog} showDialog={showDialog} />
-        <NotificationAlert show={showNotification} icon={notificationIcon} notificationTitle={notificationTitle} notificationBody={notificationBody
-        } />
+       
     </>
   );
 };

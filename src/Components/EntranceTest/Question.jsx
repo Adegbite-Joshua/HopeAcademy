@@ -4,7 +4,7 @@ import QuestionNav from './QuestionNav';
 
 const Question = ({ data, questions, handleOptionChange, currentQuestion, navigateToQuestion}) => {
   const { question, options, correctAnswer } = data;
-  
+  console.log(questions);
 
   return (
     <>
