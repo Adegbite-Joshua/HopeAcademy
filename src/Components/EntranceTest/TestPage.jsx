@@ -4,6 +4,7 @@ import Question from './Question';
 import Timer from './Timer';
 import Calculator from './Calculator';
 import axios from 'axios';
+import NotificationAlert from '../NotificationAlert';
 
 
  
@@ -337,6 +338,10 @@ const TestPage = () => {
   const [startTime, setstartTime] = useState(parseInt(localStorage.getItem('startingTime')))  
   const [targetTime, setTargetTime] = useState(new Date()); // Set your target time here
   const [timeLeft, setTimeLeft] = useState(0);
+  const [showNotification, setshowNotification] = useState(false);
+  const [notificationIcon, setnotificationIcon] = useState('success');
+  const [notificationTitle, setnotificationTitle] = useState('success');
+  const [notificationBody, setnotificationBody] = useState('success');
   const studentDetails = JSON.parse(sessionStorage.getItem('entrance_test_login'))
 
   const [isVisible, setIsVisible] = useState(true);
@@ -430,10 +435,18 @@ const TestPage = () => {
   const submitTest =()=>{
     axios.post('http://localhost:7777/student/submit_entrance_test', {email:studentDetails.email})
     .then((res)=>{
-      console.log(res);
+      setshowNotification(true);
+      setnotificationTitle('Submit Successful')
+      setnotificationIcon('success');
+      setnotificationBody(`Your Test Has Been Submitted. You get ${Math.round((res.data/20)*100)}`);
+      setTimeout(() => setshowNotification(true), 3000);
     })
     .catch((error)=>{
-      console.log(error);
+      setshowNotification(true);
+      setnotificationTitle('Error In Submission')
+      setnotificationIcon('error');
+      setnotificationBody(`An Error Occurred While Submitting Your Test. Please Try Resubmitting Your Test`);
+      setTimeout(() => setshowNotification(true), 3000);
     })
   }
 
@@ -465,6 +478,8 @@ const TestPage = () => {
         </div>
 
         <Calculator setDialog={setDialog} showDialog={showDialog} />
+        <NotificationAlert show={showNotification} icon={notificationIcon} notificationTitle={notificationTitle} notificationBody={notificationBody
+        } />
     </>
   );
 };

@@ -1,12 +1,13 @@
-import { Notification } from '@mantine/core';
-import { IconCheck } from '@tabler/icons-react';
+import * as React from 'react';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 
-function NotificationAlert() {
+export default function BasicAlerts({notificationIcon, showNotification, notificationBody, notificationTitle}) {
   return (
-    <>
-      <Notification icon={<IconCheck size="1.2rem" />} withBorder title="">
-        You are now obligated to give a star to Mantine project on GitHub
-      </Notification>
-    </>
+    <Alert className={showNotification?'block':'none'} severity={notificationIcon}>
+        <AlertTitle>{notificationTitle}</AlertTitle>
+        {notificationBody}
+    </Alert>
   );
 }

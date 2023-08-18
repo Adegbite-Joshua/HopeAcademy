@@ -21,7 +21,6 @@ export default function AlertDialogSlide({showDialog, setDialog, text}) {
   const navigate = useNavigate();
 
   const startTest =()=>{
-    localStorage.setItem('startingTime', Date.now())
     let studentDetails = JSON.parse(sessionStorage.getItem('entrance_test_login'));
     let studentEntranceDetails = {
         startingTime: Date.now(),
@@ -39,6 +38,7 @@ export default function AlertDialogSlide({showDialog, setDialog, text}) {
     .catch((error)=>{
         console.log(error);
     })
+    // console.log(studentEntranceDetails);
   }
   useEffect(() => {
     setOpen(showDialog)
