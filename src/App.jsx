@@ -17,6 +17,8 @@ import ScheduleClass from './Components/Class/StudentClass';
 import EntranceTest from './Components/EntranceTest/EntranceTest';
 import TestPage from './Components/EntranceTest/TestPage';
 import TestInstructions from './Components/EntranceTest/TestInstructions';
+import AdminDashboard from '../pages/AdminDashboard'
+import StaffForgottenPassword from '../pages/StaffForgottenPassword';
 
 
 
@@ -39,23 +41,28 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage/>}/>
           <Route path="/home" to="/"/>
-          <Route path='/dashboard' element={<StaffDashboard/>}/>
-          <Route path='/signin' element={<StaffLogin/>}/>
-          <Route path='/signup' element={<StaffSignUp/>}/>
-          <Route path='/inbox' element={<StaffMessage/>}/>
-          <Route path='/inbox/:email' element={<StaffMessage/>}/>
-          <Route path='/student' element={<Student/>}/>
-          <Route path='/student/:email' element={<Student/>}/>
-          <Route path='/submit' element={<StaffSubmit/>}/>
-          <Route path='/uploadfile' element={<StaffFile/>}/>
-          <Route path='/setting' element={<StaffSetting/>}/>
-          <Route path='/class' element={<ScheduleClass/>}/>
+          <Route path='/staff/'>
+            <Route path='dashboard' element={<StaffDashboard/>}/>
+            <Route path='signin' element={<StaffLogin/>}/>
+            <Route path='signup' element={<StaffSignUp/>}/>
+            <Route path='inbox' element={<StaffMessage/>}/>
+            <Route path='inbox/:email' element={<StaffMessage/>}/>
+            <Route path='student' element={<Student/>}/>
+            <Route path='student/:email' element={<Student/>}/>
+            <Route path='submit' element={<StaffSubmit/>}/>
+            <Route path='uploadfile' element={<StaffFile/>}/>
+            <Route path='setting' element={<StaffSetting/>}/>
+            <Route path='class' element={<ScheduleClass/>}/>
+            <Route path='forgottenpassword/:token' element={<StaffForgottenPassword/>} />
+            <Route path='forgottenpassword' element={<StaffForgottenPassword/>} />
+          </Route>
           <Route path='/entrance_test/'>
             <Route path='instructions' element={<TestInstructions/>}/>
             <Route path='test' element={<TestPage/>}/>
             <Route path='' element={<EntranceTest/>}/>
-
-            
+          </Route>
+          <Route path='/admin/'>
+            <Route path='dashboard' element={<AdminDashboard/>} />
           </Route>
         </Routes>
     </>
