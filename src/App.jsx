@@ -53,8 +53,8 @@ function App() {
             <Route path='uploadfile' element={<StaffFile/>}/>
             <Route path='setting' element={<StaffSetting/>}/>
             <Route path='class' element={<ScheduleClass/>}/>
-            <Route path='forgottenpassword/:token' element={<StaffForgottenPassword/>} />
             <Route path='forgottenpassword' element={<StaffForgottenPassword/>} />
+            <Route path='forgottenpassword/:token' element={<StaffForgottenPassword/>} />
           </Route>
           <Route path='/entrance_test/'>
             <Route path='instructions' element={<TestInstructions/>}/>
