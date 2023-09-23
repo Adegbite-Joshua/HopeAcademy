@@ -20,7 +20,7 @@ const MessageMainDiv = ({partnerName, messages, partnerCommonId, sendMessage}) =
             <div className='w-full h-full bg-white overflow-y-auto p-2'>
                 <div id='messageContainer' className=' h-5/6 overflow-y-auto border border-3 border-blue-400'>
                 {messages?.length>=1?messages.map((message, index)=>(
-                    message.senderId==studentInfo._id?<SenderMessages messageBody={message} message={message.message} time={`Date: ${message.messageDate} Time: ${message.messageTime}`}/>:<ReceiverMessages messageBody={message} message={message.message} time={`Date: ${message.messageDate} Time: ${message.messageTime}`}/>
+                    message.senderId==staffInfo._id?<SenderMessages messageBody={message} message={message.message} time={`Date: ${message.messageDate} Time: ${message.messageTime}`}/>:<ReceiverMessages messageBody={message} message={message.message} time={`Date: ${message.messageDate} Time: ${message.messageTime}`}/>
                 )):<>
                     <div className='flex h-full w-full justify-center items-center'>
                         <p>You currently have no message with this user</p>

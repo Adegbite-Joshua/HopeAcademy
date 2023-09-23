@@ -153,7 +153,7 @@ const StaffMessage = () => {
         socket.off('getMessage');
         socket.off('getNotification');
     };
-  }, [])
+  }, [socket])
 
   const fetchAll =()=>{
     let studentEndpoint = 'http://localhost:7777/student/allstudents'
@@ -199,19 +199,19 @@ const StaffMessage = () => {
     });
   }
 
-  const setPartner =(partnerName, partnerId)=>{
-    setpartnerId(partnerId)
+  const setPartner =(partnerName, partnerIdd)=>{
+    setpartnerId(partnerIdd)
     setpartnerName(partnerName)
     chatId = {
-      firstId: partnerId,
+      firstId: partnerIdd,
       secondId: staffInfo._id
     }
     if (allMessages[partnerId]==undefined || allMessages[partnerId]==null) {
       axios.post('http://localhost:7777/staff/createchat', chatId)
       .then((res)=>{
-        console.log(res.data.created._id);
         setpartnerCommonId(res.data.created._id);
-        commonId = partnerId
+        commonId = partnerIdd
+        console.log(partnerIdd, allMessages)
         setallMessages(
           (prevAllMessages) => {
             let newAll = { ...prevAllMessages };

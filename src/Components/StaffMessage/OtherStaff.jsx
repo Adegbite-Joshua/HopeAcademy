@@ -6,6 +6,7 @@ import People from './People'
 const OtherStaff = ({setPartner}) => {
   const dispatch = useDispatch()
   let allStaffsInfo = useSelector((state)=>state.staffInformation.allStaffs)
+  // console.log(allStaffsInfo)
   const [viewing, setviewing] = useState(0)
 
   return (
@@ -25,7 +26,7 @@ const OtherStaff = ({setPartner}) => {
               )): <People name='No name' img='jkd' index={0} func={setViewingMessage}/>} */}
               {allStaffsInfo.length>0?allStaffsInfo[viewing].length>0?allStaffsInfo[viewing].map((staff, index)=>(
               <People name={`${staff.firstName} ${staff.lastName}`} img='jkd' setPartner={setPartner} identity='Staff'/>
-              )): <People name='No name' img='jkd' email={0} func={func2}/>:func}
+              )): <People name='No name' img='jkd' email='kkk' />:''}
             
         </div>
     </>
