@@ -19,6 +19,7 @@ const SetNewPassword = ({token}) => {
         return;
       }
       setuserDetails(res.data.result)
+      console.log(res.data.result)
     })
     .catch((error)=>{
       console.log(error)

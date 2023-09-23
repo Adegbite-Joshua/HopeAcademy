@@ -4,17 +4,17 @@ import axios from 'axios'
 
 const ResetPasswordForm = () => {
     const [email, setEmail] = useState('');
-    const [studentClass, setstudentClass] = useState('');
+    const [staffClass, setstaffClass] = useState(0);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:7777/staff/send_password_link', { email, studentClass })
+        axios.post('http://localhost:7777/staff/send_password_link', { email, staffClass })
             .then((res) => {
                 console.log(res)
                 if (res.status == 200) {
                     alert('Email sent')
                     setEmail('')
-                    setstudentClass('')
+                    setstaffClass('')
                 } else if (res.status == 403) {
                     alert('Invalid Student Information')
                 }
@@ -33,7 +33,7 @@ const ResetPasswordForm = () => {
             <div className="mb-4">
                 <label htmlFor="clas" className="block">Class</label>
                 <select
-                    onChange={(e) => setStudentClass(e.target.value)}
+                    onChange={(e) => setstaffClass(e.target.value)}
                     required
                     className="w-full p-2 border rounded-lg"
                 >

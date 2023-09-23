@@ -6,10 +6,13 @@ import { BrowserRouter } from "react-router-dom";
 import {configureStore} from '@reduxjs/toolkit'
 import { Provider } from 'react-redux';
 import staffInformation from './redux/staffInformation'
+import socketIO from './redux/socketIO'
+
 
 const store = configureStore({
   reducer: {
-    staffInformation
+    staffInformation,
+    socketIO
   }
 })
 

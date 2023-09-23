@@ -3,7 +3,7 @@ import {useSelector , useDispatch } from 'react-redux'
 import { fetchAllStudents } from '../../redux/staffInformation'
 import People from './People'
 
-const OtherPeople = ({func, func2}) => {
+const OtherPeople = ({setPartner}) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let allStudentsInfo = useSelector((state)=>state.staffInformation.allStudents)
   const [viewing, setviewing] = useState(0)
@@ -22,7 +22,7 @@ const OtherPeople = ({func, func2}) => {
               <option value="5">SSS3</option>
             </select>
             {allStudentsInfo.length>0?allStudentsInfo[viewing].length>0?allStudentsInfo[viewing].map((student, index)=>(
-            <People key={index} mainindex={viewing} name={`${student.firstName} ${student.lastName}`} img='jkd' email={student.email} func={func} identity='Student'/>
+            <People key={index} mainindex={viewing} name={`${student.firstName} ${student.lastName}`} id={student._id} img='jkd' email={student.email} setPartner={setPartner} identity='Student'/>
             )): <People name='No name' img='jkd' email={0} func={func}/>:func}
         </div>
     </>

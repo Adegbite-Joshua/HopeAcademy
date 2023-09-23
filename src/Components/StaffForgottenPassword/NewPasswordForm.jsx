@@ -23,7 +23,7 @@ const NewPasswordForm = ({ userDetails }) => {
 
     const saveNewPassword = () => {
         axios.post('http://localhost:7777/staff/change_password', {
-            studentClass: userDetails.studentClass,
+            staffClass: userDetails.staffClass,
             email: userDetails.email,
             newPassword
         }).then((res) => {
@@ -34,9 +34,9 @@ const NewPasswordForm = ({ userDetails }) => {
                 alert('Error in saving your password, please try again')
             }
         })
-            .catch((error) => {
-                console.log(error);
-            })
+        .catch((error) => {
+            console.log(error);
+        })
     }
 
 
