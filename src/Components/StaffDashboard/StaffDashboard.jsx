@@ -31,7 +31,6 @@ const StaffDashboard = () => {
           if (res.status==200) {
             dispatch(fetchStaff(res.data))
             dispatch(setFetching(false))
-            console.log(`${staffInfo.pictureUrl.split('upload/')[0]}upload/r_max,q_50/${staffInfo.pictureUrl.split('upload/')[1]}`)
           } else if(res.status != 200){
               state.staffInformation = 'error'
           }

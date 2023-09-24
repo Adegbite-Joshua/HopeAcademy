@@ -12,27 +12,26 @@ const fetchStaffInfo = () => {
     let dispatch = useDispatch();
 
     useEffect(()=>{
-        if(Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object){
-          dispatch(setFetching(true))
-          let endpoint = 'http://localhost:7777/student/dashboard'
-          let token = localStorage.getItem('token')
-          axios.get(endpoint, {headers : {
-            "Authorization": `Bearer ${token}`,
-            "Content-Toe": "application/json",
-            "Accept": "application/json"
-          }})  
+        if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
+          let endpoint = 'http://localhost:7777/staff/dashboard'
+          let token = localStorage.token
+          axios.post(endpoint, {token})
           .then((res)=>{
-            if (res.status==200) {
-              dispatch(fetchStaff(res.data))
-              dispatch(setFetching(false))
-              socket.emit('connectSocketId', res.data._id);
-            } else{
-              console.log('error');
-            }
+              console.log(res)
+              if (res.status==200) {
+                dispatch(fetchStaff(res.data))
+                dispatch(setFetching(false))
+                socket.emit('connectSocketId', res.data._id);
+              } else if(res.status != 200){
+                  state.staffInformation = 'error'
+              }
           })
-      }
+          .catch((err)=>{
+              console.log(err);
+          })
+        }
     }, [socket])
-  return ['ade'];
+  return [staffInfo, fetching];
 };
 
 export default fetchStaffInfo;

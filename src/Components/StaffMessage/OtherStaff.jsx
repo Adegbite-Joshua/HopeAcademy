@@ -25,7 +25,7 @@ const OtherStaff = ({setPartner}) => {
               <People name={`${staff.firstName} ${staff.lastName}`} img='jkd' index={index} func={setViewingMessage}/>
               )): <People name='No name' img='jkd' index={0} func={setViewingMessage}/>} */}
               {allStaffsInfo.length>0?allStaffsInfo[viewing].length>0?allStaffsInfo[viewing].map((staff, index)=>(
-              <People name={`${staff.firstName} ${staff.lastName}`} img='jkd' setPartner={setPartner} identity='Staff'/>
+              <People name={`${staff.firstName} ${staff.lastName}`} id={staff._id} img='jkd' setPartner={setPartner} identity='Staff'/>
               )): <People name='No name' img='jkd' email='kkk' />:''}
             
         </div>

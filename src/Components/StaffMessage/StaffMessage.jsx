@@ -15,8 +15,8 @@ import fetchStaffInfo from '../../CustomHooks/fetchStaffInfo'
 const StaffMessage = () => {
   let paramsValue = useParams();
   const dispatch = useDispatch();
-  let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
-  let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
+  // let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
+  // let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
   let socket = useSelector((state)=>state.socketIO.socket);
   let allStaffs = useSelector((state)=>state.staffInformation.allStaffs)
   let allStudents = useSelector((state)=>state.staffInformation.allStudents)
@@ -98,7 +98,7 @@ const StaffMessage = () => {
   //     })
   //   }
   // }
-  let [name] = fetchStaffInfo();
+  let [staffInfo, fetching] = fetchStaffInfo();
 
 
   const validateStaff =()=>{
@@ -110,7 +110,6 @@ const StaffMessage = () => {
       "Accept": "application/json"
     }})
     .then((res)=>{
-      console.log(res);
       if (res.status == 200) {
         fetchStaffInformation()
       } else{
@@ -153,7 +152,7 @@ const StaffMessage = () => {
         socket.off('getMessage');
         socket.off('getNotification');
     };
-  }, [socket])
+  }, [socket, allMessages])
 
   const fetchAll =()=>{
     let studentEndpoint = 'http://localhost:7777/student/allstudents'
@@ -162,6 +161,7 @@ const StaffMessage = () => {
         dispatch(setFetching(true))
         axios.get(staffEndPoint)
         .then((res)=>{
+          console.log('fetched staff')
           dispatch(fetchAllStaffs(res.data))
           dispatch(setFetching(false))
         })
@@ -173,7 +173,6 @@ const StaffMessage = () => {
         dispatch(setFetching(true))
         axios.get(studentEndpoint)
         .then((res)=>{
-          console.log(res);
           dispatch(fetchAllStudents(res.data))
           dispatch(setFetching(false))
         })
@@ -199,23 +198,23 @@ const StaffMessage = () => {
     });
   }
 
-  const setPartner =(partnerName, partnerIdd)=>{
-    setpartnerId(partnerIdd)
+  const setPartner =(partnerName, partnerId)=>{
+    setpartnerId(partnerId)
     setpartnerName(partnerName)
     chatId = {
-      firstId: partnerIdd,
+      firstId: partnerId,
       secondId: staffInfo._id
     }
+    console.log(chatId)
     if (allMessages[partnerId]==undefined || allMessages[partnerId]==null) {
       axios.post('http://localhost:7777/staff/createchat', chatId)
       .then((res)=>{
         setpartnerCommonId(res.data.created._id);
-        commonId = partnerIdd
-        console.log(partnerIdd, allMessages)
+        commonId = partnerId
         setallMessages(
           (prevAllMessages) => {
             let newAll = { ...prevAllMessages };
-            newAll[commonId] = res.data.chats
+            newAll[commonId] = res.data.chats;
             return newAll;
           }
         );
@@ -227,7 +226,6 @@ const StaffMessage = () => {
   }
 
   const setDefault=()=>{
-    // console.log(paramsValue)
     if(paramsValue.email && Object.keys(staffInfo).length > 0 && staffInfo.constructor === Object){
       setcategory(0);
       setmainindex(staffInfo.class);
