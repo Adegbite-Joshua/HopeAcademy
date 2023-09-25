@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Loader from '../../Loader'
 import { useParams } from 'react-router-dom'
 import SnackBar from '../SnackBar'
-import fetchStaffInfo from '../../CustomHooks/fetchStaffInfo'
+import fetchStaffInfo from '../../CustomHooks/StaffHooks/fetchStaffInfo'
 
 
 

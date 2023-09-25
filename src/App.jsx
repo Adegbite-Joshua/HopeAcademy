@@ -19,6 +19,7 @@ import TestPage from './Components/EntranceTest/TestPage';
 import TestInstructions from './Components/EntranceTest/TestInstructions';
 import AdminDashboard from '../pages/AdminDashboard'
 import StaffForgottenPassword from '../pages/StaffForgottenPassword';
+import StaffNotification from '../pages/StaffNotification';
 
 
 
@@ -51,6 +52,7 @@ function App() {
             <Route path='student/:email' element={<Student/>}/>
             <Route path='submit' element={<StaffSubmit/>}/>
             <Route path='uploadfile' element={<StaffFile/>}/>
+            <Route path='notifications' element={<StaffNotification/>}/>
             <Route path='setting' element={<StaffSetting/>}/>
             <Route path='class' element={<ScheduleClass/>}/>
             <Route path='forgottenpassword' element={<StaffForgottenPassword/>} />

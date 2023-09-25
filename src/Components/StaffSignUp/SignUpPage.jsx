@@ -71,14 +71,14 @@ const SignUpPage = () => {
         .min(2, 'Too Short')
         .max(230, 'Too Long')
         .required('Required'),
-      localGovernment: Yup.string()
-        .min(2, 'Too Short')
-        .max(230, 'Too Long')
-        .required('Required'),
-      state: Yup.string()
-        .min(2, 'Too Short')
-        .max(230, 'Too Long')
-        .required('Required')
+      // localGovernment: Yup.string()
+      //   .min(2, 'Too Short')
+      //   .max(230, 'Too Long')
+      //   .required('Required'),
+      // state: Yup.string()
+      //   .min(2, 'Too Short')
+      //   .max(230, 'Too Long')
+      //   .required('Required')
       // agreement: Yup.string()
       //   .required('Required')
         // .boolean('Agree to Terms and Conditions')
@@ -167,7 +167,6 @@ const SignUpPage = () => {
   }
 
   const showSnackBar = () => {
-    // Get the snackbar DIV
     var x = document.getElementById("snackbarContainer");
     x.className = "show";
   
@@ -207,19 +206,6 @@ const SignUpPage = () => {
                     {subjects.sort().map((subject, index)=>(
                       <><option  value={index} selected={subject.includes('MATHEMA')?true:false}>{subject}</option></>
                     ))}
-                    {/* <option  value='0' selected>MATHEMATICS</option>
-                    <option  value='1'>ENGLISH LANGUAGE</option>
-                    <option  value='2'>YORUBA</option>
-                    <option  value='3'>CIVIC EDUCATION</option>
-                    <option  value='4'>COMPUTER STUDIES</option>
-                    <option  value='5'>GEOGRAPHY</option>
-                    <option  value='6'>ECONOMICS</option>
-                    <option  value='7'>PHYSICS</option>
-                    <option  value='8'>CHEMISTRY</option>
-                    <option  value='9'>BIOLOGY</option>
-                    <option  value='10'>ANIMAL HUSBANDRY</option>
-                    <option  value='11'>FURTHER MATHEMATICS</option>
-                    <option  value='12 '>TECHNICAL DRAWING</option> */}
                   </select>
                   <label htmlFor="">Address</label>
                   <input type="text" required name='address' {...formik.getFieldProps('address')} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Address' />

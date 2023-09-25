@@ -8,6 +8,7 @@ import {fetchStaff, setFetching} from '../../redux/staffInformation'
 import axios from 'axios'
 import Loader from '../../Loader'
 import SnackBar from '../SnackBar'
+import fetchStaffInfo from '../../CustomHooks/StaffHooks/fetchStaffInfo'
 
 // import {Redirect} from 'react-router-dom'
 
@@ -16,30 +17,32 @@ import SnackBar from '../SnackBar'
 const StaffDashboard = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
-  let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
+  // let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
+  // let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
   const [snacksBarBody, setsnacksBarBody] = useState('')
   const [snacksBarType, setsnacksBarType] = useState('info')
   
-  const fetchStaffInformation = ()=>{
-    if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
-      let endpoint = 'http://localhost:7777/staff/dashboard'
-      let token = localStorage.token
-      axios.post(endpoint, {token})
-      .then((res)=>{
-          console.log(res)
-          if (res.status==200) {
-            dispatch(fetchStaff(res.data))
-            dispatch(setFetching(false))
-          } else if(res.status != 200){
-              state.staffInformation = 'error'
-          }
-      })
-      .catch((err)=>{
-          console.log(err);
-      })
-    }
-  }
+  // const fetchStaffInformation = ()=>{
+  //   if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
+  //     let endpoint = 'http://localhost:7777/staff/dashboard'
+  //     let token = localStorage.token
+  //     axios.post(endpoint, {token})
+  //     .then((res)=>{
+  //         console.log(res)
+  //         if (res.status==200) {
+  //           dispatch(fetchStaff(res.data))
+  //           dispatch(setFetching(false))
+  //         } else if(res.status != 200){
+  //             state.staffInformation = 'error'
+  //         }
+  //     })
+  //     .catch((err)=>{
+  //         console.log(err);
+  //     })
+  //   }
+  // }
+  let [staffInfo, fetching, staffNotifications, notificationFetchingState] = fetchStaffInfo();
+
   useEffect(() => {
     validateStaff()
   }, [])
@@ -64,19 +67,19 @@ const StaffDashboard = () => {
     .then((res)=>{
       console.log(res);
       if (res.status == 200) {
-        fetchStaffInformation()
+        // fetchStaffInformation()
       } else{
         setsnacksBarBody('Invalid Acesss Token')
         setsnacksBarType('error')
         showSnackBar()
-        setTimeout(() => navigate('/signin'), 3000);
+        setTimeout(() => navigate('/staff/signin'), 3000);
       }
     })
     .catch((error)=>{
       setsnacksBarBody('Invalid Acesss Token')
       setsnacksBarType('error')
       showSnackBar()
-      setTimeout(() => navigate('/signin'), 3000);
+      setTimeout(() => navigate('/staff/signin'), 3000);
       console.log(error);
     })
   }
@@ -88,7 +91,7 @@ const StaffDashboard = () => {
             <DashboardNav/>
             {fetching && <Loader/>}
             {!fetching && <>
-              <DashboardMainDiv name='' submittedTest={[]} topStudents={[]} groups={[]}/>
+              <DashboardMainDiv/>
               <DashboardOtherSide/>
             </>}
         </div>

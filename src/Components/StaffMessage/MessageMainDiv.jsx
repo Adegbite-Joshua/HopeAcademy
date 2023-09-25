@@ -26,17 +26,12 @@ const MessageMainDiv = ({partnerName, messages, partnerCommonId, sendMessage}) =
                         <p>You currently have no message with this user</p>
                     </div>
                 </>}        
-                  {/* {staffMessages?.length>0?<>
-                  {staffMessages.map((message)=>(
-                    <ReceiverMessages message={message.messageBody} date={`Date: ${message.messageDate} Time: ${message.messageTime}`} src='vite.svg'/>
-                  ))}
-                  </>:<><SenderMessages message={`Hello ${staffInfo.firstName} ${staffInfo.lastName},  you do not have any message yet`} date={new Date().toLocaleTimeString()} src='vite.svg'/></>}  */}
                 </div>
                 <div className=' h-1/6 w-full'>
                   <h3 className=' text-center font-bold'>{partnerName}</h3>
                   <d className="flex">
                     <textarea name="" id="message" className=' w-full border border-3 border-red-400' rows="2"></textarea>
-                    <button onClick={()=>sendMessage(message.value)} className=' p-2 rounded-md bg-blue-500 hover:bg-blue-400 block mx-auto'>Send Message</button>
+                    <button onClick={()=>{sendMessage(message.value);message.value=''}} className=' p-2 rounded-md bg-blue-500 hover:bg-blue-400 block mx-auto'>Send Message</button>
                   </d>
                 </div>
             </div>

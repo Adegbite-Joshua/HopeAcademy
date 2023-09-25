@@ -62,14 +62,14 @@ const FileMainDashboard = () => {
                 <label htmlFor="">File's Description</label>
                 <textarea name="" id="" onKeyUp={(e)=>setfileDescription(e.target.value)} className=' my-1 w-full h-24 focus:outline-0 focus:ring focus:ring-2 focus:ring-violet-500 p-2' placeholder='Post Describtion'></textarea>
                 <label htmlFor="fileType">File Type</label>
-                <select name="" id="" onChange={(e)=>{
+                <select name="" id="" value=".txt, .pdf, .doc, .docx, .rtf, .ppt, .pptx" onChange={(e)=>{
                   setfileType(e.target.value);
                   setfileBase64('')
                 }} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50 px-6 my-2'>
                   <option value=".mp4, .webm, .mpe, .mpv, .avi, .mpeg">Video</option>
                   <option value=".jpeg, .jpg, .gif, .tif, .psd">Image</option>
                   <option value=".mp4a, .flac, .mp4, .mp3, .wav">Audio</option>
-                  <option selected value=".txt, .pdf, .doc, .docx, .rtf, .ppt, .pptx">Documents</option>
+                  <option value=".txt, .pdf, .doc, .docx, .rtf, .ppt, .pptx">Documents</option>
                 </select>
                 <label htmlFor="" className='w-full'>
                     <span className="sr-only">Choose Fil To Upload</span>

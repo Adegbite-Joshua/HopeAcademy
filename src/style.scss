@@ -550,3 +550,24 @@ input[type=number] {
   background-image: linear-gradient(grey 65%, blue 35%);
   @apply text-white;
 }
+
+/* Add this CSS to your stylesheet */
+.arrow-left {
+  position: absolute;
+  left: -30px; /* Adjust this value as needed to position the arrow */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 30px 15px 0;
+  border-color: transparent #cfd8dc transparent transparent;
+  z-index: -1;
+}
+
+
+#pageContainer {
+@media (min-width: 768px) {
+  display: flex !important;
+}
+}
