@@ -141,16 +141,10 @@ const StaffMessage = () => {
       }
     };
 
-    const handleNotification = (notificationDetails) => {
-      console.log(notificationDetails);
-    };
-
     socket.on('getMessage', handleMessage);
-    socket.on('getNotification', handleNotification);
 
     return () => {
         socket.off('getMessage');
-        socket.off('getNotification');
     };
   }, [socket, allMessages])
 

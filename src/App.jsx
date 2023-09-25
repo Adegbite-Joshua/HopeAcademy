@@ -20,10 +20,13 @@ import TestInstructions from './Components/EntranceTest/TestInstructions';
 import AdminDashboard from '../pages/AdminDashboard'
 import StaffForgottenPassword from '../pages/StaffForgottenPassword';
 import StaffNotification from '../pages/StaffNotification';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { updateStaffNotifications } from './redux/staffInformation';
 
 
 function App() {
+  const socket = useSelector((state) => state.socketIO.socket);
+  const dispatch = useDispatch();
   useEffect(()=>{
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', ()=>{
@@ -36,6 +39,16 @@ function App() {
         })
       })
     }
+
+    const handleNotification = (notificationDetails) => {
+      console.log(notificationDetails)
+      dispatch(updateStaffNotifications(notificationDetails));
+    };
+    socket.on('getNotification', handleNotification);
+
+    return () => {
+      socket.off('getNotification');
+  }; 
   }, [])
   return (
     <>      
