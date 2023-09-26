@@ -18,10 +18,10 @@ const StaffNotification = () => {
     if (notificationType=='all') {
       setnotifications(staffNotifications)
     } else if (notificationType=='messages') {
-      const filteredNotifications = staffNotifications.filter(notification => notification.type === 'messages');
+      const filteredNotifications = staffNotifications.filter(notification => notification.type == 'message');
       setnotifications(filteredNotifications);
     } else if (notificationType=='submits') {
-      const filteredNotifications = staffNotifications.filter(notification => notification.type === 'submits');
+      const filteredNotifications = staffNotifications.filter(notification => notification.type == 'submit');
       setnotifications(filteredNotifications);
     }
   }, [notificationType, staffNotifications])
@@ -30,10 +30,11 @@ const StaffNotification = () => {
   }
   const searchNotification = (params)=>{
     if (params.trim().length>0) {
-      const filtered = staffNotifications.filter(notification => notification.name.includes(params));
+      const filtered = staffNotifications.filter(notification => notification?.message?.includes(params) || notification?.date?.includes(params) || notification?.name?.includes(params));
       setnotifications(filtered);
     } else {
-      setNotificationType(notificationType)
+      setNotificationType('all')
+
     }
   }
   return (
