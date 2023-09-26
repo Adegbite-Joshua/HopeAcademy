@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import DashboardNav from '../src/Components/StaffDashboard/DashboardNav';
@@ -14,16 +15,24 @@ const StaffNotification = () => {
   const [notifications, setnotifications] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(shownStaffNotifications(0));
-    if (notificationType=='all') {
-      setnotifications(staffNotifications)
-    } else if (notificationType=='messages') {
-      const filteredNotifications = staffNotifications.filter(notification => notification.type == 'message');
-      setnotifications(filteredNotifications);
-    } else if (notificationType=='submits') {
-      const filteredNotifications = staffNotifications.filter(notification => notification.type == 'submit');
-      setnotifications(filteredNotifications);
+    const performOnload = async()=>{
+      dispatch(shownStaffNotifications(0));
+      const endpoint = 'http://localhost:7777/staff/read_notifications';
+      if(staffInfo){
+        let readNotification = await axios.post(endpoint, {id: staffInfo._id})
+      }
+      // 
+      if (notificationType=='all') {
+        setnotifications(staffNotifications)
+      } else if (notificationType=='messages') {
+        const filteredNotifications = staffNotifications.filter(notification => notification.type == 'message');
+        setnotifications(filteredNotifications);
+      } else if (notificationType=='submits') {
+        const filteredNotifications = staffNotifications.filter(notification => notification.type == 'submit');
+        setnotifications(filteredNotifications);
+      }
     }
+    performOnload();
   }, [notificationType, staffNotifications])
   const setNotificationType =(type)=>{
     setnotificationType(type)
@@ -34,7 +43,6 @@ const StaffNotification = () => {
       setnotifications(filtered);
     } else {
       setNotificationType('all')
-
     }
   }
   return (
