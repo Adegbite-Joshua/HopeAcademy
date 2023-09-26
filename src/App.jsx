@@ -17,12 +17,13 @@ import ScheduleClass from './Components/Class/StudentClass';
 import EntranceTest from './Components/EntranceTest/EntranceTest';
 import TestPage from './Components/EntranceTest/TestPage';
 import TestInstructions from './Components/EntranceTest/TestInstructions';
-import AdminDashboard from '../pages/AdminDashboard'
 import StaffForgottenPassword from '../pages/StaffForgottenPassword';
 import StaffNotification from '../pages/StaffNotification';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateStaffNotifications } from './redux/staffInformation';
 import WebNotification from 'react-web-notifications';
+import AdminSignUp from '../pages/AdminPages/AdminSignUp';
+import AdminDashboard from '../pages/AdminPages/AdminDashboard';
 
 
 
@@ -100,6 +101,7 @@ function App() {
             <Route path='' element={<EntranceTest/>}/>
           </Route>
           <Route path='/admin/'>
+            <Route path='signup' element={<AdminSignUp/>} />
             <Route path='dashboard' element={<AdminDashboard/>} />
           </Route>
         </Routes>
