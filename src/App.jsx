@@ -24,6 +24,7 @@ import { updateStaffNotifications } from './redux/staffInformation';
 import WebNotification from 'react-web-notifications';
 import AdminSignUp from '../pages/AdminPages/AdminSignUp';
 import AdminDashboard from '../pages/AdminPages/AdminDashboard';
+import AdminSignIn from '../pages/AdminPages/AdminSignIn';
 
 
 
@@ -101,6 +102,7 @@ function App() {
             <Route path='' element={<EntranceTest/>}/>
           </Route>
           <Route path='/admin/'>
+            <Route path='signin' element={<AdminSignIn/>} />
             <Route path='signup' element={<AdminSignUp/>} />
             <Route path='dashboard' element={<AdminDashboard/>} />
           </Route>
