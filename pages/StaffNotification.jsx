@@ -1,18 +1,20 @@
 import React, {useEffect, useState} from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import DashboardNav from '../src/Components/StaffDashboard/DashboardNav';
 import NotificationMainDiv from '../src/Components/StaffNotification/NotificationMainDiv';
 import NotificationOtherSide from '../src/Components/StaffNotification/NotificationOtherDiv';
 // import fetchStaffInfo from '../src/CustomHooks/fetchStaffInfo'
 import fetchStaffInfo from '../src/CustomHooks/StaffHooks/fetchStaffInfo';
-
+import {shownStaffNotifications} from '../src/redux/staffInformation';
 
 const StaffNotification = () => {
   let [staffInfo, fetching, staffNot, notificationFetchingState] = fetchStaffInfo();
   const [notificationType, setnotificationType] = useState('all')
   let staffNotifications = useSelector((state) => state.staffInformation.staffNotifications)?.notifications;
-  const [notifications, setnotifications] = useState([])
+  const [notifications, setnotifications] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(shownStaffNotifications(0));
     if (notificationType=='all') {
       setnotifications(staffNotifications)
     } else if (notificationType=='messages') {
@@ -22,7 +24,7 @@ const StaffNotification = () => {
       const filteredNotifications = staffNotifications.filter(notification => notification.type === 'submits');
       setnotifications(filteredNotifications);
     }
-  }, [notificationType])
+  }, [notificationType, staffNotifications])
   const setNotificationType =(type)=>{
     setnotificationType(type)
   }

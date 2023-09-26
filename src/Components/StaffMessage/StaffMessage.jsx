@@ -182,6 +182,7 @@ const StaffMessage = () => {
         messageTime: new Date().toLocaleTimeString(),
         message: message,
         senderId: staffInfo._id,
+        senderName: `${staffInfo.firstName} ${staffInfo.lastName}`,
         partnerCommonId: partnerCommonId 
     }
     socket.emit('sendMessage', messageDetails, partnerId)
@@ -220,10 +221,9 @@ const StaffMessage = () => {
   }
 
   const setDefault=()=>{
-    if(paramsValue.email && Object.keys(staffInfo).length > 0 && staffInfo.constructor === Object){
-      setcategory(0);
-      setmainindex(staffInfo.class);
-      setemail(paramsValue.email);
+    if(paramsValue.id && Object.keys(staffInfo).length > 0 && staffInfo.constructor === Object && allStudents.length>0){
+      let student = allStudents[staffInfo.class].filter((student)=>student._id==paramsValue.id)
+      setPartner(`${student.firstName} ${student.lastName}`,paramsValue.id )
     }
   }
   return (

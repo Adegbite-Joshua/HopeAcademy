@@ -11,7 +11,8 @@ const MessageMainDiv = ({partnerName, messages, partnerCommonId, sendMessage}) =
   let staffMessages = useSelector((state)=>state.staffInformation.staffInformation)?.messages
   const [receiverName, setreceiverName] = useState('Select A Name')
   useEffect(() => {
-    document.getElementById("messageContainer").scrollTop = document.getElementById("messageContainer").scrollHeight
+    document.getElementById("messageContainer").scrollTop = document.getElementById("messageContainer").scrollHeight;
+    console.log(partnerCommonId!='')
   }, [partnerCommonId, staffMessages])
   
   return (
@@ -31,7 +32,7 @@ const MessageMainDiv = ({partnerName, messages, partnerCommonId, sendMessage}) =
                   <h3 className=' text-center font-bold'>{partnerName}</h3>
                   <d className="flex">
                     <textarea name="" id="message" className=' w-full border border-3 border-red-400' rows="2"></textarea>
-                    <button onClick={()=>{sendMessage(message.value);message.value=''}} className=' p-2 rounded-md bg-blue-500 hover:bg-blue-400 block mx-auto'>Send Message</button>
+                    <button disabled={partnerCommonId==''} onClick={()=>{sendMessage(message.value);message.value=''}} className=' p-2 rounded-md bg-blue-500 hover:bg-blue-400 block mx-auto'>Send Message</button>
                   </d>
                 </div>
             </div>

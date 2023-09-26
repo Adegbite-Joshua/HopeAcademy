@@ -10,7 +10,7 @@ const SubmitMainDIv = ({studentSubmit}) => {
     const navigate = useNavigate();
     const messageStudent =()=>{
         if(Object.keys(studentSubmit).length >=1  && studentSubmit.constructor === Object){
-            navigate(`/inbox/${studentSubmit.studentEmail}`)
+            navigate(`/inbox/${studentSubmit.senderId}`)
         }
     }
     const gradeStudent =()=>{

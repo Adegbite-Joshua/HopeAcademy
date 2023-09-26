@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import './style.scss'
 import './../node_modules/font-awesome/css/font-awesome.css'
 // import '../node_modules/bootstrap/dist/css/bootstrap.css'
@@ -22,11 +22,14 @@ import StaffForgottenPassword from '../pages/StaffForgottenPassword';
 import StaffNotification from '../pages/StaffNotification';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateStaffNotifications } from './redux/staffInformation';
+import WebNotification from 'react-web-notifications';
+
 
 
 function App() {
   const socket = useSelector((state) => state.socketIO.socket);
   const dispatch = useDispatch();
+  const [latestNotification, setlatestNotification] = useState({});
   useEffect(()=>{
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', ()=>{
@@ -43,13 +46,33 @@ function App() {
     const handleNotification = (notificationDetails) => {
       console.log(notificationDetails)
       dispatch(updateStaffNotifications(notificationDetails));
+      setlatestNotification(notificationDetails);
+      triggerNotification();
     };
+    
     socket.on('getNotification', handleNotification);
 
     return () => {
       socket.off('getNotification');
-  }; 
+    }; 
   }, [])
+
+  const triggerNotification = () => {
+    return (
+      <WebNotification
+          title= {latestNotification.type=='submit'?`You Have A New Submit From ${latestNotification.name}`: `You Have A New Message From ${latestNotification.name}`}
+          icon="path/to/image.jpg"
+          body={latestNotification.message}
+          timeout={9000}
+          onClick={() =>{
+            const Tab = window.open('http://http://localhost:2000/', '_blank');
+            if (Tab) {
+              Tab.focus();
+            }
+          }}
+        />
+    )
+  };
   return (
     <>      
         <Routes>
@@ -60,7 +83,7 @@ function App() {
             <Route path='signin' element={<StaffLogin/>}/>
             <Route path='signup' element={<StaffSignUp/>}/>
             <Route path='inbox' element={<StaffMessage/>}/>
-            <Route path='inbox/:email' element={<StaffMessage/>}/>
+            <Route path='inbox/:id' element={<StaffMessage/>}/>
             <Route path='student' element={<Student/>}/>
             <Route path='student/:email' element={<Student/>}/>
             <Route path='submit' element={<StaffSubmit/>}/>

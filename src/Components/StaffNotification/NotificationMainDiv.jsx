@@ -10,13 +10,13 @@ const NotificationMainDiv = ({notifications}) => {
   // const [staffInfo, setstaffInfo] = useState(useSelector((state)=>state.staffInformation.staffInformation))
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   
-  
+  console.log(notifications)
   return (
     <>
         <div className='DashboardMainDiv order-5 md:order-none mt-16 md:mt-0 h-screen basis-full md:basis-7/12 p-5 overflow-y-auto'>
-            {notifications?.length> 0? notifications.map((notification)=>{
-                <Notification name='Ade' message='sent you a message' type='submit'/>
-            }): <Notification name='Empty Notification' message='You do not have any notification at the moment' type='empty'/>}
+            {notifications?.length> 0? notifications.map((notification)=>(
+                <Notification id={notification.senderId} name={notification.name} message={notification.message} type={notification.type || 'submit'}/>
+            )): <Notification name='Empty Notification' message='You do not have any notification at the moment' type='empty'/>}
         </div>
     </>
   )

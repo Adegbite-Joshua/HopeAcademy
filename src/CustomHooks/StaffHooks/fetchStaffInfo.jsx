@@ -10,6 +10,7 @@ const fetchStaffInfo = () => {
   const staffNotifications = useSelector((state) => state.staffInformation.staffNotifications);
   const notificationFetchingState = useSelector((state) => state.staffInformation.notificationFetchingState);
   const dispatch = useDispatch();
+  let localStaffInfo = {};
 
   useEffect(() => {
     async function fetchData() {
@@ -21,6 +22,7 @@ const fetchStaffInfo = () => {
 
           if (res.status === 200) {
             dispatch(fetchStaff(res.data));
+            localStaffInfo = res.data;
             dispatch(setFetching(false));
             socket.emit('connectSocketId', res.data._id);
           } else if (res.status !== 200) {
@@ -34,13 +36,12 @@ const fetchStaffInfo = () => {
       try {
         if (Object.keys(staffNotifications).length === 0 && staffNotifications.constructor === Object) {
           const endpoint = 'http://localhost:7777/staff/notifications';
-          const id = staffInfo._id;
+          const id = localStaffInfo._id;
           const res = await axios.post(endpoint, { id });
 
           if (res.status === 200) {
             dispatch(fetchStaffNotifications(res.data));
             dispatch(setNotificationFetching(false));
-            socket.emit('connectSocketId', res.data._id);
           } else if (res.status !== 200) {
 
           }
