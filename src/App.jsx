@@ -26,6 +26,7 @@ import AdminSignUp from '../pages/AdminPages/AdminSignUp';
 import AdminDashboard from '../pages/AdminPages/AdminDashboard';
 import AdminSignIn from '../pages/AdminPages/AdminSignIn';
 import NewAccount from './Components/AdminComponents/Accounts/NewAccount';
+import EditAccount from './Components/AdminComponents/Accounts/EditAccount';
 
 
 
@@ -109,6 +110,7 @@ function App() {
             <Route path='account/'>
               <Route path='' element={<NewAccount/>} />
               <Route path='new' element={<NewAccount/>} />
+              <Route path='edit' element={<EditAccount/>} />
             </Route>
           </Route>
         </Routes>

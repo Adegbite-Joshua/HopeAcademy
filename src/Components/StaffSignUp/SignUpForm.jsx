@@ -201,17 +201,19 @@ const SignUpForm = ({type}) => {
                     <option value="4">SSS2</option>
                     <option value="5">SSS3</option>
                 </select>
-                <label htmlFor="" className=''>Subject To Offer</label>
-                <select name="staffIndex" onChange={formik.handleChange} id="staffIndex" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50 px-6'>
-                    {subjects.sort().map((subject, index) => (
-                        <><option value={index} selected={subject.includes('MATHEMA') ? true : false}>{subject}</option></>
-                    ))}
-                </select>
+                {type=='create' || type=='edit' && (<>
+                  <label htmlFor="" className=''>Subject To Offer</label>
+                  <select name="staffIndex" onChange={formik.handleChange} id="staffIndex" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50 px-6'>
+                      {subjects.sort().map((subject, index) => (
+                          <><option value={index} selected={subject.includes('MATHEMA') ? true : false}>{subject}</option></>
+                      ))}
+                  </select>
+                </>)}
                 <label htmlFor="">Address</label>
                 <input type="text" required name='address' {...formik.getFieldProps('address')} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Address' />
                 <small className='text-red-500'>{formik.touched.address && formik.errors.address}</small><br />
                 <label htmlFor="" className='w-full'>
-                    <span className="sr-only">Choose Fil To Upload</span>
+                    <span className="sr-only">Choose File To Upload</span>
                     <input type="file" accept={fileType} onChange={(e) => selectFile(e)} className=' w-full my-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100' />
                 </label>
                 <div className=' w-full md:w-3/6 aspect-square block mx-auto'>
@@ -224,7 +226,7 @@ const SignUpForm = ({type}) => {
                     </>}
                 </div>
                 <input type="checkbox" className='accent-red-400' name="agreement" id="" /><small className='text-red-500'>Agreed to <Link>Terms</Link> and <Link>Cond</Link></small>
-                <button type='submit' className='block py-2 bg-orange-500 w-full rounded-full hover:bg-orange-300'>{type=='create'?'Cretae Account':'Sign Up'}</button>
+                <button type='submit' className='block py-2 bg-orange-500 w-full rounded-full hover:bg-orange-300'>{(type=='create')?'Cretae Account':(type=='edit')?'Edit Account':'Sign Up'}</button>
             </form>
         </div>
         <div id='snackbarContainer'><SnackBar body={snacksBarBody} type={snacksBarType}/></div>
