@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Statistics from '../../src/Components/AdminComponents/Dashboard/Statistics';
 import NavBar from '../../src/Components/AdminComponents/NavBar/NavBar';
 
 function AdminDashboard() {
@@ -18,6 +19,7 @@ function AdminDashboard() {
         <>
             <div className=''>
                 <NavBar/>
+                <Statistics/>
                 {/* <div className="bg-blue-500 p-4">
                     <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
                     <div className="mt-4">
