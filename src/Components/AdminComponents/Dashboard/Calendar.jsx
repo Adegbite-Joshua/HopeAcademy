@@ -3,13 +3,15 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 
-const StaffCalendar = () => {
+const CalendarComp = () => {
     
   return (
     <>
-        <Calendar/>
+        <div className=' basis-4/6'>
+            <Calendar/>
+        </div>
     </>
   )
 }
 
-export default StaffCalendar
+export default CalendarComp

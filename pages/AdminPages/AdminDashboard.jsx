@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import EventAndCalendar from '../../src/Components/AdminComponents/Dashboard/EventAndCalendar';
+import Profile from '../../src/Components/AdminComponents/Dashboard/Profile';
 import Statistics from '../../src/Components/AdminComponents/Dashboard/Statistics';
 import NavBar from '../../src/Components/AdminComponents/NavBar/NavBar';
 
@@ -19,7 +21,15 @@ function AdminDashboard() {
         <>
             <div className=''>
                 <NavBar/>
-                <Statistics/>
+                <div className='grid grid-cols-1 md:grid-cols-2'>
+                    <div className=' order-3 md:order-1 col-start-6 md:col-start-4'>
+                        <Statistics/>
+                        <EventAndCalendar/>
+                    </div>
+                    <div className=' order-1 md:order-3 col-start-6 md:col-start-2'>
+                        <Profile/>
+                    </div>
+                </div>
                 {/* <div className="bg-blue-500 p-4">
                     <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
                     <div className="mt-4">
