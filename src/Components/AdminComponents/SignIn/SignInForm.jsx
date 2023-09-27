@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import OTPInput from 'react-otp-input';
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
+
 
 const SignInForm = () => {
+  const navigate = useNavigate();
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
 
@@ -19,18 +23,20 @@ const SignInForm = () => {
       password: Yup.string().required('Password is required'),
     }),
     onSubmit: (values) => {
-      if (!otpSent) {
-        // Simulate sending OTP (replace with your actual OTP sending logic)
-        // For this example, we're just displaying the OTP field when the form is submitted.
-        setOtpSent(true);
-      } else {
-        // Handle OTP verification logic here (compare with the OTP generated earlier)
-        // For this example, we're just logging the OTP.
-        console.log('OTP Verified:', otp);
-      }
+      signIn(values)
     },
   });
 
+
+  const signIn =(values)=>{
+    if (!otpSent) {
+        axios.post('', {values})
+        setOtpSent(true);
+      } else {
+        navigate('/admin/dashboard')
+        console.log('OTP Verified:', otp);
+      }
+  }
 
   const renderInput = (value, index) => {
     return (
@@ -57,13 +63,12 @@ const SignInForm = () => {
         </div>
         <form className="mt-8 space-y-6" onSubmit={formik.handleSubmit}>
           <div className="rounded-md shadow-sm -space-y-px">
-            {/* OTP Input (Conditional) */}
             {otpSent && (
               <div className="mb-4">
-                <label htmlFor="otp" className="text-gray-600">
-                  OTP
+                <label htmlFor="otp" className="text-gray-600 block">
+                  Enter OTP sent to your phone number
                 </label>
-                <OTPInput
+                {/* <OTPInput
                   id="otp"
                   name="otp"
                   numInputs={6}
@@ -71,12 +76,13 @@ const SignInForm = () => {
                   onChange={(otp) => setOtp(otp)}
                   isInputNum
                   renderInput={renderInput}
-                />
+                /> */}
+                <input type="number" className='w-full h-12 p-2' name="" id="" />
               </div>
             )} 
 
-            {/* Email Input */}
-            <div className="mb-4">
+            {!otpSent && (<>
+              <div className="mb-4">
               <label htmlFor="email" className="text-gray-600">
                 Email
               </label>
@@ -95,8 +101,7 @@ const SignInForm = () => {
               )}
             </div>
 
-            {/* Password Input */}
-            <div className="mb-4">
+            <div className="my-4">
               <label htmlFor="password" className="text-gray-600">
                 Password
               </label>
@@ -114,13 +119,14 @@ const SignInForm = () => {
                 <p className="mt-2 text-sm text-red-600">{formik.errors.password}</p>
               )}
             </div>
+            </>)}
 
-            <div className="mb-4">
+            <div className="my-4">
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="group relative w-full flex justify-center my-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
-                {!otpSent ? 'Get OTP' : 'Verify OTP'}
+                {!otpSent ? 'Sign In' : 'Verify OTP'}
               </button>
             </div>
           </div>
