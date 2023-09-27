@@ -25,6 +25,7 @@ import WebNotification from 'react-web-notifications';
 import AdminSignUp from '../pages/AdminPages/AdminSignUp';
 import AdminDashboard from '../pages/AdminPages/AdminDashboard';
 import AdminSignIn from '../pages/AdminPages/AdminSignIn';
+import NewAccount from './Components/AdminComponents/Accounts/NewAccount';
 
 
 
@@ -105,6 +106,10 @@ function App() {
             <Route path='signin' element={<AdminSignIn/>} />
             <Route path='signup' element={<AdminSignUp/>} />
             <Route path='dashboard' element={<AdminDashboard/>} />
+            <Route path='account/'>
+              <Route path='' element={<NewAccount/>} />
+              <Route path='new' element={<NewAccount/>} />
+            </Route>
           </Route>
         </Routes>
     </>
