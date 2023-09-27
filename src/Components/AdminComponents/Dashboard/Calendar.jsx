@@ -7,8 +7,8 @@ const CalendarComp = () => {
     
   return (
     <>
-        <div className=' basis-4/6'>
-            <Calendar/>
+        <div className=' order-3 md:order-none basis-full md:basis-4/6'>
+            <Calendar className='mx-auto'/>
         </div>
     </>
   )

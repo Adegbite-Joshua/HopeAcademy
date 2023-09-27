@@ -4,7 +4,7 @@ import Event from './Event'
 const UpcomingEvents = () => {
   return (
     <>
-        <div className=' basis-2/6 mx-auto'>
+        <div className=' order-1 md:order-none basis-full md:basis-2/6'>
             <h3 className='m-3'>Upcoming Event</h3>
             <div className='m-3'>
                 <Event/>

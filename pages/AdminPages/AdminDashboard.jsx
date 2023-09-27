@@ -21,12 +21,12 @@ function AdminDashboard() {
         <>
             <div className=''>
                 <NavBar/>
-                <div className='grid grid-cols-1 md:grid-cols-2'>
-                    <div className=' order-3 md:order-1 col-start-6 md:col-start-4'>
+                <div className=' grid grid-cols-1 md:flex md:pt-10'>
+                    <div className=' order-3 md:order-none basis-full md:basis-4/6'>
                         <Statistics/>
                         <EventAndCalendar/>
                     </div>
-                    <div className=' order-1 md:order-3 col-start-6 md:col-start-2'>
+                    <div className=' order-1 md:order-none basis-full md:basis-2/6'>
                         <Profile/>
                     </div>
                 </div>

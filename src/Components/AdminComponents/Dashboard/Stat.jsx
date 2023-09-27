@@ -1,12 +1,12 @@
 import React from 'react'
 
-const Stat = () => {
+const Stat = ({name, amount, icon}) => {
   return (
     <div className='flex gap-5 w-auto p-3 shadow-lg' >
-        <i className='fa fa-flag my-auto'></i>
+        <i className={`fa ${icon} my-auto`}></i>
         <div className='text-center my-auto'>
-            <h5>Classes</h5>
-            <p>560</p>
+            <h5>{name}</h5>
+            <p>{amount}</p>
         </div>
     </div>
   )
