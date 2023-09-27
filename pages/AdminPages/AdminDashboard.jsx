@@ -18,7 +18,7 @@ function AdminDashboard() {
         <>
             <div className=''>
                 <NavBar/>
-                <div className="bg-blue-500 p-4">
+                {/* <div className="bg-blue-500 p-4">
                     <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
                     <div className="mt-4">
                         <div className="bg-white p-4 rounded-lg shadow-md">
@@ -42,7 +42,7 @@ function AdminDashboard() {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </>
     );
