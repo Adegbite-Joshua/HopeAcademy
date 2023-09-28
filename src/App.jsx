@@ -30,6 +30,8 @@ import EditAccount from './Components/AdminComponents/Accounts/EditAccount';
 import StaffAccount from './Components/AdminComponents/Accounts/StaffAccount';
 import StudentAccount from './Components/AdminComponents/Accounts/StudentAccount';
 import NewCourse from './Components/AdminComponents/Courses/NewCourse';
+import AllCourses from './Components/AdminComponents/Courses/AllCourses';
+import AdminEntranceTestView from './Components/AdminComponents/EntranceTest/EntranceTest';
 
 
 
@@ -120,10 +122,9 @@ function App() {
             <Route path='course/'>
               <Route path='' element={<NewCourse/>} />
               <Route path='new' element={<NewCourse/>} />
-              {/* <Route path='edit' element={<EditAccount/>} />
-              <Route path='staff' element={<StaffAccount/>} />
-              <Route path='student' element={<StudentAccount/>} /> */}
+              <Route path='all' element={<AllCourses/>} />
             </Route>
+            <Route path='entrance_test' element={<AdminEntranceTestView/>} />
 
           </Route>
         </Routes>

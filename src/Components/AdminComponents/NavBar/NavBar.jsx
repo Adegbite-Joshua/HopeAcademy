@@ -26,17 +26,7 @@ const Navbar = () => {
               <Link to="#" className='block border-b-2 mb-3'>Students Account</Link>
             </div>
           </div>
-          <div className="relative group my-auto">
-            <span onClick={()=>showSubLink('classesSubLink')}>Classes</span>
-            <div id='classesSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
-              <Link to="#" className='block border-b-2 mb-3'>JSS 1</Link>
-              <Link to="#" className='block border-b-2 mb-3'>JSS 2</Link>
-              <Link to="#" className='block border-b-2 mb-3'>JSS 3</Link>
-              <Link to="#" className='block border-b-2 mb-3'>SSS 1</Link>
-              <Link to="#" className='block border-b-2 mb-3'>SSS 2</Link>
-              <Link to="#" className='block border-b-2 mb-3'>SSS 3</Link>
-            </div>
-          </div>
+          <Link to="#" className='block my-auto'>Inbox</Link>
           <div className="relative group my-auto">
             <span onClick={()=>showSubLink('coursesSubLink')}>Courses</span>
             <div id='coursesSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
@@ -44,7 +34,23 @@ const Navbar = () => {
               <Link to="#" className='block border-b-2 mb-3'>All Courses</Link>
             </div>
           </div>
+          <div className="relative group my-auto">
+            <span onClick={()=>showSubLink('paymentSubLink')}>Payments</span>
+            <div id='paymentSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
+              <Link to="#" className='block border-b-2 mb-3'>Set Staff's Salary</Link>
+              <Link to="#" className='block border-b-2 mb-3'>Salary Payment</Link>
+              <Link to="#" className='block border-b-2 mb-3'>Set School's Fee</Link>
+            </div>
+          </div>
+          <div className="relative group my-auto">
+            <span onClick={()=>showSubLink('othersSubLink')}>Others</span>
+            <div id='othersSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
+              <Link to="#" className='block border-b-2 mb-3'>Entrance Test</Link>
+              <Link to="#" className='block border-b-2 mb-3'>New Term</Link>
+            </div>
+          </div>
           <Link to="#" className='block my-auto'>Notice and Events</Link>
+          <Link to="#" className='block my-auto'>Log Out</Link>
         </div>
       </div>
     </nav>

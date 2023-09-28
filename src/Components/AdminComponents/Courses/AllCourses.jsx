@@ -1,32 +1,37 @@
 import React from 'react'
 import Navbar from '../NavBar/NavBar'
+import Course from './Course'
 
 const AllCourses = () => {
   return (
     <>
         <Navbar/>
-        <div className=' grid grid-cols-1 md:flex'>
-            <div className=' order-3 md:order-none basis-full md:basis-4/6'>
-                <table>
-                    <thead>
+        <div className=' grid grid-cols-1 md:flex pt-10 px-2'>
+            <div className=' order-3 md:order-none basis-full md:basis-4/6 overflow-x-auto'>
+                <table className='w-full'>
+                    <thead className='w-full'>
                         <tr>
-                            <td>Subject Image</td>
-                            <td>Subject Name</td>
-                            <td>Subject Teacher</td>
-                            <td>Teacher Email</td>
-                            <td>Actions</td>
+                            <td className='border-2 py-1 px-2'>Subject Image</td>
+                            <td className='border-2 py-1 px-2'>Subject Name</td>
+                            <td className='border-2 py-1 px-2'>Subject Teacher</td>
+                            <td className='border-2 py-1 px-2'>Teacher Email</td>
+                            <td className='border-2 py-1 px-2'>Actions</td>
                         </tr>
                     </thead>
-                    <tbody>
-                        
+                    <tbody className='w-full'>
+                        <Course subjectImgae='/vite.svg' subjectName='Mathematics' teacherName='Ade kola' email='ade@gmail.com'/>
+                        <Course subjectImgae='/vite.svg' subjectName='Mathematics' teacherName='Ade kola' email='ade@gmail.com'/>
+                        <Course subjectImgae='/vite.svg' subjectName='Mathematics' teacherName='Ade kola' email='ade@gmail.com'/>
+                        <Course subjectImgae='/vite.svg' subjectName='Mathematics' teacherName='Ade kola' email='ade@gmail.com'/>
+                        <Course subjectImgae='/vite.svg' subjectName='Mathematics' teacherName='Ade kola' email='ade@gmail.com'/>
                     </tbody>
                 </table>
             </div>
-            <div className=' order-1 md:order-none basis-full md:basis-2/6'>
-                <form action="">
+            <div className=' order-1 md:order-none basis-full md:basis-2/6 p-5'>
+                <form action="w-full">
                     <div>
-                        <label htmlFor="" className='w-full text-xl'>Select Class</label>
-                        <select name="" id="" className=' text-black focus:border-blue-600 border-2 border-blue-300 basis-5/6 h-12'>
+                        <label htmlFor="" className='w-full block text-xl'>Select Class</label>
+                        <select name="" id="" className='block w-full text-black focus:border-blue-600 border-2 border-blue-300 h-12'>
                             <option value="">JSS 1</option>
                             <option value="">JSS 2</option>
                             <option value="">JSS 3</option>
