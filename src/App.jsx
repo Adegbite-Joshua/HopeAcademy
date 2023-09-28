@@ -32,6 +32,7 @@ import StudentAccount from './Components/AdminComponents/Accounts/StudentAccount
 import NewCourse from './Components/AdminComponents/Courses/NewCourse';
 import AllCourses from './Components/AdminComponents/Courses/AllCourses';
 import AdminEntranceTestView from './Components/AdminComponents/EntranceTest/EntranceTest';
+import NewAcademicTerm from './Components/AdminComponents/NewAcademicTerm/NewAcademicTerm';
 
 
 
@@ -125,6 +126,7 @@ function App() {
               <Route path='all' element={<AllCourses/>} />
             </Route>
             <Route path='entrance_test' element={<AdminEntranceTestView/>} />
+            <Route path='new_term' element={<NewAcademicTerm/>} />
 
           </Route>
         </Routes>
