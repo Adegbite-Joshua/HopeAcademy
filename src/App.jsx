@@ -28,6 +28,8 @@ import AdminSignIn from '../pages/AdminPages/AdminSignIn';
 import NewAccount from './Components/AdminComponents/Accounts/NewAccount';
 import EditAccount from './Components/AdminComponents/Accounts/EditAccount';
 import StaffAccount from './Components/AdminComponents/Accounts/StaffAccount';
+import StudentAccount from './Components/AdminComponents/Accounts/StudentAccount';
+import NewCourse from './Components/AdminComponents/Courses/NewCourse';
 
 
 
@@ -113,7 +115,16 @@ function App() {
               <Route path='new' element={<NewAccount/>} />
               <Route path='edit' element={<EditAccount/>} />
               <Route path='staff' element={<StaffAccount/>} />
+              <Route path='student' element={<StudentAccount/>} />
             </Route>
+            <Route path='course/'>
+              <Route path='' element={<NewCourse/>} />
+              <Route path='new' element={<NewCourse/>} />
+              {/* <Route path='edit' element={<EditAccount/>} />
+              <Route path='staff' element={<StaffAccount/>} />
+              <Route path='student' element={<StudentAccount/>} /> */}
+            </Route>
+
           </Route>
         </Routes>
     </>

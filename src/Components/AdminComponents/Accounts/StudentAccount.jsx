@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import SignUpForm from '../../StaffSignUp/SignUpForm'
 import Navbar from '../NavBar/NavBar'
 import Account from './Account'
 
-const StaffAccount = () => {
+const StudentAccount = () => {
     const [accountType, setaccountType] = useState('student');
-    const [staffs, setstaffs] = useState('')
+    const [student, setstudent] = useState('')
     
-    const searchStaff =(params)=>{
+    const searchStudent =(params)=>{
         if (params.trim().length>0) {
             const filtered = users.filter(user => user?.firstName?.includes(params) || user?.lastName?.includes(params) || user?.subject?.includes(params) || user?.email?.includes(params));
-            setstaffs(filtered);
+            setstudent(filtered);
           } else {
-            setstaffs(users)
+            setstudent(users)
           }
     }
 
@@ -48,7 +47,7 @@ const StaffAccount = () => {
         ]
 
     useEffect(() => {
-      setstaffs(users)
+      setstudent(users)
     }, [])
     
   return (
@@ -65,12 +64,12 @@ const StaffAccount = () => {
                     <option value="">SSS 2</option>
                     <option value="">SSS 3  </option>
                 </select>
-                <p className='my-1'>Search for staff by name, email, course</p>
-                <input type="search" onKeyUp={(e)=>searchStaff(e.target.value)} className=' w-32 h-12 border-2 border-blue-400 rounded-lg focus:outline-0 p-2' />
+                <p className='my-1'>Search for student by name, email</p>
+                <input type="search" onKeyUp={(e)=>searchStudent(e.target.value)} className=' w-32 h-12 border-2 border-blue-400 rounded-lg focus:outline-0 p-2' />
             </div>
             <div className='w-full overflow-y-auto'>
                 <table className='w-full overflow-y-auto'>
-                    <caption className='my-2'>Staff Accounts</caption>
+                    <caption className='my-2'>Student Accounts</caption>
                     <thead>
                         <tr>
                             <td>Name</td>
@@ -91,4 +90,4 @@ const StaffAccount = () => {
   )
 }
 
-export default StaffAccount
+export default StudentAccount
