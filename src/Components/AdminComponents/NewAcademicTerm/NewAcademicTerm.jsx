@@ -24,11 +24,11 @@ const NewAcademicTerm = () => {
                     <input type="number" name="" id="" className='basis-4/6 border-2 border-blue-400 p-2 ' placeholder='Amount' />
                 </div>
                 <div className='grid grid-cols-1 md:flex my-1 bg-blue-100 p-2'>
-                    <label htmlFor="schoolFeeAmount" className='basis-2/6'>Input Your Staff Authorization Code</label>
+                    <label htmlFor="schoolFeeAmount" className='basis-2/6'>Input Your Admin Authorization Code</label>
                     <input type="text" name="" id="" className='basis-4/6 border-2 border-blue-400 p-2 ' placeholder='Authorization Code' />
                 </div>
                 <div className='my-1'>
-                    <input type="checkbox" name="" id="" />
+                    <input type="checkbox" name="" id="" className=' accent-blue-500' />
                     <label htmlFor="">Are you sure you this term has ended, this will automatically generate your students information </label>
                 </div>             
                 <div className='flex'><button className='py-2 px-3 bg-blue-500 rounded-lg ms-auto'>Create Academic Term</button></div>

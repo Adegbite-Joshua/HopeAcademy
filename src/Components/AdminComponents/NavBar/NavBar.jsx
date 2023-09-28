@@ -34,19 +34,20 @@ const Navbar = () => {
               <Link to="#" className='block border-b-2 mb-3'>All Courses</Link>
             </div>
           </div>
-          <div className="relative group my-auto">
+          {/* <div className="relative group my-auto">
             <span onClick={()=>showSubLink('paymentSubLink')}>Payments</span>
             <div id='paymentSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
               <Link to="#" className='block border-b-2 mb-3'>Set Staff's Salary</Link>
               <Link to="#" className='block border-b-2 mb-3'>Salary Payment</Link>
               <Link to="#" className='block border-b-2 mb-3'>Set School's Fee</Link>
             </div>
-          </div>
+          </div> */}
           <div className="relative group my-auto">
             <span onClick={()=>showSubLink('othersSubLink')}>Others</span>
             <div id='othersSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
               <Link to="#" className='block border-b-2 mb-3'>Entrance Test</Link>
               <Link to="#" className='block border-b-2 mb-3'>New Term</Link>
+              <Link to="#" className='block border-b-2 mb-3'>Salary Payment</Link>
             </div>
           </div>
           <Link to="#" className='block my-auto'>Notice and Events</Link>
