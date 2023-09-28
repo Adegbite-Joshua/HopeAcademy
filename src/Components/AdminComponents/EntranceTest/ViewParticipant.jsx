@@ -3,7 +3,7 @@ import Participant from './Participant'
 
 const ViewParticipant = () => {
   return (
-    <div>
+    <div className='w-full overflow-x-auto'>
         <form action="w-full">
             <label htmlFor="" className='w-full'>Select Participants Year</label>
             <select name="" id="" className='w-full border-2 border-blue-400 p-2 focus:border-blue-400 focus:outline-blue-400'>
@@ -13,7 +13,7 @@ const ViewParticipant = () => {
                 <option value="">2020</option>
             </select>
         </form>
-        <table className='w-full'>
+        <table className='w-full overflow-y-auto'>
             <caption>2023 Participants</caption>
             <thead className='w-full'>
                 <tr className='w-full'>

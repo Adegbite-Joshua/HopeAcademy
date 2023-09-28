@@ -4,7 +4,7 @@ import Question from './Question'
 const SetQuestions = () => {
   return (
     <div>
-        <Question type='add'/>
+        <Question formType='add'/>
         {/* <Question/>
         <Question/>
         <Question/> */}
