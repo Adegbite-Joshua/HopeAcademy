@@ -22,7 +22,7 @@ function AdminDashboard() {
             <div className=''>
                 <NavBar/>
                 <div className=' grid grid-cols-1 md:flex md:pt-10'>
-                    <div className=' order-3 md:order-none basis-full md:basis-4/6'>
+                    <div className='border-0 md:border-b-2 order-3 md:order-none basis-full md:basis-4/6'>
                         <Statistics/>
                         <EventAndCalendar/>
                     </div>

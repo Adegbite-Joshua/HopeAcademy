@@ -30,10 +30,11 @@ const SignInForm = () => {
 
   const signIn =(values)=>{
     if (!otpSent) {
-        let otp = axios.post('http://localhost:7777/admin/send_token', {email: values.email})
+        let otp = axios.post('http://localhost:7777/admin/send_otp', {email: values.email})
+        setOtp(otp.data.otp)
         setOtpSent(true);
       } else {
-        navigate('/admin/dashboard')
+        let signUp = axios.post('http://localhost:7777/admin/sign_in', {...values, })
         console.log('OTP Verified:', otp);
       }
   }

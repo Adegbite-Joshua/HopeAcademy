@@ -30,6 +30,7 @@ const SignUpForm = () => {
       address: Yup.string().required('Address is required'),
       phoneNumber: Yup.string().required('Phone Number is required'),
       dateOfBirth: Yup.date().required('Date of Birth is required'),
+      adminToken: Yup.string().required('Existing Admin Token Is Required To Sign Up'),
       // Add validation for other fields here
     }),
     onSubmit: async(values) => {
@@ -113,8 +114,13 @@ const SignUpForm = () => {
             </div>
             <div className="mb-4">
               <label htmlFor="dateOfBirth" className="text-gray-600">  Date Of Birth</label>
-              <input id="dateOfBirth" name="dateOfBirth" type='' autoComplete="dateOfBirth" value={formik.values.dateOfBirth} onChange={formik.handleChange} onBlur={formik.handleBlur} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
+              <input id="dateOfBirth" name="dateOfBirth" type='date' autoComplete="dateOfBirth" value={formik.values.dateOfBirth} onChange={formik.handleChange} onBlur={formik.handleBlur} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
               {formik.touched.dateOfBirth && formik.errors.dateOfBirth ? (<p className="mt-2 text-sm text-red-600">{formik.errors.dateOfBirth}</p>) : null}
+            </div>
+            <div className="mb-4">
+              <label htmlFor="adminToken" className="text-gray-600">  Existing Admin Token</label>
+              <input id="adminToken" name="adminToken" type="text" autoComplete="adminToken" value={formik.values.adminToken} onChange={formik.handleChange} onBlur={formik.handleBlur} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
+              {formik.touched.adminToken && formik.errors.adminToken ? (<p className="mt-2 text-sm text-red-600">{formik.errors.adminToken}</p>) : null}
             </div>
             
             <div className="mb-4">
