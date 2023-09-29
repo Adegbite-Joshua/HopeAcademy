@@ -30,7 +30,7 @@ const SignInForm = () => {
 
   const signIn =(values)=>{
     if (!otpSent) {
-        axios.post('', {values})
+        let otp = axios.post('http://localhost:7777/admin/send_token', {email: values.email})
         setOtpSent(true);
       } else {
         navigate('/admin/dashboard')

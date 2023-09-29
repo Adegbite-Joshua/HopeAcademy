@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios'
 
 const SignUpForm = () => {
+
+  const [states, setstates] = useState([]);
+  const [state, setstate] = useState('');
+  const [LGAs, setLGAs] = useState([]);
+  const [LGA, setLGA] = useState('');
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -10,8 +16,6 @@ const SignUpForm = () => {
       email: '',
       password: '',
       address: '',
-      localGovernment: '',
-      state: '',
       phoneNumber: '',
       dateOfBirth: '',
       // Add more fields here as needed
@@ -24,17 +28,31 @@ const SignUpForm = () => {
         .min(6, 'Password must be at least 6 characters')
         .required('Password is required'),
       address: Yup.string().required('Address is required'),
-      localGovernment: Yup.string().required('Local Government is required'),
-      state: Yup.string().required('State is required'),
       phoneNumber: Yup.string().required('Phone Number is required'),
       dateOfBirth: Yup.date().required('Date of Birth is required'),
       // Add validation for other fields here
     }),
-    onSubmit: (values) => {
-      // Handle form submission here
-      console.log(values);
+    onSubmit: async(values) => {
+      let signUp = await axios.post('http://localhost:7777/admin/sign_up', {values})
+      
     },
   });
+
+  useEffect(()=>{
+    fetchStates()
+    fetchLGA()
+  },[])
+
+
+  const fetchStates = async()=>{
+    let states = await axios.get('https://nga-states-lga.onrender.com/fetch')
+    setstates(states.data)
+  }
+
+  const fetchLGA = async(value='Oyo')=>{
+    const LGAS = await axios.get(`https://nga-states-lga.onrender.com/?state=${value}`)
+    setLGAs(LGAS.data)
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -71,13 +89,22 @@ const SignUpForm = () => {
             </div>
             <div className="mb-4">
               <label htmlFor="state" className="text-gray-600">  State</label>
-              <input id="state" name="state" type="text" autoComplete="state" value={formik.values.state} onChange={formik.handleChange} onBlur={formik.handleBlur} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
-              {formik.touched.state && formik.errors.state ? (<p className="mt-2 text-sm text-red-600">{formik.errors.state}</p>) : null}
+              <select id="state" name="state" onChange={(e)=>{
+                fetchLGA(e.target.value)
+                setstate(e.target.value)
+              }} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                {states?states.map((state)=>(
+                    <option value={state}>{state}</option>
+                )):<option value={null}>Fetching All States</option>}
+              </select>
             </div>
             <div className="mb-4">
               <label htmlFor="localGovernment" className="text-gray-600">  Local Government</label>
-              <input id="localGovernment" name="localGovernment" type="text" autoComplete="localGovernment" value={formik.values.localGovernment} onChange={formik.handleChange} onBlur={formik.handleBlur} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
-              {formik.touched.localGovernment && formik.errors.localGovernment ? (<p className="mt-2 text-sm text-red-600">{formik.errors.localGovernment}</p>) : null}
+              <select id="localGovernment" name="localGovernment" onChange={(e)=>setLGA(e.target.value)} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                {LGAs?LGAs.map((LGA)=>(
+                    <option value={LGA}>{LGA}</option>
+                )):<option value={null}>Fetching All Local Governments</option>}
+              </select>
             </div>
             <div className="mb-4">
               <label htmlFor="phoneNumber" className="text-gray-600">  Phone Number</label>
@@ -89,8 +116,6 @@ const SignUpForm = () => {
               <input id="dateOfBirth" name="dateOfBirth" type='' autoComplete="dateOfBirth" value={formik.values.dateOfBirth} onChange={formik.handleChange} onBlur={formik.handleBlur} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
               {formik.touched.dateOfBirth && formik.errors.dateOfBirth ? (<p className="mt-2 text-sm text-red-600">{formik.errors.dateOfBirth}</p>) : null}
             </div>
-
-            {/* Repeat similar code for other form fields */}
             
             <div className="mb-4">
               <button
