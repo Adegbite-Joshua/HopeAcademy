@@ -47,7 +47,7 @@ const SignUpForm = () => {
     onSubmit: (values) => {
       axios.post('http://localhost:7777/admin/sign_up', values)
       .then((res)=>{
-        console.log(res.response)
+        console.log(res)
         if (res.status==200){
           toast.success('Signup successful!', {
             position: toast.POSITION.TOP_RIGHT,
@@ -69,6 +69,20 @@ const SignUpForm = () => {
         console.log(error)
         if (error.response.status==408) {
           toast.error('Email Already Exist', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            style: {
+              background: '#ff5252', 
+              color: '#ffffff', 
+              fontSize: '16px',
+            },
+          });
+        } else if (error.response.status==408) {
+          toast.error('Invalid Admin Sign Up Token', {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 5000,
             hideProgressBar: false,

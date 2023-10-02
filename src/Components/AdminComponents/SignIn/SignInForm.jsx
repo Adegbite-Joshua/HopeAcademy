@@ -4,12 +4,16 @@ import * as Yup from 'yup';
 import OTPInput from 'react-otp-input';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 
 
 const SignInForm = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState('');
+  const [otpInput, setOtpInput] = useState('');
   const [otpSent, setOtpSent] = useState(false);
+
 
   const formik = useFormik({
     initialValues: {
@@ -25,17 +29,84 @@ const SignInForm = () => {
     onSubmit: (values) => {
       signIn(values)
     },
+    onError: (error) => {
+      console.log(error)
+    }
   });
 
 
-  const signIn =(values)=>{
+  const signIn = async(values)=>{
     if (!otpSent) {
-        let otp = axios.post('http://localhost:7777/admin/send_otp', {email: values.email})
-        setOtp(otp.data.otp)
-        setOtpSent(true);
-      } else {
-        let signUp = axios.post('http://localhost:7777/admin/sign_in', {...values, })
-        console.log('OTP Verified:', otp);
+        let otp = await axios.post('http://localhost:7777/admin/send_otp', {email: values.email})
+        if (otp.status==200) {
+          setOtp(otp.data.otp)
+          setOtpSent(true);
+        } else {
+          toast.error('Invalid Login Details', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            style: {
+              background: '#ff5252', 
+              color: '#ffffff', 
+              fontSize: '16px',
+            },
+          });
+          console.log(otp)
+        }
+    } else {
+        if(otp==otpInput) {
+          let signUp = await axios.post('http://localhost:7777/admin/sign_in', {...values, })
+          if (signUp.status==200) {
+            localStorage.setItem('adminToken', signUp.data.token)
+            toast.success('Signin successful!', {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              style: {
+                background: '#4caf50', // Background color of the toast
+                color: '#ffffff', // Text color of the toast
+                fontSize: '16px', // Font size
+              },
+            });
+            navigate('/admin/dashboard')
+          } else {
+            toast.error('Incorrect Password', {
+              position: toast.POSITION.TOP_RIGHT,
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              style: {
+                background: '#ff5252', 
+                color: '#ffffff', 
+                fontSize: '16px',
+              },
+            });
+            console.log(signUp)
+          }
+        } else {
+          toast.error('Incorrect OTP', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            style: {
+              background: '#ff5252', 
+              color: '#ffffff', 
+              fontSize: '16px',
+            },
+          });
+        }
       }
   }
 
@@ -78,7 +149,7 @@ const SignInForm = () => {
                   isInputNum
                   renderInput={renderInput}
                 /> */}
-                <input type="number" className='w-full h-12 p-2' name="" id="" />
+                <input type="number" onChange={(e)=>setOtpInput(e.target.value)} className='w-full h-12 p-2 border-2 rounded-lg border-black' name="" id="" />
               </div>
             )} 
 
