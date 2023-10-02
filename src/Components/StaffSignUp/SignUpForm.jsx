@@ -214,7 +214,7 @@ const SignUpForm = ({type}) => {
                 <small className='text-red-500'>{formik.touched.address && formik.errors.address}</small><br />
                 <label htmlFor="" className='w-full'>
                     <span className="sr-only">Choose File To Upload</span>
-                    <input type="file" accept={fileType} onChange={(e) => selectFile(e)} className=' w-full my-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100' />
+                    <input type="file" accept={fileType} onChange={(e) => selectFile(e)} className=' w-full my-1 block text-sm text-slate-500 file:mr-4 file:py-2 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100' />
                 </label>
                 <div className=' w-full md:w-3/6 aspect-square block mx-auto'>
                     {imageBase64 && fileType ? <>

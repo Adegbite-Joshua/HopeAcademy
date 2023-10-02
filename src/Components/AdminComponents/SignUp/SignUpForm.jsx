@@ -2,13 +2,17 @@ import React, {useEffect, useState} from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios'
+import FileViewer from '../../../FileViewer';
+import {useNavigate} from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 
 const SignUpForm = () => {
-
+  const navigate = useNavigate();
+  const [fileType, setfileType] = useState('.jpeg, .jpg, .gif, .tif, .psd')
+  const [imageBase64, setfileBase64] = useState('')
   const [states, setstates] = useState([]);
-  const [state, setstate] = useState('');
   const [LGAs, setLGAs] = useState([]);
-  const [LGA, setLGA] = useState('');
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -18,6 +22,10 @@ const SignUpForm = () => {
       address: '',
       phoneNumber: '',
       dateOfBirth: '',
+      state: '',
+      localGovernment: '',
+      imageBase64: '',
+      adminToken: '',
       // Add more fields here as needed
     },
     validationSchema: Yup.object({
@@ -31,12 +39,69 @@ const SignUpForm = () => {
       phoneNumber: Yup.string().required('Phone Number is required'),
       dateOfBirth: Yup.date().required('Date of Birth is required'),
       adminToken: Yup.string().required('Existing Admin Token Is Required To Sign Up'),
+      state: Yup.string().required('Please select state'),
+      localGovernment: Yup.string().required('Please select local government'),
+      imageBase64: Yup.string().required('Please select an image'),
       // Add validation for other fields here
     }),
-    onSubmit: async(values) => {
-      let signUp = await axios.post('http://localhost:7777/admin/sign_up', {values})
+    onSubmit: (values) => {
+      axios.post('http://localhost:7777/admin/sign_up', values)
+      .then((res)=>{
+        console.log(res.response)
+        if (res.status==200){
+          toast.success('Signup successful!', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            style: {
+              background: '#4caf50', // Background color of the toast
+              color: '#ffffff', // Text color of the toast
+              fontSize: '16px', // Font size
+            },
+          });
+          setTimeout(() => {navigate('/admin/signin')}, 2000);
+        } 
+      })
+      .catch((error)=>{
+        console.log(error)
+        if (error.response.status==408) {
+          toast.error('Email Already Exist', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            style: {
+              background: '#ff5252', 
+              color: '#ffffff', 
+              fontSize: '16px',
+            },
+          });
+        } else {
+          toast.error('An Error Occurred, Please Try Again', {
+            position: toast.POSITION.TOP_RIGHT,
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            style: {
+              background: '#ff5252', // Background color of the toast
+              color: '#ffffff', // Text color of the toast
+              fontSize: '16px', // Font size
+            },
+          })
+        }
+      })
       
     },
+    onError: (error) => {
+      console.log(error)
+    }
   });
 
   useEffect(()=>{
@@ -44,6 +109,15 @@ const SignUpForm = () => {
     fetchLGA()
   },[])
 
+  const selectFile =(e)=>{
+    let selected = e.target.files[0]
+    let reader = new FileReader();
+    reader.readAsDataURL(selected)
+    reader.onload =()=>{
+      setfileBase64(reader.result);
+      formik.setFieldValue('imageBase64', reader.result);
+    }
+  }
 
   const fetchStates = async()=>{
     let states = await axios.get('https://nga-states-lga.onrender.com/fetch')
@@ -79,6 +153,16 @@ const SignUpForm = () => {
               {formik.touched.email && formik.errors.email ? (<p className="mt-2 text-sm text-red-600">{formik.errors.email}</p>) : null}
             </div>
             <div className="mb-4">
+              <label htmlFor="phoneNumber" className="text-gray-600">  Phone Number</label>
+              <input id="phoneNumber" name="phoneNumber" type="tel" autoComplete="phoneNumber" value={formik.values.phoneNumber} onChange={formik.handleChange} onBlur={formik.handleBlur} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
+              {formik.touched.phoneNumber && formik.errors.phoneNumber ? (<p className="mt-2 text-sm text-red-600">{formik.errors.phoneNumber}</p>) : null}
+            </div>
+            <div className="mb-4">
+              <label htmlFor="dateOfBirth" className="text-gray-600">  Date Of Birth</label>
+              <input id="dateOfBirth" name="dateOfBirth" type='date' autoComplete="dateOfBirth" value={formik.values.dateOfBirth} onChange={formik.handleChange} onBlur={formik.handleBlur} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
+              {formik.touched.dateOfBirth && formik.errors.dateOfBirth ? (<p className="mt-2 text-sm text-red-600">{formik.errors.dateOfBirth}</p>) : null}
+            </div>
+            <div className="mb-4">
               <label htmlFor="password" className="text-gray-600"> Password</label>
               <input id="password" name="password" type="password" autoComplete="password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
               {formik.touched.password && formik.errors.password ? (<p className="mt-2 text-sm text-red-600">{formik.errors.password}</p>) : null}
@@ -91,38 +175,46 @@ const SignUpForm = () => {
             <div className="mb-4">
               <label htmlFor="state" className="text-gray-600">  State</label>
               <select id="state" name="state" onChange={(e)=>{
-                fetchLGA(e.target.value)
-                setstate(e.target.value)
+                fetchLGA(e.target.value);
+                formik.handleChange(e);
               }} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
                 {states?states.map((state)=>(
                     <option value={state}>{state}</option>
-                )):<option value={null}>Fetching All States</option>}
+                )):(<option value={null}>Fetching All States</option>)}
               </select>
+              {formik.touched.state && formik.errors.state ? (<p className="mt-2 text-sm text-red-600">{formik.errors.state}</p>) : null}
             </div>
             <div className="mb-4">
               <label htmlFor="localGovernment" className="text-gray-600">  Local Government</label>
-              <select id="localGovernment" name="localGovernment" onChange={(e)=>setLGA(e.target.value)} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+              <select id="localGovernment" name="localGovernment" onChange={formik.handleChange} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
                 {LGAs?LGAs.map((LGA)=>(
                     <option value={LGA}>{LGA}</option>
-                )):<option value={null}>Fetching All Local Governments</option>}
+                )):(<option value={null}>Fetching All Local Government</option>)}
               </select>
-            </div>
-            <div className="mb-4">
-              <label htmlFor="phoneNumber" className="text-gray-600">  Phone Number</label>
-              <input id="phoneNumber" name="phoneNumber" type="tel" autoComplete="phoneNumber" value={formik.values.phoneNumber} onChange={formik.handleChange} onBlur={formik.handleBlur} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
-              {formik.touched.phoneNumber && formik.errors.phoneNumber ? (<p className="mt-2 text-sm text-red-600">{formik.errors.phoneNumber}</p>) : null}
-            </div>
-            <div className="mb-4">
-              <label htmlFor="dateOfBirth" className="text-gray-600">  Date Of Birth</label>
-              <input id="dateOfBirth" name="dateOfBirth" type='date' autoComplete="dateOfBirth" value={formik.values.dateOfBirth} onChange={formik.handleChange} onBlur={formik.handleBlur} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
-              {formik.touched.dateOfBirth && formik.errors.dateOfBirth ? (<p className="mt-2 text-sm text-red-600">{formik.errors.dateOfBirth}</p>) : null}
-            </div>
+              {formik.touched.localGovernment && formik.errors.localGovernment ? (<p className="mt-2 text-sm text-red-600">{formik.errors.localGovernment}</p>) : null}
+            </div>        
             <div className="mb-4">
               <label htmlFor="adminToken" className="text-gray-600">  Existing Admin Token</label>
               <input id="adminToken" name="adminToken" type="text" autoComplete="adminToken" value={formik.values.adminToken} onChange={formik.handleChange} onBlur={formik.handleBlur} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
               {formik.touched.adminToken && formik.errors.adminToken ? (<p className="mt-2 text-sm text-red-600">{formik.errors.adminToken}</p>) : null}
             </div>
+            <div className="mb-4">
+            <label htmlFor="" className='w-full'>
+              <span className="sr-only">Choose File To Upload</span>
+              <input type="file" accept={fileType} onChange={(e) => selectFile(e)} className=' w-full my-1 block text-sm text-slate-500 file:mr-4 file:py-2 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100' />
+            </label>
+              {formik.touched.imageBase64 && formik.errors.imageBase64 ? (<p className="mt-2 text-sm text-red-600">{formik.errors.imageBase64}</p>) : null}
+            </div>
             
+            <div className=' w-full md:w-3/6 aspect-square block mx-auto'>
+                {imageBase64 && fileType ? <>
+                    <FileViewer fileLink={imageBase64} fileType={fileType} />
+                </> : <>
+                    <div className=' bg-black flex w-full h-full items-center justify-center'>
+                        <p className=' text-white text-center'>The Choosed File Will Appear Here</p>
+                    </div>
+                </>}
+            </div>
             <div className="mb-4">
               <button
                 type="submit"

@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react'
 import './style.scss'
 import './../node_modules/font-awesome/css/font-awesome.css'
-// import '../node_modules/bootstrap/dist/css/bootstrap.css'
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route } from "react-router-dom";
 import LandingPage from './Components/LandingPages/LandingPage';
 import StaffLogin from './Components/StaffLogins/StaffLogin';
@@ -129,9 +129,9 @@ function App() {
             <Route path='entrance_test' element={<AdminEntranceTestView/>} />
             <Route path='new_term' element={<NewAcademicTerm/>} />
             <Route path='salary_payment' element={<SalaryPayment/>} />
-
           </Route>
         </Routes>
+        <ToastContainer style={{zIndex: 99999999999999999999}} /> 
     </>
   )
 }
