@@ -4,16 +4,18 @@ import Profile from '../../src/Components/AdminComponents/Dashboard/Profile';
 import Statistics from '../../src/Components/AdminComponents/Dashboard/Statistics';
 import NavBar from '../../src/Components/AdminComponents/NavBar/NavBar';
 import FetchAdminInfo from '../../src/CustomHooks/AdminHooks/FetchAdminInfo';
+import FetchAllStudentsAndStaffs from '../../src/CustomHooks/AdminHooks/FetchAllStudentsAndStaffs';
 
 function AdminDashboard() {
     const [studentCount, setStudentCount] = useState(0);
     const [staffCount, setStaffCount] = useState(0);
     const [adminInfo, fetching] = FetchAdminInfo();
+    const [allStudents, allStaffs] = FetchAllStudentsAndStaffs();
 
     useEffect(() => {
         setTimeout(() => {
-            setStudentCount(150); // Set the number of students
-            setStaffCount(25);    // Set the number of staff
+            setStudentCount(150); 
+            setStaffCount(25);    
         }, 1000);
     }, []);
 

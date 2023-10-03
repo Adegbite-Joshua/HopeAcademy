@@ -19,7 +19,7 @@ const FetchAdminInfo = () => {
           const endpoint = 'http://localhost:7777/admin/dashboard';
           const token = localStorage.adminToken;
           const res = await axios.post(endpoint, { token });
-
+          
           if (res.status === 200) {
             dispatch(setAdminInfo(res.data));
             localadminInfo = res.data;
