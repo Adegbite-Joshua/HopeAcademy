@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchStaff, setFetching } from '../../redux/adminInformation';
+import { setAdminInfo, setFetchingState } from '../../redux/adminInformation';
 import axios from 'axios';
 
-const fetchadminInfo = () => {
+const FetchAdminInfo = () => {
   const adminInfo = useSelector((state) => state.adminInformation.adminInformation);
   const fetching = useSelector((state) => state.adminInformation.staffFetchingState);
   const socket = useSelector((state) => state.socketIO.socket);
@@ -17,13 +17,13 @@ const fetchadminInfo = () => {
       try {
         if (Object.keys(adminInfo).length === 0 && adminInfo.constructor === Object) {
           const endpoint = 'http://localhost:7777/admin/dashboard';
-          const token = localStorage.token;
+          const token = localStorage.adminToken;
           const res = await axios.post(endpoint, { token });
 
           if (res.status === 200) {
-            dispatch(fetchStaff(res.data));
+            dispatch(setAdminInfo(res.data));
             localadminInfo = res.data;
-            dispatch(setFetching(false));
+            dispatch(setFetchingState(false));
             socket.emit('connectSocketId', res.data._id);
           } else if (res.status !== 200) {
             
@@ -57,5 +57,5 @@ const fetchadminInfo = () => {
   return [adminInfo, fetching];
 };
 
-export default fetchadminInfo;
+export default FetchAdminInfo;
 

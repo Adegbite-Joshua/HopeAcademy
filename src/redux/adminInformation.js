@@ -3,13 +3,21 @@ import {createSlice, current} from '@reduxjs/toolkit';
 export const adminInformation = createSlice({
     name: 'admin',
     initialState: {
-
+        adminInformation: {},
+        dataFetchingState: true,
     },
-    reducer: {
-
+    reducers: {
+        setAdminInfo: (state, action)=>{
+            Object.assign(state.adminInformation = action.payload);
+            console.log(current(state)); 
+        },
+        setFetchingState: (state, action)=>{
+            Object.assign(state.dataFetchingState = action.payload);
+            console.log(current(state));  
+        }
     }
 }) 
 
-export const { } = adminInformation.actions
+export const {setAdminInfo, setFetchingState } = adminInformation.actions
 
 export default adminInformation.reducer

@@ -3,14 +3,14 @@ import EventAndCalendar from '../../src/Components/AdminComponents/Dashboard/Eve
 import Profile from '../../src/Components/AdminComponents/Dashboard/Profile';
 import Statistics from '../../src/Components/AdminComponents/Dashboard/Statistics';
 import NavBar from '../../src/Components/AdminComponents/NavBar/NavBar';
+import FetchAdminInfo from '../../src/CustomHooks/AdminHooks/FetchAdminInfo';
 
 function AdminDashboard() {
     const [studentCount, setStudentCount] = useState(0);
     const [staffCount, setStaffCount] = useState(0);
+    const [adminInfo, fetching] = FetchAdminInfo();
 
     useEffect(() => {
-        // Simulate fetching data from an API
-        // Replace this with actual data fetching
         setTimeout(() => {
             setStudentCount(150); // Set the number of students
             setStaffCount(25);    // Set the number of staff
