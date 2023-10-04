@@ -65,3 +65,15 @@ entrance_test: {
         }
     ]
 }
+
+// Course
+
+Class : [
+    {
+        name,
+        description,
+        image,
+        class,
+        teacher
+    }
+]

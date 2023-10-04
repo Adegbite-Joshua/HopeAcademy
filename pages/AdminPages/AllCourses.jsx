@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../NavBar/NavBar'
-import Course from './Course'
+import Navbar from '../../src/Components/AdminComponents/NavBar/NavBar'
+import Course from '../../src/Components/AdminComponents/Courses/Course'
 
 const AllCourses = () => {
   return (

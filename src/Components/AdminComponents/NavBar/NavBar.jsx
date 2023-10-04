@@ -22,16 +22,16 @@ const Navbar = () => {
             <div id='accountSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
               <Link to="/admin/account/new" className='block border-b-2 mb-3'>New Account</Link>
               <Link to="/admin/account/edit" className='block border-b-2 mb-3'>Edit Account</Link>
-              <Link to="#" className='block border-b-2 mb-3'>Staff Accounts</Link>
-              <Link to="#" className='block border-b-2 mb-3'>Students Account</Link>
+              <Link to="/admin/account/staff" className='block border-b-2 mb-3'>Staff Accounts</Link>
+              <Link to="/admin/account/student" className='block border-b-2 mb-3'>Students Account</Link>
             </div>
           </div>
           <Link to="#" className='block my-auto'>Inbox</Link>
           <div className="relative group my-auto">
             <span onClick={()=>showSubLink('coursesSubLink')}>Courses</span>
             <div id='coursesSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
-              <Link to="#" className='block border-b-2 mb-3'>New Courses</Link>
-              <Link to="#" className='block border-b-2 mb-3'>All Courses</Link>
+              <Link to="/admin/course/new" className='block border-b-2 mb-3'>New Courses</Link>
+              <Link to="/admin/course/all" className='block border-b-2 mb-3'>All Courses</Link>
             </div>
           </div>
           {/* <div className="relative group my-auto">
@@ -45,9 +45,9 @@ const Navbar = () => {
           <div className="relative group my-auto">
             <span onClick={()=>showSubLink('othersSubLink')}>Others</span>
             <div id='othersSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
-              <Link to="#" className='block border-b-2 mb-3'>Entrance Test</Link>
-              <Link to="#" className='block border-b-2 mb-3'>New Term</Link>
-              <Link to="#" className='block border-b-2 mb-3'>Salary Payment</Link>
+              <Link to="/admin/entrance_test" className='block border-b-2 mb-3'>Entrance Test</Link>
+              <Link to="/admin/new_term" className='block border-b-2 mb-3'>New Term</Link>
+              <Link to="/admin/salary_payment" className='block border-b-2 mb-3'>Salary Payment</Link>
             </div>
           </div>
           <Link to="#" className='block my-auto'>Notice and Events</Link>

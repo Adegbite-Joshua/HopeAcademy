@@ -1,9 +1,10 @@
 import React from 'react'
-import Navbar from '../NavBar/NavBar'
-import CourseForm from './CourseForm'
+import Navbar from '../../src/Components/AdminComponents/NavBar/NavBar'
+import CourseForm from '../../src/Components/AdminComponents/Courses/CourseForm'
 
 
 const NewCourse = () => {
+  
   return (
     <>
         <Navbar/>
