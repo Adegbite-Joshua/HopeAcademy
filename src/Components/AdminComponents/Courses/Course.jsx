@@ -1,17 +1,30 @@
 import React from 'react'
 import axios from 'axios';
+import DisplayToast from '../../../CustomHooks/DisplayToast';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateAllCourses, setFetchingState } from '../../../redux/adminInformation';
 
 
-const Course = ({subjectName, teacherName, email, subjectImgae }) => {
 
-  const deleteCourse =()=>{
-    let endpoint = 'http://localhost:7777/admin/'
-    let deleted = axios.post(endpoint, {})
+const Course = ({subjectName, teacherName, email, subjectImage, id, courseClass, allCourses }) => {
+  const dispatch = useDispatch();
+  
+  const deleteCourse = async()=>{
+    let endpoint = 'http://localhost:7777/admin/delete_course'
+    let deleted = await axios.post(endpoint, {courseId:id, class: courseClass})
+    if (deleted.status==200) {
+      let [show] = DisplayToast('success', 'Course Deleted Successfully')
+      const remainingCourses = allCourses[courseClass].courses.filter((course)=>course._id != id);
+      dispatch(updateAllCourses({index: courseClass, newData: remainingCourses}))
+
+    } else {
+      let [show] = DisplayToast('error', 'An Error Occur, Please Try Again')
+    }
   }
 
   return (
     <tr className='w-full border-2'>
-        <td className=' border-2 px-2'><img src={subjectImgae} className='h-12 w-12 rounded-full' alt="" /></td>
+        <td className=' border-2 px-2'><img src={subjectImage} className='h-12 w-12 rounded-full' alt="" /></td>
         <td className=' border-2 px-2'>{subjectName}</td>
         <td className=' border-2 px-2'>{teacherName}</td>
         <td className=' border-2 px-2'>{email}</td>

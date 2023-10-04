@@ -29,11 +29,16 @@ export const adminInformation = createSlice({
         setAllCourses: (state, action)=>{
             Object.assign(state.allCourses = action.payload);
             console.log(current(state));  
+        },
+        updateAllCourses: (state, action)=>{
+            var updatedCourses = state.allCourses.map((array, index) => index === action.payload.index ? action.payload.newData : array);
+            Object.assign(state.allCourses = updatedCourses);
+            console.log(current(state));  
         }
 
     }
 }) 
 
-export const {setAdminInfo, setFetchingState, setAllStudents, setAllStaffs, setAllCourses } = adminInformation.actions
+export const {setAdminInfo, setFetchingState, setAllStudents, setAllStaffs, setAllCourses, updateAllCourses } = adminInformation.actions
 
 export default adminInformation.reducer

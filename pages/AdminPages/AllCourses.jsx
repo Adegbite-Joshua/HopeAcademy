@@ -15,7 +15,11 @@ const AllCourses = () => {
 
 
     useEffect(()=>{
-        setcourses(allCourses[courseClass].courses)
+        if(allCourses[courseClass]?.courses){
+            setcourses(allCourses[courseClass].courses)
+        } else {
+            setcourses(null)
+        }
     }, [courseClass, allCourses])
 
   return (
@@ -34,14 +38,20 @@ const AllCourses = () => {
                         </tr>
                     </thead>
                     <tbody className='w-full'>
-                        {courses?.length >= 1 ? courses.map((course) => {
-                            const matchingStaff = allStaffs[courseClass].find((staff) => staff._id === course.staffId);
+                        {courses != null ? courses.map((course) => {
+                            const matchingStaff = allStaffs[courseClass]?.find((staff) => staff._id === course.staffId);
                             const teacherName = matchingStaff ? `${matchingStaff.firstName} ${matchingStaff.lastName}` : 'Unknown Teacher';
                             const email = matchingStaff ? matchingStaff.email : 'Unknown Teacher';
                             return (
-                                <Course subjectImgae={course.image} subjectName={course.courseName} teacherName={teacherName} email={email} />
+                                <Course subjectImage={course.image} subjectName={course.courseName} teacherName={teacherName} email={email} id={course._id} courseClass={course.class} allCourses={allCourses} />
                             );
-                        }) : <tr>No Course Under Yet Under This Class</tr>}
+                        }) : <tr>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                                <td>Null</td>
+                            </tr>}
                     </tbody>
                 </table>
             </div>
@@ -49,20 +59,18 @@ const AllCourses = () => {
                 <form action="w-full">
                     <div>
                         <label htmlFor="" className='w-full block text-xl'>Select Class</label>
-                        <select name="" id="" className='block w-full text-black focus:border-blue-600 border-2 border-blue-300 h-12'>
-                            <option value="">JSS 1</option>
-                            <option value="">JSS 2</option>
-                            <option value="">JSS 3</option>
-                            <option value="">SSS 1</option>
-                            <option value="">SSS 2</option>
-                            <option value="">SSS 3  </option>
+                        <select name="" id="" onChange={(e)=>setcourseClass(e.target.value)} className='block w-full text-black focus:border-blue-600 border-2 border-blue-300 h-12'>
+                            <option value={0}>JSS 1</option>
+                            <option value={1}>JSS 2</option>
+                            <option value={2}>JSS 3</option>
+                            <option value={3}>SSS 1</option>
+                            <option value={4}>SSS 2</option>
+                            <option value={5}>SSS 3</option>
                         </select>
                     </div>
                 </form>
             </div>
-        </div>
-
-        
+        </div>        
     </>
   )
 }

@@ -19,7 +19,6 @@ const FetchAllCourses = () => {
           
           if (res.status === 200) {
             dispatch(setAllCourses(res.data));
-            localadminInfo = res.data;
             dispatch(setFetchingState(false));
           } else if (res.status !== 200) {
             
