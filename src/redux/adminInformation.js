@@ -6,7 +6,8 @@ export const adminInformation = createSlice({
         adminInformation: {},
         dataFetchingState: true,
         allStudents: [],
-        allStaffs: []
+        allStaffs: [],
+        allCourses: []
     },
     reducers: {
         setAdminInfo: (state, action)=>{
@@ -24,11 +25,15 @@ export const adminInformation = createSlice({
         setAllStaffs: (state, action)=>{
             Object.assign(state.allStaffs = action.payload);
             console.log(current(state));  
+        },
+        setAllCourses: (state, action)=>{
+            Object.assign(state.allCourses = action.payload);
+            console.log(current(state));  
         }
 
     }
 }) 
 
-export const {setAdminInfo, setFetchingState, setAllStudents, setAllStaffs } = adminInformation.actions
+export const {setAdminInfo, setFetchingState, setAllStudents, setAllStaffs, setAllCourses } = adminInformation.actions
 
 export default adminInformation.reducer

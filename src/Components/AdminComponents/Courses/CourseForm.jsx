@@ -133,8 +133,8 @@ const CourseForm = () => {
             <div className='grid grid-cols-1 md:flex my-2 text-blue-300 w-full gap-3 '>
                 <label htmlFor="staffId" className=' md:basis-1/6 text-xl'>Assigned Class</label>
                 <select name="staffId" id="staffId" value={formik.values.staffId} onChange={formik.handleChange} onBlur={formik.handleBlur} className=' text-black focus:border-blue-600 border-2 border-blue-300 basis-5/6 h-12'>
-                    {staffs?.length>=1?staffs.map((staff)=>(
-                        <option value={staff._id}>{`${staff.firstName} ${staff.lastName}`}</option>
+                    {staffs?.length>=1?staffs.map((staff, index)=>(
+                        <option selected={index==0} value={staff._id}>{`${staff.firstName} ${staff.lastName}`}</option>
                     )) :<option>No Staff In This Class Yet</option>}
                 </select>
                 {formik.touched.staffId && formik.errors.staffId ? (<p className="mt-2 text-sm text-red-600">{formik.errors.staffId}</p>) : null}

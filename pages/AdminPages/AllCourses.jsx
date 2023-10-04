@@ -1,8 +1,23 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Navbar from '../../src/Components/AdminComponents/NavBar/NavBar'
 import Course from '../../src/Components/AdminComponents/Courses/Course'
+import FetchAllCourses from '../../src/CustomHooks/AdminHooks/FetchAllCourses'
+import FetchAllStudentsAndStaffs from '../../src/CustomHooks/AdminHooks/FetchAllStudentsAndStaffs';
+
+
+
 
 const AllCourses = () => {
+    const [allCourses] = FetchAllCourses();
+    const [courseClass, setcourseClass] = useState(0);
+    const [courses, setcourses] = useState([]);
+    const [allStudents, allStaffs] = FetchAllStudentsAndStaffs();
+
+
+    useEffect(()=>{
+        setcourses(allCourses[courseClass].courses)
+    }, [courseClass, allCourses])
+
   return (
     <>
         <Navbar/>
@@ -19,11 +34,14 @@ const AllCourses = () => {
                         </tr>
                     </thead>
                     <tbody className='w-full'>
-                        <Course subjectImgae='/vite.svg' subjectName='Mathematics' teacherName='Ade kola' email='ade@gmail.com'/>
-                        <Course subjectImgae='/vite.svg' subjectName='Mathematics' teacherName='Ade kola' email='ade@gmail.com'/>
-                        <Course subjectImgae='/vite.svg' subjectName='Mathematics' teacherName='Ade kola' email='ade@gmail.com'/>
-                        <Course subjectImgae='/vite.svg' subjectName='Mathematics' teacherName='Ade kola' email='ade@gmail.com'/>
-                        <Course subjectImgae='/vite.svg' subjectName='Mathematics' teacherName='Ade kola' email='ade@gmail.com'/>
+                        {courses?.length >= 1 ? courses.map((course) => {
+                            const matchingStaff = allStaffs[courseClass].find((staff) => staff._id === course.staffId);
+                            const teacherName = matchingStaff ? `${matchingStaff.firstName} ${matchingStaff.lastName}` : 'Unknown Teacher';
+                            const email = matchingStaff ? matchingStaff.email : 'Unknown Teacher';
+                            return (
+                                <Course subjectImgae={course.image} subjectName={course.courseName} teacherName={teacherName} email={email} />
+                            );
+                        }) : <tr>No Course Under Yet Under This Class</tr>}
                     </tbody>
                 </table>
             </div>
