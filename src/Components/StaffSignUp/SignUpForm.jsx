@@ -5,15 +5,21 @@ import { Link } from "react-router-dom";
 import * as Yup from 'yup';
 import FileViewer from '../../FileViewer'
 import SnackBar from '../SnackBar'
-
+import DisplayToast from '../../CustomHooks/DisplayToast'
+import { useSelector, useDispatch } from 'react-redux';
+import { updateAllStaffs, setFetchingState } from '../../redux/adminInformation';
+import FetchAllStudentsAndStaffs from '../../../CustomHooks/AdminHooks/FetchAllStudentsAndStaffs'
 
 
 const SignUpForm = ({type}) => {
+  const dispatch = useDispatch();
   const [fileType, setfileType] = useState('.jpeg, .jpg, .gif, .tif, .psd')
   const [imageBase64, setfileBase64] = useState('')
   const [fileName, setfileName] = useState('')
   const [snacksBarBody, setsnacksBarBody] = useState('')
   const [snacksBarType, setsnacksBarType] = useState('info')
+  const [allStudents, allStaffs] = FetchAllStudentsAndStaffs();
+
 
   const subjects = [
     'MATHEMATICS',
@@ -138,33 +144,33 @@ const SignUpForm = ({type}) => {
       groups: [],
       files: []
     }
-    let endpoint = 'http://localhost:7777/staff/signup'
-    console.log(details)
-    axios.post(endpoint, details)
-    .then((res)=>{
-      if(res.status==200){
-        setsnacksBarBody('Account Successfully Created')
-        setsnacksBarType('info')
-        showSnackBar()
-        setTimeout(() =>navigate("/signin"), 3000);
-      } else if(res.status==11000){
-        setsnacksBarBody('Email Entered Already Exists')
-        setsnacksBarType('error')
-        showSnackBar()
-        setsigningUp(false)
-      } else if(res.status==401){
-        setsnacksBarBody('Error! Ensure You Fill All Reqired Informations Correctly')
-        setsnacksBarType('error')
-        showSnackBar()
-        setsigningUp(false)
-      }
-    })
-    .catch((err)=>{
-        console.log(err);
-        setsnacksBarBody('An Error Occured')
-        setsnacksBarType('error')
-        showSnackBar()
-    })
+    if(type=='create' || type=='signup') {
+      let endpoint = 'http://localhost:7777/staff/signup'
+      axios.post(endpoint, details)
+      .then((res)=>{
+        if(res.status==200){
+          let [show] = DisplayToast('success', 'Account Created Successfully')
+          formik.resetForm();
+          if(type=='signup'){
+            navigate("/staff/signin")
+          } else {
+            dispatch(updateAllStaffs({index: values.class, newData: values}))
+          }
+        } else if(res.status==11000){
+          let [show] = DisplayToast('error', 'Email Already Exist')
+          setsigningUp(false)
+        } else if(res.status==401){
+          let [show] = DisplayToast('error', 'Error! Ensure You Fill All Reqired Informations Correctly')
+          setsigningUp(false)
+        }
+      })
+      .catch((err)=>{
+          console.log(err);
+          setsnacksBarBody('An Error Occured')
+          setsnacksBarType('error')
+          showSnackBar()
+      })
+    }
   }
 
   const showSnackBar = () => {
@@ -201,9 +207,17 @@ const SignUpForm = ({type}) => {
                     <option value="4">SSS2</option>
                     <option value="5">SSS3</option>
                 </select>
-                {type=='create' || type=='edit' && (<>
-                  <label htmlFor="" className=''>Subject To Offer</label>
-                  <select name="staffIndex" onChange={formik.handleChange} id="staffIndex" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50 px-6'>
+                {type == 'create' && (<>
+                  <label htmlFor="staffIndex" className=''>Subject To Offer</label>
+                  <select name="staffIndex" onChange={formik.handleChange} id="staffIndex" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50 px-6'>
+                      {subjects.sort().map((subject, index) => (
+                          <><option value={index} selected={subject.includes('MATHEMA') ? true : false}>{subject}</option></>
+                      ))}
+                  </select>
+                </>)}
+                {type == 'edit' && (<>
+                  <label htmlFor="staffIndex" className=''>Subject To Offer</label>
+                  <select name="staffIndex" onChange={formik.handleChange} id="staffIndex" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50 px-6'>
                       {subjects.sort().map((subject, index) => (
                           <><option value={index} selected={subject.includes('MATHEMA') ? true : false}>{subject}</option></>
                       ))}
@@ -226,7 +240,7 @@ const SignUpForm = ({type}) => {
                     </>}
                 </div>
                 <input type="checkbox" className='accent-red-400' name="agreement" id="" /><small className='text-red-500'>Agreed to <Link>Terms</Link> and <Link>Cond</Link></small>
-                <button type='submit' className='block py-2 bg-orange-500 w-full rounded-full hover:bg-orange-300'>{(type=='create')?'Cretae Account':(type=='edit')?'Edit Account':'Sign Up'}</button>
+                <button type='submit' className='block py-2 bg-orange-500 w-full rounded-full hover:bg-orange-300'>{(type=='create')?'Create Account':(type=='edit')?'Edit Account':'Sign Up'}</button>
             </form>
         </div>
         <div id='snackbarContainer'><SnackBar body={snacksBarBody} type={snacksBarType}/></div>
