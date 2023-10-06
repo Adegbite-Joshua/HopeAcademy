@@ -1,5 +1,5 @@
 import React from 'react'
-import TopStudentView from './TOpStudentView'
+import TopStudentView from './TopStudentView'
 import subjects from '../../Subjects'
 import { useSelector } from 'react-redux'
 import classes from  '../../Classes'
