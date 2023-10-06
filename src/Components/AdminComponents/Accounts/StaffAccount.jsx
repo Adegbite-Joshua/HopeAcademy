@@ -2,10 +2,15 @@ import React, { useEffect, useState } from 'react'
 import SignUpForm from '../../StaffSignUp/SignUpForm'
 import Navbar from '../NavBar/NavBar'
 import Account from './Account'
+import PopUp from '../../PopUp';
+import FetchAllStudentsAndStaffs from '../../../CustomHooks/AdminHooks/FetchAllStudentsAndStaffs';
+
 
 const StaffAccount = () => {
-    const [accountType, setaccountType] = useState('student');
-    const [staffs, setstaffs] = useState('')
+    const [allStudents, allStaffs] = FetchAllStudentsAndStaffs();
+    const [staffClass, setstaffClass] = useState(0);
+    const [staffs, setstaffs] = useState([])
+    const [viewingIndex, setviewingIndex] = useState(0)
     
     const searchStaff =(params)=>{
         if (params.trim().length>0) {
@@ -16,40 +21,23 @@ const StaffAccount = () => {
           }
     }
 
-    const users = [
-        {
-            firstName: 'Ade',
-            lastName: 'kola',
-            email: 'ade',
-            _id: 'ruiinueimudsjrisrkujsdji',
-            subject: 'Mathematics'
-        },
-        {
-            firstName: 'Ade',
-            lastName: 'Ade',
-            email: 'ade',
-            _id: 'ruiinueimudsjrisrkujsdji',
-            subject: 'Mathematics'
-        },
-        {
-            firstName: 'Ade',
-            lastName: 'Ade',
-            email: 'oooo',
-            _id: 'ruiinueimudsjrisrkujsdji',
-            subject: 'Mathematics'
-        },
-        {
-            firstName: 'Ade',
-            lastName: 'Ade',
-            email: 'ade',
-            _id: 'ruiinueimudsjrisrkujsdji',
-            subject: 'Physics'
-        }
-        ]
 
     useEffect(() => {
-      setstaffs(users)
-    }, [])
+      if(allStaffs.length>=1){
+        setstaffs(allStaffs[staffClass])
+      }
+    }, [allStaffs, staffClass])
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openPopup = (index) => {
+        setIsOpen(true);
+        setviewingIndex(index)
+    };
+
+    const closePopup = () => {
+        setIsOpen(false);
+    };
     
   return (
     <>
@@ -57,13 +45,13 @@ const StaffAccount = () => {
         <div className=''>
             <div className='flex items-center flex-col'>
                 <label htmlFor="selectClass">Select Class</label>
-                <select name="" className=' w-40 h-12 bg-blue-100 border-0' id="">
-                    <option value="">JSS 1</option>
-                    <option value="">JSS 2</option>
-                    <option value="">JSS 3</option>
-                    <option value="">SSS 1</option>
-                    <option value="">SSS 2</option>
-                    <option value="">SSS 3  </option>
+                <select name="" onChange={(e)=>setstaffClass(e.target.value)} className=' w-40 h-12 bg-blue-100 border-0' id="">
+                    <option value={0}>JSS 1</option>
+                    <option value={1}>JSS 2</option>
+                    <option value={2}>JSS 3</option>
+                    <option value={3}>SSS 1</option>
+                    <option value={4}>SSS 2</option>
+                    <option value={5}>SSS 3</option>
                 </select>
                 <p className='my-1'>Search for staff by name, email, course</p>
                 <input type="search" onKeyUp={(e)=>searchStaff(e.target.value)} className=' w-32 h-12 border-2 border-blue-400 rounded-lg focus:outline-0 p-2' />
@@ -80,13 +68,16 @@ const StaffAccount = () => {
                         </tr>
                     </thead>
                     <tbody className='w-full'>
-                        {users.map((user)=>(
-                            <Account name={user.firstName + ' ' + user.lastName} email={user.email} course={user.subject} />
+                        {staffs.map((user, index)=>(
+                            <Account name={user.firstName + ' ' + user.lastName} email={user.email} course={user.subjectInfo.subjectName} openPopup={openPopup} index={index} />
                         ))}
                     </tbody>
                 </table>
             </div>
         </div>
+        <PopUp isOpen={isOpen} onClose={closePopup}>
+            <SignUpForm type='edit' data={staffs[viewingIndex]} />
+        </PopUp>
     </>
   )
 }

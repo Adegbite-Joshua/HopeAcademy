@@ -7,6 +7,7 @@ const EditAccount = () => {
     const chooseAccountType =(type)=>{
         setaccountType(type)
     }
+    
   return (
     <>
         <Navbar/>
