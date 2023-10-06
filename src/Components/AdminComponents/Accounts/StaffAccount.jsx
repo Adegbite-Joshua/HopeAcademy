@@ -69,7 +69,7 @@ const StaffAccount = () => {
                     </thead>
                     <tbody className='w-full'>
                         {staffs.map((user, index)=>(
-                            <Account name={user.firstName + ' ' + user.lastName} email={user.email} course={user.subjectInfo.subjectName} openPopup={openPopup} index={index} />
+                            <Account name={user.firstName + ' ' + user.lastName} email={user.email} other={user.subjectInfo.subjectName} openPopup={openPopup} index={index} />
                         ))}
                     </tbody>
                 </table>
