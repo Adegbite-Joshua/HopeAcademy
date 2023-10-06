@@ -26,12 +26,12 @@ import AdminSignUp from '../pages/AdminPages/AdminSignUp';
 import AdminDashboard from '../pages/AdminPages/AdminDashboard';
 import AdminSignIn from '../pages/AdminPages/AdminSignIn';
 import NewCourse from '../pages/AdminPages/NewCourse';
+import AdminEntranceTest from '../pages/AdminPages/EntranceTest';
 import AllCourses from '../pages/AdminPages/AllCourses';
 import NewAccount from './Components/AdminComponents/Accounts/NewAccount';
 import EditAccount from './Components/AdminComponents/Accounts/EditAccount';
 import StaffAccount from './Components/AdminComponents/Accounts/StaffAccount';
 import StudentAccount from './Components/AdminComponents/Accounts/StudentAccount';
-import AdminEntranceTestView from './Components/AdminComponents/EntranceTest/EntranceTest';
 import NewAcademicTerm from './Components/AdminComponents/NewAcademicTerm/NewAcademicTerm';
 import SalaryPayment from './Components/AdminComponents/SalaryPayment/SalaryPayment';
 
@@ -126,7 +126,7 @@ function App() {
               <Route path='new' element={<NewCourse/>} />
               <Route path='all' element={<AllCourses/>} />
             </Route>
-            <Route path='entrance_test' element={<AdminEntranceTestView/>} />
+            <Route path='entrance_test' element={<AdminEntranceTest/>} />
             <Route path='new_term' element={<NewAcademicTerm/>} />
             <Route path='salary_payment' element={<SalaryPayment/>} />
           </Route>

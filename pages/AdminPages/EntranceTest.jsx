@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
-import Navbar from '../NavBar/NavBar'
-import SetQuestions from './SetQuestions'
-import ViewParticipant from './ViewParticipant'
-import ViewQuestions from './ViewQuestions'
+import Navbar from '../../src/Components/AdminComponents/NavBar/NavBar'
+import SetQuestions from '../../src/Components/AdminComponents/EntranceTest/SetQuestions'
+import ViewParticipant from '../../src/Components/AdminComponents/EntranceTest/ViewParticipant'
+import ViewQuestions from '../../src/Components/AdminComponents/EntranceTest/ViewQuestions'
+
+
 
 const AdminEntranceTestView = () => {
     const [viewing, setviewing] = useState('setQuestions')

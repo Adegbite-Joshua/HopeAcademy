@@ -1,4 +1,7 @@
 import React, {useState, useEffect} from 'react'
+import axios from 'axios'
+import DisplayToast from '../../../CustomHooks/DisplayToast';
+
 
 const Question = ({formType, a, b, c, d, question, selected}) => {
     const [selectedOption, setSelectedOption] = useState(null);
@@ -27,28 +30,60 @@ const Question = ({formType, a, b, c, d, question, selected}) => {
     }, [editOption])
     
     const handleSubmit =()=>{
-        if (formType=='view') {
+        if (localOption=='view') {
             seteditOption('update')
             localOption='update'
+        } else if(localOption=='add'){
+            let endpoint = 'http://localhost:7777/admin/add_entrance_question';
+            let details = {
+                question: questionValue,
+                options: [optionA, optionB, optionC, optionD],
+                correctAnswer: selectedOption,
+            }
+            axios.post(endpoint, details)
+            .then((res)=>{
+                let [show] = DisplayToast('success', 'Question Added Successfully');
+            })
+            .catch((error)=>{
+                let [show] = DisplayToast('error', 'An Error Occurred, Please Try Again');
+            })
+        } else if(localOption=='update'){
+            let endpoint = 'http://localhost:7777/admin/update_entrance_question';
+            let details = {
+                question: questionValue,
+                options: [optionA, optionB, optionC, optionD],
+                correctAnswer: selectedOption,
+            }
+            axios.post(endpoint, details)
+            .then((res)=>{
+                seteditOption('view')
+                localOption='view'
+                let [show] = DisplayToast('success', 'Question Added Successfully');
+            })
+            .catch((error)=>{
+                seteditOption('view')
+                localOption='view'
+                let [show] = DisplayToast('error', 'An Error Occurred, Please Try Again');
+            })
         }
     }
 
   return (
     <div>
         <p>Question Text</p>
-        <input disabled={editOption=='view'} type="text" value={questionValue} className='h-12 p-2 border-2 border-blue-400 w-full mb-1' name="" id="" />
+        <input disabled={editOption=='view'} type="text" onChange={(e)=>setquestionValue(e.target.value)} value={questionValue} className='h-12 p-2 border-2 border-blue-400 w-full mb-1' name="" id="" />
         <div className='ps-10 flex'>
             <div className='p-2 flex flex-col gap-5'>
-                <input disabled={editOption=='view'} type="radio" name="option" onChange={handleChange} value={0} checked={selectedOption==0}  className=' checked:accent-green-400 border-2 checked:border-green-400 checked:outline-green-400 bg-red-500 accent-red-500 border-2 outline-red-500' id="" />
-                <input disabled={editOption=='view'} type="radio" name="option" onChange={handleChange} value={1} checked={selectedOption==1}  className=' checked:accent-green-400 border-2 checked:border-green-400 checked:outline-green-400 bg-red-500 accent-red-500 border-2 outline-red-500' id="" />
-                <input disabled={editOption=='view'} type="radio" name="option" onChange={handleChange} value={2} checked={selectedOption==2}  className=' checked:accent-green-400 border-2 checked:border-green-400 checked:outline-green-400 bg-red-500 accent-red-500 border-2 outline-red-500' id="" />
-                <input disabled={editOption=='view'} type="radio" name="option" onChange={handleChange} value={3} checked={selectedOption==3}  className=' checked:accent-green-400 border-2 checked:border-green-400 checked:outline-green-400 bg-red-500 accent-red-500 border-2 outline-red-500' id="" />
+                <input disabled={editOption=='view'} type="radio" name="option" onChange={handleChange} value={0} checked={selectedOption==0}  className=' checked:accent-green-400 border-2 checked:border-green-400 checked:outline-green-400' id="" />
+                <input disabled={editOption=='view'} type="radio" name="option" onChange={handleChange} value={1} checked={selectedOption==1}  className=' checked:accent-green-400 border-2 checked:border-green-400 checked:outline-green-400' id="" />
+                <input disabled={editOption=='view'} type="radio" name="option" onChange={handleChange} value={2} checked={selectedOption==2}  className=' checked:accent-green-400 border-2 checked:border-green-400 checked:outline-green-400' id="" />
+                <input disabled={editOption=='view'} type="radio" name="option" onChange={handleChange} value={3} checked={selectedOption==3}  className=' checked:accent-green-400 border-2 checked:border-green-400 checked:outline-green-400' id="" />
             </div>
             <div>
-                <input disabled={editOption=='view'} value={optionA} type="text" className=' h-7 mb-1 p-2 border-2 border-blue-400 w-full' placeholder='Option A' />
-                <input disabled={editOption=='view'} value={optionB} type="text" className=' h-7 mb-1 p-2 border-2 border-blue-400 w-full' placeholder='Option B' />
-                <input disabled={editOption=='view'} value={optionC} type="text" className=' h-7 mb-1 p-2 border-2 border-blue-400 w-full' placeholder='Option C' />
-                <input disabled={editOption=='view'} value={optionD} type="text" className=' h-7 mb-1 p-2 border-2 border-blue-400 w-full' placeholder='Option D' />
+                <input disabled={editOption=='view'} value={optionA} onChange={(e)=>setoptionA(e.target.value)} type="text" className=' h-7 mb-1 p-2 border-2 border-blue-400 w-full' placeholder='Option A' />
+                <input disabled={editOption=='view'} value={optionB} onChange={(e)=>setoptionB(e.target.value)} type="text" className=' h-7 mb-1 p-2 border-2 border-blue-400 w-full' placeholder='Option B' />
+                <input disabled={editOption=='view'} value={optionC} onChange={(e)=>setoptionC(e.target.value)} type="text" className=' h-7 mb-1 p-2 border-2 border-blue-400 w-full' placeholder='Option C' />
+                <input disabled={editOption=='view'} value={optionD} onChange={(e)=>setoptionD(e.target.value)} type="text" className=' h-7 mb-1 p-2 border-2 border-blue-400 w-full' placeholder='Option D' />
             </div>
         </div>
         <div onClick={handleSubmit} className='flex'><button className='bg-blue-400 p-2 ms-auto rounded-lg'>{editOption=='add'?'Add Question':editOption=='update'?'Update Question':'Edit'}</button></div>
