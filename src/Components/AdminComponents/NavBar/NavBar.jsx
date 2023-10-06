@@ -22,7 +22,7 @@ const Navbar = () => {
             <div id='accountSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
               <Link to="/admin/account/new" className='block border-b-2 mb-3'>New Account</Link>
               <Link to="/admin/account/edit" className='block border-b-2 mb-3'>Edit Account</Link>
-              <Link to="/admin/account/staff" className='block border-b-2 mb-3'>Staff Accounts</Link>
+              <Link to="/admin/account/staff" className='block border-b-2 mb-3'>Staffs Accounts</Link>
               <Link to="/admin/account/student" className='block border-b-2 mb-3'>Students Account</Link>
             </div>
           </div>

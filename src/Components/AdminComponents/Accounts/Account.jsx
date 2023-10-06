@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const Account = ({name, other, email, index, openPopup }) => {
+const Account = ({name, other, email, index, id, openPopup, deleteAccount }) => {
 
   return (
     <>
@@ -11,7 +11,7 @@ const Account = ({name, other, email, index, openPopup }) => {
             <td className=' border-2 px-2 flex gap-2 md:w-5 items-center'>
                 <button><i className='bg-blue-400 p-2 rounded-md fa fa-eye'></i></button>
                 <button onClick={()=>openPopup(index)}><i className='bg-green-400 p-2 rounded-md fa fa-edit'></i></button>
-                <button><i className='bg-red-400 p-2 rounded-md fa fa-trash'></i></button>
+                <button onClick={()=>deleteAccount(id, name)}><i className='bg-red-400 p-2 rounded-md fa fa-trash'></i></button>
             </td>
         </tr>
       

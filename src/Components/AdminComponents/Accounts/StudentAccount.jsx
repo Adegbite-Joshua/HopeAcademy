@@ -3,13 +3,18 @@ import Navbar from '../NavBar/NavBar'
 import Account from './Account'
 import FetchAllStudentsAndStaffs from '../../../CustomHooks/AdminHooks/FetchAllStudentsAndStaffs';
 import PopUp from '../../PopUp';
+import axios from 'axios';
+import DisplayToast from '../../../CustomHooks/DisplayToast';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteAStudent, setFetchingState } from '../../../redux/adminInformation';
 
 
 const StudentAccount = () => {
     const [allStudents, allStaffs] = FetchAllStudentsAndStaffs();
     const [studentClass, setstudentClass] = useState(0);
     const [students, setstudents] = useState([])
-    const [viewingIndex, setviewingIndex] = useState(0)
+    const [viewingIndex, setviewingIndex] = useState(0);
+    const dispatch = useDispatch();
     
     const searchStudent =(params)=>{
         if (params.trim().length>0) {
@@ -36,6 +41,33 @@ const StudentAccount = () => {
       const closePopup = () => {
           setIsOpen(false);
       };
+
+      const deleteAccount =(id, name)=>{
+        let confirmDelete = confirm(`Are You Sure You Want To Delete Account For ${name}`)
+        if(!confirmDelete){
+            const [show] = DisplayToast('success', 'Operation Cancelled')    
+            return;
+        }
+        let endpoint = 'http://localhost:7777/admin/delete_account';
+        let details = {
+            accountClass:studentClass, 
+            type:'student',
+            id
+        }
+        axios.post(endpoint, details)
+        .then((res)=>{
+            if(res.status==200){
+                dispatch(deleteAStudent({index:studentClass, id}))
+                const [show] = DisplayToast('success', 'Account Deleted Successfully')    
+            } else {
+                const [show] = DisplayToast('error', 'An Error Occurred, Please Try Again')    
+            }
+        })
+        .catch((error)=>{
+            const [show] = DisplayToast('error', 'An Error Occurred, Please Try Again')    
+            console.log(error)
+        })
+      }
     
   return (
     <>
@@ -66,8 +98,10 @@ const StudentAccount = () => {
                         </tr>
                     </thead>
                     <tbody className='w-full'>
-                        {students.map((user)=>(
-                            <Account name={user.firstName + ' ' + user.lastName} email={user.email} other={user?.currentSchoolFee?.fullPayment>0?<span className='text-green-800'>Full Payment</span>:user?.currentSchoolFee?.partPayment>0?<span className='text-green-400'>Half Payment</span>:<span className='text-red-600'>Indebt</span>} openPopup={openPopup} />
+                        {students.map((user, index)=>(
+                            <Account name={user.firstName + ' ' + user.lastName} index={index} id={user._id} email={user.email} other={
+                                user?.currentSchoolFee?.fullPayment>0?<span className='text-green-800'>Full Payment</span>:user?.currentSchoolFee?.partPayment>0?<span className='text-green-400'>Half Payment</span>:<span className='text-red-600'>Indebt</span>
+                            } openPopup={openPopup} deleteAccount={deleteAccount}/>
                         ))}
                     </tbody>
                 </table>

@@ -4,6 +4,7 @@ import Navbar from '../NavBar/NavBar'
 import Account from './Account'
 import PopUp from '../../PopUp';
 import FetchAllStudentsAndStaffs from '../../../CustomHooks/AdminHooks/FetchAllStudentsAndStaffs';
+import DisplayToast from '../../../CustomHooks/DisplayToast';
 
 
 const StaffAccount = () => {
@@ -14,10 +15,10 @@ const StaffAccount = () => {
     
     const searchStaff =(params)=>{
         if (params.trim().length>0) {
-            const filtered = users.filter(user => user?.firstName?.includes(params) || user?.lastName?.includes(params) || user?.subject?.includes(params) || user?.email?.includes(params));
+            const filtered = staffs.filter(user => user?.firstName?.includes(params) || user?.lastName?.includes(params) || user?.subject?.includes(params) || user?.email?.includes(params));
             setstaffs(filtered);
           } else {
-            setstaffs(users)
+            setstaffs(allStaffs[staffClass])
           }
     }
 
@@ -38,6 +39,33 @@ const StaffAccount = () => {
     const closePopup = () => {
         setIsOpen(false);
     };
+
+    const deleteAccount =(id, name)=>{
+        let confirmDelete = confirm(`Are You Sure You Want To Delete Account For ${name}`)
+        if(!confirmDelete){
+            const [show] = DisplayToast('success', 'Operation Cancelled')    
+            return;
+        }
+        let endpoint = 'http://localhost:7777/admin/delete_account';
+        let details = {
+            accountClass:staffClass, 
+            type:'staff',
+            id
+        }
+        axios.post(endpoint, details)
+        .then((res)=>{
+            if(res.status==200){
+                dispatch(deleteAStudent({index:staffClass, id}))
+                const [show] = DisplayToast('success', 'Account Deleted Successfully')    
+            } else {
+                const [show] = DisplayToast('error', 'An Error Occurred, Please Try Again')    
+            }
+        })
+        .catch((error)=>{
+            const [show] = DisplayToast('error', 'An Error Occurred, Please Try Again')    
+            console.log(error)
+        })
+      }
     
   return (
     <>
@@ -69,7 +97,7 @@ const StaffAccount = () => {
                     </thead>
                     <tbody className='w-full'>
                         {staffs.map((user, index)=>(
-                            <Account name={user.firstName + ' ' + user.lastName} email={user.email} other={user.subjectInfo.subjectName} openPopup={openPopup} index={index} />
+                            <Account name={user.firstName + ' ' + user.lastName} email={user.email} other={user.subjectInfo.subjectName} openPopup={openPopup} index={index} id={user._id} deleteAccount={deleteAccount} />
                         ))}
                     </tbody>
                 </table>

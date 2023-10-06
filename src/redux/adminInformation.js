@@ -52,10 +52,22 @@ export const adminInformation = createSlice({
             Object.assign(state.allStaffs = allStaffsData);
             console.log(current(state));  
         },
+        deleteAStaff: (state, action)=>{
+            let allStaffsData = state.allStaffs
+            allStaffsData[action.payload.index] = [action.payload.index].filter(staff => staff._id !== action.payload.id);
+            Object.assign(state.allStaffs = allStaffsData);
+            console.log(current(state));  
+        },
+        deleteAStudent: (state, action)=>{
+            let allStudentsData = state.allStudents
+            allStudentsData[action.payload.index] = [action.payload.index].filter(staff => staff._id !== action.payload.id);
+            Object.assign(state.allStaffs = allStudentsData);
+            console.log(current(state));  
+        },
 
     }
 }) 
 
-export const {setAdminInfo, setFetchingState, setAllStudents, setAllStaffs, setAllCourses, updateAllCourses, updateAllStaffs, updateAStaff } = adminInformation.actions
+export const {setAdminInfo, setFetchingState, setAllStudents, setAllStaffs, setAllCourses, updateAllCourses, updateAllStaffs, updateAStaff, deleteAStudent, deleteAStaff } = adminInformation.actions
 
 export default adminInformation.reducer
