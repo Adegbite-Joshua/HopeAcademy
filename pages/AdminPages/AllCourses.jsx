@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import Navbar from '../../src/Components/AdminComponents/NavBar/NavBar'
 import Course from '../../src/Components/AdminComponents/Courses/Course'
-import FetchAllCourses from '../../src/CustomHooks/AdminHooks/FetchAllCourses'
 import FetchAllStudentsAndStaffs from '../../src/CustomHooks/AdminHooks/FetchAllStudentsAndStaffs';
+import FetchAllCourses from '../../src/CustomHooks/AdminHooks/FetchAllCourses';
 
 
 

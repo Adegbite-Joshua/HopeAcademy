@@ -1,17 +1,21 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Navbar from '../../src/Components/AdminComponents/NavBar/NavBar'
 import SetQuestions from '../../src/Components/AdminComponents/EntranceTest/SetQuestions'
 import ViewParticipant from '../../src/Components/AdminComponents/EntranceTest/ViewParticipant'
 import ViewQuestions from '../../src/Components/AdminComponents/EntranceTest/ViewQuestions'
+import axios from 'axios'
+import FetchEntranceQuestions from '../../src/CustomHooks/AdminHooks/FetchAllEntranceQuestions'
 
 
 
 const AdminEntranceTestView = () => {
     const [viewing, setviewing] = useState('setQuestions')
-
+    let [entranceQuestions] = FetchEntranceQuestions();
     const changeViewing=(value)=>{
         setviewing(value)
     }
+    
+
   return (
     <div>
         <Navbar/>
@@ -19,7 +23,7 @@ const AdminEntranceTestView = () => {
             <div className=' order-3 md:order-none basis-full md:basis-4/6 overflow-x-auto'>
                 {viewing=='viewParticipant' && <ViewParticipant/>}
                 {viewing=='setQuestions' && <SetQuestions/>}
-                {viewing=='viewQuestions' && <ViewQuestions/>}
+                {viewing=='viewQuestions' && <ViewQuestions entranceQuestions={entranceQuestions} />}
             </div>
             <div className=' order-1 md:order-none basis-full md:basis-2/6 p-5'>
                 <p className='text-center'>Select Your Action</p>

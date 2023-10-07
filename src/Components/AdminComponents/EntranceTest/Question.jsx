@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import DisplayToast from '../../../CustomHooks/DisplayToast';
+import { useSelector, useDispatch } from 'react-redux';
+import { addEntranceQuestion } from '../../../redux/adminInformation';
 
 
-const Question = ({formType, a, b, c, d, question, selected}) => {
+const Question = ({formType, a, b, c, d, question, correctAnswer}) => {
+    const dispatch = useDispatch();
     const [selectedOption, setSelectedOption] = useState(null);
     const [editOption, seteditOption] = useState('');
 
@@ -24,7 +27,7 @@ const Question = ({formType, a, b, c, d, question, selected}) => {
             setoptionB(b)
             setoptionC(c)
             setoptionD(d)
-            setSelectedOption(selected)
+            setSelectedOption(correctAnswer)
             setquestionValue(question)
         }
     }, [editOption])
@@ -42,7 +45,12 @@ const Question = ({formType, a, b, c, d, question, selected}) => {
             }
             axios.post(endpoint, details)
             .then((res)=>{
-                let [show] = DisplayToast('success', 'Question Added Successfully');
+                if(res.status==200){
+                    dispatch(addEntranceQuestion(details))
+                    let [show] = DisplayToast('success', 'Question Added Successfully');
+                } else {
+                    let [show] = DisplayToast('error', 'An Error Occurred, Please Try Again');
+                }
             })
             .catch((error)=>{
                 let [show] = DisplayToast('error', 'An Error Occurred, Please Try Again');
