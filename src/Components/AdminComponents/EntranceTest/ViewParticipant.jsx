@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
+import FetchEntranceYearParticipants from '../../../CustomHooks/AdminHooks/FetchEntranceYearParticipants';
 import Participant from './Participant'
 
 const ViewParticipant = () => {
     const currentYear = new Date().getFullYear();
     let yearsLength = currentYear-2004;
     const years = Array.from(new Array(yearsLength), (_, index) => currentYear - index);
-
-
+    const [year, setyear] = useState(currentYear)
+    // console.log(year);
+    const [participants] = FetchEntranceYearParticipants(year)
+    console.log(participants)
   return (
     <div className='w-full overflow-x-auto'>
         <form action="w-full">
             <label htmlFor="" className='w-full'>Select Participants Year</label>
-            <select name="" id="" onChange={(e)=>console.log(e.target.value)} className='w-full border-2 border-blue-400 p-2 focus:border-blue-400 focus:outline-blue-400'>
+            <select name="" id="" onChange={(e)=>setyear(e.target.value)} className='w-full border-2 border-blue-400 p-2 focus:border-blue-400 focus:outline-blue-400'>
             {years.map((year) => (
                 <option key={year} value={year}>
                 {year}
@@ -30,11 +33,9 @@ const ViewParticipant = () => {
                 </tr>
             </thead>
             <tbody className='w-full p-2'>
-                <Participant name='Ade Kola jj' email='ade@gmail.com' status={true} score={20} />
-                <Participant name='Ade Kola jj' email='ade@gmail.com' status={true} score={20} />
-                <Participant name='Ade Kola jj' email='ade@gmail.com' status={false} score={20} />
-                <Participant name='Ade Kola jj' email='ade@gmail.com' status={true} score={20} />
-                <Participant name='Ade Kola jj' email='ade@gmail.com' status={false} score={20} />
+                {participants[year]?participants[year].map((participant)=>(
+                    <Participant name={`${participant.firstName} ${participant.lastName}`} email={participant.email} status={participant.entranceTest?.score ? true : false} score={participant.entranceTest?.score} />
+                )) :'No Entrance Test Participant For This Selected Year'}
             </tbody>
         </table>
     </div>
