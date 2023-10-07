@@ -2,6 +2,9 @@ import React from 'react'
 import Participant from './Participant'
 
 const ViewParticipant = () => {
+    const currentDate = new Date();
+  this.year = currentDate.getFullYear();
+
   return (
     <div className='w-full overflow-x-auto'>
         <form action="w-full">

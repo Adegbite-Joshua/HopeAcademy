@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addEntranceQuestion } from '../../../redux/adminInformation';
 
 
-const Question = ({formType, a, b, c, d, question, correctAnswer}) => {
+const Question = ({formType, a, b, c, d, question, correctAnswer, id}) => {
     const dispatch = useDispatch();
     const [selectedOption, setSelectedOption] = useState(null);
     const [editOption, seteditOption] = useState('');
@@ -33,6 +33,10 @@ const Question = ({formType, a, b, c, d, question, correctAnswer}) => {
     }, [editOption])
     
     const handleSubmit =()=>{
+        if(!id){
+            DisplayToast('error', 'Newly Added Questions Can Not Be Changed, Please Refresh To Be Able To Edit it')
+            return;
+        }
         if (localOption=='view') {
             seteditOption('update')
             localOption='update'
@@ -58,6 +62,7 @@ const Question = ({formType, a, b, c, d, question, correctAnswer}) => {
         } else if(localOption=='update'){
             let endpoint = 'http://localhost:7777/admin/update_entrance_question';
             let details = {
+                _id: id,
                 question: questionValue,
                 options: [optionA, optionB, optionC, optionD],
                 correctAnswer: selectedOption,
@@ -66,7 +71,7 @@ const Question = ({formType, a, b, c, d, question, correctAnswer}) => {
             .then((res)=>{
                 seteditOption('view')
                 localOption='view'
-                let [show] = DisplayToast('success', 'Question Added Successfully');
+                let [show] = DisplayToast('success', 'Question Successfully Updated');
             })
             .catch((error)=>{
                 seteditOption('view')
