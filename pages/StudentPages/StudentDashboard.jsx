@@ -1,16 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react'
-import StudentMainDiv from './StudentMainDiv'
-import StudentSideNav from '../StudentNav/StudentSideNav'
-import Tasks from './Tasks'
-import './style.scss'
 import { useNavigate, useParams } from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import axios from 'axios'
-import fetchStudentInfo from '../../CustomHooks/fetchStudentInfo'
-import checkStudentFeeStatus from '../../CustomHooks/checkStudentFeeStatus'
 import Loader from '../../src/Components/StudentComponents/Loader'
 import { fetchStudent, setFetched } from '../../src/redux/studentInformation'
 import DisplayToast from '../../src/CustomHooks/DisplayToast'
+import StudentMainDiv from '../../src/Components/StudentComponents/Dashboard/StudentMainDiv'
+import NavBar from '../../src/Components/StudentComponents/NavBar'
+import Tasks from '../../src/Components/StudentComponents/Dashboard/Tasks'
+import fetchStudentInfo from '../../src/CustomHooks/StudentHooks/fetchStudentInfo'
+import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStudentFeeStatus'
 
 
 
@@ -76,13 +75,13 @@ const StudentDashboard = () => {
       .then((res)=>{
         console.log(res);
         if (res.status != 200) {
-          navigate('/student/signin')
+        //   navigate('/student/signin')
           // const connect = socketConnect('http://localhost:7777/student');
         }
 
       })
       .catch((error)=>{
-        navigate('/signin')
+        // navigate('/student/signin')
         console.log(error);
       })
     }
@@ -130,8 +129,8 @@ const StudentDashboard = () => {
 
   return (
     <>
-      <div className='flex'>
-        <StudentSideNav />
+      <div className='flex allWrap'>
+        <NavBar />
         {fetching && <Loader />}
         {!fetching && (
           <>
@@ -147,7 +146,7 @@ const StudentDashboard = () => {
                 <i className='fas fa-plus'></i> Add New
               </button>
             </div>
-            <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center' id='popup'>
+            <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center popup' id='popup'>
               <div className='bg-white p-4 rounded-lg w-96'>
                 <button className='btn-close right-0 top-0 mt-2 mr-2' onClick={closeAddToTask}></button>
                 <textarea name='taskBody' id='taskBody' className='w-full mb-4 h-32 p-2 border rounded' placeholder='Add Task ...'></textarea>

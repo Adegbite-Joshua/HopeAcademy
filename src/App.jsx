@@ -34,6 +34,8 @@ import StaffAccount from './Components/AdminComponents/Accounts/StaffAccount';
 import StudentAccount from './Components/AdminComponents/Accounts/StudentAccount';
 import NewAcademicTerm from './Components/AdminComponents/NewAcademicTerm/NewAcademicTerm';
 import SalaryPayment from './Components/AdminComponents/SalaryPayment/SalaryPayment';
+import StudentDashboard from '../pages/StudentPages/StudentDashboard';
+import SignInPage from '../pages/StudentPages/SignInPage';
 
 
 
@@ -89,6 +91,22 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage/>}/>
           <Route path="/home" to="/"/>
+          <Route path='/student/'>
+            <Route path='dashboard' element={<StudentDashboard/>}/>
+            <Route path='signin' element={<SignInPage/>}/>
+            {/* <Route path='signup' element={<StaffSignUp/>}/>
+            <Route path='inbox' element={<StaffMessage/>}/>
+            <Route path='inbox/:id' element={<StaffMessage/>}/>
+            <Route path='student' element={<Student/>}/>
+            <Route path='student/:email' element={<Student/>}/>
+            <Route path='submit' element={<StaffSubmit/>}/>
+            <Route path='uploadfile' element={<StaffFile/>}/>
+            <Route path='notifications' element={<StaffNotification/>}/>
+            <Route path='setting' element={<StaffSetting/>}/>
+            <Route path='class' element={<ScheduleClass/>}/>
+            <Route path='forgottenpassword' element={<StaffForgottenPassword/>} />
+            <Route path='forgottenpassword/:token' element={<StaffForgottenPassword/>} /> */}
+          </Route>
           <Route path='/staff/'>
             <Route path='dashboard' element={<StaffDashboard/>}/>
             <Route path='signin' element={<StaffLogin/>}/>

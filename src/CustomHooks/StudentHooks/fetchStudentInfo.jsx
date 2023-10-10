@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import { fetchStudent, setFetched } from '../redux/studentInformation';
 import axios from 'axios'
-
+import { fetchStudent, setFetched } from '../../redux/studentInformation';
 
 
 const fetchStudentInfo = () => {

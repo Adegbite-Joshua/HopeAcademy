@@ -37,7 +37,7 @@ const SignInPage = () => {
             localStorage.token = res.data.token
             // alert('found')
             // navigate('/dashboard')
-            setTimeout(() => navigate("/dashboard"), 3000);
+            setTimeout(() => navigate("/staff/dashboard"), 3000);
             setsnacksBarBody('Successfully Signed In')
             setsnacksBarType('info')
             showSnackBar()

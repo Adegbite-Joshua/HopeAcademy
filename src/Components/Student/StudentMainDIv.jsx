@@ -8,7 +8,7 @@ import axios from 'axios'
 import SnackBar from '../SnackBar'
 
 
-const StudentMainDIv = ({category, mainindex, individualEmail, partnerName}) => {
+const StudentMainDIv = ({category, mainindex, individualEmail, partnerName, classStudents}) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   const [assessment, setassessment] = useState({})
   const recieveAssessment =(value)=>{
@@ -49,7 +49,7 @@ const StudentMainDIv = ({category, mainindex, individualEmail, partnerName}) => 
         <div className='StudentMainDIv middleDiv mt-16 md:mt-0 h-screen basis-full md:basis-7/12 px-5 overflow-y-auto border border-2'>
             <h3 className=' text-center'>Adegbite Joshua</h3>
             <div className="w-full overflow-x-scroll">
-                <StudentScoreTable index={mainindex} func={recieveAssessment}/>
+                <StudentScoreTable classStudents={classStudents} individualEmail={individualEmail} index={mainindex} func={recieveAssessment}/>
             </div>
             <StudentLastPerformance/>
             <ButtonComp onClick={saveStudentsAssesment} name={individualEmail?`Save ${partnerName}'s Data`:'Select A Students Name'}/>

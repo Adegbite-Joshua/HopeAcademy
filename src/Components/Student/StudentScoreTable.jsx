@@ -2,9 +2,10 @@ import { useFormik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-const StudentScoreTable = ({func, index}) => {
+const StudentScoreTable = ({func, index,}) => {
     let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
     let classStudents = useSelector((state)=>state.staffInformation.classStudents)
+
 
     useEffect(() => {
         index&&subjectIndex?updateStudentAssessment():''
@@ -77,7 +78,7 @@ const StudentScoreTable = ({func, index}) => {
     }
     const showTable =()=>{
         return (<>
-            <tr>
+            <tr>    {console.log(classStudents[index].subjects[subjectIndex])}
                 <td className=' h-11 w-11 text-center m-1 border-2 p-1'><input type="number" placeholder='00' defaultValue={classStudents[index].subjects[subjectIndex].ca1} id='ca1' className=' w-full h-full focus:outline-0 focus:ring-2 focus:ring-blue-600 rounded-md text-center' name="" onChange={(e)=>{
                     setca1(e.target.value)
                     updateStudentAssessment()

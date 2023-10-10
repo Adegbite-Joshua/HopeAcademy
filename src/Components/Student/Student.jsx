@@ -7,6 +7,8 @@ import DashboardNav from '../StaffDashboard/DashboardNav'
 import StudentMainDIv from './StudentMainDIv'
 import StudentOtherDiv from './StudentOtherDiv'
 import { useParams } from 'react-router-dom'
+import fetchStaffInfo from '../../CustomHooks/StaffHooks/fetchStaffInfo'
+import fetchSubjectStudents from '../../CustomHooks/StaffHooks/fetchSubjectStudents'
 
 
 
@@ -17,9 +19,11 @@ const Student = () => {
   const [partnerName, setpartnerName] = useState('')
   const dispatch = useDispatch()
   let paramsValue = useParams();
-  let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
-  let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
-  let classStudents = useSelector((state)=>state.staffInformation.classStudents)
+  const [classStudents] = fetchSubjectStudents();
+  const [staffInfo, fetching, staffNotifications, notificationFetchingState] = fetchStaffInfo();
+  // let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
+  // let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
+  // let classStudents = useSelector((state)=>state.staffInformation.classStudents)
   const setViewingMessage =(cat, main, email)=>{
     console.log(cat, main, email);
     category!=''?setcategory(cat):''
@@ -38,37 +42,26 @@ const Student = () => {
         staffEmail,
         staffPassword
     }
-    if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
-      axios.post(endpoint, details)
-      .then((res)=>{
-          if (res.status==200) {
-            dispatch(fetchStaff(res.data))
-            dispatch(setFetching(false))
-            setDefault()
-          } else if(res.status != 200){
-              state.staffInformation = 'error'
-          }
-      })
-      .catch((err)=>{
-          console.log(err);
-      })
-    }
-    if (classStudents.length==0) {
-      let classStudentsEndpoint = 'http://localhost:7777/staff/fetchclassstudents'
-      dispatch(setFetching(true))
-      axios.post(classStudentsEndpoint, {class: Number(localStorage.getItem('staffclass'))})
-      .then((res)=>{
-          if (res.status==200) {
-            dispatch(fetchClassStudents(res.data))
-            dispatch(setFetching(false))
-          } else if(res.status != 200){
-              state.staffInformation = 'error'
-          }
-      })
-      .catch((err)=>{
-          console.log(err);
-      })
-    }
+    // try{
+    //   if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
+    //     axios.post(endpoint, details)
+    //     .then((res)=>{
+    //         if (res.status==200) {
+    //           dispatch(fetchStaff(res.data))
+    //           dispatch(setFetching(false))
+    //           setDefault()
+    //         } else if(res.status != 200){
+    //             state.staffInformation = 'error'
+    //         }
+    //     })
+    //     .catch((err)=>{
+    //         console.log(err);
+    //     })
+    //   }
+    // } catch (error){
+    //   console.log(error)
+    // }
+    
   }
   const validateStaff =()=>{
     let token = localStorage.token
@@ -92,9 +85,13 @@ const Student = () => {
     })
   }
   useEffect(() => {
-    validateStaff()
+    // validateStaff()
+    // console.log({class: Number(localStorage.getItem('staffclass')), subjectIndex: staffInfo.subjectIndex})
     setDefault()
-  }, [])
+    // if (classStudents.length==0 && Object.keys(staffInfo).length >= 1 && staffInfo.constructor === Object) {
+      
+    // }
+  }, [staffInfo])
   const setPartnerName =(value)=>{
     setpartnerName(value);
   }
@@ -115,7 +112,7 @@ const Student = () => {
             <DashboardNav/>
             {fetching && <Loader/>}
             {fetching==false && <>
-              <StudentMainDIv category={category} mainindex={mainindex} individualEmail={individualEmail} partnerName={partnerName} />
+              <StudentMainDIv category={category} mainindex={mainindex} individualEmail={individualEmail} classStudents={classStudents} partnerName={partnerName} />
               <StudentOtherDiv func={setViewingMessage} func2={setPartnerName}/>
             </>}
         </div>
