@@ -9,6 +9,7 @@ const NewAcademicTerm = () => {
     const formik = useFormik({
         initialValues: {
           newTerm: '',
+          lastTermForSession: false,
           schoolFeesAmount: '',
           staffSalary: '',
           authorizationCode: '',
@@ -16,79 +17,81 @@ const NewAcademicTerm = () => {
         },
         validationSchema: Yup.object({
           newTerm: Yup.string().required('Please Select The New Academic Term'),
+          lastTermForSession: Yup.boolean(),
           schoolFeesAmount: Yup.number().typeError('School fees amount must be a number').required('School fees amount is required').positive('School fees amount must be a positive number'),
           staffSalary: Yup.number().typeError('Staff salary amount must be a number').required('Staff salary amount is required').positive('Staff salary amount must be a positive number'),
           authorizationCode: Yup.string().required('Please Input Your Admin Authorization Code'),
           isChecked: Yup.boolean().oneOf([true], 'You must accept the terms and conditions'),
         }),
         onSubmit: (values) => {
-          axios.post('http://localhost:7777/admin/sign_up', values)
-          .then((res)=>{
-            console.log(res)
-            if (res.status==200){
-              toast.success('Signup successful!', {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                style: {
-                  background: '#4caf50', // Background color of the toast
-                  color: '#ffffff', // Text color of the toast
-                  fontSize: '16px', // Font size
-                },
-              });
-              setTimeout(() => {navigate('/admin/signin')}, 2000);
-            } 
-          })
-          .catch((error)=>{
-            console.log(error)
-            if (error.response.status==408) {
-              toast.error('Email Already Exist', {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                style: {
-                  background: '#ff5252', 
-                  color: '#ffffff', 
-                  fontSize: '16px',
-                },
-              });
-            } else if (error.response.status==408) {
-              toast.error('Invalid Admin Sign Up Token', {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                style: {
-                  background: '#ff5252', 
-                  color: '#ffffff', 
-                  fontSize: '16px',
-                },
-              });
-            } else {
-              toast.error('An Error Occurred, Please Try Again', {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                style: {
-                  background: '#ff5252', // Background color of the toast
-                  color: '#ffffff', // Text color of the toast
-                  fontSize: '16px', // Font size
-                },
-              })
-            }
-          })
-          
+        //   axios.post('http://localhost:7777/admin/sign_up', values)
+        //   .then((res)=>{
+        //     console.log(res)
+        //     if (res.status==200){
+        //       toast.success('Signup successful!', {
+        //         position: toast.POSITION.TOP_RIGHT,
+        //         autoClose: 5000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         style: {
+        //           background: '#4caf50', // Background color of the toast
+        //           color: '#ffffff', // Text color of the toast
+        //           fontSize: '16px', // Font size
+        //         },
+        //       });
+        //       setTimeout(() => {navigate('/admin/signin')}, 2000);
+        //     } 
+        //   })
+        //   .catch((error)=>{
+        //     console.log(error)
+        //     if (error.response.status==408) {
+        //       toast.error('Email Already Exist', {
+        //         position: toast.POSITION.TOP_RIGHT,
+        //         autoClose: 5000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         style: {
+        //           background: '#ff5252', 
+        //           color: '#ffffff', 
+        //           fontSize: '16px',
+        //         },
+        //       });
+        //     } else if (error.response.status==408) {
+        //       toast.error('Invalid Admin Sign Up Token', {
+        //         position: toast.POSITION.TOP_RIGHT,
+        //         autoClose: 5000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         style: {
+        //           background: '#ff5252', 
+        //           color: '#ffffff', 
+        //           fontSize: '16px',
+        //         },
+        //       });
+        //     } else {
+        //       toast.error('An Error Occurred, Please Try Again', {
+        //         position: toast.POSITION.TOP_RIGHT,
+        //         autoClose: 5000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         style: {
+        //           background: '#ff5252', // Background color of the toast
+        //           color: '#ffffff', // Text color of the toast
+        //           fontSize: '16px', // Font size
+        //         },
+        //       })
+        //     }
+        //   })
+        console.log(values)
+        
         },
         onError: (error) => {
           console.log(error)
@@ -107,6 +110,10 @@ const NewAcademicTerm = () => {
                         <option value={3}>3<sup>rd</sup> Term</option>    
                     </select>
                 {formik.touched.newTerm && formik.errors.newTerm ? (<p className="mt-2 text-sm text-red-600">{formik.errors.newTerm}</p>) : null}
+                <label>
+                    <input type="checkbox" name="lastTermForSession" id="lastTermForSession" checked={formik.values.lastTermForSession} onChange={formik.handleChange}/> 
+                    Is this the last academic term for this academic session?
+                </label>
                 </div>
                 <div className='grid grid-cols-1 md:flex my-1 bg-blue-100 p-2'>
                     <label htmlFor="schoolFeesAmount" className='basis-2/6'>Set School Fee Amount</label>
