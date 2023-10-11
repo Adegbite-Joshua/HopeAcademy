@@ -20,7 +20,8 @@ const SalaryPayment = () => {
       setaccountName('Fetching Your Details...')
       let getAccountDetails = await axios.get(`http://localhost:7777/get_account_details?bankCode=${bankCode}&accountNumber=${accountNumber}`)
       if(getAccountDetails.status){
-        setaccountName(getAccountDetails.account_name)
+        console.log(getAccountDetails)
+        setaccountName(getAccountDetails.data.account_name)
       } else if(!getAccountDetails.status){
         setaccountName('No Matching Details')
       }
@@ -104,10 +105,10 @@ const SalaryPayment = () => {
                     <input type="text" name='accountNumber' id='accountNumber' onChange={(e)=>{
                         setaccountNumber(e.target.value)
                         fetchAccountDetails()
-                    }} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Account Number' />
+                    }} className='w-full border-2 border-blue-300 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-md  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Account Number' />
                     </div>
                     <div>
-                        <label className='text-center my-2 block'>Select Bank</label>
+                        <label className='my-2 block'>Select Bank</label>
                         <select id="bankCode" name="bankCode" onChange={(e)=>{
                             setbankCode((JSON.parse(e.target.value)).value)
                             fetchAccountDetails()
