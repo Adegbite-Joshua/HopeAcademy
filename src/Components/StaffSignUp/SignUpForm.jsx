@@ -195,7 +195,7 @@ const SignUpForm = ({type, data}) => {
       }
     }
   }
-  console.log(accountName)
+
   return (
     <>
         <div className='mainSignupDiv pt-24'>
@@ -268,8 +268,8 @@ const SignUpForm = ({type, data}) => {
                 <div className="mb-4">
                   <label htmlFor="state" className='text-white'>  State</label>
                   <select id="state" name="state" onChange={(e)=>{
-                    FetchStatesAndLGAs(e.target.value);
                     formik.handleChange(e);
+                    FetchStatesAndLGAs(e.target.value);
                   }} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
                     {states?states.map((state)=>(
                         <option value={state}>{state}</option>
