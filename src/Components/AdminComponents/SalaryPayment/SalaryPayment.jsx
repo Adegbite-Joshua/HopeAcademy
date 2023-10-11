@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import FetchAllStudentsAndStaffs from '../../../CustomHooks/AdminHooks/FetchAllStudentsAndStaffs';
+import DisplayToast from '../../../CustomHooks/DisplayToast';
 import fetchBanksList from '../../../CustomHooks/fetchBanksList';
 import Navbar from '../NavBar/NavBar'
 import StaffAccountDetails from './StaffAccountDetails'
@@ -35,9 +36,18 @@ const SalaryPayment = () => {
     'SSS 3',
   ]
 
-  const payStaffClass =()=>{
-    let endpoint = 'http://localhost:7777/admin/'
-    axios.post(endpoint, {class: staffClass, adminToken})
+  const payStaffClass = async()=>{
+    let confirmPayment = confirm('Are you sure you want to continue with the payment')
+    if(!confirmPayment){
+        return;
+    }
+    let endpoint = 'http://localhost:7777/admin/pay_staffs_salary'
+    let payStaff = await axios.post(endpoint, {class: staffClass, adminToken})
+    if (payStaff.status==200) {
+        let [show] = DisplayToast('success', 'Payment Process Has Started')
+    } else {
+        let [show] = DisplayToast('error', 'Error Submitting Your Request, Please Try Again Later')
+    }
   }
 
   return (
@@ -56,7 +66,7 @@ const SalaryPayment = () => {
                         </tr>
                     </thead>
                     <tbody className='w-full'>
-                        {allStaffs[staffClass].length>=1?allStaffs[staffClass].map((staff)=>(
+                        {allStaffs[staffClass]?.length>=1?allStaffs[staffClass].map((staff)=>(
                             <StaffAccountDetails name={`${staff.firstName} ${staff.lastName}`} bankName={`${staff?.bankName}`} accountNumber={`${staff?.accountNumber}`} accountName={`${staff?.accountName}`} />
                         )) :''}
                     </tbody>
@@ -84,7 +94,7 @@ const SalaryPayment = () => {
                         <input type="checkbox" className="accent-blue-400" />
                         <label htmlFor="">You are about paying the of #450,000, ensure you have up to this amount to </label>
                     </div> */}
-                    <button className='bg-blue-400 p-2 rounded-lg w-full my-3 '>Pay Salary For {`${className[staffClass]}`} Staffs</button>
+                    <button type='button' onClick={payStaffClass} className='bg-blue-400 p-2 rounded-lg w-full my-3 '>Pay Salary For {`${className[staffClass]}`} Staffs</button>
                     
                 </form>
                 <form className=''>

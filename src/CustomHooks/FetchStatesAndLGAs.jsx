@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setStates, setLGAs } from '../redux/generalInformation';
+import { setstates, setLGAs } from '../redux/generalInformation';
 import axios from 'axios';
 
 const useFetchStatesAndLGAs = (value = 'Oyo') => {
@@ -13,7 +13,7 @@ const useFetchStatesAndLGAs = (value = 'Oyo') => {
       try {
         if (states.length === 0) {
           let statesData = await axios.get('https://nga-states-lga.onrender.com/fetch');
-          dispatch(setStates(statesData.data));
+          dispatch(setstates(statesData.data));
         }
         const LGAsData = await axios.get(`https://nga-states-lga.onrender.com/?state=${value}`);
         dispatch(setLGAs(LGAsData.data));
