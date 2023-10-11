@@ -8,16 +8,20 @@ import SnackBar from '../SnackBar'
 import DisplayToast from '../../CustomHooks/DisplayToast'
 import { useSelector, useDispatch } from 'react-redux';
 import { updateAllStaffs, updateAStaff, setFetchingState } from '../../redux/adminInformation';
+import fetchBanksList from '../../CustomHooks/fetchBanksList';
+import FetchStatesAndLGAs from '../../CustomHooks/FetchStatesAndLGAs';
 // import FetchAllStudentsAndStaffs from '../../CustomHooks/AdminHooks/FetchAllStudentsAndStaffs'
 
 
 const SignUpForm = ({type, data}) => {
   const dispatch = useDispatch();
-  const [fileType, setfileType] = useState('.jpeg, .jpg, .gif, .tif, .psd')
-  const [imageBase64, setimageBase64] = useState('')
+  const [fileType, setfileType] = useState('.jpeg, .jpg, .gif, .tif, .psd');
+  const [imageBase64, setimageBase64] = useState('');
   // const [allStudents, allStaffs] = FetchAllStudentsAndStaffs();
-  const [states, setstates] = useState([]);
-  const [LGAs, setLGAs] = useState([]);
+  const [states, LGAs] = FetchStatesAndLGAs();
+  const [banksList] = fetchBanksList();
+  const [accountName, setaccountName] = useState('Account Name Will Show Here')
+  const [name, setname] = useState('jhherjhjhh')
 
 
   const subjects = [
@@ -46,43 +50,29 @@ const SignUpForm = ({type, data}) => {
       phoneNumber: type == 'edit' ? data?.phoneNumber : '',
       email: type == 'edit' ? data?.email : '',
       password: type == 'edit' ? 'nulljhjh' : '',
+      accountName: type == 'edit' ? data?.accountName : '',
+      accountNumber: type == 'edit' ? data?.accountNumber : '',
+      bankName: type == 'edit' ? data?.bankName : '',
+      bankCode: type == 'edit' ? data?.bankCode : '',
       staffIndex: 0,
       class: 0,
       address: type == 'edit' ? data?.address : '',
       localGovernment: type == 'edit' ? data?.localGovernment : '',
       imageBase64: type == 'edit' ? data?.pictureUrl : 'ees',
       state: '',
-      // agreement: false
     },
     validationSchema: Yup.object({
-      firstName: Yup.string()
-        .min(2, 'Too Short!')
-        .max(50, 'Too Long!')
-        // .type(!string, 'String required')
-        .required('Required'),
-      lastName: Yup.string()
-        .min(2, 'Too Short!')
-        .max(50, 'Too Long!')
-        // .type(!string, 'String required')
-        .required('Required'),
-      phoneNumber: Yup.string()
-        .min(2, 'Invalid Phone Number')
-        .max(14, 'Invalid Phone Number')
-        .required('Required'),
-      email: Yup.string()
-        .email('Invalid email')
-        .required('Required'),
+      firstName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+      lastName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+      phoneNumber: Yup.string().min(2, 'Invalid Phone Number').max(14, 'Invalid Phone Number').required('Required'),
+      email: Yup.string().email('Invalid email').required('Required'),
       password: type!='edit'?Yup.string().min(5, 'Too Short').max(40, 'Too Long').required('Required'): Yup.string(),
-      address: Yup.string()
-        .min(2, 'Too Short')
-        .max(230, 'Too Long')
-        .required('Required'),
+      address: Yup.string().min(2, 'Too Short').max(230, 'Too Long').required('Required'),
       localGovernment: Yup.string().required('Please Select A Local Government'),
       state: Yup.string().required('Please Select A State'),
-      imageBase64: Yup.string().required('Please Select An Image')
-      // agreement: Yup.string()
-      //   .required('Required')
-        // .boolean('Agree to Terms and Conditions')
+      imageBase64: Yup.string().required('Please Select An Image'),
+      accountNumber: Yup.string().matches(/^\d{10}$/, 'Account Number must be exactly 10 digits').required('Account Number Is Required'),
+      bankCode: Yup.string().required('Please Select A Bank'),
     }),
     onSubmit: (values)=>{
       console.log(values)
@@ -109,6 +99,10 @@ const SignUpForm = ({type, data}) => {
       password: values.password,
       staffIndex: values.staffIndex,
       imageBase64,
+      accountName: values.accountName,
+      accountNumber: values.accountNumber,
+      bankName: values.bankName,
+      bankCode: values.bankCode,
       class: values.class,
       address: values.address,
       localGovernment: values.localGovernment,
@@ -181,26 +175,28 @@ const SignUpForm = ({type, data}) => {
     }
   }
 
-  const fetchStates = async()=>{
-    let states = await axios.get('https://nga-states-lga.onrender.com/fetch')
-    setstates(states.data)
-  }
-
-  const fetchLGA = async(value='Oyo')=>{
-    const LGAS = await axios.get(`https://nga-states-lga.onrender.com/?state=${value}`)
-    setLGAs(LGAS.data)
-  }
-
   useEffect(()=>{
-    fetchStates()
-    fetchLGA()
-    console.log(data)
     if(type=='edit'){
       setimageBase64(data.pictureUrl)
     }
   },[])
 
-    return (
+  const fetchAccountDetails = async()=>{
+    let bankCode = (JSON.parse(document.getElementById('bankCode').value)).value
+    let accountNumber = document.getElementById('accountNumber').value
+    if (accountNumber.length==10 && bankCode != ''){
+      setaccountName('Fetching Your Details...')
+      let getAccountDetails = await axios.get(`http://localhost:7777/get_account_details?bankCode=${bankCode}&accountNumber=${accountNumber}`)
+      if(getAccountDetails.status){
+        formik.setFieldValue('accountName',getAccountDetails.account_name)
+        setaccountName(getAccountDetails.account_name)
+      } else if(!getAccountDetails.status){
+        setaccountName('No Matching Details')
+      }
+    }
+  }
+  console.log(accountName)
+  return (
     <>
         <div className='mainSignupDiv pt-24'>
             <form onSubmit={formik.handleSubmit} className="w-full px-5 h-auto block mx-auto">
@@ -222,7 +218,7 @@ const SignUpForm = ({type, data}) => {
                   <small className='text-red-500'>{formik.touched.password && formik.errors.password}</small><br />
                 </>)}
                 <label htmlFor="" className='text-white'>Class</label>
-                <select name="class" id="class" required onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50'>
+                <select name="class" id="class" required onChange={formik.handleChange} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
                     <option value="0" selected={type!='edit'?true:data.class==0?true:false}>JSS1</option>
                     <option value="1">JSS2</option>
                     <option value="2">JSS3</option>
@@ -232,7 +228,7 @@ const SignUpForm = ({type, data}) => {
                 </select>
                 {type == 'create' && (<>
                   <label htmlFor="staffIndex" className=''>Subject To Offer</label>
-                  <select name="staffIndex" onChange={formik.handleChange} id="staffIndex" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50 px-6'>
+                  <select name="staffIndex" onChange={formik.handleChange} id="staffIndex" className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
                       {subjects.sort().map((subject, index) => (
                           <><option value={index} selected={subject.includes('MATHEMA') ? true : false}>{subject}</option></>
                       ))}
@@ -240,11 +236,31 @@ const SignUpForm = ({type, data}) => {
                 </>)}
                 {type == 'edit' && (<>
                   <label htmlFor="staffIndex" className='text-white'>Subject To Offer</label>
-                  <select name="staffIndex" onChange={formik.handleChange} id="staffIndex" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50 px-6'>
-                      {subjects.sort().map((subject, index) => (
+                  <select name="staffIndex" onChange={formik.handleChange} id="staffIndex" className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                      {subjects.map((subject, index) => (
                           <><option value={index} selected={data.subjectInfo.subjectName==subject ? true : false}>{subject}</option></>
                       ))}
                   </select>
+                  <div className="mb-4">
+                    <label htmlFor="state" className='text-white'>  Select Your Bank</label>
+                    <select id="bankCode" name="bankCode" onChange={(e)=>{
+                      formik.setFieldValue('bankCode', (JSON.parse(e.target.value)).value)
+                      formik.setFieldValue('bankName', (JSON.parse(e.target.value)).label)
+                      fetchAccountDetails()
+                    }} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                      {banksList?banksList.map((bankDetails)=>(
+                          <option value={JSON.stringify(bankDetails)}>{bankDetails.label}</option>
+                      )):(<option value={null}>Fetching All Banks</option>)}
+                    </select>
+                    {formik.touched.bankCode && formik.errors.bankCode ? (<p className="mt-2 text-sm text-red-600">{formik.errors.bankCode}</p>) : null}
+                    <label htmlFor="" className='text-white'>Account Number</label>
+                    <input type="text" name='accountNumber' id='accountNumber' onChange={(e)=>{
+                      formik.handleChange(e)
+                      fetchAccountDetails()
+                    }} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Account Number' />
+                    {formik.touched.accountNumber && formik.errors.accountNumber ? (<p className="mt-2 text-sm text-red-600">{formik.errors.accountNumber}</p>) : null}
+                    <p className='w-full h-12 my-2 rounded-full bg-white text-black p-2'>{accountName}</p>
+                  </div>
                 </>)}
                 <label htmlFor="" className='text-white'>Address</label>
                 <input type="text" required name='address' {...formik.getFieldProps('address')} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Address' />
@@ -252,7 +268,7 @@ const SignUpForm = ({type, data}) => {
                 <div className="mb-4">
                   <label htmlFor="state" className='text-white'>  State</label>
                   <select id="state" name="state" onChange={(e)=>{
-                    fetchLGA(e.target.value);
+                    FetchStatesAndLGAs(e.target.value);
                     formik.handleChange(e);
                   }} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
                     {states?states.map((state)=>(

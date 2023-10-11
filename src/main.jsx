@@ -5,6 +5,7 @@ import '../node_modules/font-awesome/css/font-awesome.css'
 import { BrowserRouter } from "react-router-dom";
 import {configureStore} from '@reduxjs/toolkit'
 import { Provider } from 'react-redux';
+import generalInformation from './redux/generalInformation'
 import studentInformation from './redux/studentInformation'
 import staffInformation from './redux/staffInformation'
 import adminInformation from './redux/adminInformation'
@@ -14,6 +15,7 @@ import socketIO from './redux/socketIO'
 
 const store = configureStore({
   reducer: {
+    generalInformation,
     studentInformation,
     staffInformation,
     adminInformation,

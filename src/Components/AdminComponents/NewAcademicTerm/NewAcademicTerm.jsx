@@ -29,6 +29,7 @@ const NewAcademicTerm = () => {
             console.log(res)
             if (res.status==200){
             //   DisplayToast()
+              formik.resetForm();
               toast.success('The New Term Operation Has Started', {
                 position: toast.POSITION.TOP_RIGHT,
                 autoClose: 5000,
