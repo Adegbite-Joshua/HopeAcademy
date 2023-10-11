@@ -14,14 +14,12 @@ const fetchSubjectStudents = () => {
   let localStaffInfo = {};
 
   useEffect(() => {
-    console.log(classStudents.length,Object.keys(staffInfo).length, staffInfo.constructor )
     async function fetchData() {
       try {
         if (classStudents.length == 0 && Object.keys(staffInfo).length >= 1 && staffInfo.constructor === Object) {
             let classStudentsEndpoint = 'http://localhost:7777/staff/fetchclassstudents'
             dispatch(setFetching(true))
-            console.log({class: Number(localStorage.getItem('staffclass')), staffIndex: staffInfo.staffIndex});
-            axios.post(classStudentsEndpoint, {class: Number(localStorage.getItem('staffclass')), staffIndex: staffInfo.staffIndex})
+            axios.post(classStudentsEndpoint, {class: Number(localStorage.getItem('staffclass')), staffIndex: Number(staffInfo.staffIndex)})
             .then((res)=>{
                 if (res.status==200) {
                   dispatch(fetchClassStudents(res.data))

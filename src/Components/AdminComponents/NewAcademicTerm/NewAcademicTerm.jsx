@@ -24,74 +24,72 @@ const NewAcademicTerm = () => {
           isChecked: Yup.boolean().oneOf([true], 'You must accept the terms and conditions'),
         }),
         onSubmit: (values) => {
-        //   axios.post('http://localhost:7777/admin/sign_up', values)
-        //   .then((res)=>{
-        //     console.log(res)
-        //     if (res.status==200){
-        //       toast.success('Signup successful!', {
-        //         position: toast.POSITION.TOP_RIGHT,
-        //         autoClose: 5000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         style: {
-        //           background: '#4caf50', // Background color of the toast
-        //           color: '#ffffff', // Text color of the toast
-        //           fontSize: '16px', // Font size
-        //         },
-        //       });
-        //       setTimeout(() => {navigate('/admin/signin')}, 2000);
-        //     } 
-        //   })
-        //   .catch((error)=>{
-        //     console.log(error)
-        //     if (error.response.status==408) {
-        //       toast.error('Email Already Exist', {
-        //         position: toast.POSITION.TOP_RIGHT,
-        //         autoClose: 5000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         style: {
-        //           background: '#ff5252', 
-        //           color: '#ffffff', 
-        //           fontSize: '16px',
-        //         },
-        //       });
-        //     } else if (error.response.status==408) {
-        //       toast.error('Invalid Admin Sign Up Token', {
-        //         position: toast.POSITION.TOP_RIGHT,
-        //         autoClose: 5000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         style: {
-        //           background: '#ff5252', 
-        //           color: '#ffffff', 
-        //           fontSize: '16px',
-        //         },
-        //       });
-        //     } else {
-        //       toast.error('An Error Occurred, Please Try Again', {
-        //         position: toast.POSITION.TOP_RIGHT,
-        //         autoClose: 5000,
-        //         hideProgressBar: false,
-        //         closeOnClick: true,
-        //         pauseOnHover: true,
-        //         draggable: true,
-        //         style: {
-        //           background: '#ff5252', // Background color of the toast
-        //           color: '#ffffff', // Text color of the toast
-        //           fontSize: '16px', // Font size
-        //         },
-        //       })
-        //     }
-        //   })
-        console.log(values)
-        
+          axios.post('http://localhost:7777/admin/start_new_academic_term', values)
+          .then((res)=>{
+            console.log(res)
+            if (res.status==200){
+            //   DisplayToast()
+              toast.success('The New Term Operation Has Started', {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                style: {
+                  background: '#4caf50', // Background color of the toast
+                  color: '#ffffff', // Text color of the toast
+                  fontSize: '16px', // Font size
+                },
+              });
+            } 
+          })
+          .catch((error)=>{
+            console.log(error)
+            if (error.response.status==500) {
+              toast.error('Server Error Please Try Again', {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                style: {
+                  background: '#ff5252', 
+                  color: '#ffffff', 
+                  fontSize: '16px',
+                },
+              });
+            } else if (error.response.status==408) {
+              toast.error('Invalid Admin Token', {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                style: {
+                  background: '#ff5252', 
+                  color: '#ffffff', 
+                  fontSize: '16px',
+                },
+              });
+            } else {
+              toast.error('An Error Occurred, Please Try Again', {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                style: {
+                  background: '#ff5252', // Background color of the toast
+                  color: '#ffffff', // Text color of the toast
+                  fontSize: '16px', // Font size
+                },
+              })
+            }
+          })        
         },
         onError: (error) => {
           console.log(error)
