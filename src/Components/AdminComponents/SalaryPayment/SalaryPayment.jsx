@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import FetchAllStudentsAndStaffs from '../../../CustomHooks/AdminHooks/FetchAllStudentsAndStaffs';
 import DisplayToast from '../../../CustomHooks/DisplayToast';
 import fetchBanksList from '../../../CustomHooks/fetchBanksList';
@@ -12,20 +12,27 @@ const SalaryPayment = () => {
   const [accountName, setaccountName] = useState('Account Name Will Show Here')
   const [accountNumber, setaccountNumber] = useState('')
   const [bankCode, setbankCode] = useState('')
+  const [amount, setamount] = useState('')
   const [staffClass, setstaffClass] = useState(0)
   const [adminToken, setadminToken] = useState('')
+  const [accountBalance, setaccountBalance] = useState('000000000')
+  let bankCodeString = '';
+  let accountNumberString = '';
+
 
   const fetchAccountDetails = async()=>{
-    if (accountNumber.length==10 && bankCode != ''){
-      setaccountName('Fetching Your Details...')
-      let getAccountDetails = await axios.get(`http://localhost:7777/get_account_details?bankCode=${bankCode}&accountNumber=${accountNumber}`)
-      if(getAccountDetails.status){
-        console.log(getAccountDetails)
-        setaccountName(getAccountDetails.data.account_name)
-      } else if(!getAccountDetails.status){
-        setaccountName('No Matching Details')
+      if (accountNumberString.length == 10 && bankCodeString != ''){
+        setaccountName('Fetching Your Details...')
+        let getAccountDetails = await axios.get(`http://localhost:7777/get_account_details?bankCode=${bankCode}&accountNumber=${accountNumber}`)
+        if(getAccountDetails.status){
+            console.log(getAccountDetails)
+            setaccountName(getAccountDetails.data.account_name)
+        } else if(!getAccountDetails.status){
+            setaccountName('No Matching Details')
+        }
+      } else {
+        setaccountName('Check The Account Number Or Select The Bank')
       }
-    }
   }
 
   let className = [
@@ -50,6 +57,33 @@ const SalaryPayment = () => {
         let [show] = DisplayToast('error', 'Error Submitting Your Request, Please Try Again Later')
     }
   }
+
+  const sendMoney =()=>{
+    if(!accountNumber || !bankCode || !amount){
+        console.log(accountNumber, bankCode, amount)
+        DisplayToast('error', 'Please Set The Account Number, Bank Or The Amount')
+        return;
+    }
+    let endpoint = 'http://localhost:7777/admin/send_money';
+    axios.post(endpoint, {accountNumber, bankCode, amount})
+    .then((res)=>{
+        if(res.status==200){
+            DisplayToast('success', 'Transaction Successfully')
+        } else {
+            DisplayToast('error', 'Error Processing Your Request')
+        }
+    })
+  }
+
+  useEffect(()=>{
+    axios.get('http://localhost:7777/admin/paystack_balance')
+    .then((res)=>{
+        if(res.status==200) setaccountBalance(`${res.data.toLocaleString()}.00`)
+    })
+    .catch((error)=>{
+        console.error(error)
+    })
+  }, [])
 
   return (
     <div>
@@ -76,7 +110,7 @@ const SalaryPayment = () => {
             <div className=' mb-2 order-1 md:order-none basis-full md:basis-2/6 p-3 h-full overflow-y-auto'>
                 <form className=''>
                     <div>
-                        <h2 className='text-center text-4xl'>Your Balance On Paystack: #900,000.00</h2>
+                        <h2 className='text-center text-4xl'>Your Balance On Paystack: #{accountBalance}</h2>
                         <label className='text-center my-2 block'>Select Class Staffs You Want To Pay</label>
                         <select name="" id="" onChange={(e)=>{setstaffClass(e.target.value)}} className='w-full border-2 border-blue-400 p-2 '>
                             <option value={0}>JSS 1</option>
@@ -101,17 +135,23 @@ const SalaryPayment = () => {
                 <form className=''>
                     <p>Send To Another Person</p>
                     <div className='my-1'>
-                    <label htmlFor="" className='text-white'>Account Number</label>
-                    <input type="text" name='accountNumber' id='accountNumber' onChange={(e)=>{
-                        setaccountNumber(e.target.value)
-                        fetchAccountDetails()
-                    }} className='w-full border-2 border-blue-300 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-md  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Account Number' />
+                        <label htmlFor="" className='text-white'>AMount</label>
+                        <input type="text" name='amount' id='amount' onChange={(e)=>{setamount(e.target.value)}} className='w-full border-2 border-blue-300 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-md  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Amount' />
+                    </div>
+                    <div>
+                        <label htmlFor="" className='text-white'>Account Number</label>
+                        <input type="text" name='accountNumber' id='accountNumber' onChange={(e)=>{
+                            setaccountNumber(e.target.value);
+                            accountNumberString = e.target.value;
+                            fetchAccountDetails();
+                        }} className='w-full border-2 border-blue-300 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-md  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Account Number' />
                     </div>
                     <div>
                         <label className='my-2 block'>Select Bank</label>
                         <select id="bankCode" name="bankCode" onChange={(e)=>{
-                            setbankCode((JSON.parse(e.target.value)).value)
-                            fetchAccountDetails()
+                            setbankCode((JSON.parse(e.target.value)).value);
+                            bankCodeString = e.target.value;
+                            fetchAccountDetails();
                         }} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
                             {banksList?banksList.map((bankDetails)=>(
                                 <option value={JSON.stringify(bankDetails)}>{bankDetails.label}</option>
@@ -119,7 +159,7 @@ const SalaryPayment = () => {
                         </select>
                     </div>
                     <p>{accountName}</p>
-                    <button className='p-2 bg-blue-400 rounded-lg w-full'>Send Money</button>
+                    <button type='button' onClick={sendMoney} className='p-2 bg-blue-400 rounded-lg w-full'>Send Money</button>
                 </form>
             </div>
         </div>
