@@ -30,12 +30,13 @@ const FetchAdminInfo = () => {
             localadminInfo = res.data;
             dispatch(setFetchingState(false));
             socket.emit('connectSocketId', res.data._id);
-          } else if (res.status !== 200) {
-            DisplayToast('error', '')
+          } else if (res.response.status == 407) {
+            DisplayToast('error', 'Invalid Or Expired Admin Token')
             navigate('/admin/signin')
           }
         }
       } catch (error) {
+          DisplayToast('error', 'Invalid Or Expired Admin Token')
           navigate('/admin/signin')
           console.log(error);
       }

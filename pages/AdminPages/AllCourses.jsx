@@ -3,6 +3,7 @@ import Navbar from '../../src/Components/AdminComponents/NavBar/NavBar'
 import Course from '../../src/Components/AdminComponents/Courses/Course'
 import FetchAllStudentsAndStaffs from '../../src/CustomHooks/AdminHooks/FetchAllStudentsAndStaffs';
 import FetchAllCourses from '../../src/CustomHooks/AdminHooks/FetchAllCourses';
+import FetchAdminInfo from '../../src/CustomHooks/AdminHooks/FetchAdminInfo';
 
 
 
@@ -12,6 +13,7 @@ const AllCourses = () => {
     const [courseClass, setcourseClass] = useState(0);
     const [courses, setcourses] = useState([]);
     const [allStudents, allStaffs] = FetchAllStudentsAndStaffs();
+    const [adminInfo, fetching] = FetchAdminInfo(); 
 
 
     useEffect(()=>{

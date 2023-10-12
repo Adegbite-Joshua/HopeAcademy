@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { setEntranceQuestions, setFetchingState } from '../../redux/adminInformation';
-const adminInfo = useSelector((state) => state.adminInformation.adminInformation);
 
 
 const FetchEntranceQuestions = () => {
+  const adminInfo = useSelector((state) => state.adminInformation.adminInformation);
   const entranceQuestions = useSelector((state) => state.adminInformation.entranceQuestions);
   const fetching = useSelector((state) => state.adminInformation.staffFetchingState);
   const socket = useSelector((state) => state.socketIO.socket);

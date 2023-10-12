@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
+import FetchAdminInfo from '../../../CustomHooks/AdminHooks/FetchAdminInfo';
 import FetchAllStudentsAndStaffs from '../../../CustomHooks/AdminHooks/FetchAllStudentsAndStaffs';
 import DisplayToast from '../../../CustomHooks/DisplayToast';
 import fetchBanksList from '../../../CustomHooks/fetchBanksList';
@@ -9,6 +10,7 @@ import StaffAccountDetails from './StaffAccountDetails'
 const SalaryPayment = () => {
   const [allStudents, allStaffs] = FetchAllStudentsAndStaffs()
   const [banksList] = fetchBanksList();
+  const [adminInfo, fetching] = FetchAdminInfo(); 
   const [accountName, setaccountName] = useState('Account Name Will Show Here')
   const [accountNumber, setaccountNumber] = useState('')
   const [bankCode, setbankCode] = useState('')
@@ -53,8 +55,10 @@ const SalaryPayment = () => {
     let payStaff = await axios.post(endpoint, {class: staffClass, adminToken})
     if (payStaff.status==200) {
         let [show] = DisplayToast('success', 'Payment Process Has Started')
+    } else if (payStaff.status==407) {
+        let [show] = DisplayToast('error', 'Invalid Admin Token')
     } else {
-        let [show] = DisplayToast('error', 'Error Submitting Your Request, Please Try Again Later')
+        let [show] = DisplayToast('error', 'An Error Occurred, Please Try Again')
     }
   }
 

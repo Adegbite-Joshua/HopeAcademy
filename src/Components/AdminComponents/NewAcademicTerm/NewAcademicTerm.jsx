@@ -3,9 +3,11 @@ import Navbar from '../NavBar/NavBar'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios'
+import FetchAdminInfo from '../../../CustomHooks/AdminHooks/FetchAdminInfo';
 
 
 const NewAcademicTerm = () => {
+    const [adminInfo, fetching] = FetchAdminInfo(); 
     const formik = useFormik({
         initialValues: {
           newTerm: '',

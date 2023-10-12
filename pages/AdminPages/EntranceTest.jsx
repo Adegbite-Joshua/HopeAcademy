@@ -5,11 +5,13 @@ import ViewParticipant from '../../src/Components/AdminComponents/EntranceTest/V
 import ViewQuestions from '../../src/Components/AdminComponents/EntranceTest/ViewQuestions'
 import axios from 'axios'
 import FetchEntranceQuestions from '../../src/CustomHooks/AdminHooks/FetchAllEntranceQuestions'
+import FetchAdminInfo from '../../src/CustomHooks/AdminHooks/FetchAdminInfo'
 
 
 
 const AdminEntranceTestView = () => {
-    const [viewing, setviewing] = useState('setQuestions')
+    const [viewing, setviewing] = useState('setQuestions');
+    const [adminInfo, fetching] = FetchAdminInfo(); 
     let [entranceQuestions] = FetchEntranceQuestions();
     const changeViewing=(value)=>{
         setviewing(value)

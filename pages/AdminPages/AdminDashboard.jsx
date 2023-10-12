@@ -8,19 +8,14 @@ import FetchAllStudentsAndStaffs from '../../src/CustomHooks/AdminHooks/FetchAll
 import FetchNoticesAndNews from '../../src/CustomHooks/FetchNoticesAndNews';
 
 function AdminDashboard() {
-    const [studentCount, setStudentCount] = useState(0);
-    const [staffCount, setStaffCount] = useState(0);
-    const [adminInfo, fetching] = FetchAdminInfo();
+    const [adminInfo, fetching] = FetchAdminInfo(); 
     const [allStudents, allStaffs] = FetchAllStudentsAndStaffs();
     const [noticesAndNews] = FetchNoticesAndNews();
 
 
 
     useEffect(() => {
-        setTimeout(() => {
-            setStudentCount(150); 
-            setStaffCount(25);    
-        }, 1000);
+        
     }, []);
 
     return (
