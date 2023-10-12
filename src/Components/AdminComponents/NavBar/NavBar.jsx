@@ -50,7 +50,7 @@ const Navbar = () => {
               <Link to="/admin/salary_payment" className='block border-b-2 mb-3'>Salary Payment</Link>
             </div>
           </div>
-          <Link to="#" className='block my-auto'>Notice and Events</Link>
+          <Link to="/admin/news_and_notices" className='block my-auto'>Notice and Events</Link>
           <Link to="#" className='block my-auto'>Log Out</Link>
         </div>
       </div>

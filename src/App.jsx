@@ -28,6 +28,7 @@ import AdminSignIn from '../pages/AdminPages/AdminSignIn';
 import NewCourse from '../pages/AdminPages/NewCourse';
 import AdminEntranceTest from '../pages/AdminPages/EntranceTest';
 import AllCourses from '../pages/AdminPages/AllCourses';
+import AdminNoticesAndNews from '../pages/AdminPages/AdminNoticesAndNews';
 import NewAccount from './Components/AdminComponents/Accounts/NewAccount';
 import EditAccount from './Components/AdminComponents/Accounts/EditAccount';
 import StaffAccount from './Components/AdminComponents/Accounts/StaffAccount';
@@ -147,6 +148,7 @@ function App() {
             <Route path='entrance_test' element={<AdminEntranceTest/>} />
             <Route path='new_term' element={<NewAcademicTerm/>} />
             <Route path='salary_payment' element={<SalaryPayment/>} />
+            <Route path='news_and_notices' element={<AdminNoticesAndNews/>} />
           </Route>
         </Routes>
         <ToastContainer style={{zIndex: 99999999999999999999}} /> 
