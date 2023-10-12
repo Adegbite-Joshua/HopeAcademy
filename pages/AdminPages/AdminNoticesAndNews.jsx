@@ -15,8 +15,6 @@ const AdminNoticesAndNews = () => {
     const [studentCount, setStudentCount] = useState(0);
     const [staffCount, setStaffCount] = useState(0);
     const [viewingIndex, setviewingIndex] = useState(0);
-    // const [adminInfo, fetching] = FetchAdminInfo();
-    // const [allStudents, allStaffs] = FetchAllStudentsAndStaffs();
     const [noticesAndNews] = FetchNoticesAndNews();
 
     const [isOpen, setIsOpen] = useState(false);

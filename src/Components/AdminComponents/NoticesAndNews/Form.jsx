@@ -6,6 +6,7 @@ import { useFormik, validateYupSchema } from 'formik';
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import * as Yup from 'yup';
+import { deletenoticesAndNews, } from '../../../redux/generalInformation';
 
 
 const News = ({type, data, closePopup }) => {

@@ -6,15 +6,15 @@ import axios from 'axios';
 const FetchAllStudentsAndStaffs = () => {
   const allStudents = useSelector((state) => state.adminInformation.allStudents);
   const allStaffs = useSelector((state) => state.adminInformation.allStaffs);
-  const fetching = useSelector((state) => state.adminInformation.staffFetchingState);
-  const socket = useSelector((state) => state.socketIO.socket);
+  const adminInfo = useSelector((state) => state.adminInformation.adminInformation);
   const dispatch = useDispatch();
   let localadminInfo = {};
 
   useEffect(() => {
     async function fetchData() {
       try {
-        if (allStudents.length == 0) {
+        if (allStudents.length == 0 && Object.keys(adminInfo).length != 0 && adminInfo.constructor === Object) {
+          dispatch(setFetchingState(true));
           const endpoint = 'http://localhost:7777/admin/all_students';
           const res = await axios.get(endpoint);
           
@@ -49,7 +49,7 @@ const FetchAllStudentsAndStaffs = () => {
     }
 
     fetchData();
-  }, [socket]);
+  }, [adminInfo]);
 
   return [allStudents, allStaffs];
 };

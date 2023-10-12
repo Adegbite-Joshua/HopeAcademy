@@ -5,18 +5,15 @@ import axios from 'axios';
 
 const FetchEntranceYearParticipants = (year) => {
   const entranceParticipants = useSelector((state) => state.adminInformation.entranceParticipants);
-  const fetching = useSelector((state) => state.adminInformation.staffFetchingState);
-  const socket = useSelector((state) => state.socketIO.socket);
+  const adminInfo = useSelector((state) => state.adminInformation.adminInformation);
   
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(year)
-    const currentYear = new Date().getFullYear();
-
     async function fetchData() {
       try {
-        if (!entranceParticipants[year]) {
+        if (!entranceParticipants[year] && Object.keys(adminInfo).length != 0 && adminInfo.constructor === Object) {
+          dispatch(setFetchingState(true));
           const endpoint = 'http://localhost:7777/admin/get_entrance_year_participants';
           const res = await axios.post(endpoint, {year});
           
@@ -33,7 +30,7 @@ const FetchEntranceYearParticipants = (year) => {
     }
 
     fetchData();
-  }, [socket, year]);
+  }, [adminInfo, year]);
 
   return [entranceParticipants];
 };

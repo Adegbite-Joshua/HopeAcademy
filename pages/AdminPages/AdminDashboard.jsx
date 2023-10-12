@@ -5,12 +5,16 @@ import Statistics from '../../src/Components/AdminComponents/Dashboard/Statistic
 import NavBar from '../../src/Components/AdminComponents/NavBar/NavBar';
 import FetchAdminInfo from '../../src/CustomHooks/AdminHooks/FetchAdminInfo';
 import FetchAllStudentsAndStaffs from '../../src/CustomHooks/AdminHooks/FetchAllStudentsAndStaffs';
+import FetchNoticesAndNews from '../../src/CustomHooks/FetchNoticesAndNews';
 
 function AdminDashboard() {
     const [studentCount, setStudentCount] = useState(0);
     const [staffCount, setStaffCount] = useState(0);
     const [adminInfo, fetching] = FetchAdminInfo();
     const [allStudents, allStaffs] = FetchAllStudentsAndStaffs();
+    const [noticesAndNews] = FetchNoticesAndNews();
+
+
 
     useEffect(() => {
         setTimeout(() => {

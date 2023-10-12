@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import { setEntranceQuestions } from '../../redux/adminInformation';
+import { setEntranceQuestions, setFetchingState } from '../../redux/adminInformation';
+const adminInfo = useSelector((state) => state.adminInformation.adminInformation);
+
 
 const FetchEntranceQuestions = () => {
   const entranceQuestions = useSelector((state) => state.adminInformation.entranceQuestions);
@@ -12,26 +14,28 @@ const FetchEntranceQuestions = () => {
 
   useEffect(() => {
     async function fetchData() {
-      // try {
-      //   if (entranceQuestions.length === 0) {
-      //       let endpoint = 'http://localhost:7777/admin/get_entrance_questions'
-      //       axios.get(endpoint)
-      //       .then((res)=>{
-      //         if(res.status==200){
-      //             dispatch(setEntranceQuestions(res.data))
-      //         }
-      //       })
-      //       .catch((error)=>{
-      //         console.log(error)
-      //       })
-      //   }
-      // } catch (error) {
-      //   console.log(error);
-      // }
+      try {
+        if (entranceQuestions.length === 0 && Object.keys(adminInfo).length != 0 && adminInfo.constructor === Object) {
+          dispatch(setFetchingState(true));  
+          let endpoint = 'http://localhost:7777/admin/get_entrance_questions'
+          axios.get(endpoint)
+          .then((res)=>{
+            if(res.status==200){
+                dispatch(setEntranceQuestions(res.data))
+                dispatch(setFetchingState(false));
+            }
+          })
+          .catch((error)=>{
+            console.log(error)
+          })
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     fetchData();
-  }, [socket]);
+  }, [adminInfo]);
 
   return [[entranceQuestions]];
 };

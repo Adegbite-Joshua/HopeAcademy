@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Event = () => {
+const Event = ({data}) => {
   return (
-    <div>
-        <p>February 6</p>
-        <p>Lorem ipsum dolor sit.</p>
+    <div className='my-2 p-2 bg-slate-300'>
+        <p>{data.head}</p>
+        <p>{data.body}</p>
     </div>
   )
 }

@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const FetchAllCourses = () => {
   const allCourses = useSelector((state) => state.adminInformation.allCourses);
+  const adminInfo = useSelector((state) => state.adminInformation.adminInformation);
   const fetching = useSelector((state) => state.adminInformation.staffFetchingState);
   const socket = useSelector((state) => state.socketIO.socket);
   
@@ -13,7 +14,8 @@ const FetchAllCourses = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        if (allCourses.length === 0) {
+        if (allCourses.length === 0 && Object.keys(adminInfo).length != 0 && adminInfo.constructor === Object) {
+          dispatch(setFetchingState(true));
           const endpoint = 'http://localhost:7777/admin/all_courses';
           const res = await axios.get(endpoint);
           
@@ -30,7 +32,7 @@ const FetchAllCourses = () => {
     }
 
     fetchData();
-  }, [socket]);
+  }, [adminInfo]);
 
   return [allCourses];
 };
