@@ -5,7 +5,8 @@ export const generalInformation = createSlice({
     initialState: {
         banksList: [],
         states: [],
-        LGAs: []        
+        LGAs: [],
+        noticesAndNews: [],    
     },
     reducers: {
         setbanksList: (state, action)=>{
@@ -20,9 +21,25 @@ export const generalInformation = createSlice({
             Object.assign(state.LGAs = action.payload);
             console.log(current(state)); 
         },
+        setnoticesAndNews: (state, action)=>{
+            Object.assign(state.noticesAndNews = action.payload);
+            console.log(current(state)); 
+        },
+        addnoticesAndNews: (state, action)=>{
+            Object.assign(state.noticesAndNews = [...state.noticesAndNews, action.payload]);
+            console.log(current(state)); 
+        },
+        deletenoticesAndNews: (state, action) => ({
+            ...state,
+            noticesAndNews: state.noticesAndNews.filter(value => value._id !== action.payload)
+        }),        
+        updatenoticesAndNews: (state, action) => ({
+            ...state,
+            noticesAndNews: state.noticesAndNews.map(item =>item._id === action.payload.id ? { ...item, ...action.payload.newData } : item )
+        })
     }
 }) 
 
-export const {setbanksList, setstates, setLGAs} = generalInformation.actions
+export const {setbanksList, setstates, setLGAs, setnoticesAndNews, addnoticesAndNews, deletenoticesAndNews, updatenoticesAndNews} = generalInformation.actions
 
 export default generalInformation.reducer

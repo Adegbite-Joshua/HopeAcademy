@@ -25,8 +25,13 @@ const Notice = ({data }) => {
 
   const deleteNotice = async () => {
     let endpoint = 'http://localhost:7777/admin/delete_notice_and_news'
-    let deleted = await axios.post(endpoint, {id: data.id})
+    if(!data._id){
+      DisplayToast('error', 'Cannot Delete Newly Added News Or Notice');
+      return;
+    }
+    let deleted = await axios.post(endpoint, {id: data._id})
     if (deleted.status == 200) {
+      dispatch(deletenoticesAndNews(data._id))
       let [show] = DisplayToast('success', 'Notice Deleted Successfully')
     } else {
       let [show] = DisplayToast('error', 'An Error Occur, Please Try Again')
@@ -47,7 +52,7 @@ const Notice = ({data }) => {
         </div>
       </div>
       <PopUp isOpen={isOpen} onClose={closePopup}>
-        <Form type='edit' data={{ head: 'Head', type: 'blog', body: 'iuewfniu kwq jf k afh h khahkjf hf hhakfkifh  f ja fhieauu  wk kjsiufuih e jfhkaia;o iuu u  ououfu  klak  kj sjk djjdfuiou uiusl;jk' }} />
+        <Form type='edit' data={data} closePopup={closePopup} />
       </PopUp>
     </>
   )

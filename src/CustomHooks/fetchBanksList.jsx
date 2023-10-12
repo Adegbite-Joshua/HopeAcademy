@@ -6,10 +6,7 @@ import axios from 'axios';
 const fetchBanksList = () => {
   const banksList = useSelector((state) => state.generalInformation.banksList);
   const socket = useSelector((state) => state.socketIO.socket);
-//   const staffNotifications = useSelector((state) => state.adminInformation.staffNotifications);
-//   const notificationFetchingState = useSelector((state) => state.adminInformation.notificationFetchingState);
   const dispatch = useDispatch();
-  let localadminInfo = {};
 
   useEffect(() => {
     async function fetchData() {

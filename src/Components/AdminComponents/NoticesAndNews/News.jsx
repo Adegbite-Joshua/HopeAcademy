@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import DisplayToast from '../../../CustomHooks/DisplayToast';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateAllCourses, setFetchingState } from '../../../redux/adminInformation';
+import { deletenoticesAndNews, } from '../../../redux/generalInformation';
 import PopUp from '../../PopUp';
 import Form from './Form';
 
@@ -27,8 +27,13 @@ const News = ({data}) => {
 
   const deleteNews = async () => {
     let endpoint = 'http://localhost:7777/admin/delete_notice_and_news'
-    let deleted = await axios.post(endpoint, {id: data.id})
+    if(!data._id){
+      DisplayToast('error', 'Cannot Delete Newly Added News Or Notice');
+      return;
+    }
+    let deleted = await axios.post(endpoint, {id: data._id})
     if (deleted.status == 200) {
+      dispatch(deletenoticesAndNews(data._id))
       let [show] = DisplayToast('success', 'News Deleted Successfully')
     } else {
       let [show] = DisplayToast('error', 'An Error Occur, Please Try Again')
@@ -48,7 +53,7 @@ const News = ({data}) => {
         </div>
       </div>
       <PopUp isOpen={isOpen} onClose={closePopup}>
-        <Form type='edit' data={{ head: 'Head', type: 'news', body: 'iuewfniu kwq jf k afh h khahkjf hf hhakfkifh  f ja fhieauu  wk kjsiufuih e jfhkaia;o iuu u  ououfu  klak  kj sjk djjdfuiou uiusl;jk' }} />
+        <Form type='edit' data={data} closePopup={closePopup} />
       </PopUp>
     </>
   )

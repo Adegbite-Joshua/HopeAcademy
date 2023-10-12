@@ -33,7 +33,7 @@ export const adminInformation = createSlice({
             console.log(current(state));  
         },
         updateAllCourses: (state, action)=>{
-            var updatedCourses = state.allCourses.map((array, index) => index === action.payload.index ? action.payload.newData : array);
+            let updatedCourses = state.allCourses.map((array, index) => index === action.payload.index ? action.payload.newData : array);
             Object.assign(state.allCourses = updatedCourses);
             console.log(current(state));  
         },

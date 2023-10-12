@@ -1,19 +1,19 @@
 import axios from 'axios';
 import DisplayToast from '../../../CustomHooks/DisplayToast';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateAllCourses, setFetchingState } from '../../../redux/adminInformation';
+import { addnoticesAndNews, updatenoticesAndNews } from '../../../redux/generalInformation';
 import { useFormik, validateYupSchema } from 'formik';
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import * as Yup from 'yup';
 
 
-const News = ({type, data }) => {
+const News = ({type, data, closePopup }) => {
   const dispatch = useDispatch();
-  
+  console.log(typeof(closePopup), closePopup)
   const formik = useFormik({
     initialValues: {
-      type: type=='edit'?data.type:'',
+      type: type=='edit'?data.type:'notice',
       body: type=='edit'?data.body:'',
       head: type=='edit'?data.head:'',
     },
@@ -24,23 +24,28 @@ const News = ({type, data }) => {
     }),
     onSubmit: async(values)=>{
       console.log(values)
-      let addEndpoint = 'http://localhost:7777/add_notices_and_news';
-      let editEndpoint = 'http://localhost:7777/edit_notices_and_news';
-      if(!data.id){
+      let addEndpoint = 'http://localhost:7777/admin/add_notices_and_news';
+      let editEndpoint = 'http://localhost:7777/admin/edit_notices_and_news';
+      if(type=='edit' && !data?._id){
         DisplayToast('error', 'You Cannot Update Or Delete Newly Added News Or Notice')
         return;
       }
       if(type=='edit'){
-        let update = await axios.post(editEndpoint, {...values, id})
+        let update = await axios.post(editEndpoint, {...values, id: data._id})
         if(update.status==200){
+          dispatch(updatenoticesAndNews({newData: values, id: data._id}))
+          closePopup()
           DisplayToast('success', 'Update Successful')
         } else{
           DisplayToast('error', 'An Error Occured, Please Try Again')
         }
       } else if(type=='add'){
-        let add = await axios.post(addEndpoint, {...values, id})
+        let add = await axios.post(addEndpoint, {...values})
         if(add.status==200){
-          DisplayToast('success', `${data.type=='news'?'News':'Notice'} Added Successfully`)
+          dispatch(addnoticesAndNews(values))
+          closePopup()
+          DisplayToast('success', `${values.type=='news'?'News':'Notice'} Added Successfully`)
+          formik.resetForm()
         } else{
           DisplayToast('error', 'An Error Occured, Please Try Again')
         }
@@ -48,7 +53,6 @@ const News = ({type, data }) => {
     },
   })
   
-
   return (
     <form onSubmit={formik.handleSubmit} className='w-full my-2'>
         <div className="mb-4">
@@ -69,7 +73,7 @@ const News = ({type, data }) => {
             <textarea type="text" name='body' id='body' {...formik.getFieldProps('body')} className='w-full h-24 border-slate-900 border-2 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-md  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' ></textarea>
             {formik.touched.body && formik.errors.body ? (<p className="mt-2 text-sm text-red-600">{formik.errors.body}</p>) : null}
         </div>
-        <div className='flex'><button className='bg-blue-500 p-2 my-2 rounded-md ms-auto me-4'>{type=='edit'?'Update':'Add'}</button></div>
+        <div className='flex'><button type='submit' className='bg-blue-500 p-2 my-2 rounded-md ms-auto me-4'>{type=='edit'?'Update':'Add'}</button></div>
     </form>
   )
 }

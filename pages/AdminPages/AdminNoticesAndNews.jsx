@@ -6,6 +6,7 @@ import NavBar from '../../src/Components/AdminComponents/NavBar/NavBar';
 import PopUp from '../../src/Components/PopUp';
 import FetchAdminInfo from '../../src/CustomHooks/AdminHooks/FetchAdminInfo';
 import FetchAllStudentsAndStaffs from '../../src/CustomHooks/AdminHooks/FetchAllStudentsAndStaffs';
+import FetchNoticesAndNews from '../../src/CustomHooks/FetchNoticesAndNews';
 
 
 
@@ -16,11 +17,7 @@ const AdminNoticesAndNews = () => {
     const [viewingIndex, setviewingIndex] = useState(0);
     // const [adminInfo, fetching] = FetchAdminInfo();
     // const [allStudents, allStaffs] = FetchAllStudentsAndStaffs();
-
-    useEffect(() => {
-        
-    }, []);
-
+    const [noticesAndNews] = FetchNoticesAndNews();
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -39,15 +36,17 @@ const AdminNoticesAndNews = () => {
                 <NavBar/>
                 <div className='flex'><button onClick={openPopup} className='bg-blue-500 p-2 my-2 rounded-md ms-auto me-4'>+ Create</button></div>
                 <div className='container p-2 mx-auto'>
-                    <Notice data={{head: 'Head', type: 'blog', body: 'iuewfniu kwq jf k afh h khahkjf hf hhakfkifh  f ja fhieauu  wk kjsiufuih e jfhkaia;o iuu u  ououfu  klak  kj sjk djjdfuiou uiusl;jk'}}/>
-                    <News data={{head: 'Head', type: 'blog', body: 'iuewfniu kwq jf k afh h khahkjf hf hhakfkifh  f ja fhieauu  wk kjsiufuih e jfhkaia;o iuu u  ououfu  klak  kj sjk djjdfuiou uiusl;jk'}}/>
-                    <Notice data={{head: 'Head', type: 'blog', body: 'iuewfniu kwq jf k afh h khahkjf hf hhakfkifh  f ja fhieauu  wk kjsiufuih e jfhkaia;o iuu u  ououfu  klak  kj sjk djjdfuiou uiusl;jk'}}/>
-                    <News data={{head: 'Head', type: 'blog', body: 'iuewfniu kwq jf k afh h khahkjf hf hhakfkifh  f ja fhieauu  wk kjsiufuih e jfhkaia;o iuu u  ououfu  klak  kj sjk djjdfuiou uiusl;jk'}}/>
-                    <Notice data={{head: 'Head', type: 'blog', body: 'iuewfniu kwq jf k afh h khahkjf hf hhakfkifh  f ja fhieauu  wk kjsiufuih e jfhkaia;o iuu u  ououfu  klak  kj sjk djjdfuiou uiusl;jk'}}/>
+                    {noticesAndNews?.length>=1?
+                    noticesAndNews.map((value)=>(
+                        value.type=='news'?<News data={value}/>:<Notice data={value}/>
+                    ))
+                    :
+                    <News data={{head: 'Empty', type: 'blog', body: 'No News Or Notice Here Yet'}}/>
+                    }
                 </div>
             </div>
             <PopUp isOpen={isOpen} onClose={closePopup}>
-                <Form type='add' data={{head: 'Head', type: 'blog', body: 'iuewfniu kwq jf k afh h khahkjf hf hhakfkifh  f ja fhieauu  wk kjsiufuih e jfhkaia;o iuu u  ououfu  klak  kj sjk djjdfuiou uiusl;jk'}} />
+                <Form type='add' />
             </PopUp>
         </>
     );
