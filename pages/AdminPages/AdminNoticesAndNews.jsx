@@ -18,6 +18,18 @@ const AdminNoticesAndNews = () => {
         }, 1000);
     }, []);
 
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openPopup = (index) => {
+        setIsOpen(true);
+        setviewingIndex(index)
+    };
+
+    const closePopup = () => {
+        setIsOpen(false);
+    };
+
     return (
         <>
             <div className=''>
@@ -31,6 +43,9 @@ const AdminNoticesAndNews = () => {
                     <Notice/>
                 </div>
             </div>
+            {/* <PopUp isOpen={isOpen} onClose={closePopup}>
+                <Form type='edit' data={staffs[viewingIndex]} />
+            </PopUp> */}
         </>
     );
 }
