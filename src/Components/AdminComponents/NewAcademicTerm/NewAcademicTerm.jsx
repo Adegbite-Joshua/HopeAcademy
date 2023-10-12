@@ -14,7 +14,7 @@ const NewAcademicTerm = () => {
           lastTermForSession: false,
           schoolFeesAmount: '',
           staffSalary: '',
-          authorizationCode: '',
+          adminToken: '',
           isChecked: false,
         },
         validationSchema: Yup.object({
@@ -22,7 +22,7 @@ const NewAcademicTerm = () => {
           lastTermForSession: Yup.boolean(),
           schoolFeesAmount: Yup.number().typeError('School fees amount must be a number').required('School fees amount is required').positive('School fees amount must be a positive number'),
           staffSalary: Yup.number().typeError('Staff salary amount must be a number').required('Staff salary amount is required').positive('Staff salary amount must be a positive number'),
-          authorizationCode: Yup.string().required('Please Input Your Admin Authorization Code'),
+          adminToken: Yup.string().required('Please Input Your Admin Authorization Code'),
           isChecked: Yup.boolean().oneOf([true], 'You must accept the terms and conditions'),
         }),
         onSubmit: (values) => {
@@ -127,9 +127,9 @@ const NewAcademicTerm = () => {
                     {formik.touched.staffSalary && formik.errors.staffSalary ? (<p className="mt-2 text-sm text-red-600">{formik.errors.staffSalary}</p>) : null}
                 </div>                
                 <div className='grid grid-cols-1 md:flex my-1 bg-blue-100 p-2'>
-                    <label htmlFor="authorizationCode" className='basis-2/6'>Input Your Admin Authorization Code</label>
-                    <input id="authorizationCode" name="authorizationCode" type="text" autoComplete="authorizationCode" placeholder='Amount' value={formik.values.authorizationCode} onChange={formik.handleChange} onBlur={formik.handleBlur} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
-                    {formik.touched.authorizationCode && formik.errors.authorizationCode ? (<p className="mt-2 text-sm text-red-600">{formik.errors.authorizationCode}</p>) : null}
+                    <label htmlFor="adminToken" className='basis-2/6'>Input Your Admin Authorization Code</label>
+                    <input id="adminToken" name="adminToken" type="text" autoComplete="adminToken" placeholder='Amount' value={formik.values.adminToken} onChange={formik.handleChange} onBlur={formik.handleBlur} className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"/>
+                    {formik.touched.adminToken && formik.errors.adminToken ? (<p className="mt-2 text-sm text-red-600">{formik.errors.adminToken}</p>) : null}
                 </div>                
                 <div className='my-1'>
                 <label>
