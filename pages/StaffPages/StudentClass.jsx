@@ -1,7 +1,7 @@
 import React from 'react'
-import DashboardNav from '../StaffDashboard/DashboardNav'
-import ClassMainDiv from './ClassMainDiv'
-import ClassOtherDiv from './ClassOtherDiv'
+import ClassMainDiv from '../../src/Components/StaffComponents/Class/ClassMainDiv'
+import ClassOtherDiv from '../../src/Components/StaffComponents/Class/ClassOtherDiv'
+import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/DashboardNav'
 
 
 

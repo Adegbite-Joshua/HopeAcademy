@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import NewPasswordForm from './NewPasswordForm'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import NewPasswordForm from '../../src/Components/StaffComponents/StaffForgottenPassword/NewPasswordForm';
 
 
 const SetNewPassword = ({token}) => {

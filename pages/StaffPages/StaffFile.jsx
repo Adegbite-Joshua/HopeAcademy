@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import DashboardNav from '../StaffDashboard/DashboardNav'
-import FileMainDashboard from './FileMainDashboard'
-import FileOtherDiv from './FileOtherDiv'
-import axios from 'axios'
+import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/DashboardNav'
 import { useDispatch } from 'react-redux'
-import { fetchStaff } from '../../redux/staffInformation'
-import fetchStaffInfo from '../../CustomHooks/StaffHooks/fetchStaffInfo'
+import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo'
+import FileMainDashboard from '../../src/Components/StaffComponents/StaffFile/FileMainDashboard'
+import FileOtherDiv from '../../src/Components/StaffComponents/StaffFile/FileOtherDiv'
 
 
 const StaffFile = () => {

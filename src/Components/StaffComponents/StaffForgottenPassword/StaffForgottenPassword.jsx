@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
-import LandingPageNav from '../src/Components/LandingPageNav';
+import LandingPageNav from '../../LandingPageNav';
 import SendPasswordLink from '../src/Components/StaffForgottenPassword/SendPasswordLink'
 import SetNewPassword from '../src/Components/StaffForgottenPassword/SetNewPassword';
 

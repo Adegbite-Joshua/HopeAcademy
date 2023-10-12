@@ -5,20 +5,11 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route } from "react-router-dom";
 import LandingPage from './Components/LandingPages/LandingPage';
-import StaffLogin from './Components/StaffLogins/StaffLogin';
-import StaffSignUp from './Components/StaffSignUp/StaffSignUp';
-import StaffDashboard from './Components/StaffDashboard/StaffDashboard';
-import Student from './Components/Student/Student';
-import StaffMessage from './Components/StaffMessage/StaffMessage';
-import StaffSubmit from './Components/StaffSubmit/StaffSubmit';
-import StaffFile from './Components/StaffFile/StaffFile';
-import StaffSetting from './Components/StaffSetting/StaffSetting';
-import ScheduleClass from './Components/Class/StudentClass';
 import EntranceTest from './Components/EntranceTest/EntranceTest';
 import TestPage from './Components/EntranceTest/TestPage';
 import TestInstructions from './Components/EntranceTest/TestInstructions';
-import StaffForgottenPassword from '../pages/StaffForgottenPassword';
-import StaffNotification from '../pages/StaffNotification';
+import StaffForgottenPassword from './Components/StaffComponents/StaffForgottenPassword/StaffForgottenPassword';
+import StaffNotification from '../pages/StaffPages/StaffNotification';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateStaffNotifications } from './redux/staffInformation';
 import WebNotification from 'react-web-notifications';
@@ -37,6 +28,15 @@ import NewAcademicTerm from './Components/AdminComponents/NewAcademicTerm/NewAca
 import SalaryPayment from './Components/AdminComponents/SalaryPayment/SalaryPayment';
 import StudentDashboard from '../pages/StudentPages/StudentDashboard';
 import SignInPage from '../pages/StudentPages/SignInPage';
+import StaffDashboard from '../pages/StaffPages/StaffDashboard';
+import StaffLogin from '../pages/StaffPages/StaffLogin';
+import StaffSignUp from '../pages/StaffPages/StaffSignUp';
+import StaffMessage from '../pages/StaffPages/StaffMessage';
+import Student from '../pages/StaffPages/Student';
+import StaffSubmit from '../pages/StaffPages/StaffSubmit';
+import StaffFile from '../pages/StaffPages/StaffFile';
+import StaffSetting from '../pages/StaffPages/StaffSetting';
+import StudentClass from '../pages/StaffPages/StudentClass';
 
 
 
@@ -120,7 +120,7 @@ function App() {
             <Route path='uploadfile' element={<StaffFile/>}/>
             <Route path='notifications' element={<StaffNotification/>}/>
             <Route path='setting' element={<StaffSetting/>}/>
-            <Route path='class' element={<ScheduleClass/>}/>
+            <Route path='class' element={<StudentClass/>}/>
             <Route path='forgottenpassword' element={<StaffForgottenPassword/>} />
             <Route path='forgottenpassword/:token' element={<StaffForgottenPassword/>} />
           </Route>

@@ -1,11 +1,11 @@
 import React , {useEffect, useState} from 'react'
-import DashboardNav from '../StaffDashboard/DashboardNav'
-import SubmitMainDIv from './SubmitMainDIv'
-import SubmitOtherDiv from './SubmitOtherDiv'
+import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/DashboardNav'
+import SubmitMainDIv from '../../src/Components/StaffComponents/StaffSubmit/SubmitMainDIv'
+import SubmitOtherDiv from '../../src/Components/StaffComponents/StaffSubmit/SubmitOtherDiv'
 import {useSelector, useDispatch} from 'react-redux'
-import { fetchClassStudents, fetchStaff, setFetching } from '../../redux/staffInformation'
-import Loader from '../../Loader'
 import axios from 'axios'
+import { fetchClassStudents, fetchStaff, setFetching } from '../../src/redux/staffInformation'
+import Loader from '../../src/Loader'
 
 
 const StaffSubmit = () => {

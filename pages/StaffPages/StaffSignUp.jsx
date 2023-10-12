@@ -1,7 +1,8 @@
 import React from 'react'
+import SignUpPage from '../../src/Components/StaffComponents/StaffSignUp/SignUpPage';
 import LandingPageNav from "../LandingPageNav";
 import MessageSchool from '../MessageSchool';
-import SignUpPage from './SignUpPage';
+
 
 const StaffSignUp = () => {
   return (

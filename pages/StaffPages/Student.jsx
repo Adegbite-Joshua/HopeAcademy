@@ -1,14 +1,14 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import Loader from '../../Loader'
-import { fetchStaff, fetchClassStudents, setFetching } from '../../redux/staffInformation'
-import DashboardNav from '../StaffDashboard/DashboardNav'
-import StudentMainDIv from './StudentMainDIv'
-import StudentOtherDiv from './StudentOtherDiv'
+// import { fetchStaff, fetchClassStudents, setFetching } from '../../redux/staffInformation'
+import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/DashboardNav'
+import StudentMainDIv from '../../src/Components/StaffComponents/Student/StudentMainDIv'
+import StudentOtherDiv from '../../src/Components/StaffComponents/Student/StudentOtherDiv'
 import { useParams } from 'react-router-dom'
-import fetchStaffInfo from '../../CustomHooks/StaffHooks/fetchStaffInfo'
 import fetchSubjectStudents from '../../CustomHooks/StaffHooks/fetchSubjectStudents'
+import Loader from '../../src/Loader'
+import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo'
 
 
 

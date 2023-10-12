@@ -5,8 +5,8 @@ import DashboardNav from '../src/Components/StaffDashboard/DashboardNav';
 import NotificationMainDiv from '../src/Components/StaffNotification/NotificationMainDiv';
 import NotificationOtherSide from '../src/Components/StaffNotification/NotificationOtherDiv';
 // import fetchStaffInfo from '../src/CustomHooks/fetchStaffInfo'
-import fetchStaffInfo from '../src/CustomHooks/StaffHooks/fetchStaffInfo';
-import {shownStaffNotifications} from '../src/redux/staffInformation';
+import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo';
+import {shownStaffNotifications} from '../../src/redux/staffInformation';
 
 const StaffNotification = () => {
   let [staffInfo, fetching, staffNot, notificationFetchingState] = fetchStaffInfo();

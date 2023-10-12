@@ -1,12 +1,11 @@
 import axios from 'axios'
 import React , {useState, useEffect}from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Loader from '../../Loader'
-import { fetchStaff, setFetching } from '../../redux/staffInformation'
-import DashboardNav from '../StaffDashboard/DashboardNav'
-import SettingMainDiv from './SettingMainDiv'
-import SettingOtherDiv from './SettingOtherDiv'
-
+import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/DashboardNav'
+import SettingMainDiv from '../../src/Components/StaffComponents/StaffSetting/SettingMainDiv'
+import SettingOtherDiv from '../../src/Components/StaffComponents/StaffSetting/SettingOtherDiv'
+import Loader from '../../src/Loader'
+import {fetchStaff, setFetching } from '../../src/redux/staffInformation'
 
 const StaffSetting = () => {
   const [displaying, setdisplaying] = useState('allSettings')
@@ -45,11 +44,11 @@ const StaffSetting = () => {
     <>
         <div className='StaffSetting containerAll overflow-y-hidden'>
             <DashboardNav/>
-            {/* {fetching && <Loader/>}
-            {fetching==false && <> */}
+            {fetching && <Loader/>}
+            {fetching==false && <>
               <SettingMainDiv disp={displaying}/>
               <SettingOtherDiv func={viewSetting}/>
-            {/* </>} */}
+            </>}
         </div>
     </>
   )

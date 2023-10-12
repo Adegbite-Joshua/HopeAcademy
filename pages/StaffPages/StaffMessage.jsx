@@ -1,14 +1,14 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import DashboardNav from '../StaffDashboard/DashboardNav'
-import MessageMainDiv from './MessageMainDiv'
-import MessageOtherDiv from './MessageOtherDiv'
-import { fetchStaff, fetchAllStaffs, fetchAllStudents, setFetching } from '../../redux/staffInformation'
+import MessageMainDiv from '../../src/Components/StaffComponents/StaffMessage/MessageMainDiv'
+import MessageOtherDiv from '../../src/Components/StaffComponents/StaffMessage/MessageOtherDiv'
 import { useSelector, useDispatch } from 'react-redux'
-import Loader from '../../Loader'
 import { useParams } from 'react-router-dom'
-import SnackBar from '../SnackBar'
-import fetchStaffInfo from '../../CustomHooks/StaffHooks/fetchStaffInfo'
+import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/DashboardNav'
+import { fetchStaff, fetchAllStaffs, fetchAllStudents, setFetching } from '../../src/redux/staffInformation'
+import Loader from '../../src/Loader'
+import SnackBar from '../../src/Components/SnackBar'
+import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo'
 
 
 

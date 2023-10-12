@@ -1,7 +1,8 @@
 import React from 'react'
-import MessageSchool from '../MessageSchool'
-import LandingPageNav from '../LandingPageNav'
-import SignInPage from './SignInPage'
+import LandingPageNav from '../../src/Components/LandingPageNav'
+import MessageSchool from '../../src/Components/MessageSchool'
+import SignInPage from '../../src/Components/StaffComponents/StaffLogins/SignInPage'
+
 
 const StaffLogin = () => {
   return (
