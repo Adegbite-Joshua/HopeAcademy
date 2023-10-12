@@ -1,38 +1,56 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import DisplayToast from '../../../CustomHooks/DisplayToast';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateAllCourses, setFetchingState } from '../../../redux/adminInformation';
+import PopUp from '../../PopUp';
+import Form from './Form';
 
 
 
-const News = ({subjectName, teacherName, email, subjectImage, id, courseClass, allCourses }) => {
+
+const News = ({data}) => {
+
   const dispatch = useDispatch();
-  
-  const deleteNotice = async()=>{
-    let endpoint = 'http://localhost:7777/admin/delete_notice'
-    let deleted = await axios.post(endpoint, {courseId:id, class: courseClass})
-    if (deleted.status==200) {
-      let [show] = DisplayToast('success', 'Course Deleted Successfully')
-      const remainingCourses = allCourses[courseClass].courses.filter((course)=>course._id != id);
-      dispatch(updateAllCourses({index: courseClass, newData: remainingCourses}))
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openPopup = (index = null) => {
+    setIsOpen(true);
+    index ? setviewingIndex(index) : ''
+  };
+
+  const closePopup = () => {
+    setIsOpen(false);
+  };
+
+
+  const deleteNews = async () => {
+    let endpoint = 'http://localhost:7777/admin/delete_notice_and_news'
+    let deleted = await axios.post(endpoint, {id: data.id})
+    if (deleted.status == 200) {
+      let [show] = DisplayToast('success', 'News Deleted Successfully')
     } else {
       let [show] = DisplayToast('error', 'An Error Occur, Please Try Again')
     }
   }
 
   return (
-    <div className='w-full border-2 my-2'>
+    <>
+      <div className='w-full border-2 my-2'>
         <div className='p-5 bg-red-300 shadow-lg'>
-            <h3>News Head</h3>
+          <h3>{data.head}</h3>
         </div>
-        <p className='p-1'>lorem10 knierui e roui  uw   ejuw    iwiuheihuh   h hjh hk hfh jhsd g hdsujh yu ymsdn a;ILSYSUHJS  HJH JHJK y lorem10 knierui e roui  uw   ejuw    iwiuheihuh   h hjh hk hfh jhsd g hdsujh yu ymsdn a;ILSYSUHJS  HJH JHJK y lorem10 knierui e roui  uw   ejuw    iwiuheihuh   h hjh hk hfh jhsd g hdsujh yu ymsdn a;ILSYSUHJS  HJH JHJK y</p>
+        <p className='p-1'>{data.body}</p>
         <div className='flex gap-2 p-1 justify-end'>
-            <button><i className='bg-green-400 p-2 rounded-md fa fa-edit'></i></button>
-            <button><i className='bg-red-400 p-2 rounded-md fa fa-trash'></i></button>
+          <button onClick={openPopup}><i className='bg-green-400 p-2 rounded-md fa fa-edit'></i></button>
+          <button onClick={deleteNews}><i className='bg-red-400 p-2 rounded-md fa fa-trash'></i></button>
         </div>
-    </div>
+      </div>
+      <PopUp isOpen={isOpen} onClose={closePopup}>
+        <Form type='edit' data={{ head: 'Head', type: 'news', body: 'iuewfniu kwq jf k afh h khahkjf hf hhakfkifh  f ja fhieauu  wk kjsiufuih e jfhkaia;o iuu u  ououfu  klak  kj sjk djjdfuiou uiusl;jk' }} />
+      </PopUp>
+    </>
   )
 }
 
