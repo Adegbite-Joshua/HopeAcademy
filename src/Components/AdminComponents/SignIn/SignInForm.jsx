@@ -5,6 +5,7 @@ import OTPInput from 'react-otp-input';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import { toast } from 'react-toastify';
+import DisplayToast from '../../../CustomHooks/DisplayToast';
 
 
 
@@ -42,70 +43,23 @@ const SignInForm = () => {
           setOtp(otp.data.otp)
           setOtpSent(true);
         } else {
-          toast.error('Invalid Login Details', {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            style: {
-              background: '#ff5252', 
-              color: '#ffffff', 
-              fontSize: '16px',
-            },
-          });
+          DisplayToast('error', 'Invalid Login Details')
           console.log(otp)
         }
     } else {
         if(otp==otpInput) {
-          let signUp = await axios.post('http://localhost:7777/admin/sign_in', {...values, })
+          let signUp = await axios.post('http://localhost:7777/admin/sign_in', {...values})
           if (signUp.status==200) {
             localStorage.setItem('adminToken', signUp.data.token)
-            toast.success('Signin successful!', {
-              position: toast.POSITION.TOP_RIGHT,
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              style: {
-                background: '#4caf50', // Background color of the toast
-                color: '#ffffff', // Text color of the toast
-                fontSize: '16px', // Font size
-              },
-            });
+            DisplayToast('success', 'Signin successful!')
             navigate('/admin/dashboard')
           } else {
-            toast.error('Incorrect Password', {
-              position: toast.POSITION.TOP_RIGHT,
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              style: {
-                background: '#ff5252', 
-                color: '#ffffff', 
-                fontSize: '16px',
-              },
-            });
+            DisplayToast('error', 'Incorrect Password')
+            setOtpSent(false);
             console.log(signUp)
           }
         } else {
-          toast.error('Incorrect OTP', {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            style: {
-              background: '#ff5252', 
-              color: '#ffffff', 
-              fontSize: '16px',
-            },
-          });
+          DisplayToast('error', 'Incorrect OTP')
         }
       }
   }
@@ -138,7 +92,7 @@ const SignInForm = () => {
             {otpSent && (
               <div className="mb-4">
                 <label htmlFor="otp" className="text-gray-600 block">
-                  Enter OTP sent to your phone number
+                  Enter OTP sent to email address
                 </label>
                 {/* <OTPInput
                   id="otp"
