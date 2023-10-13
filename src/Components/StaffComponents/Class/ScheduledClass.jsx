@@ -3,15 +3,15 @@ import React from 'react'
 const ScheduledClass = () => {
   return (
     <>
-        <div className="">
+        <div className="p-2">
             <p className='ms-4'>Scheduled Class</p>
-            <ul style={{listStyleType: 'auto'}}>
-                <li>Micro-Biology Class Time: 8:30 PM<i className='fa fa-trash'></i><i className='fa fa-speak'></i></li>
-                <li>Micro-Biology Class Time: 8:30 PM<i className='fa fa-trash'></i><i className='fa fa-speak'></i></li>
-                <li>Micro-Biology Class Time: 8:30 PM<i className='fa fa-trash'></i><i className='fa fa-speak'></i></li>
-                <li>Micro-Biology Class Time: 8:30 PM<i className='fa fa-trash'></i><i className='fa fa-speak'></i></li>
-                <li>Micro-Biology Class Time: 8:30 PM<i className='fa fa-trash'></i><i className='fa fa-speak'></i></li>
-                <li>Micro-Biology Class Time: 8:30 PM<i className='fa fa-trash'></i><i className='fa fa-speak'></i></li>
+            <ul className=' list-inside list-decimal'>
+                <li>Micro-Biology Class Time: 8:30 PM<i className='fa fa-trash ms-5'></i><i className='fa fa-loud'></i></li>
+                <li>Micro-Biology Class Time: 8:30 PM<i className='fa fa-trash ms-5'></i><i className='fa fa-loud'></i></li>
+                <li>Micro-Biology Class Time: 8:30 PM<i className='fa fa-trash ms-5'></i><i className='fa fa-loud'></i></li>
+                <li>Micro-Biology Class Time: 8:30 PM<i className='fa fa-trash ms-5'></i><i className='fa fa-loud'></i></li>
+                <li>Micro-Biology Class Time: 8:30 PM<i className='fa fa-trash ms-5'></i><i className='fa fa-loud'></i></li>
+                <li>Micro-Biology Class Time: 8:30 PM<i className='fa fa-trash ms-5'></i><i className='fa fa-loud'></i></li>
             </ul>
         </div>
     </>

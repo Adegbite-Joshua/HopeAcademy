@@ -7,9 +7,9 @@ import ClassMainDiv from './ClassMainDiv'
 const JoinedStudent = () => {
   return (
     <>
-       <div className='w-44 h-full relative border-2 border-green-300 shrink-0'>
-            <video src='vid.mp4' muted autoPlay loop className='w-full h-full'></video>
-            <p className='absolute top-0 bg-white w-full text-center'>Adegbite Joshua</p>
+       <div className=' w-16 md:w-44  h-full relative rounded-md overflow-hidden border-2 border-green-300 shrink-0'>
+            <img src='/vite.svg' className='w-full h-full'/>
+            <p className='absolute top-0 bg-white w-full text-center'>Adegbite Joshua <i className='fa fa-trash'></i></p>
        </div>
     </>
   )

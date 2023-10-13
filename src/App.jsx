@@ -8,7 +8,6 @@ import LandingPage from './Components/LandingPages/LandingPage';
 import EntranceTest from './Components/EntranceTest/EntranceTest';
 import TestPage from './Components/EntranceTest/TestPage';
 import TestInstructions from './Components/EntranceTest/TestInstructions';
-import StaffForgottenPassword from './Components/StaffComponents/StaffForgottenPassword/StaffForgottenPassword';
 import StaffNotification from '../pages/StaffPages/StaffNotification';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateStaffNotifications } from './redux/staffInformation';
@@ -37,6 +36,7 @@ import StaffSubmit from '../pages/StaffPages/StaffSubmit';
 import StaffFile from '../pages/StaffPages/StaffFile';
 import StaffSetting from '../pages/StaffPages/StaffSetting';
 import StudentClass from '../pages/StaffPages/StudentClass';
+import StaffForgottenPassword from '../pages/StaffPages/StaffForgottenPassword';
 
 
 
