@@ -13,6 +13,7 @@ import fetchSubjectStudents from '../../src/CustomHooks/StaffHooks/fetchSubjectS
 
 
 const Student = () => {
+  const [staffInfo, fetching, staffNotifications, notificationFetchingState] = fetchStaffInfo();
   const [category, setcategory] = useState(null)
   const [mainindex, setmainindex] = useState(null)
   const [individualEmail, setemail] = useState(null)
@@ -20,9 +21,6 @@ const Student = () => {
   const dispatch = useDispatch()
   let paramsValue = useParams();
   const [classStudents] = fetchSubjectStudents();
-  const [staffInfo, fetching, staffNotifications, notificationFetchingState] = fetchStaffInfo();
-  // let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
-  // let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
   // let classStudents = useSelector((state)=>state.staffInformation.classStudents)
   const setViewingMessage =(cat, main, email)=>{
     console.log(cat, main, email);

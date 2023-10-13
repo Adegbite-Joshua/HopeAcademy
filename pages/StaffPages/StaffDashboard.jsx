@@ -14,8 +14,6 @@ import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo'
 
 
 const StaffDashboard = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
   // let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   // let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
   const [snacksBarBody, setsnacksBarBody] = useState('')
@@ -40,11 +38,7 @@ const StaffDashboard = () => {
   //     })
   //   }
   // }
-  let [staffInfo, fetching, staffNotifications, notificationFetchingState] = fetchStaffInfo();
-
-  useEffect(() => {
-    validateStaff()
-  }, [])
+  const [staffInfo, fetching, staffNotifications, notificationFetchingState] = fetchStaffInfo();
 
   const showSnackBar = () => {
       // Get the snackbar DIV
@@ -55,33 +49,6 @@ const StaffDashboard = () => {
 
   // https://res.cloudinary.com/dc9o9pwld/image/upload/q_50/cld-sample.jpg (quality)
   // https: r_max (rouded)
-  const validateStaff =()=>{
-    let token = localStorage.token
-    let validateEndpoint = 'http://localhost:7777/staff/validatetoken'
-    axios.get(validateEndpoint, {headers : {
-      "Authorization": `Bearer ${token}`,
-      "Content-Toe": "application/json",
-      "Accept": "application/json"
-    }})
-    .then((res)=>{
-      console.log(res);
-      if (res.status == 200) {
-        // fetchStaffInformation()
-      } else{
-        setsnacksBarBody('Invalid Acesss Token')
-        setsnacksBarType('error')
-        showSnackBar()
-        setTimeout(() => navigate('/staff/signin'), 3000);
-      }
-    })
-    .catch((error)=>{
-      setsnacksBarBody('Invalid Acesss Token')
-      setsnacksBarType('error')
-      showSnackBar()
-      setTimeout(() => navigate('/staff/signin'), 3000);
-      console.log(error);
-    })
-  }
 
   let values = useParams()
   return (

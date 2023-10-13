@@ -2,6 +2,10 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchStaff, setFetching, fetchStaffNotifications, setNotificationFetching } from '../../redux/staffInformation';
 import axios from 'axios';
+import DisplayToast from '../DisplayToast';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const fetchStaffInfo = () => {
   const staffInfo = useSelector((state) => state.staffInformation.staffInformation);
@@ -10,6 +14,7 @@ const fetchStaffInfo = () => {
   const staffNotifications = useSelector((state) => state.staffInformation.staffNotifications);
   const notificationFetchingState = useSelector((state) => state.staffInformation.notificationFetchingState);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   let localStaffInfo = {};
 
   useEffect(() => {
@@ -25,11 +30,14 @@ const fetchStaffInfo = () => {
             localStaffInfo = res.data;
             dispatch(setFetching(false));
             socket.emit('connectSocketId', res.data._id);
-          } else if (res.status !== 200) {
-            
+          } else if (res.response.status == 407) {
+            DisplayToast('error', 'Invalid Or Expired Token')
+            navigate('/staff/signin')
           }
         }
       } catch (error) {
+        DisplayToast('error', 'An Error Occurred, Please Try Again')
+        navigate('/staff/signin')
         console.log(error);
       }
 

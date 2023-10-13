@@ -1,8 +1,8 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
-import LandingPageNav from '../../LandingPageNav';
-import SendPasswordLink from './SendPasswordLink'
-import SetNewPassword from './SetNewPassword';
+import LandingPageNav from '../../src/Components/LandingPageNav';
+import SendPasswordLink from './SendPasswordLi../../src/Components/StaffComponents/StaffForgottenPassword/SendPasswordLink
+import SetNewPassword from '../../src/Components/StaffComponents/StaffForgottenPassword/SetNewPassword';
 
 const StaffForgottenPassword = () => {
     const location = useLocation();

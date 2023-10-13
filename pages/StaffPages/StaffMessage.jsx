@@ -7,7 +7,6 @@ import { useParams } from 'react-router-dom'
 import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/DashboardNav'
 import { fetchStaff, fetchAllStaffs, fetchAllStudents, setFetching } from '../../src/redux/staffInformation'
 import Loader from '../../src/Loader'
-import SnackBar from '../../src/Components/SnackBar'
 import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo'
 
 
@@ -15,13 +14,10 @@ import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo'
 const StaffMessage = () => {
   let paramsValue = useParams();
   const dispatch = useDispatch();
-  // let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
-  // let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
+  const [staffInfo, fetching, staffNotifications, notificationFetchingState] = fetchStaffInfo();
   let socket = useSelector((state)=>state.socketIO.socket);
   let allStaffs = useSelector((state)=>state.staffInformation.allStaffs)
   let allStudents = useSelector((state)=>state.staffInformation.allStudents)
-  const [snacksBarBody, setsnacksBarBody] = useState('')
-  const [snacksBarType, setsnacksBarType] = useState('info')
   const [partnerId, setpartnerId] = useState('')
   const [partnerName, setpartnerName] = useState('')
   const [partnerCommonId, setpartnerCommonId] = useState('')
@@ -30,105 +26,8 @@ const StaffMessage = () => {
   const [allMessages, setallMessages] = useState({})
   let chatId = {};
   
-  const showSnackBar = () => {
-      var x = document.getElementById("snackbarContainer");
-      x.className = "show";
-      setTimeout(()=>{ x.className = x.className.replace("show", ""); }, 3000);
-  }
-
-
-  // const fetchStaffInformation = ()=>{
-  //   let endpoint = 'http://localhost:7777/staff/dashboard'
-  //   let staffEmail = localStorage.getItem('staffemail')
-  //   let staffPassword = localStorage.getItem('staffpassword')
-  //   let staffClass = Number(localStorage.getItem('staffclass'))
-  //   let details = {
-  //       staffClass,
-  //       staffEmail,
-  //       staffPassword
-  //   }
-  //   if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
-  //     axios.post(endpoint, details)
-  //     .then((res)=>{
-  //         console.log(res)
-  //         if (res.status==200) {
-  //           dispatch(fetchStaff(res.data))
-  //           dispatch(setFetching(false))
-  //           setDefault()
-  //         } else if(res.status != 200){
-  //             state.staffInformation = 'error'
-  //         }
-  //     })
-  //     .catch((err)=>{
-  //         console.log(err);
-  //     })
-  //   }
-  //   if (allStaffs.length==0) {
-  //     let allstaffsendpoint = 'http://localhost:7777/staff/allstaffs'
-  //     dispatch(setFetching(true))
-  //     axios.get(allstaffsendpoint, details)
-  //     .then((res)=>{
-  //         console.log(res)
-  //         if (res.status==200) {
-  //           dispatch(fetchAllStaffs(res.data))
-  //           dispatch(setFetching(false))
-  //         } else if(res.status != 200){
-  //             state.staffInformation = 'error'
-  //         }
-  //     })
-  //     .catch((err)=>{
-  //         console.log(err);
-  //     })
-  //   }
-  //   if (allStudents.length==0) {
-  //     let allstudentsendpoint = 'http://localhost:7777/staff/allstudents'
-  //     dispatch(setFetching(true))
-  //     axios.get(allstudentsendpoint, details)
-  //     .then((res)=>{
-  //         console.log(res)
-  //         if (res.status==200) {
-  //           dispatch(fetchAllStudents(res.data))
-  //           dispatch(setFetching(false))
-  //         } else if(res.status != 200){
-  //             state.staffInformation = 'error'
-  //         }
-  //     })
-  //     .catch((err)=>{
-  //         console.log(err);
-  //     })
-  //   }
-  // }
-  let [staffInfo, fetching] = fetchStaffInfo();
-
-
-  const validateStaff =()=>{
-    let token = localStorage.token
-    let validateEndpoint = 'http://localhost:7777/staff/validatetoken'
-    axios.get(validateEndpoint, {headers : {
-      "Authorization": `Bearer ${token}`,
-      "Content-Toe": "application/json",
-      "Accept": "application/json"
-    }})
-    .then((res)=>{
-      if (res.status == 200) {
-        fetchStaffInformation()
-      } else{
-        setsnacksBarBody('Invalid Acesss Token')
-        setsnacksBarType('error')
-        showSnackBar()
-        setTimeout(() => navigate('/signin'), 3000);
-      }
-    })
-    .catch((error)=>{
-      setsnacksBarBody('Invalid Acesss Token')
-      setsnacksBarType('error')
-      showSnackBar()
-      setTimeout(() => navigate('/signin'), 3000);
-      console.log(error);
-    })
-  }
+  
   useEffect(() => {
-    // validateStaff()
     setDefault()
     fetchAll()
     const handleMessage = (messageDetails) => {
@@ -238,7 +137,6 @@ const StaffMessage = () => {
               </div>
             </>}
         </div>
-        <div id='snackbarContainer'><SnackBar body={snacksBarBody} type={snacksBarType}/></div>
     </>
   )
 }

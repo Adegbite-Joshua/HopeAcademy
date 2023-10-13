@@ -9,9 +9,8 @@ import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/Da
 import NotificationMainDiv from '../../src/Components/StaffComponents/StaffNotification/NotificationMainDiv';
 
 const StaffNotification = () => {
-  let [staffInfo, fetching, staffNot, notificationFetchingState] = fetchStaffInfo();
+  const [staffInfo, fetching, staffNotifications, notificationFetchingState] = fetchStaffInfo();
   const [notificationType, setnotificationType] = useState('all')
-  let staffNotifications = useSelector((state) => state.staffInformation.staffNotifications)?.notifications;
   const [notifications, setnotifications] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -21,7 +20,6 @@ const StaffNotification = () => {
       if(staffInfo){
         let readNotification = await axios.post(endpoint, {id: staffInfo._id})
       }
-      // 
       if (notificationType=='all') {
         setnotifications(staffNotifications)
       } else if (notificationType=='messages') {
