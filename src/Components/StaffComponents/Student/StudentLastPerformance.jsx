@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonComp from '../ButtonComp'
+// import ButtonComp from '../../ButtonComp'
 
 const StudentLastPerformance = () => {
   return (

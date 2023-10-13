@@ -6,9 +6,9 @@ import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/Da
 import StudentMainDIv from '../../src/Components/StaffComponents/Student/StudentMainDIv'
 import StudentOtherDiv from '../../src/Components/StaffComponents/Student/StudentOtherDiv'
 import { useParams } from 'react-router-dom'
-import fetchSubjectStudents from '../../CustomHooks/StaffHooks/fetchSubjectStudents'
 import Loader from '../../src/Loader'
 import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo'
+import fetchSubjectStudents from '../../src/CustomHooks/StaffHooks/fetchSubjectStudents'
 
 
 

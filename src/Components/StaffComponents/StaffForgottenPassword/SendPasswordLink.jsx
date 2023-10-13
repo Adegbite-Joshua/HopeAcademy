@@ -1,5 +1,5 @@
 import React from 'react';
-import ResetPasswordForm from '../../src/Components/StaffComponents/StaffForgottenPassword/ResetPasswordForm';
+import ResetPasswordForm from './ResetPasswordForm';
 
 
 const SendPasswordLink = () => {

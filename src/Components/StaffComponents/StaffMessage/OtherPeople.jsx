@@ -1,6 +1,6 @@
 import React , {useState} from 'react'
 import {useSelector , useDispatch } from 'react-redux'
-import { fetchAllStudents } from '../../redux/staffInformation'
+// import { fetchAllStudents } from '../../redux/staffInformation'
 import People from './People'
 
 const OtherPeople = ({setPartner}) => {

@@ -3,8 +3,6 @@ import { useFormik, validateYupSchema } from 'formik';
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import * as Yup from 'yup';
-import FileViewer from '../../FileViewer'
-import SnackBar from '../SnackBar'
 import SignUpForm from './SignUpForm';
 
 

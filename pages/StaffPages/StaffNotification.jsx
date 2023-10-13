@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import DashboardNav from '../src/Components/StaffDashboard/DashboardNav';
-import NotificationMainDiv from '../src/Components/StaffNotification/NotificationMainDiv';
-import NotificationOtherSide from '../src/Components/StaffNotification/NotificationOtherDiv';
+import NotificationOtherSide from '../../src/Components/StaffComponents/StaffNotification/NotificationOtherDiv';
 // import fetchStaffInfo from '../src/CustomHooks/fetchStaffInfo'
 import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo';
 import {shownStaffNotifications} from '../../src/redux/staffInformation';
+import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/DashboardNav';
+import NotificationMainDiv from '../../src/Components/StaffComponents/StaffNotification/NotificationMainDiv';
 
 const StaffNotification = () => {
   let [staffInfo, fetching, staffNot, notificationFetchingState] = fetchStaffInfo();

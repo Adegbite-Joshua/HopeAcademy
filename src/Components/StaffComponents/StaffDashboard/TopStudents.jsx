@@ -1,8 +1,9 @@
 import React from 'react'
 import TopStudentView from './TopStudentView'
-import subjects from '../../Subjects'
 import { useSelector } from 'react-redux'
-import classes from  '../../Classes'
+import classes from '../../../Classes'
+
+
 const TopStudents = () => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   return (

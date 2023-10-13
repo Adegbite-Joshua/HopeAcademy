@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import SignUpForm from '../../StaffSignUp/SignUpForm'
 import Navbar from '../NavBar/NavBar'
 import Account from './Account'
 import PopUp from '../../PopUp';
 import FetchAllStudentsAndStaffs from '../../../CustomHooks/AdminHooks/FetchAllStudentsAndStaffs';
 import DisplayToast from '../../../CustomHooks/DisplayToast';
+import SignUpForm from '../../StaffComponents/StaffSignUp/SignUpForm';
 
 
 const StaffAccount = () => {

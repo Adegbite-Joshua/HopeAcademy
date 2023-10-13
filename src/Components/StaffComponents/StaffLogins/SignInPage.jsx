@@ -3,7 +3,7 @@ import { Formik, useFormik } from 'formik'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup';
-import SnackBar from '../SnackBar';
+import SnackBar from '../../SnackBar';
 
 
 

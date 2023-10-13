@@ -1,9 +1,8 @@
 import React from 'react'
-import ButtonComp from '../ButtonComp'
+import ButtonComp from '../../ButtonComp'
 import FileView from './FileView'
-import FileViewer from '../../FileViewer'
 import { useNavigate } from 'react-router-dom'
-
+import FileViewer from '../../../FileViewer'
 
 
 const SubmitMainDIv = ({studentSubmit}) => {

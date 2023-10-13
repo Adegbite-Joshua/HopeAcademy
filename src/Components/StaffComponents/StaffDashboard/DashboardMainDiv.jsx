@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import StaffGroup from './StaffGroup'
 import SubmittedTest from './SubmittedTest'
 import TopStudents from './TopStudents'
-import { fetchStaff } from '../../redux/staffInformation'
+import { fetchStaff } from '../../../redux/staffInformation'
 
 const DashboardMainDiv = () => {
   const navigate = useNavigate()

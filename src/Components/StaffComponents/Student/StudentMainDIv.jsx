@@ -3,9 +3,9 @@ import MessageStudent from './MessageStudent'
 import StudentLastPerformance from './StudentLastPerformance'
 import StudentScoreTable from './StudentScoreTable'
 import { useSelector } from 'react-redux'
-import ButtonComp from '../ButtonComp'
+import ButtonComp from '../../ButtonComp'
 import axios from 'axios'
-import SnackBar from '../SnackBar'
+import SnackBar from '../../SnackBar'
 
 
 const StudentMainDIv = ({category, mainindex, individualEmail, partnerName, classStudents}) => {

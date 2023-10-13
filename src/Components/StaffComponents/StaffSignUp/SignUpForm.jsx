@@ -3,16 +3,14 @@ import { useFormik, validateYupSchema } from 'formik';
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import * as Yup from 'yup';
-import FileViewer from '../../FileViewer'
-import SnackBar from '../SnackBar'
-import DisplayToast from '../../CustomHooks/DisplayToast'
+// import SnackBar from '../SnackBar'
 import { useSelector, useDispatch } from 'react-redux';
-import { updateAllStaffs, updateAStaff, setFetchingState } from '../../redux/adminInformation';
-import fetchBanksList from '../../CustomHooks/fetchBanksList';
-import FetchStatesAndLGAs from '../../CustomHooks/FetchStatesAndLGAs';
+import FetchStatesAndLGAs from '../../../CustomHooks/FetchStatesAndLGAs';
+import FileViewer from '../../../FileViewer';
+import DisplayToast from '../../../CustomHooks/DisplayToast';
+import { updateAllStaffs,updateAStaff , setFetchingState} from '../../../redux/adminInformation';
+import fetchBanksList from '../../../CustomHooks/fetchBanksList';
 // import FetchAllStudentsAndStaffs from '../../CustomHooks/AdminHooks/FetchAllStudentsAndStaffs'
-
-
 const SignUpForm = ({type, data}) => {
   const dispatch = useDispatch();
   const [fileType, setfileType] = useState('.jpeg, .jpg, .gif, .tif, .psd');

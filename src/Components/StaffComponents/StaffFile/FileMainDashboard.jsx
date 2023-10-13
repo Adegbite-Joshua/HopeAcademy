@@ -1,9 +1,8 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import FileView from '../StaffSubmit/FileView'
-import FileViewer from '../../FileViewer'
-
+import FileViewer from '../../../FileViewer'
+// import FileView from '../StaffSubmit/FileView'
 const FileMainDashboard = () => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   const [fileType, setfileType] = useState('.txt, .pdf, .doc, .docx, .rtf, .ppt, .pptx')

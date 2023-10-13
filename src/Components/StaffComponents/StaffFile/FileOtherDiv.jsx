@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import { useSelector } from 'react-redux'
-import FileViewer from '../../FileViewer'
 import UploadedFile from './UploadedFile'
-import ButtonComp from '../ButtonComp'
+import ButtonComp from '../../ButtonComp'
+import FileViewer from '../../../FileViewer'
 
 
 

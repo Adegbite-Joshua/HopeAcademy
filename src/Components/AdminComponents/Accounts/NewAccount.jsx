@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import SignUpForm from '../../StaffSignUp/SignUpForm'
+import SignUpForm from '../../StaffComponents/StaffSignUp/SignUpForm'
 import Navbar from '../NavBar/NavBar'
 
 const NewAccount = () => {
