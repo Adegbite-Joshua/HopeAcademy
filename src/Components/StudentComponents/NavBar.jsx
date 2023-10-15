@@ -7,7 +7,7 @@ const NabBar = () => {
     }
     return (
         <>
-            <div id="mySidenav" className="sidenav bg-blue-600 text-center flex items-center justify-center px-5">
+            <div id="mySidenav" className="sidenav bg-blue-600 text-center flex flex-col items-center justify-center px-5">
                 <img src="/vite.svg" className='h-16 w-16 mr-2' alt="" />
                 <h3 className='text-white font-semibold text-xl'>PROADE SCHOOL</h3>
                 <NavLink to='/dashboard' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-home mr-2'></i>Home</span></NavLink>

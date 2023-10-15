@@ -4,7 +4,6 @@ import Announcement from './Announcement'
 import SubjectDiv from './SubjectDiv'
 import { useSelector } from 'react-redux'
 
-
 const StudentMainDiv = ({ welcomeNote }) => {
     const subjects = [
         'MATHEMATICS',

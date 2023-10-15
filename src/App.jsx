@@ -4,7 +4,7 @@ import './../node_modules/font-awesome/css/font-awesome.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route } from "react-router-dom";
-import LandingPage from './Components/LandingPages/LandingPage';
+// import LandingPage from './Components/LandingPages/LandingPage';
 import EntranceTest from './Components/EntranceTest/EntranceTest';
 import TestPage from './Components/EntranceTest/TestPage';
 import TestInstructions from './Components/EntranceTest/TestInstructions';
@@ -37,6 +37,8 @@ import StaffFile from '../pages/StaffPages/StaffFile';
 import StaffSetting from '../pages/StaffPages/StaffSetting';
 import StudentClass from '../pages/StaffPages/StudentClass';
 import StaffForgottenPassword from '../pages/StaffPages/StaffForgottenPassword';
+import LandingPage from '../pages/LandingPage/LandingPage';
+import ContactUsPage from '../pages/ContactUsPage/ContactUsPage';
 
 
 
@@ -92,6 +94,7 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage/>}/>
           <Route path="/home" to="/"/>
+          <Route path="/contact_us" element={<ContactUsPage/>}/>
           <Route path='/student/'>
             <Route path='dashboard' element={<StudentDashboard/>}/>
             <Route path='signin' element={<SignInPage/>}/>

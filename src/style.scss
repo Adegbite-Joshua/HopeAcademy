@@ -157,6 +157,226 @@
   }
 }
 
+// Landing Page Footer
+.LandingPageFooter{
+  background-color: #f2f2f2;
+  p{
+      color: black;
+      a{
+          text-decoration: underline !important;
+          text-underline-offset: 4px;
+          color: black;
+          &:hover{
+              color: rgb(60, 57, 57);
+          }
+      }
+  }
+}
+
+// LandingPageVideoDiv Design
+
+.LandingPageVideoDiv{
+  div{
+      width: 50%;
+      @media (max-width: 768px) {
+          width: 100%;
+      }
+  }
+  p{
+      width: 50%;
+      @media (max-width: 768px) {
+          width: 100%;
+      }
+  }
+}
+
+
+// Landing Page Parralax Scrolling
+.ParallaxScrooling{
+  width: 100%;
+  height: 300px;
+  background-image: url(teachers/gallary6.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 100%;
+  background-attachment: fixed;
+
+}
+
+
+// Landing Page Footer
+.LandingPageFooter{
+  background-color: #f2f2f2;
+  p{
+      color: black;
+      a{
+          text-decoration: underline !important;
+          text-underline-offset: 4px;
+          color: black;
+          &:hover{
+              color: rgb(60, 57, 57);
+          }
+      }
+  }
+}
+
+
+.SchoolProgramsPage{
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem 0;
+  // align-items: center;
+  justify-content: center;
+  .Program {
+      img{
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+      }
+      flex-basis: 25%;
+      *{
+          text-align: center;
+          // word-wrap: break-word;
+          // word-break: break-all;
+          // -ms-word-break: break-all;
+          // -ms-word-wrap: break-word;
+          // background-color: red;
+      }
+  }
+}
+
+// Upcoming Calendar Design
+.UpcomingCalendar{
+  // min-height: 120vh;
+  width: 100vw;
+  display: flex;
+  @media (max-width: 768px) {
+      flex-direction: column;
+      // height: 120vh;
+  }
+  
+  div{
+      &[name='img']{
+          min-height: 35vh;
+          flex-basis: 50%;
+          background-image: url(teachers/gallary4.png);
+          background-size: 100% 100%;
+          background-position: 100% 100%;
+          object-fit: cover;
+      }
+      min-height: 35vh;
+      flex-basis: 50%;
+      @media (max-width: 768px) {
+          flex-basis: 100%;
+          height: 50%;
+          // &[name='img']{
+          //     // max-height: 50vh !important;
+          //     background-color: red !important;
+          //     background-blend-mode: darken;
+          // }
+          // background-color: red !important;
+      }
+      
+      ul{
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          li{
+              display: flex;
+              justify-content: start;
+              border-top: 1px solid gray;
+              // background-color: white;
+              padding: 2px 5px;
+              &:hover{
+                  background-color: rgb(228, 223, 223);
+              }
+              span{
+                  margin: 0 3px;
+                  
+              }
+          }
+      }
+  }
+}
+
+// LandingPageVideoDiv Design
+
+.LandingPageVideoDiv{
+  div{
+      width: 50%;
+      @media (max-width: 768px) {
+          width: 100%;
+      }
+  }
+  p{
+      width: 50%;
+      @media (max-width: 768px) {
+          width: 100%;
+      }
+  }
+}
+
+// Landing Page Carousel
+#carouselCenter{
+  height: 200px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+#carouselCenter::after{
+  position: absolute;
+  content: '';
+  inset: 0 -50%;
+  height: 200px;
+  transform: translateX(-500px);
+  background-image: linear-gradient(to right, green, blue , orange);
+  opacity: .75;
+  z-index: -9999;
+  animation-name: sliding;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+  @media (max-width: 1030px) {
+      inset: 0 -200%;
+  }
+  @media (max-width: 768px) {
+      inset: 0 -200%;
+  }
+}
+@keyframes sliding {
+  0% {
+      transform: translateX(-500px);
+  }
+  100% {
+      transform: translateX(500px);
+  }
+}
+.SchoolProgramsPage{
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem 0;
+  // align-items: center;
+  justify-content: center;
+  .Program {
+      img{
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+      }
+      flex-basis: 25%;
+      *{
+          text-align: center;
+          // word-wrap: break-word;
+          // word-break: break-all;
+          // -ms-word-break: break-all;
+          // -ms-word-wrap: break-word;
+          // background-color: red;
+      }
+  }
+}
 
 
 // Dashboadr Nav Design
@@ -576,4 +796,26 @@ input[type=number] {
 @media (min-width: 768px) {
   display: flex !important;
 }
+}
+
+
+.ContactUsBoxAndMap{
+  width: 80%;
+  display: flex;
+  background-color: white;
+  @media (max-width: 768px) {
+      flex-direction: column;
+  }
+  .ContactUsMap{
+      flex-basis: 50%;
+      @media (max-width: 768px) {
+          flex-basis: 100% !important;
+      }
+  }
+  .ContactUsBox{
+      flex-basis: 50%;
+      @media (max-width: 768px) {
+          flex-basis: 100% !important;
+      }
+  }
 }
