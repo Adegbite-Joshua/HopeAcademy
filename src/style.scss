@@ -826,3 +826,29 @@ input[type=number] {
   background-position: 100% 100%;
   // background-image: url(teacher/);
 }
+
+.signup{
+  flex-basis: 40%;
+  background-image: radial-gradient(
+    circle at 20% 25% ,
+    black 30%,
+    rgb(15, 187, 230) 65%
+  );
+  /* url(teachers/gallary4.png); */
+  background-blend-mode: darken;
+  padding: 1rem;
+}
+.signupOtherDiv{
+  flex-basis: 60%;
+  background-image: url(teachers/gallary4.png);
+  background-position: cover;
+  background-size: 100% 100%;
+  display: flex;
+  justify-content: end;
+  align-items: start;
+  padding: 2rem;
+  @media (max-width: 768px) {
+      flex-basis: 0;
+      display: none;
+  }
+}
