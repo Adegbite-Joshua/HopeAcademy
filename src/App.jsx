@@ -41,6 +41,8 @@ import StaffForgottenPassword from '../pages/StaffPages/StaffForgottenPassword';
 import LandingPage from '../pages/LandingPage/LandingPage';
 import ContactUsPage from '../pages/ContactUsPage/ContactUsPage';
 import AboutusPage from '../pages/AboutUsPage/AboutusPage';
+import ErrorPage from '../pages/ErrorPage/ErrorPage';
+import ForgottenPasswordPage from '../pages/StudentPages/ForgottenPasswordPage';
 
 
 
@@ -111,9 +113,9 @@ function App() {
             <Route path='uploadfile' element={<StaffFile/>}/>
             <Route path='notifications' element={<StaffNotification/>}/>
             <Route path='setting' element={<StaffSetting/>}/>
-            <Route path='class' element={<ScheduleClass/>}/>
-            <Route path='forgottenpassword' element={<StaffForgottenPassword/>} />
-            <Route path='forgottenpassword/:token' element={<StaffForgottenPassword/>} /> */}
+            <Route path='class' element={<ScheduleClass/>}/> */}
+            <Route path='forgottenpassword' element={<ForgottenPasswordPage/>} />
+            <Route path='forgottenpassword/:token' element={<ForgottenPasswordPage/>} />
           </Route>
           <Route path='/staff/'>
             <Route path='dashboard' element={<StaffDashboard/>}/>
@@ -157,6 +159,7 @@ function App() {
             <Route path='salary_payment' element={<SalaryPayment/>} />
             <Route path='news_and_notices' element={<AdminNoticesAndNews/>} />
           </Route>
+          <Route path='*' element={<ErrorPage/>} />
         </Routes>
         <ToastContainer style={{zIndex: 99999999999999999999}} /> 
     </>
