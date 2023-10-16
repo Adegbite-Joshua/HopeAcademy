@@ -78,7 +78,7 @@ const SignInPage = () => {
                         <Link to='/student/signup' className='text-blue-500 hover:underline'>Sign Up</Link>
                     </form>
                 </div>
-                <div className='bg-gray-700 text-white p-4 rounded-lg'>
+                <div className='signupOtherDiv bg-gray-700 text-white p-4 rounded-lg'>
                     <button className=' w-24 px-3 py-2 rounded-full bg-blue-500 cursor-pointer hover:bg-blue-600'><Link to='/signup'>Sign Up</Link></button>
                 </div>
             </div>

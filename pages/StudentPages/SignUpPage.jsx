@@ -229,7 +229,7 @@ const SignUpPage = () => {
                         <label htmlFor='state'>State</label>
                         <input type='text' className='w-full border-2 rounded-md p-2 h-12' {...formik.getFieldProps('state')} placeholder='State' id='state' name='state' />
                         <small className='text-danger'>{formik.touched.state && formik.errors.state}</small><br />
-                        <div style={{ aspectRatio: '1' }} className='w-50 mx-auto bg-dark opacity-75 my-2 d-flex justify-content-center align-items-center'>
+                        <div style={{ aspectRatio: '1' }} className='w-3/6 mx-auto bg-black opacity-3/6 my-2 flex justify-center items-center'>
                             <h3 className='text-light'>Profile Picture</h3>
                         </div>
                         <input type="file" onChange={(e) => selectImage(e)} name="pictureUrl" className='w-full border-2 rounded-md p-2 h-12' id="" />
