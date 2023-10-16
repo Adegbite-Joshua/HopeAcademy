@@ -39,6 +39,7 @@ import StudentClass from '../pages/StaffPages/StudentClass';
 import StaffForgottenPassword from '../pages/StaffPages/StaffForgottenPassword';
 import LandingPage from '../pages/LandingPage/LandingPage';
 import ContactUsPage from '../pages/ContactUsPage/ContactUsPage';
+import AboutusPage from '../pages/AboutUsPage/AboutusPage';
 
 
 
@@ -95,6 +96,7 @@ function App() {
           <Route path='/' element={<LandingPage/>}/>
           <Route path="/home" to="/"/>
           <Route path="/contact_us" element={<ContactUsPage/>}/>
+          <Route path="/about_us" element={<AboutusPage/>}/>
           <Route path='/student/'>
             <Route path='dashboard' element={<StudentDashboard/>}/>
             <Route path='signin' element={<SignInPage/>}/>

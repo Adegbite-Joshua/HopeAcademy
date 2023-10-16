@@ -37,6 +37,10 @@ const LandingPageNav = ({percent}) => {
     const showSideBar =()=>{
         document.getElementById('navUl').classList.toggle('responsive')
     }
+
+    const showSubLink =(container)=>{
+        document.getElementById(container).classList.toggle('responsive')
+    }
   return (
     <>
         <div className="sticky top-0 w-full" style={{zIndex: '9999999999'}}>
@@ -59,12 +63,14 @@ const LandingPageNav = ({percent}) => {
                 {/* <li className="">
                     <NavLink className="">Staff Portal</NavLink>
                 </li> */}
-                <li class="signInDropDown">
-                    <a>Sign In </a>
+                <li id='signInSubLink' className="relative group my-auto">
+                    <span className='cursor-pointer' onClick={()=>showSubLink('signInSubLink')}>Sign In</span>
+                    <div id='coursesSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
                     <ul>
                         <li><NavLink to='http://localhost:2000/signin'>Staff</NavLink></li>
                         <li><NavLink to='/signin'>Student</NavLink></li>
                     </ul>
+                    </div>
                 </li>
                 <li className="">
                     <NavLink className="" to='/contactus'>Contact Us</NavLink>

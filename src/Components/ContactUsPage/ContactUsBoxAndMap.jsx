@@ -5,7 +5,7 @@ import ContactUsMap from './ContactUsMap'
 const ContactUsBoxAndMap = () => {
   return (
     <>
-        <div className='ContactUsBoxAndMap w-100 p-5'>
+        <div className='ContactUsBoxAndMap w-full px-7'>
             <ContactUsMap/>
             <ContactUsBox/>
         </div>

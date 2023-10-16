@@ -11,7 +11,7 @@ const ContactUsBox = () => {
         <input
           type="text"
           id="firstName"
-          className="form-input mb-2"
+          className="form-input border-2 h-12 w-full rounded-md p-2 mb-2"
           placeholder="Enter your first name"
         />
 
@@ -21,7 +21,7 @@ const ContactUsBox = () => {
         <input
           type="text"
           id="lastName"
-          className="form-input mb-2"
+          className="form-input border-2 h-12 w-full rounded-md p-2 mb-2"
           placeholder="Enter your last name"
         />
 
@@ -31,7 +31,7 @@ const ContactUsBox = () => {
         <input
           type="email"
           id="email"
-          className="form-input mb-2"
+          className="form-input border-2 h-12 w-full rounded-md p-2 mb-2"
           placeholder="Enter your email"
         />
 
@@ -41,7 +41,7 @@ const ContactUsBox = () => {
         <input
           type="tel"
           id="phone"
-          className="form-input mb-2"
+          className="form-input border-2 h-12 w-full rounded-md p-2 mb-2"
           placeholder="Enter your phone number"
         />
 
@@ -50,13 +50,13 @@ const ContactUsBox = () => {
         </label>
         <textarea
           id="comments"
-          className="form-textarea mb-4"
+          className="form-textarea w-full border-2 rounded-md p-2 mb-4"
           rows="4"
           placeholder="Enter your questions or comments"
         ></textarea>
 
         <div className="flex justify-end">
-          <button className="btn btn-warning px-4 py-2 rounded-lg">Submit</button>
+          <button className="bg-blue-500 px-4 py-2 rounded-lg">Submit</button>
         </div>
       </div>
     </div>

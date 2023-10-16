@@ -800,7 +800,7 @@ input[type=number] {
 
 
 .ContactUsBoxAndMap{
-  width: 80%;
+  width: 100%;
   display: flex;
   background-color: white;
   @media (max-width: 768px) {
@@ -818,4 +818,11 @@ input[type=number] {
           flex-basis: 100% !important;
       }
   }
+}
+
+.imageDiv{
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  // background-image: url(teacher/);
 }
