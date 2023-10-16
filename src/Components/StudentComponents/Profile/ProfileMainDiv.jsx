@@ -5,7 +5,7 @@ import StudentSubject from './StudentSubject'
 import StudentProfileUpdate from './StudentProfileUpdate'
 import StudentCalendar from '../Activities/StudentCalendar'
 
-const SettingsMainDiv = ({disp, func}) => {
+const ProfileMainDiv = ({disp, func}) => {
   return (
     <>
         <div className='SettingsMainDiv topSpace overflow-auto'>
@@ -27,4 +27,4 @@ const SettingsMainDiv = ({disp, func}) => {
   )
 }
 
-export default SettingsMainDiv
+export default ProfileMainDiv

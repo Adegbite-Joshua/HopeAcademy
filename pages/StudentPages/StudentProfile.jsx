@@ -3,15 +3,16 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import checkStudentFeeStatus from '../../CustomHooks/checkStudentFeeStatus'
 import fetchStudentInfo from '../../CustomHooks/fetchStudentInfo'
-import Loader from '../../Loader'
+// import Loader from '../../Loader'
+import NavBar from '../../src/Components/StudentComponents/NavBar'
 import { fetchStudent, setFetched } from '../../redux/studentInformation'
 import StudentSideNav from '../StudentNav/StudentSideNav'
-import SettingsMainDiv from './SettingsMainDiv'
-import SettingsOtherDiv from './SettingsOtherDiv'
 import './style.scss'
+import Loader from '../../src/Components/StudentComponents/Loader'
+import ProfileMainDiv from '../../src/Components/StudentComponents/Profile/ProfileMainDiv'
 
 
-const StudentSettings = () => {
+const StudentProfile = () => {
     document.querySelector("title").innerText = `Settings`
     const toggleSideNav =()=>{
         document.getElementById('SettingsOtherDiv').classList.toggle('SettingsOtherDiv2')
@@ -78,15 +79,15 @@ const StudentSettings = () => {
   return (
     <>
         <div className='flex'>
-          <StudentSideNav/>
+          <NavBar/>
           {fetching && <Loader/>}
           {fetching==false && <>
-            <SettingsMainDiv func={toggleSideNav} disp={displaying}/>
-            <SettingsOtherDiv func={toggleSideNav} func2={setSetting}/>
+            <ProfileMainDiv func={toggleSideNav} disp={displaying}/>
+            <ProfileOtherDiv func={toggleSideNav} func2={setSetting}/>
           </>}
         </div>
     </>
   )
 }
 
-export default StudentSettings
+export default StudentProfile
