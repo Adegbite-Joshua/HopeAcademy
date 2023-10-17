@@ -31,7 +31,7 @@ const fetchStudentInfo = () => {
           })
       }
     }, [socket])
-  return ['ade'];
+  return [studentInfo];
 };
 
 export default fetchStudentInfo;

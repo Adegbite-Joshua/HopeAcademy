@@ -1,9 +1,9 @@
 import React from 'react'
-import AllSettingsDiv from './AllSettingsDiv'
+import AllProfilesDiv from './AllProfilesDiv'
 import StudentSocialMedia from './StudentSocialMedia'
 import StudentSubject from './StudentSubject'
 import StudentProfileUpdate from './StudentProfileUpdate'
-import StudentCalendar from '../Activities/StudentCalendar'
+import StudentCalendar from './StudentCalendar'
 
 const ProfileMainDiv = ({disp, func}) => {
   return (
@@ -15,10 +15,10 @@ const ProfileMainDiv = ({disp, func}) => {
             {disp==='StudentSocialMedia'?<StudentSocialMedia/>:''}
             {disp==='StudentSubject'?<StudentSubject/>:''}
             {disp==='StudentCalendar'?<StudentCalendar/>:''}
-            {disp==='AllSettingsDiv'?<AllSettingsDiv/>:''}
+            {disp==='AllProfilesDiv'?<AllProfilesDiv/>:''}
           </div>
           
-          {/* <AllSettingsDiv/>
+          {/* <AllProfilesDiv/>
           <StudentSocialMedia/>
           <StudentSubject/>
           <StudentProfileUpdate/> */}

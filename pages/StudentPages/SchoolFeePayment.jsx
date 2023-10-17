@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios';
 import NavBar from '../../src/Components/StudentComponents/NavBar'
-import fetchStudentInfo from '../../CustomHooks/fetchStudentInfo';
-import checkStudentFeeStatus from "../../CustomHooks/checkStudentFeeStatus";
+import fetchStudentInfo from '../../src/CustomHooks/StudentHooks/fetchStudentInfo'
+import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStudentFeeStatus'
 
 
 const SchoolFeePayment = () => {

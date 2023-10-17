@@ -44,6 +44,7 @@ import AboutusPage from '../pages/AboutUsPage/AboutusPage';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import ForgottenPasswordPage from '../pages/StudentPages/ForgottenPasswordPage';
 import SchoolFeePayment from '../pages/StudentPages/SchoolFeePayment';
+import StudentProfile from '../pages/StudentPages/StudentProfile';
 
 
 
@@ -112,8 +113,8 @@ function App() {
             <Route path='student/:email' element={<Student/>}/>
             <Route path='submit' element={<StaffSubmit/>}/>
             <Route path='notifications' element={<StaffNotification/>}/>
-            <Route path='setting' element={<StaffSetting/>}/>
-            <Route path='class' element={<ScheduleClass/>}/> */}
+          <Route path='class' element={<ScheduleClass/>}/> */}
+            <Route path='profile' element={<StudentProfile/>}/>
             <Route path='feepayment' element={<SchoolFeePayment/>}/>
             <Route path='forgottenpassword' element={<ForgottenPasswordPage/>} />
             <Route path='forgottenpassword/:token' element={<ForgottenPasswordPage/>} />

@@ -1,15 +1,15 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import checkStudentFeeStatus from '../../CustomHooks/checkStudentFeeStatus'
-import fetchStudentInfo from '../../CustomHooks/fetchStudentInfo'
+import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStudentFeeStatus'
+import fetchStudentInfo from '../../src/CustomHooks/StudentHooks/fetchStudentInfo'
 // import Loader from '../../Loader'
 import NavBar from '../../src/Components/StudentComponents/NavBar'
-import { fetchStudent, setFetched } from '../../redux/studentInformation'
-import StudentSideNav from '../StudentNav/StudentSideNav'
-import './style.scss'
-import Loader from '../../src/Components/StudentComponents/Loader'
+import { fetchAllStaffs, fetchStudent, setFetched } from '../../src/redux/studentInformation'
+// import './style.scss'
+// import Loader from '../../src/Components/StudentComponents/Loader'
 import ProfileMainDiv from '../../src/Components/StudentComponents/Profile/ProfileMainDiv'
+import ProfileOtherDiv from '../../src/Components/StudentComponents/Profile/ProfileOtherDiv'
 
 
 const StudentProfile = () => {

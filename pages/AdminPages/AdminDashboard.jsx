@@ -12,12 +12,6 @@ function AdminDashboard() {
     const [allStudents, allStaffs] = FetchAllStudentsAndStaffs();
     const [noticesAndNews] = FetchNoticesAndNews();
 
-
-
-    useEffect(() => {
-        
-    }, []);
-
     return (
         <>
             <div className=''>

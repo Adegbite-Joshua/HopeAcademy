@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import InboxMainDiv from './InboxMainDiv'
-import OtherStudents from './OtherStudents'
-import StudentSideNav from '../StudentNav/StudentSideNav'
-import '../../../node_modules/bootstrap/dist/css/bootstrap.css'
-import './style.scss'
+import InboxMainDiv from '../../src/Components/StudentComponents/Inbox/InboxMainDiv'
+import OtherStudents from '../../src/Components/StudentComponents/Inbox/OtherStudents'
+// import './style.scss'
 import {useSelector, useDispatch} from 'react-redux'
 import axios from 'axios'
-import { fetchAllStaffs, fetchAllStudents, fetchStudent, setFetched } from '../../redux/studentInformation'
-import Loader from '../../Loader'
-import fetchStudentInfo from '../../CustomHooks/fetchStudentInfo'
+import { fetchAllStaffs, fetchAllStudents, fetchStudent, setFetched } from '../../src/redux/studentInformation'
+// import Loader from '../../Loader'
+import fetchStudentInfo from '../../src/CustomHooks/StudentHooks/fetchStudentInfo'
+import NavBar from '../../src/Components/StudentComponents/NavBar'
+
 
 
 
@@ -204,7 +204,7 @@ const InboxPage = () => {
   return (
     <>
         <div className='flex w-full overflow-hidden'>
-            <StudentSideNav/>
+            <NavBar/>
             {/* {fetching==true && (<Loader/>)}
             {fetching==false && (<> */}
               <InboxMainDiv messages={allMessages[partnerId]} func={toggleSideNav} sendMessage={sendMessage} partnerName={partnerName} partnerCommonId={partnerCommonId} />
