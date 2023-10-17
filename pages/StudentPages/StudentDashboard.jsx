@@ -129,7 +129,7 @@ const StudentDashboard = () => {
 
   return (
     <>
-      <div className='flex allWrap'>
+      <div className='flex allWrap border-2 h-screen'>
         <NavBar />
         {fetching && <Loader />}
         {!fetching && (

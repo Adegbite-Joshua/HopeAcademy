@@ -32,10 +32,10 @@ const InboxMainDiv = ({ func, partnerName, messages, partnerCommonId, sendMessag
     // }
     return (
         <>
-            <div className='InboxMainDiv p-5 relative topSpace'>
+            <div className='InboxMainDiv h-full border-r-2 md:border-blue-500 p-5 relative topSpace'>
                 <h3 className='sticky top-0 text-center'>
                     Adegbite Joshua
-                    <span id='toggleIcon' onClick={func} className='float-right border-2 p-2 rounded'>
+                    <span id='toggleIco' onClick={func} className=' md:hidden float-right border-2 p-2 rounded'>
                         <i className='fas fa-bars'></i>
                     </span>
                 </h3>
@@ -52,22 +52,21 @@ const InboxMainDiv = ({ func, partnerName, messages, partnerCommonId, sendMessag
                 </div>
                 <div id='sendContainer'>
                     <p className='text-center font-bold'>{partnerName ? partnerName : 'Select A Name'}</p>
-                    <div className='flex flex-col'>
+                    <div className='flex flex-row'>
                         <input
                             type="text"
                             id='message'
                             onChange={(e) => setmessageInput(e.target.value)}
-                            className='form-input my-2'
+                            className='h-12 w-10/12 border-2 rounded-md my-2'
                         />
-                        <button
-                            onClick={() => {
+                        <div className='w-2/12 my-2 flex justify-center items-center'>
+                            <button className='bg-slate-100 p-2 rounded-full' onClick={() => {
                                 sendMessage(messageInput);
                                 message.value = '';
-                            }}
-                            className='btn btn-info my-2'
-                        >
-                            Send Message
-                        </button>
+                            }}>
+                            <i className="fa fa-paper-plane text-2xl hover:text-3xl text-blue-500 duration-150"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

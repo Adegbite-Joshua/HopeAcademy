@@ -8,7 +8,7 @@ const Students = ({func}) => {
     const [viewing, setviewing] = useState(0)
   return (
     <>
-        <select name="" id="selectClass" onChange={(e)=>setviewing(e.target.value)} className='form-control'>
+        <select name="" id="selectClass" onChange={(e)=>setviewing(e.target.value)} className='h-12 w-full border-2 rounded-md'>
                 <option value="0">JSS 1 </option>
                 <option value="1">JSS 2</option>
                 <option value="2">JSS 3</option>

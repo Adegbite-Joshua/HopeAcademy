@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import OnlinePeople from './OnlineStudents'
+import OnlinePeople from './OnlinePeople'
 import { useSelector } from 'react-redux'
 
 

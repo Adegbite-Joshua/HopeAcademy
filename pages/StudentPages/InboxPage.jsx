@@ -98,11 +98,11 @@ const InboxPage = () => {
       .then((res)=>{
         // console.log(res);
         if (res.status != 200) {
-          navigate('/signin')
+          // navigate('/signin')
         }
       })
       .catch((error)=>{
-        navigate('/signin')
+        // navigate('/signin')
         console.log(error);
       })
     }
@@ -203,7 +203,7 @@ const InboxPage = () => {
 
   return (
     <>
-        <div className='flex w-full overflow-hidden'>
+        <div className='flex w-full allWrap h-screen overflow-hidden'>
             <NavBar/>
             {/* {fetching==true && (<Loader/>)}
             {fetching==false && (<> */}

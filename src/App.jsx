@@ -28,6 +28,7 @@ import SalaryPayment from './Components/AdminComponents/SalaryPayment/SalaryPaym
 import StudentDashboard from '../pages/StudentPages/StudentDashboard';
 import SignInPage from '../pages/StudentPages/SignInPage';
 import SignUpPage from '../pages/StudentPages/SignUpPage';
+import InboxPage from '../pages/StudentPages/InboxPage';
 import StaffDashboard from '../pages/StaffPages/StaffDashboard';
 import StaffLogin from '../pages/StaffPages/StaffLogin';
 import StaffSignUp from '../pages/StaffPages/StaffSignUp';
@@ -106,9 +107,8 @@ function App() {
             <Route path='dashboard' element={<StudentDashboard/>}/>
             <Route path='signin' element={<SignInPage/>}/>
             <Route path='signup' element={<SignUpPage/>}/>
+            <Route path='inbox' element={<InboxPage/>}/>
             {/* <Route path='signup' element={<StaffSignUp/>}/>
-            <Route path='inbox' element={<StaffMessage/>}/>
-            <Route path='inbox/:id' element={<StaffMessage/>}/>
             <Route path='student' element={<Student/>}/>
             <Route path='student/:email' element={<Student/>}/>
             <Route path='submit' element={<StaffSubmit/>}/>

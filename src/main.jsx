@@ -10,7 +10,7 @@ import studentInformation from './redux/studentInformation'
 import staffInformation from './redux/staffInformation'
 import adminInformation from './redux/adminInformation'
 import socketIO from './redux/socketIO'
-
+import 'font-awesome/css/font-awesome.min.css';
 
 
 const store = configureStore({

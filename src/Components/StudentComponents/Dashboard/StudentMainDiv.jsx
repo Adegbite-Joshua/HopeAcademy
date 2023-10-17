@@ -44,7 +44,7 @@ const StudentMainDiv = ({ welcomeNote }) => {
                     {studentInfo.entranceTest.score === '' || studentInfo.entranceTest.score === undefined ?
                         <button className="bg-yellow-500 text-white px-4 py-2 rounded-md mr-2 mb-2 hover:bg-yellow-600">Take Entrance Test</button>
                         : ''}
-                    <button className="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600">Profile</button>
+                    <Link to='/student/profile' className="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600">Profile</Link>
                 </div>
                 <div className="w-full p-2 mt-4">
                     <h4 className="text-lg font-semibold ms-4 mb-2">Your Subjects <Link className="float-right me-4 text-blue-500" to='/subjects'>See All</Link></h4>
