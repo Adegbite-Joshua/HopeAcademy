@@ -94,7 +94,7 @@ const SchoolFeePayment = () => {
                                 )}
                                 {paymentDisplayOption === 'half' && (
                                     <button
-                                        className="block btn bg-primary text-white mt-2"
+                                        className="block p-2 rounded-md bg-yellow-400 text-white mt-2"
                                         onClick={() => handlePaymentTypeChange('otherhalf')}
                                     >
                                         Second Part Payment
