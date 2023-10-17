@@ -1,12 +1,14 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
+import fetchStudentInfo from '../../../CustomHooks/StudentHooks/fetchStudentInfo.jsx';
 import subjects from '../../../Subjects.js';
 import Subject from './Subject'
 
 
 const StudentSubject = () => {
     // document.querySelector("title").innerText = `404 - Error Page`
-    let studentInfo = useSelector((state) => state.studentInformation.studentInformation);
+    // let  = useSelector((state) => state.studentInformation.studentInformation);
+    const [studentInfo] = fetchStudentInfo()
     return (
         <>
             <div className="w-full md:w-1/2 lg:w-1/3 px-4 mx-auto">
@@ -19,12 +21,12 @@ const StudentSubject = () => {
                         multiple
                         className="form-select h-40 overflow-y-auto border rounded-md p-2"
                     >
-                        {studentInfo.subjects.map((subject, index) => (
+                        {studentInfo.subjects && studentInfo?.subjects.map((subject, index) => (
                             <Subject key={index} name={subjects[subject.subjectIndex]} />
                         ))}
                     </select>
                 </div>
-                <div>
+                {/* <div>
                     <h3 className="text-xl font-semibold mb-4">Unoffered Subjects</h3>
                     <select
                         disabled
@@ -40,7 +42,7 @@ const StudentSubject = () => {
                             return null;
                         })}
                     </select>
-                </div>
+                </div> */}
             </div>
         </>
     )

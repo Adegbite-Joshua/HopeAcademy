@@ -18,12 +18,12 @@ const InboxPage = () => {
         document.getElementById('OtherStudents').classList.toggle('OtherStudents')
     }
     const dispatch = useDispatch()
-    let studentInfo = useSelector((state)=>state.studentInformation.studentInformation);
+    
     let allStaffs = useSelector((state)=>state.studentInformation.allStaffs);
     let allStudents = useSelector((state)=>state.studentInformation.allStudents);
     let fetching = useSelector((state)=>state.studentInformation.studentFetchingState);
     let socket = useSelector((state)=>state.socketIO.socket);
-    const [name] = fetchStudentInfo();
+    const [studentInfo] = fetchStudentInfo();
     const [partnerId, setpartnerId] = useState('')
     const [partnerName, setpartnerName] = useState('')
     const [partnerCommonId, setpartnerCommonId] = useState('')
@@ -109,7 +109,7 @@ const InboxPage = () => {
     let date = new Date()
 
     useEffect(() => {
-      validateStudent();
+      // validateStudent();
       fetchAll();
 
       const handleMessage = (messageDetails) => {

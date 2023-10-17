@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from '../../src/Components/AdminComponents/NavBar/NavBar'
 import ErrorMainDiv from '../../src/Components/ErrorPage/ErrorMainDiv'
+import NavBar from '../../src/Components/StudentComponents/NavBar'
 
 
 const StudentErrorPage = () => {
@@ -8,7 +8,7 @@ const StudentErrorPage = () => {
   return (
     <>
         <div>
-          <Navbar/>
+          <NavBar/>
           <ErrorMainDiv/>
         </div>
     </>

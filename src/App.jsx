@@ -47,6 +47,7 @@ import ForgottenPasswordPage from '../pages/StudentPages/ForgottenPasswordPage';
 import SchoolFeePayment from '../pages/StudentPages/SchoolFeePayment';
 import StudentProfile from '../pages/StudentPages/StudentProfile';
 import StudentErrorPage from '../pages/StudentPages/StudentErrorPage';
+import StudentSubject from './Components/StudentComponents/Profile/StudentSubject';
 
 
 
@@ -111,9 +112,9 @@ function App() {
             <Route path='inbox' element={<InboxPage/>}/>
             {/* <Route path='signup' element={<StaffSignUp/>}/>
             <Route path='student' element={<Student/>}/>
-            <Route path='student/:email' element={<Student/>}/>
             <Route path='notifications' element={<StaffNotification/>}/>
           <Route path='class' element={<ScheduleClass/>}/> */}
+            <Route path='subjects' element={<StudentSubject/>}/>
             <Route path='profile' element={<StudentProfile/>}/>
             <Route path='feepayment' element={<SchoolFeePayment/>}/>
             <Route path='forgottenpassword' element={<ForgottenPasswordPage/>} />

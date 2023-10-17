@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const NabBar = () => {
+const NavBar = () => {
     const openNavPop = () => {
         document.getElementById('mySidenav').classList.toggle('responsive')
     }
@@ -27,4 +27,4 @@ const NabBar = () => {
     )
 }
 
-export default NabBar
+export default NavBar

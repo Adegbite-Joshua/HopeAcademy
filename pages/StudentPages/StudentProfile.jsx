@@ -78,7 +78,7 @@ const StudentProfile = () => {
     }
   return (
     <>
-        <div className='flex allWrap'>
+        <div className='flex allWrap h-screen'>
           <NavBar/>
           {/* {fetching && <Loader/>}
           {fetching==false && <> */}
