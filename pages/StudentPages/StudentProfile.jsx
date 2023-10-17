@@ -78,13 +78,13 @@ const StudentProfile = () => {
     }
   return (
     <>
-        <div className='flex'>
+        <div className='flex allWrap'>
           <NavBar/>
-          {fetching && <Loader/>}
-          {fetching==false && <>
+          {/* {fetching && <Loader/>}
+          {fetching==false && <> */}
             <ProfileMainDiv func={toggleSideNav} disp={displaying}/>
-            <ProfileOtherDiv func={toggleSideNav} func2={setSetting}/>
-          </>}
+            {/* <ProfileOtherDiv func={toggleSideNav} func2={setSetting}/> */}
+          {/* </>} */}
         </div>
     </>
   )

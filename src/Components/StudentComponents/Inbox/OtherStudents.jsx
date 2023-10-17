@@ -10,7 +10,7 @@ const OtherStudents = ({ func, func2 }) => {
                 <label htmlFor="selectClass" className='text-center text-light font-bold p-2'>
                     Select a class to view students
                     <span id='toggleIco' onClick={func} className='float-right md:hidden border-2 p-2 rounded'>
-                        <i className='fas fa-close'></i>
+                        <i className='fa fa-close'></i>
                     </span>
                 </label>
                 <div className='flex justify-center space-x-4'>

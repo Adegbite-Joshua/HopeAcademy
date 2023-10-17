@@ -60,10 +60,10 @@ const SchoolFeePayment = () => {
 
     return (
         <>
-            <div className="flex allWrap">
+            <div className="flex allWrap h-screen">
                 <NavBar />
                 {paymentDisplayOption !== 'full' && (
-                    <div className="container mt-5 mx-auto">
+                    <div className="container h-full flex justify-center items-center mt-5 mx-auto">
                         <div className="w-96 mx-auto bg-white p-6 rounded-lg shadow-lg">
                             <h2 className="text-2xl font-bold text-center mb-4">School Fees Payment</h2>
                             <div className="mb-4">
@@ -79,13 +79,13 @@ const SchoolFeePayment = () => {
                                 {paymentDisplayOption === 'indebt' && (
                                     <div className="flex justify-center space-x-2">
                                         <button
-                                            className={`btn ${paymentType === 'full' ? 'bg-primary' : 'bg-gray-300'} text-white`}
+                                            className={`p-2 rounded-md ${paymentType === 'full' ? 'bg-green-300' : 'bg-gray-300'} text-white`}
                                             onClick={() => handlePaymentTypeChange('full')}
                                         >
                                             Full Payment
                                         </button>
                                         <button
-                                            className={`btn ${paymentType === 'half' ? 'bg-success' : 'bg-gray-300'} text-white`}
+                                            className={`btn ${paymentType === 'half' ? 'bg-green-500' : 'bg-gray-300'} text-white`}
                                             onClick={() => handlePaymentTypeChange('half')}
                                         >
                                             Half Payment
@@ -112,7 +112,7 @@ const SchoolFeePayment = () => {
                             </div>
                             <div className="text-center">
                                 <button
-                                    className={`btn ${paymentType === '' ? 'bg-gray-300 cursor-not-allowed' : 'bg-primary text-white'}`}
+                                    className={`p-2 rounded-md ${paymentType === '' ? 'bg-gray-300 cursor-not-allowed' : 'bg-yellow text-white'}`}
                                     onClick={initializePayment}
                                     disabled={paymentType === ''}
                                 >

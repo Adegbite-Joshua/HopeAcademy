@@ -36,7 +36,7 @@ const InboxMainDiv = ({ func, partnerName, messages, partnerCommonId, sendMessag
                 <h3 className='sticky top-0 text-center'>
                     Adegbite Joshua
                     <span id='toggleIco' onClick={func} className=' md:hidden float-right border-2 p-2 rounded'>
-                        <i className='fas fa-bars'></i>
+                        <i className='fa fa-bars'></i>
                     </span>
                 </h3>
                 <div id='messageContainer' className='messageContainer'>
