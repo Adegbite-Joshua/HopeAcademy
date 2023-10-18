@@ -9,10 +9,15 @@ export const studentInformation = createSlice({
         studentNotifications: {},
         studentFetchingState: true,
         notificationFetchingState: true,
+        termDetails: {},
     },
     reducers: {
         fetchStudent: (state, action)=>{
             Object.assign(state.studentInformation = action.payload)  
+            console.log(current(state));         
+        },
+        fetchTermDetails: (state, action)=>{
+            Object.assign(state.termDetails = action.payload)  
             console.log(current(state));         
         },
         fetchAllStaffs: (state, action)=>{
@@ -42,6 +47,6 @@ export const studentInformation = createSlice({
     }
 })
 
-export const {fetchStudent, fetchAllStaffs, fetchAllStudents, setFetched, fetchStudentNotifications, updateStudentNotifications, shownStudentNotifications} = studentInformation.actions
+export const {fetchStudent, fetchAllStaffs, fetchAllStudents, setFetched, fetchStudentNotifications, updateStudentNotifications, shownStudentNotifications, fetchTermDetails} = studentInformation.actions
 
 export default studentInformation.reducer

@@ -14,12 +14,12 @@ const NavBar = () => {
                 <NavLink to='/student/inbox' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-inbox mr-2'></i>Inbox</span></NavLink>
                 <NavLink to='/student/subjects' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-book mr-2'></i>Subjects</span></NavLink>
                 <NavLink to='/student/announcement' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-bell mr-2'></i>Announcements</span></NavLink>
-                <NavLink to='/student/activities' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-calendar mr-2'></i>Activities</span></NavLink>
+                <NavLink to='/student/notifications' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-calendar mr-2'></i>Notifications</span></NavLink>
                 <NavLink to='/student/feepayment' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-dollar-sign mr-2'></i>Payments</span></NavLink>
                 <NavLink to='/student/profile' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-cog mr-2'></i>Profile</span></NavLink>
                 <NavLink to='/' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-sign-out-alt mr-2'></i>Sign Out</span></NavLink>
                 <span id='openPop' className='p-2 rounded-md border-2 border-white md:hidden' onClick={openNavPop}>
-                    <i className='fas fa-bars text-white'></i>
+                    <i className='fa fa-bars text-white'></i>
                 </span>
             </div>
         </>

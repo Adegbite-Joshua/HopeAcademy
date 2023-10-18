@@ -39,11 +39,10 @@ const StudentSocialMedia = () => {
                     <div className="mb-4">
                         <label htmlFor="twitterlink" className="block font-semibold">Twitter Address</label>
                         <input
-                            disabled
                             name="setting"
                             type="link"
                             {...formik.getFieldProps('twitterlink')}
-                            className="form-input w-3/4 md:w-1/2"
+                            className="h-12 border-2 rounded-md p-2 w-3/4 md:w-1/2"
                             placeholder="Twitter Address"
                             id="twitterlink"
                         />
@@ -51,10 +50,9 @@ const StudentSocialMedia = () => {
                     <div className="mb-4">
                         <label htmlFor="facebooklink" className="block font-semibold">Facebook Link</label>
                         <input
-                            disabled
                             type="link"
                             {...formik.getFieldProps('facebooklink')}
-                            className="form-input w-3/4 md:w-1/2"
+                            className="h-12 border-2 rounded-md p-2 w-3/4 md:w-1/2"
                             placeholder="Facebook Link"
                             id="facebooklink"
                         />
@@ -62,11 +60,10 @@ const StudentSocialMedia = () => {
                     <div className="mb-4">
                         <label htmlFor="whatsapplink" className="block font-semibold">WhatsApp Number</label>
                         <input
-                            disabled
                             type="tel"
                             name="setting"
                             {...formik.getFieldProps('whatsapplink')}
-                            className="form-input w-3/4 md:w-1/2"
+                            className="h-12 border-2 rounded-md p-2 w-3/4 md:w-1/2"
                             placeholder="WhatsApp Number"
                             id="whatsapplink"
                         />
@@ -74,10 +71,9 @@ const StudentSocialMedia = () => {
                     <div className="mb-4">
                         <label htmlFor="otherlink" className="block font-semibold">Other Link</label>
                         <input
-                            disabled
                             type="link"
                             {...formik.getFieldProps('otherlink')}
-                            className="form-input w-3/4 md:w-1/2"
+                            className="h-12 border-2 rounded-md p-2 w-3/4 md:w-1/2"
                             placeholder="Other Link"
                             id="otherlink"
                         />
@@ -86,7 +82,7 @@ const StudentSocialMedia = () => {
                         type="submit"
                         className="py-2 px-4 bg-blue-500 text-white rounded-md w-full hover:bg-blue-700"
                     >
-                        Submit
+                        Update
                     </button>
                 </div>
             </form>

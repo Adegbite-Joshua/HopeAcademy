@@ -58,7 +58,7 @@ const StudentProfileUpdate = () => {
             <input disabled type='text' {...formik.getFieldProps('localGovernment')} className='form-control' placeholder='Local Goverment' id='localGovernment' />
             <label htmlFor='state'>State</label>
             <input disabled type='text' {...formik.getFieldProps('state')} className='form-control' placeholder='State' id='state' />
-            <button type='submit' className='btn blue500 my-2 w-100'>Update Profile</button>
+            {/* <button type='submit' className='btn blue500 my-2 w-100'>Update Profile</button> */}
           </form>
         </div>
     </>

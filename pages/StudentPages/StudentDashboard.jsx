@@ -14,13 +14,12 @@ import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStude
 
 
 const StudentDashboard = () => {
+    const [studentInfo, fetching, termDetails] = fetchStudentInfo();  
     let dispatch = useDispatch();
     const navigate = useNavigate();
     const [addingTask, setaddingTask] = useState(false);
     document.querySelector("title").innerText = `Dashboard`;
     let values = useParams()
-    let studentInfo = useSelector((state)=>state.studentInformation.studentInformation);
-    let fetching = useSelector((state)=>state.studentInformation.studentFetchingState);
     let socket = useSelector((state)=>state.socketIO.socket);
     const [paymentDisplayOption] = checkStudentFeeStatus();
     paymentDisplayOption=='indebt'?navigate('/feepayment'):'';
@@ -32,8 +31,8 @@ const StudentDashboard = () => {
     // }
     useEffect(() => {
       // getInfo()
-      validateStudent()
-      socket.emit('connectSocketId', studentInfo._id)
+      // validateStudent()
+      // socket.emit('connectSocketId', studentInfo._id)
     }, [])
 
     // const fetchStudentInformation =()=>{

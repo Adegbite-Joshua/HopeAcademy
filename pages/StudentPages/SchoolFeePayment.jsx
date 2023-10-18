@@ -7,14 +7,17 @@ import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStude
 
 
 const SchoolFeePayment = () => {
-    let studentInfo = useSelector((state) => state.studentInformation.studentInformation);
+    const [studentInfo, fetching, termDetails] = fetchStudentInfo();
     const [paymentType, setPaymentType] = useState("");
     const [paymentAmount, setPaymentAmount] = useState(0);
-    let fetching = useSelector((state) => state.studentInformation.studentFetchingState);
+    const [fullAmount, setfullAmount] = useState(0);
     const [paymentDisplayOption] = checkStudentFeeStatus();
 
-    let [name] = fetchStudentInfo();
-    let fullAmount = 50000;
+    useEffect(() => {
+      setfullAmount(termDetails.schoolFees)
+    }, [termDetails])
+    
+
     const handlePaymentTypeChange = (type) => {
         setPaymentType(type);
         setPaymentAmount(type === "full" ? fullAmount : fullAmount / 2);
@@ -125,8 +128,8 @@ const SchoolFeePayment = () => {
                 {paymentDisplayOption === 'full' && (
                     <div className="container mt-5 mx-auto flex justify-center items-center h-screen">
                         <div className="text-center">
-                            <i style={{ fontSize: '80px' }} className="fas fa-check-circle text-success"></i>
-                            <h2 className="text-2xl font-bold text-success mt-4">Payment Completed</h2>
+                            <i style={{ fontSize: '80px' }} className="fa fa-check-circle text-green-500"></i>
+                            <h2 className="text-2xl font-bold text-green-500 mt-4">Payment Completed</h2>
                         </div>
                     </div>
                 )}
