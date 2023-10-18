@@ -25,7 +25,6 @@ export const staffInformation = createSlice({
             console.log(current(state));         
         },
         shownStaffNotifications: (state, action)=>{
-            console.log('updating notification unread to ' + action.payload)
             Object.assign(state.staffNotifications = { ...state.staffNotifications, unread: action.payload})  
             console.log(current(state));         
         },
