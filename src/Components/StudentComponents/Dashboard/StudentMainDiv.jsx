@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import Announcement from './Announcement'
 import SubjectDiv from './SubjectDiv'
 import { useSelector } from 'react-redux'
+import fetchStudentInfo from '../../../CustomHooks/StudentHooks/fetchStudentInfo'
 
 const StudentMainDiv = ({ welcomeNote }) => {
+    const [studentInfo, fetching, termDetails] = fetchStudentInfo();  
     const subjects = [
         'MATHEMATICS',
         'ENGLISH LANGUAGE',
@@ -20,8 +22,6 @@ const StudentMainDiv = ({ welcomeNote }) => {
         'FURTHER MATHEMATICS',
         'TECHNICAL DRAWING'
     ]
-    let studentInfo = useSelector((state) => state.studentInformation.studentInformation);
-    let fetching = useSelector((state) => state.staffFetchingState)
     let studentSubject = [];
     let announcement;
     if (!fetching) {
@@ -35,6 +35,11 @@ const StudentMainDiv = ({ welcomeNote }) => {
         // console.log(studentSubject)
         announcement = studentInfo ? studentInfo.announcements.filter((annouce, index) => index <= 3) : ''
     }
+    let term = [
+        '1st Term',
+        '2nd Term',
+        '3rd Term'
+    ]
     return (
         <>
             <div className="StudentMainDiv p-4">
@@ -44,7 +49,8 @@ const StudentMainDiv = ({ welcomeNote }) => {
                     {studentInfo.entranceTest.score === '' || studentInfo.entranceTest.score === undefined ?
                         <button className="bg-yellow-500 text-white px-4 py-2 rounded-md mr-2 mb-2 hover:bg-yellow-600">Take Entrance Test</button>
                         : ''}
-                    <Link to='/student/profile' className="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600">Profile</Link>
+                    <Link to='/student/profile' className=" w-24 bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600">Profile</Link>
+                    <p>Term: {term[termDetails.term-1]} | Session Year: {termDetails.year}</p>
                 </div>
                 <div className="w-full p-2 mt-4">
                     <h4 className="text-lg font-semibold ms-4 mb-2">Your Subjects <Link className="float-right me-4 text-blue-500" to='/subjects'>See All</Link></h4>

@@ -11,33 +11,37 @@ const fetchStudentInfo = () => {
   let socket = useSelector((state) => state.socketIO.socket);
   let dispatch = useDispatch();
 
-  useEffect(async() => {
-    if (Object.keys(studentInfo).length === 0 && studentInfo.constructor === Object) {
-      dispatch(setFetched(true))
-      let endpoint = 'http://localhost:7777/student/dashboard'
-      let token = localStorage.getItem('studentToken')
-      axios.get(endpoint, {
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Toe": "application/json",
-          "Accept": "application/json"
-        }
-      })
-        .then((res) => {
-          if (res.status == 200) {
-            dispatch(fetchStudent(res.data))
-            dispatch(setFetched(false))
-            socket.emit('connectSocketId', res.data._id);
-          } else {
-            console.log('error');
+  useEffect(() => {
+    async function fetchData() {
+      if (Object.keys(studentInfo).length === 0 && studentInfo.constructor === Object) {
+        dispatch(setFetched(true))
+        let endpoint = 'http://localhost:7777/student/dashboard'
+        let token = localStorage.getItem('studentToken')
+        axios.get(endpoint, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Toe": "application/json",
+            "Accept": "application/json"
           }
         })
+          .then((res) => {
+            if (res.status == 200) {
+              dispatch(fetchStudent(res.data))
+              dispatch(setFetched(false))
+              socket.emit('connectSocketId', res.data._id);
+            } else {
+              console.log('error');
+            }
+          })
+      }
+
+      let endpoint = 'http://localhost:7777/student/term_details'
+      let getTermDetails = await axios.get(endpoint)
+      if (getTermDetails.status == 200) {
+        dispatch(fetchTermDetails(getTermDetails.data))
+      }
     }
-    let endpoint = 'http://localhost:7777/student/dashboard'
-    let getTermDetails = await axios.get(endpoint)
-    if(getTermDetails.status == 200){
-      dispatch(fetchTermDetails(getTermDetails.data))
-    }
+    fetchData()
   }, [socket])
   return [studentInfo, fetching, termDetails];
 };

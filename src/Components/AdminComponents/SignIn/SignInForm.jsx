@@ -38,26 +38,33 @@ const SignInForm = () => {
 
   const signIn = async(values)=>{
     if (!otpSent) {
-        let otp = await axios.post('http://localhost:7777/admin/send_otp', {email: values.email})
-        if (otp.status==200) {
-          setOtp(otp.data.otp)
-          setOtpSent(true);
-        } else {
+        axios.post('http://localhost:7777/admin/send_otp', {email: values.email})
+        .then((res)=>{
+          if (res.status==200) {
+            setOtp(res.data.otp)
+            setOtpSent(true);
+          }
+        })
+        .catch((error)=>{
           DisplayToast('error', 'Invalid Login Details')
-          console.log(otp)
-        }
+          console.log(error)
+        })
     } else {
         if(otp==otpInput) {
-          let signUp = await axios.post('http://localhost:7777/admin/sign_in', {...values})
-          if (signUp.status==200) {
-            localStorage.setItem('adminToken', signUp.data.token)
-            DisplayToast('success', 'Signin successful!')
-            navigate('/admin/dashboard')
-          } else {
+          console.log('hi')
+          axios.post('http://localhost:7777/admin/sign_in', {...values})
+          .then((res)=>{
+            if (res.status==200) {
+              localStorage.setItem('adminToken', res.data.token)
+              DisplayToast('success', 'Signin successful!')
+              navigate('/admin/dashboard')
+              return;
+            }
+          })
+          .catch((error)=>{
             DisplayToast('error', 'Incorrect Password')
             setOtpSent(false);
-            console.log(signUp)
-          }
+          })          
         } else {
           DisplayToast('error', 'Incorrect OTP')
         }
@@ -147,10 +154,11 @@ const SignInForm = () => {
             </div>
             </>)}
 
-            <div className="my-4">
+            <div className="my-4 flex justify-center gap-2">
+              {otpSent && <button onClick={()=>setOtpSent(false)} className=' basis-2 my-2 px-2 rounded-md bg-red-400' type='button'>Cancel</button>}
               <button
                 type="submit"
-                className="group relative w-full flex justify-center my-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="group relative basis-4/6 flex justify-center my-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 {!otpSent ? 'Sign In' : 'Verify OTP'}
               </button>

@@ -4,13 +4,14 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios'
 import FetchAdminInfo from '../../../CustomHooks/AdminHooks/FetchAdminInfo';
+import DisplayToast from '../../../CustomHooks/DisplayToast';
 
 
 const NewAcademicTerm = () => {
     const [adminInfo, fetching] = FetchAdminInfo(); 
     const formik = useFormik({
         initialValues: {
-          newTerm: '',
+          newTerm: '1',
           lastTermForSession: false,
           schoolFeesAmount: '',
           staffSalary: '',
@@ -30,67 +31,18 @@ const NewAcademicTerm = () => {
           .then((res)=>{
             console.log(res)
             if (res.status==200){
-            //   DisplayToast()
               formik.resetForm();
-              toast.success('The New Term Operation Has Started', {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                style: {
-                  background: '#4caf50', // Background color of the toast
-                  color: '#ffffff', // Text color of the toast
-                  fontSize: '16px', // Font size
-                },
-              });
+              DisplayToast('success', 'The New Term Operation Has Started') 
             } 
           })
           .catch((error)=>{
             console.log(error)
             if (error.response.status==500) {
-              toast.error('Server Error Please Try Again', {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                style: {
-                  background: '#ff5252', 
-                  color: '#ffffff', 
-                  fontSize: '16px',
-                },
-              });
+              DisplayToast('error', 'Server Error Please Try Again') 
             } else if (error.response.status==408) {
-              toast.error('Invalid Admin Token', {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                style: {
-                  background: '#ff5252', 
-                  color: '#ffffff', 
-                  fontSize: '16px',
-                },
-              });
+              DisplayToast('error', 'Invalid Admin Token')  
             } else {
-              toast.error('An Error Occurred, Please Try Again', {
-                position: toast.POSITION.TOP_RIGHT,
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                style: {
-                  background: '#ff5252', // Background color of the toast
-                  color: '#ffffff', // Text color of the toast
-                  fontSize: '16px', // Font size
-                },
-              })
+              DisplayToast('error', 'An Error Occurred, Please Try Again')
             }
           })        
         },

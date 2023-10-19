@@ -128,7 +128,7 @@ const StudentDashboard = () => {
 
   return (
     <>
-      <div className='flex allWrap border-2 h-screen'>
+      <div className='grid grid-cols-1 overflow-y-auto md:flex allWrap border-2 md:h-screen'>
         <NavBar />
         {fetching && <Loader />}
         {!fetching && (
