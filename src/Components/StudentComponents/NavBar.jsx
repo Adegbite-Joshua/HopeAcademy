@@ -13,6 +13,7 @@ const NavBar = () => {
                 <NavLink to='/student/dashboard' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-home mr-2'></i>Dashboard</span></NavLink>
                 <NavLink to='/student/inbox' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-inbox mr-2'></i>Inbox</span></NavLink>
                 <NavLink to='/student/subjects' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-book mr-2'></i>Subjects</span></NavLink>
+                <NavLink to='/student/class' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-book mr-2'></i>Class</span></NavLink>
                 <NavLink to='/student/results' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-bell mr-2'></i>Results</span></NavLink>
                 <NavLink to='/student/notifications' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-calendar mr-2'></i>Notifications</span></NavLink>
                 <NavLink to='/student/feepayment' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-dollar-sign mr-2'></i>Payments</span></NavLink>

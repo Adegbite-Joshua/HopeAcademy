@@ -50,6 +50,7 @@ import StudentProfile from '../pages/StudentPages/StudentProfile';
 import StudentNotificationsPage from '../pages/StudentPages/StudentNotificationsPage';
 import StudentErrorPage from '../pages/StudentPages/StudentErrorPage';
 import StudentSubject from './Components/StudentComponents/Profile/StudentSubject';
+import StudentOnlineClass from '../pages/StudentPages/StudentOnlineClass';
 
 
 
@@ -112,8 +113,7 @@ function App() {
             <Route path='signin' element={<SignInPage/>}/>
             <Route path='signup' element={<SignUpPage/>}/>
             <Route path='inbox' element={<InboxPage/>}/>
-            {/* <Route path='signup' element={<StaffSignUp/>}/>
-          <Route path='class' element={<ScheduleClass/>}/> */}
+            <Route path='class' element={<StudentOnlineClass/>}/>
             <Route path='results' element={<StudentResultPage/>}/>
             <Route path='subjects' element={<StudentSubject/>}/>
             <Route path='profile' element={<StudentProfile/>}/>
