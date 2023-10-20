@@ -9,6 +9,7 @@ const StudentResultPage = () => {
   const [studentInfo, fetching, termDetails] = fetchStudentInfo();  
   const [studentAcademicResults] = fetchStudentAcademicResultsHook();
   console.log(studentAcademicResults)
+  
   return (
     <div id='pageContainer' className="grid w-screen md:flex md:flex-row bg-slate-300 relative ring-0">
         <NavBar/>

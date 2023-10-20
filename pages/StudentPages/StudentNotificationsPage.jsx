@@ -45,7 +45,7 @@ const StudentNotificationsPage = () => {
   }
   return (
     <>
-        <div id='pageContainer' className="grid w-screen md:flex md:flex-row bg-slate-300 relative ring-0">
+        <div id='pageContainer' className="grid h-screen md:flex md:flex-row bg-slate-300 relative ring-0">
             <NavBar/>
             {!notificationFetchingState && <>
                 <NotificationMainDiv notifications={notifications} />
