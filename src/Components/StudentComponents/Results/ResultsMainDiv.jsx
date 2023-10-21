@@ -1,57 +1,53 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import Result from './Result'
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import html2pdf from 'html2pdf.js';
 // import { renderToStaticMarkup } from 'react-dom/server';
 // import { PDFViewer } from '@react-pdf-viewer/react-to-pdf';
 // import jsPDF from 'jspdf';
 
-const ResultsMainDiv = ({resultshhh}) => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  // const [staffInfo, setstaffInfo] = useState(useSelector((state)=>state.staffInformation.staffInformation))
+const ResultsMainDiv = ({studentInfo, studentAcademicResults, resultIndex}) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
+  const [results, setresults] = useState({})
+  useEffect(() => {
+    studentAcademicResults?.length>=1?setresults(studentAcademicResults[resultIndex]):null
+  }, [studentAcademicResults, resultIndex])
   
   const school = {
     logoUrl: '/vite.svg',
     name: 'HOPE Academy',
     address: '123 School Street, Cityville, State, 12345',
-    contactNumber: '123-456-7890',
+    email: 'adegbitejoshua07@gmail.com',
+    contactNumber: '+234701586456',
   };
 
   const student = {
-    name: 'John Doe',
-    matricNumber: 'HOPE123456',
-    className: 'JSS 1',
+    name: `${studentInfo?.firstName} ${studentInfo?.lastName}`,
+    matricNumber: studentInfo?.matricNumber,
   };
+//  console.log(studentAcademicResults.reverse())
 
-  const results = [
-    { term: '2023CjssoneT1', ca: 24, exam: 67, subject: 'Mathematics' },
-    { term: '2023CjssoneT2', ca: 22, exam: 50, subject: 'English Language' },
-    { term: '2023CjssoneT1', ca: 24, exam: 67, subject: 'Mathematics' },
-    { term: '2023CjssoneT2', ca: 22, exam: 50, subject: 'English' },
-    { term: '2023CjssoneT1', ca: 24, exam: 67, subject: 'Mathematics' },
-    { term: '2023CjssoneT2', ca: 22, exam: 50, subject: 'English' },
-    { term: '2023CjssoneT1', ca: 24, exam: 67, subject: 'Mathematics' },
-    { term: '2023CjssoneT2', ca: 22, exam: 50, subject: 'English' },
-    { term: '2023CjssoneT1', ca: 24, exam: 67, subject: 'Mathematics' },
-    { term: '2023CjssoneT2', ca: 22, exam: 50, subject: 'English' },
-    { term: '2023CjssoneT1', ca: 24, exam: 67, subject: 'Mathematics' },
-    { term: '2023CjssoneT2', ca: 22, exam: 50, subject: 'English' },
-    { term: '2023CjssoneT1', ca: 24, exam: 67, subject: 'Mathematics' },
-  ];
+  const generatePdf = () => {
+    const input = document.getElementById('pdf-content');
+    const options = {
+      margin: 10,
+      filename: `${studentInfo?.firstName} ${studentInfo?.lastName}_report_sheet${Math.floor(Math.random()*100)}.pdf`,
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    };
 
-//   const generatePdf = () => {
-//   const pdf = new jsPDF();
-//   const pdfContent = renderToStaticMarkup(<StudentInfoTable /* Pass your props here */ />);
-//   pdf.fromHTML(pdfContent, 15, 15);
-//   pdf.save('student_info.pdf');
-// };
+    html2pdf(input, options);
+  };
   return (
     <>
         <div className='DashboardMainDiv relative order-5 md:order-none mt-16 md:mt-0 h-screen basis-full md:basis-7/12 p-5 overflow-y-auto'>
-            {/* <button onClick={generatePdf} className=' print:hidden sticky top-2 left-full bg-blue-200 p-2 rounded-md'>Download Result</button> */}
-            <Result results={results} studentName={student.name} matricNumber={student.matricNumber} className={student.className} schoolName={school.name} address={school.address} contactNumber={school.contactNumber} logoUrl={school.logoUrl}/>
+            <button onClick={generatePdf} className=' print:hidden sticky top-2 left-full bg-blue-200 p-2 rounded-md' >Download Result </button>
+            <div id="pdf-content">
+              <Result results={results} studentName={student.name} matricNumber={student.matricNumber} schoolName={school.name} address={school.address} contactNumber={school.contactNumber} logoUrl={school.logoUrl}/>
+            </div>
             {/* {results?.length> 0? results.map((notification)=>(
                 // <Notification id={notification.senderId} name={notification.name} message={notification.message} type={notification.type || 'submit'}/>
             )): <Notification name='Empty Notification' message='You do not have any notification at the moment' type='empty'/>} */}

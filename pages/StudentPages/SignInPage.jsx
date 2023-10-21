@@ -9,16 +9,6 @@ import LandingPageNav from '../../src/Components/LandingPageNav'
 
 
 const SignInPage = () => {
-    const myObject = {
-        jssone: { name: '', class: 1 },
-        jsstwo: { name: '', class: 2 }
-      };
-      
-      for (const key in myObject) {
-        if (myObject.hasOwnProperty(key)) {
-          console.log('Key Name:', key);
-        }
-      }
     const navigate = useNavigate()
     const formik = useFormik({
         initialValues: {
