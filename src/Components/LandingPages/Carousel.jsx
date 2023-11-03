@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 const images = [
-  '/one.png',
-  '/two.png',
-  'three.png',
+  '/teachers/caro11.png',
+  '/teachers/caro2.png',
+  '/teachers/caro4.png',
 ];
 
 const Carousel = () => {
@@ -20,7 +20,7 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div style={{height: '80vh'}} className="relative overflow-hidden border-2 border-red-300">
+    <div style={{height: '80vh'}} className="relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full">
         {images.map((image, index) => (
           <div
@@ -39,7 +39,7 @@ const Carousel = () => {
       </div>
       <div className="carouselOverlay absolute top-0 left-0 w-full h-full flex justify-center items-center z-10">
         <div id='carouselCenter' className="text-center text-light">
-          <h3 className="text-lg md:text-2xl">
+          <h3 className="text-lg md:text-2xl text-white font-bold">
             Our mission is to educate the whole child. <br /> Because every child deserves a little HOPE...
           </h3>
         </div>
