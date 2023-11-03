@@ -20,6 +20,8 @@
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.1",
     "jspdf": "^2.5.1",
+    "peer": "^1.0.1",
+    "peerjs": "^1.5.1",
     "react": "^18.2.0",
     "react-calendar": "^4.2.1",
     "react-dom": "^18.2.0",

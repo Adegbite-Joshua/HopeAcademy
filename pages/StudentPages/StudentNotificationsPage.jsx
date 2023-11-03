@@ -18,7 +18,7 @@ const StudentNotificationsPage = () => {
       dispatch(shownStudentNotifications(0));
       const endpoint = 'http://localhost:7777/student/read_notifications';
       if(studentInfo){
-        let readNotification = await axios.post(endpoint, {id: studentInfo._id})
+        await axios.post(endpoint, {id: studentInfo._id})
       }
       if (notificationType=='all') {
         setnotifications(studentNotifications)

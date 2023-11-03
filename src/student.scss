@@ -784,3 +784,10 @@ a{
         }
     }
 }
+
+
+#staffVideo {
+    video {
+        @apply h-full w-full ;
+    }
+}
