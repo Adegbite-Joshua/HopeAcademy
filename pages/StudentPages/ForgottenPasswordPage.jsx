@@ -8,7 +8,7 @@ import SetNewPasswordForm from '../../src/Components/StudentComponents/Forgotten
 const ForgottenPasswordPage = () => {
     const location = useLocation();
     const token = new URLSearchParams(location.search).get('token');
-
+    document.querySelector('title').innerText = 'Forgotton Password | Student'; 
     return (
         <div>
             <LandingPageNav/>

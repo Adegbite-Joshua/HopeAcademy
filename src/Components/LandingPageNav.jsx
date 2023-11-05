@@ -26,7 +26,7 @@ const LandingPageNav = ({ percent }) => {
                 </Link>
                 <button onClick={showNavBar} className='p-2 border-2 rounded-lg md:hidden'><i className='fa fa-bars'></i></button>
                 <div id='adminNavBar' className="md:flex md:space-x-10 h-screen md:h-full">
-                    <Link to="/admin/dashboard" className='my-5 md:my-auto'>Home</Link>
+                    <Link to="/" className='my-5 md:my-auto'>Home</Link>
                     <div className=" my-5 relative group md:my-auto">
                         <span className='cursor-pointer' onClick={() => showSubLink('accountSubLink')}>Sign Up</span>
                         <div id='accountSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
@@ -38,9 +38,9 @@ const LandingPageNav = ({ percent }) => {
                     <div className=" my-5 relative group md:my-auto">
                         <span className='cursor-pointer' onClick={() => showSubLink('coursesSubLink')}>Sign In</span>
                         <div id='coursesSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
-                            <Link to="/admin/account/student" className='block border-b-2 mb-3'>Student</Link>
+                            <Link to="/student/signin" className='block border-b-2 mb-3'>Student</Link>
                             <Link to="/staff/signin" className='block border-b-2 mb-3'>Staff</Link>
-                            <Link to="/admin/account/new" className='block border-b-2 mb-3'>Admin</Link>
+                            <Link to="/admin/signin" className='block border-b-2 mb-3'>Admin</Link>
                         </div>
                     </div>
                     <Link to="/contact_us" className=' my-5 md:my-auto'>Contact Us</Link>

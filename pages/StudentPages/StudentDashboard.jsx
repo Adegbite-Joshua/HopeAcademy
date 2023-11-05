@@ -14,6 +14,7 @@ import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStude
 
 
 const StudentDashboard = () => {
+    document.querySelector('title').innerText = 'Dashboard | Student'; 
     const [studentInfo, fetching, termDetails] = fetchStudentInfo();  
     let dispatch = useDispatch();
     const navigate = useNavigate();
@@ -23,67 +24,6 @@ const StudentDashboard = () => {
     let socket = useSelector((state)=>state.socketIO.socket);
     const [paymentDisplayOption] = checkStudentFeeStatus();
     paymentDisplayOption=='indebt'?navigate('/feepayment'):'';
-
-
-    // const useSoc = useSocketConnection('http://localhost:7777')
-    // const getInfo =()=>{
-    //   fetchStudentInformation()
-    // }
-    useEffect(() => {
-      // getInfo()
-      // validateStudent()
-      // socket.emit('connectSocketId', studentInfo._id)
-    }, [])
-
-    // const fetchStudentInformation =()=>{
-    //   if(Object.keys(studentInfo).length === 0 && studentInfo.constructor === Object){
-    //     dispatch(setFetched(true))
-    //     let endpoint = 'http://localhost:7777/student/dashboard'
-    //     // let details = {
-    //     //   class: Number(localStorage.getItem('studentclass')),
-    //     //   password: localStorage.getItem('studentpassword'),
-    //     //   matricNumber: localStorage.getItem('studentmatric')
-    //     // }
-    //     let token = localStorage.getItem('token')
-    //     axios.get(endpoint, {headers : {
-    //       "Authorization": `Bearer ${token}`,
-    //       "Content-Toe": "application/json",
-    //       "Accept": "application/json"
-    //     }})  
-    //     .then((res)=>{
-    //       if (res.status==200) {
-    //         dispatch(fetchStudent(res.data))
-    //         dispatch(setFetched(false))
-    //       } else{
-    //         console.log('error');
-    //       }
-    //     })
-    //   }
-    // }
-
-    let [name] = fetchStudentInfo();
-
-    const validateStudent =()=>{
-      let token = localStorage.token
-      let validateEndpoint = 'http://localhost:7777/student/validatedashboard'
-      axios.get(validateEndpoint, {headers : {
-        "Authorization": `Bearer ${token}`,
-        "Content-Toe": "application/json",
-        "Accept": "application/json"
-      }})
-      .then((res)=>{
-        console.log(res);
-        if (res.status != 200) {
-        //   navigate('/student/signin')
-          // const connect = socketConnect('http://localhost:7777/student');
-        }
-
-      })
-      .catch((error)=>{
-        // navigate('/student/signin')
-        console.log(error);
-      })
-    }
 
     const closeAddToTask = () => {
       document.getElementById('popup').classList.remove("open-popup")
@@ -113,7 +53,7 @@ const StudentDashboard = () => {
       .then((res)=>{
         setaddingTask(false)
         closeAddToTask()
-        let [show] = DisplayToast('success', 'Task Added Successfully!');
+        DisplayToast('success', 'Task Added Successfully!');
         dispatch(fetchStudent(res.data))
         taskBody.value = ''
         taskTime.value = ''
@@ -121,8 +61,7 @@ const StudentDashboard = () => {
       .catch((error)=>{
         setaddingTask(false)
         closeAddToTask()
-        let [show] = DisplayToast('error', 'Error Saving Your Task');
-        // console.log(error);
+        DisplayToast('error', 'Error Saving Your Task');
       })
     }
 

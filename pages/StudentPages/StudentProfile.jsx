@@ -13,45 +13,20 @@ import ProfileOtherDiv from '../../src/Components/StudentComponents/Profile/Prof
 
 
 const StudentProfile = () => {
-    document.querySelector("title").innerText = `Settings`
-    const toggleSideNav =()=>{
+  document.querySelector('title').innerText = 'Profile | Student'; 
+  const toggleSideNav =()=>{
         document.getElementById('SettingsOtherDiv').classList.toggle('SettingsOtherDiv2')
         console.log(document.getElementById('SettingsOtherDiv'));
     }
     const [displaying, setdisplaying] = useState('AllSettingsDiv')
-    const setSetting =(setting)=>{
-        setdisplaying(setting)
-    }
     
     let studentInfo = useSelector((state)=>state.studentInformation.studentInformation);
     let fetching = useSelector((state)=>state.studentInformation.studentFetchingState);
 
     useEffect(() => {
-      // fetchStudentInformation()
       validateStudent()
     }, [])
-    const dispatch = useDispatch()
-    // const fetchStudentInformation =()=>{
-    //   if(Object.keys(studentInfo).length === 0 && studentInfo.constructor === Object){
-    //     dispatch(setFetched(true))
-    //     let endpoint = 'http://localhost:7777/student/dashboard';
-    //     let token = localStorage.getItem('token')
-    //     axios.get(endpoint, {headers : {
-    //       "Authorization": `Bearer ${token}`,
-    //       "Content-Toe": "application/json",
-    //       "Accept": "application/json"
-    //     }})  
-    //     .then((res)=>{
-    //       if (res.status==200) {
-    //         dispatch(fetchStudent(res.data))
-    //         dispatch(setFetched(false))
-    //       } else{
-    //         console.log('error');
-    //       }
-    //     })
-    //   }
-    // }
-    let [name] = fetchStudentInfo();
+    const dispatch = useDispatch();
     const [paymentDisplayOption] = checkStudentFeeStatus();
     paymentDisplayOption=='indebt'?navigate('/feepayment'):'';
 

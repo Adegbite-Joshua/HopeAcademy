@@ -7,6 +7,7 @@ import ClassMainDiv from '../../src/Components/StudentComponents/OnlineClass/Cla
 import ClassSideDiv from '../../src/Components/StudentComponents/OnlineClass/ClassSideDiv';
 
 const StudentOnlineClass = () => {
+  document.querySelector('title').innerText = 'Online Class | Student'; 
   const [studentInfo, fetching] = fetchStudentInfo();
   const [studentNotifications, notificationFetchingState] = fetchStudentInfo();
   const [notificationType, setnotificationType] = useState('all')

@@ -4,11 +4,10 @@ import SenderMessage from '../Inbox/SenderMessage'
 import ResultsDisplay from './ResultsDisplay'
 import SubjectPerformance from './SubjectPerformance'
 import './style.scss'
-import PerformanceContainer from './PerformanceContainer'
 import SubjectResource from './SubjectResource'
-import ResourcesContainer from './ResourcesCOntainer'
-import { useSelector } from 'react-redux'
-import SnackBar from '../../SnackBar'
+import PerformanceContainer from './PerformanceContainer';
+import ResourcesContainer from './ResourcesCOntainer';
+import { useSelector } from 'react-redux';
 
 
 const SubjectMainDiv = ({ func, subjectIndex }) => {

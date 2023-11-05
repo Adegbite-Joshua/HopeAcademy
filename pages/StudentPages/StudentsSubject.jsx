@@ -21,8 +21,7 @@ const StudentsSubject = () => {
       setviewingSubject(subjectIndex)
     }
 
-    let studentInfo = useSelector((state)=>state.studentInformation.studentInformation);
-    let fetching = useSelector((state)=>state.studentInformation.studentFetchingState);
+    const [studentInfo, fetching, termDetails] = fetchStudentInfo();  
     let allStaffs = useSelector((state)=>state.studentInformation.allStaffs);
     
     useEffect(() => {

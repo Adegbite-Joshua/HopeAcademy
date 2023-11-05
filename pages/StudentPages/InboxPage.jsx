@@ -13,17 +13,16 @@ import NavBar from '../../src/Components/StudentComponents/NavBar'
 
 
 const InboxPage = () => {
-    document.querySelector("title").innerText = `Inbox`
+    document.querySelector("title").innerText = `Inbox | Student`
     const toggleSideNav =()=>{
         document.getElementById('OtherStudents').classList.toggle('OtherStudents')
     }
     const dispatch = useDispatch()
     
+    const [studentInfo, fetching, termDetails] = fetchStudentInfo();  
     let allStaffs = useSelector((state)=>state.studentInformation.allStaffs);
     let allStudents = useSelector((state)=>state.studentInformation.allStudents);
-    let fetching = useSelector((state)=>state.studentInformation.studentFetchingState);
     let socket = useSelector((state)=>state.socketIO.socket);
-    const [studentInfo] = fetchStudentInfo();
     const [partnerId, setpartnerId] = useState('')
     const [partnerName, setpartnerName] = useState('')
     const [partnerCommonId, setpartnerCommonId] = useState('')
@@ -37,32 +36,6 @@ const InboxPage = () => {
     const fetchAll =()=>{
       let studentEndpoint = 'http://localhost:7777/student/allstudents'
       let staffEndPoint = 'http://localhost:7777/student/allstaffs'
-        // let endpoint = 'http://localhost:7777/student/dashboard'
-        // if(Object.keys(studentInfo).length === 0 && studentInfo.constructor === Object){
-        //   dispatch(setFetched(true))
-        //   let details = {
-        //     class: Number(localStorage.getItem('studentclass')),
-        //     password: localStorage.getItem('studentpassword'),
-        //     matricNumber: localStorage.getItem('studentmatric')
-        //   }
-        //   let token = localStorage.token
-        //   let validateEndpoint = 'http://localhost:7777/student/validatedashboard'
-        //   axios.get(validateEndpoint, {headers : {
-        //     "Authorization": `Bearer ${token}`,
-        //     "Content-Toe": "application/json",
-        //     "Accept": "application/json"
-        //   }})
-        //   .then((res)=>{
-        //     if (res.status==200) {
-        //       dispatch(fetchStudent(res.data))
-        //       dispatch(setFetched(false))
-        //     } else{
-        //       console.log('error');
-        //     }
-        //   })
-        // }
-
-
         if(allStaffs.length==0){
           dispatch(setFetched(true))
           axios.get(staffEndPoint)
@@ -87,29 +60,8 @@ const InboxPage = () => {
           })
         }
     }
-    const validateStudent =()=>{
-      let token = localStorage.token
-      let validateEndpoint = 'http://localhost:7777/student/validatedashboard'
-      axios.get(validateEndpoint, {headers : {
-        "Authorization": `Bearer ${token}`,
-        "Content-Toe": "application/json",
-        "Accept": "application/json"
-      }})
-      .then((res)=>{
-        // console.log(res);
-        if (res.status != 200) {
-          // navigate('/signin')
-        }
-      })
-      .catch((error)=>{
-        // navigate('/signin')
-        console.log(error);
-      })
-    }
-    let date = new Date()
 
     useEffect(() => {
-      // validateStudent();
       fetchAll();
 
       const handleMessage = (messageDetails) => {

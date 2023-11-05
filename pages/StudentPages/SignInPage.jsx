@@ -9,6 +9,8 @@ import LandingPageNav from '../../src/Components/LandingPageNav'
 
 
 const SignInPage = () => {
+    document.querySelector('title').innerText = 'Sign In | Student'; 
+
     const navigate = useNavigate()
     const formik = useFormik({
         initialValues: {
@@ -34,22 +36,17 @@ const SignInPage = () => {
                 .then((res) => {
                     console.log(res);
                     if (res.status == 200) {
-                        localStorage.setItem('studentclass', values.class)
-                        localStorage.setItem('studentpassword', values.password)
-                        localStorage.setItem('studentmatric', values.email)
-                        localStorage.setItem('studentToken', res.data.token)
                         localStorage.studentToken = res.data.token
-                        let [show] = DisplayToast('success', 'Successfully Signed In')
+                        DisplayToast('success', 'Successfully Signed In')
                         navigate("/student/dashboard")
                     } else if (res.status == 11000) {
-                        let [show] = DisplayToast('error', 'Email Already Exixts')
+                        DisplayToast('error', 'Email Already Exixts')
                     } else if (res.status == 401) {
-                        let [show] = DisplayToast('error', 'Error Logging You In')
+                        DisplayToast('error', 'Error Logging You In')
                     }
                 })
                 .catch((err) => {
-                    console.log(err);
-                    let [show] = DisplayToast('error', 'Error Logging You In')
+                    DisplayToast('error', 'Error Logging You In')
                 })
         }
     })

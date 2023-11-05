@@ -1,34 +1,19 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import LandingPageNav from '../../src/Components/LandingPageNav'
-import SignInPage from './SignInPage'
 import { Link } from 'react-router-dom'
 import { useFormik } from 'formik'
 import axios from 'axios'
-// import SnackBar from '../../SnackBar'
 import * as Yup from 'yup';
 import { subjects } from '../../constants/subjects'
+import DisplayToast from '../../src/CustomHooks/DisplayToast'
 
 
 
 
 const SignUpPage = () => {
-    
-    // const subjects = [
-    //     'MATHEMATICS',
-    //     'ENGLISH LANGUAGE',
-    //     'YORUBA',
-    //     'CIVIC EDUCATION',
-    //     'COMPUTER STUDIES',
-    //     'GEOGRAPHY',
-    //     'ECONOMICS',
-    //     'PHYSICS',
-    //     'CHEMISTRY',
-    //     'BIOLOGY',
-    //     'ANIMAL HUSBANDRY',
-    //     'FURTHER MATHEMATICS',
-    //     'TECHNICAL DRAWING'
-    // ]
+    document.querySelector('title').innerText = 'Sign Up | Student'; 
+
     const navigate = useNavigate()
 
     const [signingUp, setsigningUp] = useState(false)
@@ -88,19 +73,13 @@ const SignUpPage = () => {
                 .then((res) => {
                     console.log(res);
                     if (res.status == 200) {
-                        setsnacksBarBody('Account Successfully Created')
-                        setsnacksBarType('info')
-                        showSnackBar()
-                        setTimeout(() => navigate("/signin"), 1500);
+                        DisplayToast('success', 'Account Successfully Created')
+                        navigate("/student/signin");
                     } else if (res.status == 11000) {
-                        setsnacksBarBody('Email Entered Already Exists')
-                        setsnacksBarType('error')
-                        showSnackBar()
+                        DisplayToast('error', 'Email Entered Already Exists')
                         setsigningUp(false)
                     } else if (res.status == 401) {
-                        setsnacksBarBody('Error! Ensure You Fill All Reqired Informations Correctly')
-                        setsnacksBarType('error')
-                        showSnackBar()
+                        DisplayToast('error', 'Error! Ensure You Fill All Reqired Informations Correctly')
                         setsigningUp(false)
                     }
                 })
@@ -108,11 +87,9 @@ const SignUpPage = () => {
                     setsigningUp(false)
                     console.log(err);
                 })
-        } else {
-            setsnacksBarBody('Please Select An Image')
-            setsnacksBarType('error')
-            showSnackBar()
-        }
+            } else {
+                DisplayToast('error', 'Please Select An Image')
+            }
     }
 
     const formik = useFormik({

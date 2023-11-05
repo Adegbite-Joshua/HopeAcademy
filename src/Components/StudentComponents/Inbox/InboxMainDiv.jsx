@@ -64,7 +64,7 @@ const InboxMainDiv = ({ func, partnerName, messages, partnerCommonId, sendMessag
                                 sendMessage(messageInput);
                                 message.value = '';
                             }}>
-                            <i className="fa fa-paper-plane text-2xl hover:text-3xl text-blue-500 duration-150"></i>
+                            <i className="fa fa-paper-plane text-2xl hover:text-2xl text-blue-500 duration-150"></i>
                             </button>
                         </div>
                     </div>

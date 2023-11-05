@@ -8,6 +8,7 @@ import NavBar from '../../src/Components/StudentComponents/NavBar';
 import NotificationMainDiv from '../../src/Components/StudentComponents/Notification/NotificationMainDiv';
 
 const StudentNotificationsPage = () => {
+  document.querySelector('title').innerText = 'Notifications | Student'; 
   const [studentInfo, fetching] = fetchStudentInfo();
   const[studentNotifications, notificationFetchingState] = fetchStudentInfo();
   const [notificationType, setnotificationType] = useState('all')

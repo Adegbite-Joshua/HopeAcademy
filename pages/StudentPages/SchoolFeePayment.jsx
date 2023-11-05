@@ -7,6 +7,7 @@ import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStude
 
 
 const SchoolFeePayment = () => {
+    document.querySelector('title').innerText = 'Fee Payment | Student'; 
     const [studentInfo, fetching, termDetails] = fetchStudentInfo();
     const [paymentType, setPaymentType] = useState("");
     const [paymentAmount, setPaymentAmount] = useState(0);

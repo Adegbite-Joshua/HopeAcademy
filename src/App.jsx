@@ -51,6 +51,7 @@ import StudentNotificationsPage from '../pages/StudentPages/StudentNotifications
 import StudentErrorPage from '../pages/StudentPages/StudentErrorPage';
 import StudentSubject from './Components/StudentComponents/Profile/StudentSubject';
 import StudentOnlineClass from '../pages/StudentPages/StudentOnlineClass';
+import StudentsSubject from '../pages/StudentPages/StudentsSubject';
 
 
 
@@ -115,7 +116,7 @@ function App() {
             <Route path='inbox' element={<InboxPage/>}/>
             <Route path='class' element={<StudentOnlineClass/>}/>
             <Route path='results' element={<StudentResultPage/>}/>
-            <Route path='subjects' element={<StudentSubject/>}/>
+            <Route path='subjects' element={<StudentsSubject/>}/>
             <Route path='profile' element={<StudentProfile/>}/>
             <Route path='feepayment' element={<SchoolFeePayment/>}/>
             <Route path='forgottenpassword' element={<ForgottenPasswordPage/>} />
