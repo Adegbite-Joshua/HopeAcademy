@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const VideoDiv = () => {
     return (
         <div className='flex justify-center items-center'>
             <div className=' w-5/6 md:w-3/6 bg-light p-5'>
                 <div className=' h-52 w-full border-2 border-danger'>
-                    <video src='vid.mp4' className='w-full h-full' controls></video>
+                    <video src='video.mp4' className='w-full h-full' controls></video>
                 </div>
                 <h1 className='text-center mt-8 text-4xl font-bold'>Welcome to Hope Academy</h1>
                 <p className='mx-auto text-center mt-4 text-lg'>
@@ -17,7 +18,7 @@ const VideoDiv = () => {
                     appropriate. Emphasis is placed on college and career readiness, and the development of executive functioning
                     skills for all students.
                 </p>
-                <div className="flex justify-center"><button className='bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 mt-8 rounded-full'>LEARN MORE</button></div>
+                <div className="flex justify-center"><Link to='about_us' className='bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-2 px-4 mt-8 rounded-full'>LEARN MORE</Link></div>
             </div>
         </div>
     );

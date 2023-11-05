@@ -57,8 +57,8 @@ const SignInPage = () => {
         <>
             <LandingPageNav/>
             <h3 className='text-center bg-gray-200 m-0 py-2'>Sign In Page</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-8 h-screen px-4 bg-gray-200">
-                <div className='bg-white p-8 rounded-lg'>
+            <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-3 h-screen px-4 bg-gray-200">
+                <div className='bg-white p-8  rounded-lg'>
                     <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
                         <label htmlFor="class">Class</label>
                         <select name="class" id="class" {...formik.getFieldProps('class')} required className='form-select p-2 border-2 rounded-md'>
@@ -74,12 +74,12 @@ const SignInPage = () => {
                         <label htmlFor="password">Password</label>
                         <input className='form-input p-2 my-2 border-2 rounded-md' {...formik.getFieldProps('password')} id='password' name='password' type="password" placeholder='Password' />
                         <button type='submit' className='btn bg-green-500 text-white rounded p-2 hover:bg-green-600 focus:outline-none'>Sign In</button>
-                        <Link to='/student/forgottenpassword' className='text-blue-500 hover:underline'>Forgotten Password?</Link>
-                        <Link to='/student/signup' className='text-blue-500 hover:underline'>Sign Up</Link>
+                        <Link to='/student/forgottenpassword' className='text-red-500 hover:underline'>Forgotten Password?</Link>
+                        <p>New here? <Link to='/student/signup' className='text-blue-500 hover:underline inline'>Sign Up</Link></p>
                     </form>
                 </div>
-                <div className='signupOtherDiv bg-gray-700 text-white p-4 rounded-lg'>
-                    <button className=' w-24 px-3 py-2 rounded-full bg-blue-500 cursor-pointer hover:bg-blue-600'><Link to='/signup'>Sign Up</Link></button>
+                <div style={{backgroundImage: "url('/teachers/gallary6.jpg')"}} className='signupOtherDiv h-full bg-gray-700 text-white p-4 rounded-lg'>
+                    <button className=' w-24 px-3 py-2 rounded-full bg-blue-500 cursor-pointer hover:bg-blue-600'><Link to='/student/signup'>Sign Up</Link></button>
                 </div>
             </div>
         </>

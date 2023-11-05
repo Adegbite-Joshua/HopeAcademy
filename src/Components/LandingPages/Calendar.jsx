@@ -1,11 +1,15 @@
 import React from 'react';
 
-const Calendar = ({ range }) => {
+const Calendar = ({ date, description, name }) => {
   return (
-    <li className="list-group-item d-flex justify-content-between align-items-center">
-      <span className="font-weight-bold">22 Aug 2022</span>
-      <span>Professional Development - Staff Only</span>
-      <span className="text-end ms-auto">{range}</span>
+    <li className="list-group-item flex flex-col gap-3 hover:bg-slate-200">
+      {/* <div className='w-full h-auto'> */}
+        <p className=' bg-red-300 flex justify-content-between align-items-center'>
+          <span className="font-weight-bold">{date}</span>
+          <span className="text-end ms-auto">{name}</span>
+        </p>
+        <p>{description}</p>
+      {/* </div> */}
     </li>
   );
 };

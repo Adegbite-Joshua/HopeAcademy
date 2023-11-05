@@ -14,28 +14,24 @@ const ClassMainDiv = ({startClass, classId, setstartClass }) => {
     let allStudents = useSelector((state) => state.studentInformation.allStudents);
     let fetching = useSelector((state) => state.studentInformation.staffFetchingState);
     const socket = useSelector((state) => state.socketIO.socket);
-    const [messageInput, setmessageInput] = useState('');
     const [joinedClass, setjoinedClass] = useState(false);
     const [joiningClass, setjoiningClass] = useState(false);
     const [classStarted, setclassStarted] = useState(false);
     const [requestMade, setrequestMade] = useState(false);
     const userVideo = useRef(null)
     const [joinedMembers, setjoinedMembers] = useState([]);
-    // const staffVideo = document.getElementById('staffVideo');
-
 
     const [myPeer, setMyPeer] = useState(null);
-    const [teacherId, setTeacherId] = useState('teacher');
-    let streaming = false;
-
 
     useEffect(() => {
         if (startClass) {
             joinClass()
         }
+
         socket.on('userConnected', (details) => {
             newMemberConnect(details);
         })
+
         socket.on('sendJoinedMembers', (ids) => {
             joinedMembersId(ids);
         })
@@ -50,15 +46,16 @@ const ClassMainDiv = ({startClass, classId, setstartClass }) => {
         socket.on('memberDisconnected', (details)=>{
             memberDisconnected(details)
         })
-        // window.addEventListener('beforeunload', disconnectCall)
+
         return () => {
-            // window.removeEventListener('beforeunload',disconnectCall)
+            disconnectCall()
             if (myPeer) {
                 myPeer.destroy();  
             }
             socket.off('userConnected');
             socket.off('classStarted');
             socket.off('sendJoinedMembers');
+            socket.off('memberDisconnected');
         };
 
     }, [startClass, classId]);
@@ -114,7 +111,10 @@ const ClassMainDiv = ({startClass, classId, setstartClass }) => {
     };
 
     const disconnectCall =()=>{
-        socket.emit('disconnectCall', { userType: 'student', userId: id, roomId: `room123` })
+        if (!myPeer) {
+            return;
+        }
+        socket.emit('disconnectCall', { userType: 'student', userId: myPeer?.id, roomId: `class_video${0}${classId}` })
     }
 
     const memberDisconnected =(details)=>{

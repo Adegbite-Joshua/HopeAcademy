@@ -5,6 +5,7 @@ import axios from 'axios'
 import FileViewer from '../../../FileViewer';
 import {useNavigate} from 'react-router-dom';
 import { toast } from 'react-toastify';
+import DisplayToast from '../../../CustomHooks/DisplayToast';
 
 
 const SignUpForm = () => {
@@ -26,7 +27,6 @@ const SignUpForm = () => {
       localGovernment: '',
       imageBase64: '',
       adminToken: '',
-      // Add more fields here as needed
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required('First Name is required'),
@@ -42,33 +42,18 @@ const SignUpForm = () => {
       state: Yup.string().required('Please select state'),
       localGovernment: Yup.string().required('Please select local government'),
       imageBase64: Yup.string().required('Please select an image'),
-      // Add validation for other fields here
     }),
     onSubmit: (values) => {
       axios.post('http://localhost:7777/admin/sign_up', values)
       .then((res)=>{
-        console.log(res)
-        if (res.status==200){
-          toast.success('Signup successful!', {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            style: {
-              background: '#4caf50', // Background color of the toast
-              color: '#ffffff', // Text color of the toast
-              fontSize: '16px', // Font size
-            },
-          });
-          setTimeout(() => {navigate('/admin/signin')}, 2000);
-        } 
+        DisplayToast('success', 'Signup successful!')
+        navigate('/admin/signin');
       })
       .catch((error)=>{
         console.log(error)
         if (error.response.status==408) {
-          toast.error('Email Already Exist', {
+          DisplayToast('success', 'Email Already Exist')
+          toast.error(, {
             position: toast.POSITION.TOP_RIGHT,
             autoClose: 5000,
             hideProgressBar: false,

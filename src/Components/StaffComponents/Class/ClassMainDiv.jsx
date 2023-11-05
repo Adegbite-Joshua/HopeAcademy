@@ -2,6 +2,7 @@ import React , {useRef, useEffect, useState} from 'react'
 import JoinedStudent from './JoinedStudent'
 import Peer from 'peerjs';
 import { useSelector, useDispatch } from 'react-redux'
+import DisplayToast from '../../../CustomHooks/DisplayToast';
 
 
 const ClassMainDiv = ({startClass, endClass, setendClass}) => {
@@ -18,15 +19,19 @@ const ClassMainDiv = ({startClass, endClass, setendClass}) => {
             setstartedClass(true);
             broadcastClass();
         }
-        // if (endClass && myPeer2) {
-        //     myPeer2 = null;
-        //     setendClass(false);
-        // }
+        if (endClass && myPeer2) {
+            closeCall();
+        }
+        socket.on('memberDisconnected', (details)=>{
+            memberDisconnected(details)
+            alert(details.userId)
+        })
         return () => {
             if (myPeer) {
                 myPeer.destroy();
             }
             // socket.off('userConnected');
+            socket.off('memberDisconnected');
         };
     }, [startClass, endClass]);
 
@@ -60,6 +65,15 @@ const ClassMainDiv = ({startClass, endClass, setendClass}) => {
     const connectToNewStudent =(studentId, stream) =>{
         const call = myPeer2.call(studentId, stream);
         setjoinedMembers(prevIds => [...prevIds, studentId]);
+    };
+    const memberDisconnected =(details)=>{
+        setjoinedMembers((prevIds) => prevIds.filter((id)=>id!=details.userId));
+        DisplayToast('success', 'A student Disconnected')
+    };
+    const closeCall =()=>{
+        myPeer.destroy();
+        setendClass(false);
+        DisplayToast('success', 'Class Video Closed Successfully')
     }
   return (
     <>

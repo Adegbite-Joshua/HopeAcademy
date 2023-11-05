@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup';
 import SnackBar from '../../SnackBar';
+import DisplayToast from '../../../CustomHooks/DisplayToast';
 
 
 
@@ -35,20 +36,12 @@ const SignInPage = () => {
           if (res.status==200) {
             localStorage.setItem('token', res.data.token)
             localStorage.token = res.data.token
-            // alert('found')
-            // navigate('/dashboard')
             setTimeout(() => navigate("/staff/dashboard"), 3000);
-            setsnacksBarBody('Successfully Signed In')
-            setsnacksBarType('info')
-            showSnackBar()
+            DisplayToast('success', 'Successfully Signed In')
           } else if(res.status==11000){
-            setsnacksBarBody('Email Already Exixts')
-            setsnacksBarType('error')
-            showSnackBar()
+            DisplayToast('error', 'Email Already Exixts')
           } else if(res.status==401){
-            setsnacksBarBody('Error Logging You In')
-            setsnacksBarType('error')
-            showSnackBar()
+            DisplayToast('error', 'Error Logging You In')
           }
       })
       .catch((err)=>{
@@ -56,46 +49,35 @@ const SignInPage = () => {
       })
       }
   })
-  const [snacksBarBody, setsnacksBarBody] = useState('Email')
-  const [snacksBarType, setsnacksBarType] = useState('info')
 
-  const showSnackBar = () => {
-      // Get the snackbar DIV
-      // alert('showing')
-      var x = document.getElementById("snackbarContainer");
-      x.className = "show";
-    
-      setTimeout(()=>{ x.className = x.className.replace("show", ""); }, 3000);
-  }
-  window.showSnackBar = showSnackBar
   return (
     <>
         <div className="flex h-screen">
           <div className='signinMainDiv bg-slate-200 pt-24 flex justify-center items-center '>
               <form onSubmit={formik.handleSubmit} className="h-auto mx-auto">
                   <label htmlFor="" className=''>Email</label>
-                  <input onChange={formik.handleChange} type="text" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Email' name='email' />
+                  <input onChange={formik.handleChange} type="text" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-md  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Email' name='email' />
                   <label htmlFor="">Class</label>
-                  {/* <input onChange={formik.handleChange} type="text" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Id' name='staffId' /> */}
-                  <select name="class" id="class" required onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50'>
-                    <option value={0} selected>JSS1</option>
-                    <option value={1}>JSS2</option>
-                    <option value={2}>JSS3</option>
-                    <option value={3}>SSS1</option>
-                    <option value={4}>SSS2</option>
-                    <option value={5}>SSS3</option>
+                  {/* <input onChange={formik.handleChange} type="text" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-md  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Id' name='staffId' /> */}
+                  <select name="class" id="class" required onChange={formik.handleChange} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-md  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50'>
+                    <option value={0} selected>JSS 1</option>
+                    <option value={1}>JSS 2</option>
+                    <option value={2}>JSS 3</option>
+                    <option value={3}>SSS 1</option>
+                    <option value={4}>SSS 2</option>
+                    <option value={5}>SSS 3</option>
                   </select>
                   <label htmlFor="">Password</label>
-                  <input onChange={formik.handleChange} type="text" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-full  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Password' name='password' />
+                  <input onChange={formik.handleChange} type="text" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-md  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Password' name='password' />
                   <input type="checkbox" className='accent-red-400' name="" id="" /><small className='text-white'>Remenber me</small>
-                  <button type='submit' className='block py-2 bg-orange-500 w-full rounded-full hover:bg-orange-300'>Sign In</button>
+                  <button type='submit' className='block py-2 bg-orange-500 w-full rounded-md hover:bg-orange-300'>Sign In</button>
+                  <p>New here? <Link to='/staff/signin' className='inline text-blue-500  hover:underline'>Sign Up</Link></p>
               </form>            
           </div>
-          <div className='signinOtherDiv rounded-4'>
-            <span className='px-3 py-2 rounded-pill bg-blue-700 text-white rounded-full'><Link>Sign Up</Link></span>
+          <div style={{backgroundImage: "url('/teachers/gallary6.jpg')"}} className='signinOtherDiv rounded-4'>
+            <span className='px-3 py-2 rounded-pill bg-blue-500 text-white rounded-md'><Link to='/staff/signin'>Sign Up</Link></span>
           </div>
         </div>
-        <div id='snackbarContainer'><SnackBar body={snacksBarBody} type={snacksBarType}/></div>
     </>
   )
 }

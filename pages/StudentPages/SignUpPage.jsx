@@ -7,26 +7,28 @@ import { useFormik } from 'formik'
 import axios from 'axios'
 // import SnackBar from '../../SnackBar'
 import * as Yup from 'yup';
+import { subjects } from '../../constants/subjects'
 
 
 
 
 const SignUpPage = () => {
-    const subjects = [
-        'MATHEMATICS',
-        'ENGLISH LANGUAGE',
-        'YORUBA',
-        'CIVIC EDUCATION',
-        'COMPUTER STUDIES',
-        'GEOGRAPHY',
-        'ECONOMICS',
-        'PHYSICS',
-        'CHEMISTRY',
-        'BIOLOGY',
-        'ANIMAL HUSBANDRY',
-        'FURTHER MATHEMATICS',
-        'TECHNICAL DRAWING'
-    ]
+    
+    // const subjects = [
+    //     'MATHEMATICS',
+    //     'ENGLISH LANGUAGE',
+    //     'YORUBA',
+    //     'CIVIC EDUCATION',
+    //     'COMPUTER STUDIES',
+    //     'GEOGRAPHY',
+    //     'ECONOMICS',
+    //     'PHYSICS',
+    //     'CHEMISTRY',
+    //     'BIOLOGY',
+    //     'ANIMAL HUSBANDRY',
+    //     'FURTHER MATHEMATICS',
+    //     'TECHNICAL DRAWING'
+    // ]
     const navigate = useNavigate()
 
     const [signingUp, setsigningUp] = useState(false)
@@ -166,21 +168,11 @@ const SignUpPage = () => {
             setimageBase64(reader.result)
         }
     }
-    // const [snacksBarBody, setsnacksBarBody] = useState('')
-    // const [snacksBarType, setsnacksBarType] = useState('info')
-
-    // const showSnackBar = () => {
-    //     // Get the snackbar DIV
-    //     var x = document.getElementById("snackbarContainer");
-    //     x.className = "show";
-
-    //     setTimeout(() => { x.className = x.className.replace("show", ""); }, 3000);
-    // }
     return (
         <>
             <LandingPageNav />
             <h3 className='text-center bg-light m-0 p-3'>Sign Up Page</h3>
-            <div className="flex w-full p-4 topSpace bg-light gap-3">
+            <div className="flex w-full p-4 topSpace bg-light gap-3 relative">
                 <div className="border signup rounded-5 p-5 flex flex-col">
                     <form onSubmit={formik.handleSubmit}>
                         <label htmlFor="firstName">First Name</label>
@@ -205,20 +197,10 @@ const SignUpPage = () => {
                             <option value="5">SSS3</option>
                         </select>
                         <label htmlFor="subjects">Subjects</label>
-                        <select onChange={formik.handleChange} className='w-full border-2 rounded-md p-2 h-12 my-2' multiple name='subjects' id="subjects">
-                            <option selected disabled value={subjects.indexOf('MATHEMATICS')}> MATHEMATICS </option>
-                            <option selected disabled value={subjects.indexOf('ENGLISH LANGUAGE')}> ENGLISH LANGUAGE </option>
-                            <option value={subjects.indexOf('YORUBA')}> YORUBA </option>
-                            <option value={subjects.indexOf('CIVIC EDUCATION')}> CIVIC </option>
-                            <option value={subjects.indexOf('COMPUTER STUDIES')}> COMPUTER </option>
-                            <option value={subjects.indexOf('GEOGRAPHY')}> GEOGRAPHY </option>
-                            <option value={subjects.indexOf('ECONOMICS')}> ECONOMICS </option>
-                            <option value={subjects.indexOf('PHYSICS')}> PHYSICS </option>
-                            <option value={subjects.indexOf('CHEMISTRY')}> CHEMISTRY </option>
-                            <option value={subjects.indexOf('BIOLOGY')}> BIOLOGY </option>
-                            <option value={subjects.indexOf('ANIMAL HUSBANDRY')}> ANIMAL </option>
-                            <option value={subjects.indexOf('FURTHER MATHEMATICS')}> FURTHER MATHS </option>
-                            <option value={subjects.indexOf('TECHNICAL DRAWING')}> TECHNICA </option>
+                        <select onChange={formik.handleChange} className='w-full border-2 rounded-md p-2 my-2' multiple name='subjects' id="subjects">
+                            {subjects.map((subject, index)=>(
+                                <option selected={index<=1} disabled={index<=1} value={index}>{subject}</option>
+                            ))}                            
                         </select>
                         <label htmlFor='address'>Address</label>
                         <input type='text' className='w-full border-2 rounded-md p-2 h-12' {...formik.getFieldProps('address')} placeholder='Address' id='address' name='address' />
@@ -229,19 +211,18 @@ const SignUpPage = () => {
                         <label htmlFor='state'>State</label>
                         <input type='text' className='w-full border-2 rounded-md p-2 h-12' {...formik.getFieldProps('state')} placeholder='State' id='state' name='state' />
                         <small className='text-danger'>{formik.touched.state && formik.errors.state}</small><br />
-                        <div style={{ aspectRatio: '1' }} className='w-3/6 mx-auto bg-black opacity-3/6 my-2 flex justify-center items-center'>
-                            <h3 className='text-light'>Profile Picture</h3>
+                        <div style={{ aspectRatio: '1' }} className='w-3/6 mx-auto rounded-lg bg-black opacity-3/6 my-2 flex justify-center items-center'>
+                            <h3 className='text-white'>Profile Picture</h3>
                         </div>
-                        <input type="file" onChange={(e) => selectImage(e)} name="pictureUrl" className='w-full border-2 rounded-md p-2 h-12' id="" />
-                        <button type='submit' className='btn btn-success w-100 d-block my-2' disabled={signingUp ? true : false}>{signingUp ? 'Signing Up' : 'Sign Up'}</button>
-                        <Link className='d-md-none text-light'>Sign In</Link>
+                        <input type="file" onChange={(e) => selectImage(e)} name="pictureUrl" className='w-full file:mr-4 file:py-2 file:rounded-md file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 rounded-md p-2 h-12' id="" />
+                        <button type='submit' className='w-full rounded-3xl block my-2 text-center p-2 bg-blue-500' disabled={signingUp ? true : false}>{signingUp ? 'Signing Up' : 'Sign Up'}</button>
+                        <p>Already have an account? <Link className='inline text-blue-700' to='/student/signin'>Sign In</Link></p>
                     </form>
                 </div>
-                <div className="signupOtherDiv rounded-5 flex items-center justify-center">
-                    <span className='px-3 py-2 rounded-pill bg-dark text-light'><Link to='/signin'>Sign In</Link></span>
+                <div style={{backgroundImage: "url('/teachers/gallary6.jpg')"}} className="signupOtherDiv  rounded-5 flex items-center justify-center">
+                    <span className='px-3 py-2 rounded-3xl bg-blue-600 text-white'><Link to='/student/signin'>Sign In</Link></span>
                 </div>
             </div>
-            {/* <div id='snackbarContainer'><SnackBar body={snacksBarBody} type={snacksBarType} /></div> */}
         </>
     )
 }
