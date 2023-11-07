@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, {useEffect, useState}from 'react'
 import { useSelector } from 'react-redux';
-import FileViewer from '../../FileViewer';
-import subjects from '../../subjectArray';
+import { subjects } from '../../../../constants/subjects';
+// import FileViewer from '../../FileViewer';
+// import subjects from '../../subjectArray';
 import SubjectResource from './SubjectResource'
 
 const ResourcesContainer = ({subjectIndex, func, studentResources}) => {

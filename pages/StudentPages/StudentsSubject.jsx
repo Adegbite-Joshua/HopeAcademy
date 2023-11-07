@@ -1,12 +1,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import Loader from '../../Loader'
 import SubjectMainDiv from '../../src/Components/StudentComponents/Subject/SubjectMainDiv'
 import SubjectSideDiv from '../../src/Components/StudentComponents/Subject/SubjectSideDiv'
 import fetchStudentInfo from '../../src/CustomHooks/StudentHooks/fetchStudentInfo'
 import { fetchAllStaffs, fetchStudent, setFetched } from '../../src/redux/studentInformation'
 import NavBar from '../../src/Components/StudentComponents/NavBar'
+import Loader from '../../src/Loader'
 
 
 const StudentsSubject = () => {
@@ -82,7 +82,7 @@ const StudentsSubject = () => {
     }
   return (
     <>
-        <div className='d-flex w-100'>
+        <div className='grid h-screen md:flex md:flex-row bg-slate-300 relative ring-0'>
             <NavBar/>
             {fetching && <Loader/>}
             {fetching==false && <>

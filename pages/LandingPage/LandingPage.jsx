@@ -7,6 +7,7 @@ import ParallaxScrolling from '../../src/Components/LandingPages/ParallaxScrolli
 import ProgramsPage from '../../src/Components/LandingPages/ProgramsPage'
 import UpcomingCalendar from '../../src/Components/LandingPages/UpcomingCalendar'
 import VideoDiv from '../../src/Components/LandingPages/VideoDiv'
+import MessageSchool from '../../src/Components/MessageSchool'
 
 
 const LandingPage = () => {
@@ -21,7 +22,7 @@ const LandingPage = () => {
         <ParallaxScrolling/>
         <UpcomingCalendar/>
         <LandingPageFooter/>
-        
+        <MessageSchool/>
     </>
   )
 }

@@ -4,8 +4,6 @@ import { NavLink, Link } from 'react-router-dom'
 
 
 const LandingPageNav = ({ percent }) => {
-    // const [percentage, setpercentage] = useState(0)
-    // window.onscroll=()=>setpercentage((window.scrollY/(document.documentElement.scrollHeight - window.innerHeight))*100)
     const showSideBar = () => {
         document.getElementById('navUl').classList.toggle('responsive')
     }
@@ -28,16 +26,16 @@ const LandingPageNav = ({ percent }) => {
                 <div id='adminNavBar' className="md:flex md:space-x-10 h-screen md:h-full">
                     <Link to="/" className='my-5 md:my-auto'>Home</Link>
                     <div className=" my-5 relative group md:my-auto">
-                        <span className='cursor-pointer' onClick={() => showSubLink('accountSubLink')}>Sign Up</span>
-                        <div id='accountSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
+                        <span className='cursor-pointer' onClick={() => showSubLink('signUpSubLink')}>Sign Up</span>
+                        <div id='signUpSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
                             <Link to="/student/signup" className='block border-b-2 mb-3'>Student</Link>
                             <Link to="/staff/signup" className='block border-b-2 mb-3'>Staff</Link>
                             <Link to="/admin/signup" className='block border-b-2 mb-3'>Admin</Link>
                         </div>
                     </div>
                     <div className=" my-5 relative group md:my-auto">
-                        <span className='cursor-pointer' onClick={() => showSubLink('coursesSubLink')}>Sign In</span>
-                        <div id='coursesSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
+                        <span className='cursor-pointer' onClick={() => showSubLink('signInSubLink')}>Sign In</span>
+                        <div id='signInSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
                             <Link to="/student/signin" className='block border-b-2 mb-3'>Student</Link>
                             <Link to="/staff/signin" className='block border-b-2 mb-3'>Staff</Link>
                             <Link to="/admin/signin" className='block border-b-2 mb-3'>Admin</Link>

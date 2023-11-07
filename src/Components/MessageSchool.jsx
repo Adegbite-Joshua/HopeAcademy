@@ -2,12 +2,10 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import React, { useState } from 'react'
 import DisplayToast from '../CustomHooks/DisplayToast';
-import SnackBar from './SnackBar';
 
 const MessageSchool = () => {
-    const [snackbarMessage, setsnackbarMessage] = useState('');
-    const [snackbarType, setsnackbarType] = useState('');
     const openForm =()=> {
+        console.log('openeed');
         document.getElementById("myForm1").style.display = "block";
     }
     const closeForm =()=> {
@@ -54,7 +52,6 @@ const MessageSchool = () => {
             <button type="button" className="btn1 cancel1 btn rounded-pill" onClick={closeForm}>Close</button>
         </form>
         </div>
-        <div id='snackbarContainer'><SnackBar body={snackbarMessage} type={snackbarType}/></div>
     </>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import FileViewer from '../../FileViewer'
+import FileViewer from '../../../FileViewer'
 
 const SubjectResource = ({resource}) => {
   return (

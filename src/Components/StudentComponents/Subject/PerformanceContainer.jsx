@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import ResultsDisplay from './ResultsDisplay'
 import SubjectPerformance from './SubjectPerformance'
 import axios from 'axios'
-import subjects from '../../subjectArray';
+import { subjects } from '../../../../constants/subjects';
+// import subjects from '../../subjectArray';
 
 
 const PerformanceContainer = ({subjectIndex}) => {
@@ -48,7 +49,7 @@ const PerformanceContainer = ({subjectIndex}) => {
         })
         
     }
-
+    
   return (
     <div className="w-full">
     <div className="resultDiv overflow-auto w-full">
