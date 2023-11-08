@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import { deletenoticesAndNews, } from '../../../redux/generalInformation';
 
 
-const News = ({type, data, closePopup }) => {
+const Form = ({type, data, closePopup }) => {
   const dispatch = useDispatch();
   console.log(typeof(closePopup), closePopup)
   const formik = useFormik({
@@ -79,4 +79,4 @@ const News = ({type, data, closePopup }) => {
   )
 }
 
-export default News
+export default Form

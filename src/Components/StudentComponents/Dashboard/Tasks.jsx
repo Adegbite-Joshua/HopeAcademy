@@ -44,9 +44,9 @@ const Tasks = ({ task, date, empty, wholeTask, index }) => {
                 <p className="text-base font-semibold">Task: {task} {!empty && <span className="ml-3 text-sm">Date: {date}</span>}
                     {!empty && (
                         <>
-                            <button onClick={updateTask} className="ml-2 text-blue-500 hover:text-blue-700 focus:outline-none">
+                            {/* <button onClick={updateTask} className="ml-2 text-blue-500 hover:text-blue-700 focus:outline-none">
                                 <i className="fa fa-edit"></i>
-                            </button>
+                            </button> */}
                             <button onClick={deleteTask} className="ml-2 text-red-500 hover:text-red-700 focus:outline-none">
                                 <i className="fa fa-trash"></i>
                             </button>

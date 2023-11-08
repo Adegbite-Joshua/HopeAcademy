@@ -32,9 +32,9 @@ const Notice = ({data }) => {
     let deleted = await axios.post(endpoint, {id: data._id})
     if (deleted.status == 200) {
       dispatch(deletenoticesAndNews(data._id))
-      let [show] = DisplayToast('success', 'Notice Deleted Successfully')
+      DisplayToast('success', 'Notice Deleted Successfully')
     } else {
-      let [show] = DisplayToast('error', 'An Error Occur, Please Try Again')
+      DisplayToast('error', 'An Error Occur, Please Try Again')
     }
   }
 

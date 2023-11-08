@@ -10,12 +10,14 @@ import NavBar from '../../src/Components/StudentComponents/NavBar'
 import Tasks from '../../src/Components/StudentComponents/Dashboard/Tasks'
 import fetchStudentInfo from '../../src/CustomHooks/StudentHooks/fetchStudentInfo'
 import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStudentFeeStatus'
+import FetchNoticesAndNews from '../../src/CustomHooks/FetchNoticesAndNews'
 
 
 
 const StudentDashboard = () => {
     document.querySelector('title').innerText = 'Dashboard | Student'; 
     const [studentInfo, fetching, termDetails] = fetchStudentInfo();  
+    const [noticesAndNews] = FetchNoticesAndNews();  
     let dispatch = useDispatch();
     const navigate = useNavigate();
     const [addingTask, setaddingTask] = useState(false);
@@ -35,7 +37,6 @@ const StudentDashboard = () => {
     const showLink =()=>{
       console.log(`${studentInfo.pictureUrl.split('upload/')[0]}upload/r_max,q_50/${studentInfo.pictureUrl.split('upload/')[1]}`)
     }
-    window.showLink = showLink
 
     const addToTasks =()=>{
       setaddingTask(true)
@@ -49,19 +50,19 @@ const StudentDashboard = () => {
       }
       let endpoint = 'http://localhost:7777/student/addtotask'
       axios.post(endpoint, taskDetails)
-      .then((res)=>{
-        setaddingTask(false)
-        closeAddToTask()
-        DisplayToast('success', 'Task Added Successfully!');
-        dispatch(fetchStudent(res.data))
-        taskBody.value = ''
-        taskTime.value = ''
-      })
-      .catch((error)=>{
-        setaddingTask(false)
-        closeAddToTask()
-        DisplayToast('error', 'Error Saving Your Task');
-      })
+        .then((res)=>{
+          setaddingTask(false)
+          closeAddToTask()
+          DisplayToast('success', 'Task Added Successfully!');
+          dispatch(fetchStudent(res.data))
+          taskBody.value = ''
+          taskTime.value = ''
+        })
+        .catch((error)=>{
+          setaddingTask(false)
+          closeAddToTask()
+          DisplayToast('error', 'Error Saving Your Task');
+        })
     }
 
   return (
