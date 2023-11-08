@@ -17,7 +17,6 @@ const checkStudentFeeStatus = () => {
           setpaymentDisplayOption('indebt')
         }
       }, [studentInfo])
-      console.log(paymentDisplayOption, studentInfo);
   return [paymentDisplayOption]
 }
 

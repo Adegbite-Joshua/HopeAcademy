@@ -20,7 +20,11 @@ const store = configureStore({
     staffInformation,
     adminInformation,
     socketIO
-  }
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 })
 
 

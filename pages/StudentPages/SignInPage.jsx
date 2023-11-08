@@ -39,14 +39,16 @@ const SignInPage = () => {
                         localStorage.studentToken = res.data.token
                         DisplayToast('success', 'Successfully Signed In')
                         navigate("/student/dashboard")
-                    } else if (res.status == 11000) {
-                        DisplayToast('error', 'Email Already Exixts')
-                    } else if (res.status == 401) {
-                        DisplayToast('error', 'Error Logging You In')
                     }
                 })
                 .catch((err) => {
-                    DisplayToast('error', 'Error Logging You In')
+                    if (err.response.status == 477) {
+                        DisplayToast('error', 'Incorrect Password')
+                    } else if (err.response.status == 478) {
+                        DisplayToast('error', 'Invalid Email Address')
+                    }else{
+                        DisplayToast('error', 'Error Logging You In')
+                    }
                 })
         }
     })

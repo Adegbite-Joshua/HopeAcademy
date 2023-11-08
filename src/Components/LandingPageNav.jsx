@@ -15,8 +15,11 @@ const LandingPageNav = ({ percent }) => {
     const showNavBar = () => {
         document.getElementById('adminNavBar').classList.toggle('responsive')
     }
-    return (
-        <nav className="bg-blue-500 p-4 text-white h-28 sticky top-0 z-50">
+    const [percentage, setpercentage] = useState(0)
+    window.onscroll = () => setpercentage((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100)
+    return(
+    <div className='sticky top-0 z-50'>
+        <nav className="bg-blue-500 p-4 text-white h-28 ">
             <div className="flex justify-between items-center h-full p-5 relative">
                 <Link to='/' className='h-full flex flex-row justify-center items-center gap-3'>
                     <img src="/vite.svg" className='w-32 h-full' alt="" />
@@ -46,6 +49,11 @@ const LandingPageNav = ({ percent }) => {
                 </div>
             </div>
         </nav>
+        <div className='w-full bg-red-400' style={{ height: '8px' }}>
+            <div style={{ width: `${percentage}%` }} className='h-full bg-yellow-400'>
+            </div>
+        </div>
+    </div>
     )
 }
 

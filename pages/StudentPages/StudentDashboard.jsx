@@ -45,9 +45,8 @@ const StudentDashboard = () => {
         taskBody: taskBody.value,
         class: Number(studentInfo.class),
         email: studentInfo.email,
-        token: localStorage.getItem('token')
+        token: localStorage.getItem('studentToken')
       }
-      console.log(taskDetails);
       let endpoint = 'http://localhost:7777/student/addtotask'
       axios.post(endpoint, taskDetails)
       .then((res)=>{
@@ -80,8 +79,8 @@ const StudentDashboard = () => {
               ) : (
                 <Tasks date='07/02/2005' task='No Task Added Yet' empty={true} />
               )}
-              <button className='btn btn-outline-info block mx-auto mt-2' onClick={openAddToTask}>
-                <i className='fas fa-plus'></i> Add New
+              <button className='p-2 bg-yellow-300 block mx-auto mt-2' onClick={openAddToTask}>
+                <i className='fa fa-plus'></i> Add New
               </button>
             </div>
             <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center popup' id='popup'>

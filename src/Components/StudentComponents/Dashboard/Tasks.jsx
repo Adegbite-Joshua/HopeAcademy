@@ -45,10 +45,10 @@ const Tasks = ({ task, date, empty, wholeTask, index }) => {
                     {!empty && (
                         <>
                             <button onClick={updateTask} className="ml-2 text-blue-500 hover:text-blue-700 focus:outline-none">
-                                <i className="fas fa-edit"></i>
+                                <i className="fa fa-edit"></i>
                             </button>
                             <button onClick={deleteTask} className="ml-2 text-red-500 hover:text-red-700 focus:outline-none">
-                                <i className="fas fa-trash"></i>
+                                <i className="fa fa-trash"></i>
                             </button>
                         </>
                     )}
