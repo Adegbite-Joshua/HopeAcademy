@@ -6,7 +6,7 @@ import axios from 'axios'
 
 
 
-const InboxMainDiv = ({ func, partnerName, messages, partnerCommonId, sendMessage }) => {
+const InboxMainDiv = ({ toggleSideNav, partnerName, messages, partnerCommonId, sendMessage }) => {
     useEffect(() => {
         // console.log(document.getElementById("messageContainer").scrollHeight)
         document.getElementById("messageContainer").scrollTop = document.getElementById("messageContainer").scrollHeight
@@ -17,7 +17,6 @@ const InboxMainDiv = ({ func, partnerName, messages, partnerCommonId, sendMessag
     let allStudents = useSelector((state) => state.studentInformation.allStudents);
     let fetching = useSelector((state) => state.studentInformation.staffFetchingState);
     const [messageInput, setmessageInput] = useState('')
-    // console.log(messages);
     let chattingWithName = ''
     // const showPartnerName =()=>{
     //     if(category==0 && mainindex!=''){
@@ -35,7 +34,7 @@ const InboxMainDiv = ({ func, partnerName, messages, partnerCommonId, sendMessag
             <div className='InboxMainDiv h-full border-r-2 overflow-y-auto md:border-blue-500 p-5 relative topSpace'>
                 <h3 className='sticky top-0 text-center'>
                     Adegbite Joshua
-                    <span id='toggleIco' onClick={func} className=' md:hidden float-right border-2 p-2 rounded'>
+                    <span id='toggleIco' onClick={toggleSideNav} className=' md:hidden float-right border-2 p-2 rounded'>
                         <i className='fa fa-bars'></i>
                     </span>
                 </h3>

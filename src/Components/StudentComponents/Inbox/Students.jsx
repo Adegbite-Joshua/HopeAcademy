@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import OnlinePeople from './OnlinePeople'
 import {useSelector} from 'react-redux'
+import fetchStudentInfo from '../../../CustomHooks/StudentHooks/fetchStudentInfo';
 
 
 const Students = ({func}) => {
+    const [studentInfo, fetching, termDetails] = fetchStudentInfo();  
     let allStudents = useSelector((state)=>state.studentInformation.allStudents);    
     const [viewing, setviewing] = useState(0)
   return (
@@ -17,8 +19,8 @@ const Students = ({func}) => {
                 <option value="5">SSS 3</option>
             </select>
         {allStudents[viewing]?allStudents[viewing].map((student, index) =>(
-            <OnlinePeople func={func} id={student._id} name={`${student.firstName} ${student.lastName}`}/>
-        )): ''}
+          studentInfo._id != student._id ? ( <OnlinePeople func={func} id={student._id} name={`${student.firstName} ${student.lastName}`}/> ) : null
+        )): null}
     </>
   )
 }

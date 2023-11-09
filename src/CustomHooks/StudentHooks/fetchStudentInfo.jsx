@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios'
 import { fetchStudent, setFetched, fetchTermDetails } from '../../redux/studentInformation';
+import { useNavigate } from 'react-router-dom';
+import DisplayToast from '../DisplayToast';
 
 
 const fetchStudentInfo = () => {
@@ -10,6 +12,7 @@ const fetchStudentInfo = () => {
   let termDetails = useSelector((state) => state.studentInformation.termDetails);
   let socket = useSelector((state) => state.socketIO.socket);
   let dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -30,6 +33,8 @@ const fetchStudentInfo = () => {
               dispatch(setFetched(false))
               socket.emit('connectSocketId', res.data._id);
             } else {
+              DisplayToast('error', 'Invalid Token')
+              navigate('/student/signin')
               console.log('error');
             }
           })
