@@ -6,14 +6,14 @@ import { subjects } from '../../../../constants/subjects';
 // import subjects from '../../subjectArray';
 import SubjectResource from './SubjectResource'
 
-const ResourcesContainer = ({subjectIndex, func, studentResources}) => {
+const ResourcesContainer = ({subjectDetails, func, studentResources}) => {
   let studentInfo = useSelector((state)=>state.studentInformation.studentInformation);
   let fetching = useSelector((state)=>state.studentInformation.staffFetchingState);
   const fetchResources = ()=>{
     let endpoint = 'http://localhost:7777/student/fetchsubjectresources'
     let payload = {
       class: studentInfo.class,
-      subject: subjects[subjectIndex]
+      subject: subjects[subjectDetails.subjectIndex]
     }
     if (studentResources.length==0) {
       console.log(payload);
@@ -29,13 +29,13 @@ const ResourcesContainer = ({subjectIndex, func, studentResources}) => {
   }
   useEffect(()=>{
     fetchResources()
-  }, [subjectIndex])
+  }, [subjectDetails])
 
   return (
     <>
         {studentResources.length>0?studentResources.map((resource, index)=>(
           <SubjectResource resource={resource}/>
-        )):'No displaying resources yet'}
+        )):'This Subject Has No Resources'}
     </>
   )
 }

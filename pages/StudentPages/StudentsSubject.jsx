@@ -11,22 +11,22 @@ import Loader from '../../src/Loader'
 
 const StudentsSubject = () => {
     document.querySelector("title").innerText = `Subjects`
-    const [viewingSubject,setviewingSubject ] = useState(0)
+    const [subjectDetails, setsubjectDetails ] = useState({subjectIndex: 0, index: 0})
     const dispatch = useDispatch();
     const toggleSideNav =()=>{
         document.getElementById('SubjectSideDiv').classList.toggle('SubjectSideDiv')
     }
 
-    const setVieingSubject =(subjectIndex)=>{
-      setviewingSubject(subjectIndex)
+    const setVieingSubject =(subjectDetails)=>{
+      setsubjectDetails(subjectDetails)
     }
 
     const [studentInfo, fetching, termDetails] = fetchStudentInfo();  
     let allStaffs = useSelector((state)=>state.studentInformation.allStaffs);
     
     useEffect(() => {
-      fetchStudentInformation()
-      validateStudent()
+      // fetchStudentInformation()
+      // validateStudent()
     }, [])
     const validateStudent =()=>{
       let token = localStorage.token
@@ -86,8 +86,8 @@ const StudentsSubject = () => {
             <NavBar/>
             {fetching && <Loader/>}
             {fetching==false && <>
-              <SubjectMainDiv subjectIndex={viewingSubject} func={toggleSideNav}/>
-              <SubjectSideDiv func={toggleSideNav} func2={setVieingSubject}/>
+              <SubjectMainDiv subjectDetails={subjectDetails} func={toggleSideNav}/>
+              <SubjectSideDiv toggleSideNav={toggleSideNav} func2={setVieingSubject}/>
             </>}
         </div>
     </>

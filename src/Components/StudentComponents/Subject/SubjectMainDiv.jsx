@@ -8,39 +8,41 @@ import SubjectResource from './SubjectResource'
 import PerformanceContainer from './PerformanceContainer';
 import ResourcesContainer from './ResourcesCOntainer';
 import { useSelector } from 'react-redux';
+import fetchClassTeachersComp from '../../../CustomHooks/StudentHooks/fetchClassTeachers'
+import { subjects } from '../../../../constants/subjects'
 
 
-const SubjectMainDiv = ({ func, subjectIndex }) => {
+const SubjectMainDiv = ({ func, subjectDetails }) => {
     let allStaffs = useSelector((state) => state.studentInformation.allStaffs);
     useEffect(() => {
         console.log(document.getElementById("subjectContainer").scrollHeight)
         document.getElementById("subjectContainer").scrollTop = document.getElementById("subjectContainer").scrollHeight
     }, [])
 
-    const [viewing, setviewing] = useState('Performance')
-    const [studentResources, setstudentResources] = useState([])
+    const [viewing, setviewing] = useState('Performance');
+    const [studentResources, setstudentResources] = useState([]);
+    const [classTeachers] = fetchClassTeachersComp();
 
     // const measure =()=>{
     //     // document.getElementById("subjectContainer").scrollTop = document.getElementById("subjectContainer").scrollHeight
     //     // console.log(document.getElementById("subjectContainer").scrollBottom)
     //     // console.log(document.getElementById("subjectContainer").scrollHeight)
     // }
-    // subjectContainer.scrollTop = subjectContainer.scrollHeight;
+    // subjectContainer.scrollTop = subjectContainer.scrollHeight;      allStaffs[subjectIndex].subjectInfo.subjectName
     const setresources = (resources) => {
         setstudentResources(resources)
     }
     return (
         <>
-            <div className='SubjectMainDiv p-20 mt-10 overflow-auto'>
-                <h3 className='top-0 text-center'>{subjectIndex ? allStaffs[subjectIndex].subjectInfo.subjectName : ''}<span id='toggleIcon' onClick={func} className='float-right border border-2 p-2 rounded-3'><i className='fas fa-bars'></i></span></h3>
+            <div className='SubjectMainDiv p-20 pt-4 md:pt-20 md:mt-10 overflow-auto'>
+                <h3 className='top-0 text-center'>{subjects[Number(subjectDetails.subjectIndex)]}<span id='toggleIcon' onClick={func} className='float-right border-2 p-2 rounded-3'><i className='fa fa-bars'></i></span></h3>
                 <div className='w-full flex justify-between px-4 mt-3'>
                     <a className='cursor-pointer' onClick={() => setviewing('Performance')}>C/A & Performance</a>
                     <a className='cursor-pointer' onClick={() => setviewing('Resources')}>Resources</a>
-                    <a>Class</a>
                 </div>
                 <div id='subjectContainer' className='subjectContainer w-full mt-3'>
-                    {viewing === 'Performance' ? <PerformanceContainer subjectIndex={subjectIndex} /> : ''}
-                    {viewing === 'Resources' ? <ResourcesContainer func={setresources} studentResources={studentResources} subjectIndex={subjectIndex} /> : ''}
+                    {viewing === 'Performance' ? <PerformanceContainer subjectDetails={subjectDetails} /> : ''}
+                    {viewing === 'Resources' ? <ResourcesContainer func={setresources} studentResources={studentResources} subjectDetails={subjectDetails} /> : ''}
                     {/* {viewing==='Class'?<ResourcesContainer/>:''} */}
                 </div>
                 {/* {document.getElementById("subjectContainer").onscroll = measure} */}

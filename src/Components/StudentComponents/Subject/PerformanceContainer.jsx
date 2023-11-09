@@ -7,7 +7,7 @@ import { subjects } from '../../../../constants/subjects';
 // import subjects from '../../subjectArray';
 
 
-const PerformanceContainer = ({subjectIndex}) => {
+const PerformanceContainer = ({subjectDetails}) => {
     let studentInfo = useSelector((state)=>state.studentInformation.studentInformation);
     let allStaffs = useSelector((state)=>state.studentInformation.allStaffs);
     const [fileName, setfileName] = useState('')
@@ -29,7 +29,7 @@ const PerformanceContainer = ({subjectIndex}) => {
             fileBase64,
             staffClass: Number(studentInfo.class),
             // staffEmail: '',
-            subjectName: subjects[subjectIndex],
+            subjectName: subjects[subjectDetails?.subjectIndex],
             fileDescription: document.getElementById('fileDescription').value
         }
         console.log(submitDetails);
@@ -53,7 +53,7 @@ const PerformanceContainer = ({subjectIndex}) => {
   return (
     <div className="w-full">
     <div className="resultDiv overflow-auto w-full">
-      <ResultsDisplay subjectIndex={subjectIndex} />
+      <ResultsDisplay subjectIndex={subjectDetails?.index} />
     </div>
     <div className="flex gap-2 text-center mt-3">
       <SubjectPerformance />
