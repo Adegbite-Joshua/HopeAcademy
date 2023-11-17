@@ -16,56 +16,54 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function AlertDialogSlide({showDialog, setDialog, text}) {
+export default function ResultComponent({showDialog, score = 10}) {
+  
+  const [percentScore, setPercentScore] = React.useState((score/20)*100);
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
-  const startTest =()=>{
-    let studentDetails = JSON.parse(sessionStorage.getItem('entrance_test_login'));
-    let studentEntranceDetails = {
-        startingTime: Date.now(),
-        email: studentDetails.email
-    }
-    axios.post('http://localhost:7777/student/start_entrance_test', studentEntranceDetails)
-    .then((res)=>{
-        if (res.status==200) {
-          localStorage.setItem('startingTime', JSON.stringify(Date.now()))
-          navigate('/entrance_test/test')
-        } else{
-            console.log(res);
-        }
-    })
-    .catch((error)=>{
-        console.log(error);
-    })
-    // console.log(studentEntranceDetails);
-  }
   useEffect(() => {
     setOpen(showDialog)
   }, [showDialog])
 
 
+  const calculateGrade = (percentScore) => {
+    if (percentScore >= 90) {
+      return 'A';
+    } else if (percentScore >= 80) {
+      return 'B';
+    } else if (percentScore >= 70) {
+      return 'C';
+    } else if (percentScore >= 60) {
+      return 'D';
+    } else {
+      return 'F';
+    }
+  };
+
+  const grade = calculateGrade(percentScore);
+
   return (
     <div>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Slide in alert dialog
-      </Button> */}
       <Dialog
         open={open}
         TransitionComponent={Transition}
         keepMounted
-        onClose={()=> setDialog(false)}
+        onClose={()=>navigate('/student/dashboard')}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle>{"Confirmation Request"}</DialogTitle>
+        <DialogTitle className='text-center underline underline-blue-500'>{"CBT Test Result"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            {(<>{text}</>)}
+            <div class="result-details mb-4">
+                <p class="text-gray-700"><strong>Score:</strong>{percentScore}%</p>
+                <p class="text-gray-700"><strong>Grade:</strong>{grade}</p>
+            </div>
+            <p class="text-gray-700">To view more detailes, please navigate to your Student Dashboard.</p>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={()=> setDialog(false)}>No</Button>
-          <Button onClick={startTest}>Start Test</Button>
+          <Button onClick={()=>navigate('/student/dashboard')}>Dashboard</Button>
         </DialogActions>
       </Dialog>
     </div>

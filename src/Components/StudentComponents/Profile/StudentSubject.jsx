@@ -11,7 +11,7 @@ const StudentSubject = () => {
     const [studentInfo] = fetchStudentInfo()
     return (
         <>
-            <div className="w-full md:w-1/2 lg:w-1/3 px-4 mx-auto">
+            <div className="w-full md:w-1/2 lg:w-2/3 px-10 pb-5">
                 <div className="mb-8">
                     <h3 className="text-xl font-semibold mb-4">Subjects You Are Offering</h3>
                     <select
@@ -19,7 +19,7 @@ const StudentSubject = () => {
                         name=""
                         id=""
                         multiple
-                        className="form-select h-40 overflow-y-auto border rounded-md p-2"
+                        className="h-40 w-full overflow-y-auto border rounded-md p-2"
                     >
                         {studentInfo.subjects && studentInfo?.subjects.map((subject, index) => (
                             <Subject key={index} name={subjects[subject.subjectIndex]} />

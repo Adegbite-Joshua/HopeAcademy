@@ -121,9 +121,9 @@ const StudentProfileUpdate = () => {
                             id='state'
                         />
                     </div>
-                    <button type='submit' className='btn bg-blue-500 text-white py-2 w-full'>
+                    {/* <button type='submit' className='btn bg-blue-500 text-white py-2 w-full'>
                         Update Profile
-                    </button>
+                    </button> */}
                 </form>
             </div>
         </>

@@ -35,7 +35,7 @@ const StudentSocialMedia = () => {
         <>
             <form className="w-full max-w-screen-md mx-auto" onSubmit={formik.handleSubmit}>
                 <h3 className="p-3 text-2xl font-bold">Add Your Social Media Links</h3>
-                <div className="w-full px-4">
+                <div className="w-full ">
                     <div className="mb-4">
                         <label htmlFor="twitterlink" className="block font-semibold">Twitter Address</label>
                         <input

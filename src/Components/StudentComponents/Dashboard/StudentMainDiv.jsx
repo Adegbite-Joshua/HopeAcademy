@@ -37,7 +37,7 @@ const StudentMainDiv = ({ welcomeNote }) => {
                     <p className="text-xl font-semibold mb-4">Hi {studentInfo.firstName} {welcomeNote}</p>
                     <p className="mb-4">Matric Number: {studentInfo.entranceTest.score !== '' && studentInfo.entranceTest.score !== undefined ? studentInfo.matricNumber : (<span className='text-red-600'>You need to take your entrance test</span>)}</p>
                     {studentInfo.entranceTest.score === '' || studentInfo.entranceTest.score === undefined ?
-                        <button className="bg-yellow-500 text-white px-4 py-2 rounded-md mr-2 mb-2 hover:bg-yellow-600">Take Entrance Test</button>
+                        <Link to='/entrance_test' className="w-full md:w-3/6 bg-yellow-500 text-white px-4 py-2 rounded-md mr-2 mb-2 hover:bg-yellow-600">Take Entrance Test</Link>
                         : ''}
                     <Link to='/student/profile' className=" w-24 bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600">Profile</Link>
                     <p>Term: {term[termDetails.term-1]} | Session Year: {termDetails.year}</p>
@@ -51,7 +51,7 @@ const StudentMainDiv = ({ welcomeNote }) => {
                     </div>
                 </div>
                 <div className="announcementDiv mt-4">
-                    <h3 className="text-xl font-semibold mb-2">Announcements <Link className="float-right text-blue-500" to='/student/notices_and_news'>See All</Link></h3>
+                    <h3 className="text-xl font-semibold mb-2">Notices And News <Link className="float-right text-blue-500" to='/student/notices_and_news'>See All</Link></h3>
                     {!fetching ? extractedNewAndNotices.length > 0 ? extractedNewAndNotices.map((value, index) => (
                         value.type=='news'?<News key={index} data={value}/>:<Notice key={index} data={value}/>
                     )) : (<News data={{head: 'Empty', type: 'blog', body: 'No News Or Notice Here Yet'}}/>) : ''}
