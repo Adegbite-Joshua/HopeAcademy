@@ -16,14 +16,15 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function ResultComponent({showDialog, score = 10}) {
-  
-  const [percentScore, setPercentScore] = React.useState((score/20)*100);
+export default function ResultComponent({showDialog, score}) {
+  console.log(score)
+  const [percentScore, setPercentScore] = React.useState();
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     setOpen(showDialog)
+    setPercentScore((score/20)*100)
   }, [showDialog])
 
 

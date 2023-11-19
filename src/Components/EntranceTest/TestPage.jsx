@@ -72,9 +72,6 @@ const TestPage = () => {
       const currentTime = Date.now();
       const timeElapsed = Math.floor((currentTime-startTime)/1000)
       const remainingTime = 900 - timeElapsed;
-      // console.log(currentTime);
-      console.log(startTime);
-      // console.log(re);
       if (remainingTime <= 0) {
         clearInterval(countDownInterval);
         submitTest()
@@ -102,7 +99,12 @@ const TestPage = () => {
   };
 
   const handleOptionChange = (answerIndex) => { 
-    setquestions([...questions, questions[currentQuestion].selectedAnswer=answerIndex]);
+    const updatedQuestions = [...questions];
+    updatedQuestions[currentQuestion] = {
+      ...updatedQuestions[currentQuestion],
+      selectedAnswer: answerIndex,
+    };
+    setquestions(updatedQuestions)
     let values = {
       currentQuestion,
       questionIndex: questions[currentQuestion].index,

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import DisplayToast from '../../CustomHooks/DisplayToast';
 
 
 const TestWelcomeAndInput = () => {
@@ -19,7 +20,12 @@ const TestWelcomeAndInput = () => {
             }
           })
           .catch((error)=>{
-            alert('error')
+            console.log(error)
+            if(error.response.status==478){
+                DisplayToast('error', 'Test Already Taken')
+            } else {
+                DisplayToast('error', 'Invalid Account Details')
+            }
           })
         } else {
           alert('Please enter both email and password.');
