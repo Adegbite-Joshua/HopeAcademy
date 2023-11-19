@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TestOverView = () => {
+const TestOverView = ({work}) => {
   return (
     <>
         <tr className='text-center'>

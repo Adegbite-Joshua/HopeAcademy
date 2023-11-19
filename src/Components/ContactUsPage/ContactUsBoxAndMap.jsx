@@ -13,4 +13,4 @@ const ContactUsBoxAndMap = () => {
   )
 }
 
-export default ContactUsBoxAndMap
+export default ContactUsBoxAndMap;

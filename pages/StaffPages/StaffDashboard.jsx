@@ -6,46 +6,16 @@ import axios from 'axios'
 import DashboardMainDiv from '../../src/Components/StaffComponents/StaffDashboard/DashboardMainDiv'
 import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/DashboardNav'
 import Loader from '../../src/Loader'
-import SnackBar from '../../src/Components/SnackBar'
 import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo'
+import fetchSubjectStudents from '../../src/CustomHooks/StaffHooks/fetchSubjectStudents'
 
 // import {Redirect} from 'react-router-dom'
 
 
 
 const StaffDashboard = () => {
-  // let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
-  // let fetching = useSelector((state)=>state.staffInformation.staffFetchingState)
-  const [snacksBarBody, setsnacksBarBody] = useState('')
-  const [snacksBarType, setsnacksBarType] = useState('info')
-  
-  // const fetchStaffInformation = ()=>{
-  //   if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
-  //     let endpoint = 'http://localhost:7777/staff/dashboard'
-  //     let token = localStorage.token
-  //     axios.post(endpoint, {token})
-  //     .then((res)=>{
-  //         console.log(res)
-  //         if (res.status==200) {
-  //           dispatch(fetchStaff(res.data))
-  //           dispatch(setFetching(false))
-  //         } else if(res.status != 200){
-  //             state.staffInformation = 'error'
-  //         }
-  //     })
-  //     .catch((err)=>{
-  //         console.log(err);
-  //     })
-  //   }
-  // }
   const [staffInfo, fetching, staffNotifications, notificationFetchingState] = fetchStaffInfo();
-
-  const showSnackBar = () => {
-      // Get the snackbar DIV
-      var x = document.getElementById("snackbarContainer");
-      x.className = "show";
-      setTimeout(()=>{ x.className = x.className.replace("show", ""); }, 3000);
-  }
+  const [classStudents] = fetchSubjectStudents();
 
   // https://res.cloudinary.com/dc9o9pwld/image/upload/q_50/cld-sample.jpg (quality)
   // https: r_max (rouded)
@@ -61,7 +31,6 @@ const StaffDashboard = () => {
               <DashboardOtherSide/>
             </>}
         </div>
-        <div id='snackbarContainer'><SnackBar body={snacksBarBody} type={snacksBarType}/></div>
     </>
   )
 }

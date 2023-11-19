@@ -22,7 +22,7 @@ const fetchStaffInfo = () => {
       try {
         if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
           const endpoint = 'http://localhost:7777/staff/dashboard';
-          const token = localStorage.token;
+          const token = localStorage.staffToken;
           const res = await axios.post(endpoint, { token });
 
           if (res.status === 200) {

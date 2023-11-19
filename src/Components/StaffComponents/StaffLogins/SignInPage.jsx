@@ -34,18 +34,22 @@ const SignInPage = () => {
           console.log('success');
           console.log(res);
           if (res.status==200) {
-            localStorage.setItem('token', res.data.token)
+            localStorage.setItem('staffToken', res.data.token)
             localStorage.token = res.data.token
             setTimeout(() => navigate("/staff/dashboard"), 3000);
             DisplayToast('success', 'Successfully Signed In')
-          } else if(res.status==11000){
-            DisplayToast('error', 'Email Already Exixts')
-          } else if(res.status==401){
-            DisplayToast('error', 'Error Logging You In')
           }
       })
       .catch((err)=>{
           console.log(err);
+          alert('error')
+          if(err.response.status==477){
+            DisplayToast('error', 'Invalid Login Email')
+          } else if(err.response.status==478){
+            DisplayToast('error', 'Wrong Password')
+          } else{
+            DisplayToast('error', 'An Error Occurred, Plases Try Again')
+          }
       })
       }
   })
@@ -72,6 +76,7 @@ const SignInPage = () => {
                   <input type="checkbox" className='accent-red-400' name="" id="" /><small className='text-white'>Remenber me</small>
                   <button type='submit' className='block py-2 bg-orange-500 w-full rounded-md hover:bg-orange-300'>Sign In</button>
                   <p>New here? <Link to='/staff/signin' className='inline text-blue-500  hover:underline'>Sign Up</Link></p>
+                  <p>Forgotten Password? <Link to='/staff/forgottenpassword' className='inline text-red-500  hover:underline'>Reset</Link></p>
               </form>            
           </div>
           <div style={{backgroundImage: "url('/teachers/gallary6.jpg')"}} className='signinOtherDiv rounded-4'>

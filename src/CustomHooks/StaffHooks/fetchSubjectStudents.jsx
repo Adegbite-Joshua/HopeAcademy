@@ -8,10 +8,7 @@ const fetchSubjectStudents = () => {
   const fetching = useSelector((state) => state.staffInformation.staffFetchingState);
   const socket = useSelector((state) => state.socketIO.socket);
   let classStudents = useSelector((state)=>state.staffInformation.classStudents)
-  const staffNotifications = useSelector((state) => state.staffInformation.staffNotifications);
-  const notificationFetchingState = useSelector((state) => state.staffInformation.notificationFetchingState);
   const dispatch = useDispatch();
-  let localStaffInfo = {};
 
   useEffect(() => {
     async function fetchData() {
@@ -25,7 +22,7 @@ const fetchSubjectStudents = () => {
                   dispatch(fetchClassStudents(res.data))
                   dispatch(setFetching(false))
                 } else if(res.status != 200){
-                    state.staffInformation = 'error'
+                    // state.staffInformation = 'error'
                 }
             })
             .catch((err)=>{
@@ -40,7 +37,7 @@ const fetchSubjectStudents = () => {
     fetchData();
   }, [socket, staffInfo]);
 
-  return [];
+  return [classStudents];
 };
 
 export default fetchSubjectStudents;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import TestOverView from './TestOverView'
 import TestOverViewNone from './TestOverViewNone'
@@ -6,11 +6,11 @@ import TestOverViewNone from './TestOverViewNone'
 const SubmittedTest = () => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let fetchingData = useSelector((state)=>state.staffInformation.staffFetchingState)
-  let SubmittedWork;
-  if (!fetchingData) {
-    SubmittedWork = staffInfo.submittedWorks?.filter((submits, index)=>index<5)
-  }
-
+  const [SubmittedWork, setSubmittedWork ] = useState();
+  useEffect(()=>{
+    setSubmittedWork(staffInfo.submittedWorks?.filter((submits, index)=>index<5));
+  }, [SubmittedWork])
+  console.log(SubmittedWork)
   return (
     <>
         <div className='w-full px-5 bg-white rounded-lg mt-5 py-5'>
@@ -26,11 +26,9 @@ const SubmittedTest = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {!fetchingData?SubmittedWork?.lenght>0?SubmittedWork.map(()=>(<>
-                    <TestOverView/>
-                    <TestOverView/>
-                    <TestOverView/>
-                    <TestOverView/></>)): <TestOverViewNone/>:'' }
+                    {!fetchingData ? SubmittedWork?.length>0 ? SubmittedWork.map((work)=>(
+                      <TestOverView work={work}/>)
+                    ) : <TestOverViewNone/> : null }
                 </tbody>
             </table>
         </div>

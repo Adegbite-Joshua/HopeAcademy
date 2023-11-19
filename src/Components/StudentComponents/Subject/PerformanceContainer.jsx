@@ -28,7 +28,8 @@ const PerformanceContainer = ({subjectDetails}) => {
             fileName,
             fileBase64,
             staffClass: Number(studentInfo.class),
-            // staffEmail: '',
+            date: new Date().toLocaleDateString(),
+            seen: false,
             subjectName: subjects[subjectDetails?.subjectIndex],
             fileDescription: document.getElementById('fileDescription').value
         }
