@@ -15,7 +15,6 @@ import { subjects } from '../../../../constants/subjects'
 const SubjectMainDiv = ({ func, subjectDetails }) => {
     let allStaffs = useSelector((state) => state.studentInformation.allStaffs);
     useEffect(() => {
-        console.log(document.getElementById("subjectContainer").scrollHeight)
         document.getElementById("subjectContainer").scrollTop = document.getElementById("subjectContainer").scrollHeight
     }, [])
 

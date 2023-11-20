@@ -4,6 +4,7 @@ import ResultsDisplay from './ResultsDisplay'
 import SubjectPerformance from './SubjectPerformance'
 import axios from 'axios'
 import { subjects } from '../../../../constants/subjects';
+import DisplayToast from '../../../CustomHooks/DisplayToast';
 // import subjects from '../../subjectArray';
 
 
@@ -29,7 +30,6 @@ const PerformanceContainer = ({subjectDetails}) => {
             fileBase64,
             staffClass: Number(studentInfo.class),
             date: new Date().toLocaleDateString(),
-            seen: false,
             subjectName: subjects[subjectDetails?.subjectIndex],
             fileDescription: document.getElementById('fileDescription').value
         }
@@ -39,14 +39,14 @@ const PerformanceContainer = ({subjectDetails}) => {
         axios.post(endpoint, submitDetails)
         .then((res)=>{
             if(res.status==200){
-                alert('submit sent')
-            } else if(res.status==402){
-                alert('an error occurred, try again')
-            }
-            console.log(res.data);
+                DisplayToast('success', 'Submit Sent')
+              }
         })
         .catch((error)=>{
             console.log(error);
+            if(res.response.status==402){
+              DisplayToast('error', 'An error occurred, try again')
+          }
         })
         
     }

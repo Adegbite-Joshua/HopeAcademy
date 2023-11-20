@@ -10,7 +10,7 @@ const DashboardMainDiv = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   // const [staffInfo, setstaffInfo] = useState(useSelector((state)=>state.staffInformation.staffInformation))
-  let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
+  let staffInfo = useSelector((state)=>state.staffInformation.staffInformation);
   return (
     <>
         <div className='DashboardMainDiv mt-16 md:mt-0 h-screen basis-full md:basis-7/12 px-5 overflow-y-auto'>
@@ -21,7 +21,7 @@ const DashboardMainDiv = () => {
             <SubmittedTest/>
             <div className='w-full flex flex-col md:flex-row space-x-3'>
                 <TopStudents/>
-                <StaffGroup/>
+                {/* <StaffGroup/> */}
             </div>
         </div>
     </>

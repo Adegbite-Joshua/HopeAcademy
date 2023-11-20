@@ -9,8 +9,7 @@ const SubmittedTest = () => {
   const [SubmittedWork, setSubmittedWork ] = useState();
   useEffect(()=>{
     setSubmittedWork(staffInfo.submittedWorks?.filter((submits, index)=>index<5));
-  }, [SubmittedWork])
-  console.log(SubmittedWork)
+  }, [staffInfo])
   return (
     <>
         <div className='w-full px-5 bg-white rounded-lg mt-5 py-5'>
@@ -18,11 +17,10 @@ const SubmittedTest = () => {
             <table className='w-full border-collapse border bottom-1 border-black'>
                 <thead>
                     <tr className='text-center'>
-                        <td  className='border-collapse border border-1 border-black md' style={{fontSize: '11px'}}>Name</td>
+                        <td  className='border-collapse border border-1 border-black md' style={{fontSize: '11px'}}>Email</td>
                         <td  className='border-collapse border border-1 border-black md' style={{fontSize: '11px'}}>Date Of Submission</td>
-                        <td  className='border-collapse border border-1 border-black md' style={{fontSize: '11px'}}>Status</td>
-                        <td  className='border-collapse border border-1 border-black md' style={{fontSize: '11px'}}>Download</td>
-                        <td  className='border-collapse border border-1 border-black md' style={{fontSize: '11px'}}>View Status</td>
+                        <td  className='border-collapse border border-1 border-black md' style={{fontSize: '11px'}}>File Name</td>
+                        <td  className='border-collapse border border-1 border-black md' style={{fontSize: '11px'}}>Description</td>
                     </tr>
                 </thead>
                 <tbody>

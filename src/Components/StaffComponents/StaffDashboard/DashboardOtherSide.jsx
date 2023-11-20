@@ -14,7 +14,7 @@ const DashboardOtherSide = () => {
             <div className="flex w-full items-center justify-center">
                 <Calendar/>
             </div>
-            <StaffTimeline/>
+            {/* <StaffTimeline/> */}
         </div>
     </>
   )

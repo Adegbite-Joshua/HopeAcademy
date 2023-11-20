@@ -2,8 +2,6 @@ import axios from 'axios';
 import React, {useEffect, useState}from 'react'
 import { useSelector } from 'react-redux';
 import { subjects } from '../../../../constants/subjects';
-// import FileViewer from '../../FileViewer';
-// import subjects from '../../subjectArray';
 import SubjectResource from './SubjectResource'
 
 const ResourcesContainer = ({subjectDetails, func, studentResources}) => {
@@ -35,7 +33,7 @@ const ResourcesContainer = ({subjectDetails, func, studentResources}) => {
     <>
         {studentResources.length>0?studentResources.map((resource, index)=>(
           <SubjectResource resource={resource}/>
-        )):'This Subject Has No Resources'}
+        )): <p className='p-2 text-center'>This Subject Has No Resources</p>}
     </>
   )
 }
