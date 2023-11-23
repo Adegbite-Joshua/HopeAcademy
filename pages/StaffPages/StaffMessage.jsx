@@ -129,13 +129,13 @@ const StaffMessage = () => {
     <>
         <div className="StaffMessage flex w-screen flex-col md:flex-row bg-slate-300 relative ring-0">
             <DashboardNav className=' order-1'/>
-            {fetching && <Loader/>}
-            {fetching==false && <>
-              <div className='flex  md:basis-11/12 flex-col-reverse md:flex-row h-screen border-2'>
+            {/* {fetching && <Loader/>}
+            {fetching==false && <> */}
+              <div className='flex w-full md:basis-11/12 flex-row h-screen border-2'>
                 <MessageMainDiv messages={allMessages[partnerId]} sendMessage={sendMessage} partnerName={partnerName} partnerCommonId={partnerCommonId} />
                 <MessageOtherDiv setPartner={setPartner}/>
               </div>
-            </>}
+            {/* </>} */}
         </div>
     </>
   )

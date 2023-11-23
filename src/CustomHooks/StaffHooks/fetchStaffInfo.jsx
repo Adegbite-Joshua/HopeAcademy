@@ -37,7 +37,7 @@ const fetchStaffInfo = () => {
         }
       } catch (error) {
         DisplayToast('error', 'An Error Occurred, Please Try Again')
-        navigate('/staff/signin')
+        // navigate('/staff/signin')
         console.log(error);
       }
 
