@@ -17,8 +17,8 @@ const MessageMainDiv = ({partnerName, messages, partnerCommonId, sendMessage}) =
   
   return (
     <>
-        <div className='MessageMainDiv md:mt-0 h-5/6 md:h-full basis-full md:basis-8/12 px-5 overflow-y-auto border-2 border-red-500'>
-            <div className='w-full h-full bg-white overflow-y-auto p-2 border-2 border-green-500'>
+        <div className='MessageMainDiv order-5 md:order-none md:mt-0 h-96 md:h-full md:basis-8/12 px-5 overflow-y-auto'>
+            <div className='w-full h-full bg-white overflow-y-auto p-2'>
                 <div id='messageContainer' className=' h-5/6 overflow-y-auto border border-3 border-blue-400'>
                 {messages?.length>=1?messages.map((message, index)=>(
                     message.senderId==staffInfo._id?<SenderMessages messageBody={message} message={message.message} time={`Date: ${message.messageDate} Time: ${message.messageTime}`}/>:<ReceiverMessages messageBody={message} message={message.message} time={`Date: ${message.messageDate} Time: ${message.messageTime}`}/>
@@ -28,7 +28,7 @@ const MessageMainDiv = ({partnerName, messages, partnerCommonId, sendMessage}) =
                     </div>
                 </>}        
                 </div>
-                <div className=' h-1/6 w-full flex flex-col border-2 border-yellow-500'>
+                <div className=' h-1/6 w-full flex flex-col'>
                   <h3 className=' text-center font-bold'>{partnerName}</h3>
                   <d className="flex flex-row mt-auto">
                     <input name="" id="message" className='h-12 w-10/12 border-2 rounded-md mt-auto my-2 p-2'></input>

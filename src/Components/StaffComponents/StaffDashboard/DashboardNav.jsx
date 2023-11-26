@@ -7,15 +7,15 @@ const DashboardNav = () => {
     document.getElementById("navLinks").classList.toggle('hidden')
   }
   const staffNotifications = useSelector((state) => state.staffInformation.staffNotifications);
-  const [notificationAmount, setnotificationAmount] = useState();
-  useEffect(()=>{
-    console.log(staffNotifications)
-    if(staffNotifications && staffNotifications?.unread>0){
-      setnotificationAmount(staffNotifications?.unread)
+  const [notificationAmount, setNotificationAmount] = useState('');
+
+  useEffect(() => {
+   if (staffNotifications && staffNotifications.unread > 0) {
+      setNotificationAmount(String(staffNotifications.unread));
     } else {
-      setnotificationAmount('')
+      setNotificationAmount('');
     }
-  }, [staffNotifications])
+  }, []);
   return (
     <>
         <div className='absolute order-0 basis-0 w-screen md:relative md:basis-1/12 flex flex-col justify-center align-middle h-16 md:h-screen bg-blue-700 px-4 navbar'> 

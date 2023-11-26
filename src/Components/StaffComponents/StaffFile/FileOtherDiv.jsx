@@ -68,8 +68,14 @@ const FileOtherDiv = () => {
                   <p>Alternative text - include a link <a href="port.pdf">to the PDF!</a></p>
               </object> */}
               <FileViewer fileLink={fileLink} fileType={fileType} width='100%' height='60%' />
-              <input type="text" defaultValue={fileTitle} placeholder='File Title' />
-              <input type='text' defaultValue={fileDescription} placeholder='Fie Description' />
+              <div className='flex'>
+                <label>Title</label>
+                <input type="text" defaultValue={fileTitle} placeholder='File Title' className='h-12 border-2 rounded-md' />
+              </div>
+              <div className='flex'>
+                <label>Description</label>
+                <input type='text' defaultValue={fileDescription} placeholder='Fie Description' className='h-12 border-2 rounded-md' />
+              </div>
               <p className=' text-right'><small>10:20PM</small></p>
               <ButtonComp onClick={()=>closeFileView()} name='Close'/>
               <ButtonComp name='Update FIle Info'/>

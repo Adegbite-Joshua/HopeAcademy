@@ -7,6 +7,7 @@ export const staffInformation = createSlice({
         staffNotifications: {},
         allStaffs: [],
         allStudents: [],
+        allAdmins: [],
         classStudents: [],
         staffFetchingState: true,
         notificationFetchingState: true
@@ -36,6 +37,10 @@ export const staffInformation = createSlice({
             Object.assign(state.allStudents = action.payload)  
             console.log(current(state)); 
         },
+        fetchAllAdmins: (state, action)=>{
+            Object.assign(state.allAdmins = action.payload)  
+            console.log(current(state)); 
+        },
         fetchClassStudents: (state, action)=>{
             Object.assign(state.classStudents = action.payload)  
             console.log(current(state));
@@ -51,6 +56,6 @@ export const staffInformation = createSlice({
     }
 })
 
-export const {fetchStaff, fetchAllStaffs, fetchAllStudents, fetchClassStudents, setFetching, fetchStaffNotifications, updateStaffNotifications, setNotificationFetching, shownStaffNotifications} = staffInformation.actions
+export const {fetchStaff, fetchAllStaffs, fetchAllStudents, fetchClassStudents, fetchAllAdmins, setFetching, fetchStaffNotifications, updateStaffNotifications, setNotificationFetching, shownStaffNotifications} = staffInformation.actions
 
 export default staffInformation.reducer

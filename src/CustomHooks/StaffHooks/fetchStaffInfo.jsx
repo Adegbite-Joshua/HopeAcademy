@@ -37,26 +37,27 @@ const fetchStaffInfo = () => {
         }
       } catch (error) {
         DisplayToast('error', 'An Error Occurred, Please Try Again')
-        // navigate('/staff/signin')
+        navigate('/staff/signin')
         console.log(error);
       }
 
-      // try {
-      //   if (Object.keys(staffNotifications).length === 0 && staffNotifications.constructor === Object) {
-      //     const endpoint = 'http://localhost:7777/staff/notifications';
-      //     const id = localStaffInfo._id;
-      //     const res = await axios.post(endpoint, { id });
+      try {
+        if (Object.keys(staffNotifications).length === 0 && staffNotifications.constructor === Object) {
+          const endpoint = 'http://localhost:7777/staff/notifications';
+          const id = staffInfo._id;
+          const res = await axios.post(endpoint, { id });
 
-      //     if (res.status === 200) {
-      //       dispatch(fetchStaffNotifications(res.data));
-      //       dispatch(setNotificationFetching(false));
-      //     } else if (res.status !== 200) {
+          if (res.status === 200) {
+            dispatch(fetchStaffNotifications(res.data));
+            dispatch(setNotificationFetching(false));
+            socket.emit('connectSocketId', res.data._id);
+          } else if (res.status !== 200) {
 
-      //     }
-      //   }
-      // } catch (error) {
-      //   console.log(error);
-      // }
+          }
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     fetchData();

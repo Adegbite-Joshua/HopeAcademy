@@ -6,7 +6,6 @@ import People from './People'
 const OtherPeople = ({setPartner}) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   let allStudentsInfo = useSelector((state)=>state.staffInformation.allStudents)
-  console.log(allStudentsInfo)
   const [viewing, setviewing] = useState(0)
   const dispatch = useDispatch()
   // console.log(allStudentsInfo[0][0].firstName)
@@ -23,7 +22,7 @@ const OtherPeople = ({setPartner}) => {
               <option value="5">SSS3</option>
             </select>
             {allStudentsInfo.length>0?allStudentsInfo[viewing].length>0?allStudentsInfo[viewing].map((student, index)=>(
-            <People key={index} mainindex={viewing} name={`${student.firstName} ${student.lastName}`} id={student._id} img='jkd' email={student.email} setPartner={setPartner} identity='Student'/>
+            <People key={index} mainindex={viewing} name={`${student.firstName} ${student.lastName}`} id={student._id} img='/vite.svg' email={student.email} setPartner={setPartner} identity='Student'/>
             )): <People name='No name' img='jkd' email='kkk'/>:''}
         </div>
     </>

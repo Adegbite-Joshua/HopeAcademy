@@ -5,7 +5,7 @@ import MessageOtherDiv from '../../src/Components/StaffComponents/StaffMessage/M
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/DashboardNav'
-import { fetchStaff, fetchAllStaffs, fetchAllStudents, setFetching } from '../../src/redux/staffInformation'
+import { fetchStaff, fetchAllStaffs, fetchAllStudents, fetchAllAdmins, setFetching } from '../../src/redux/staffInformation'
 import Loader from '../../src/Loader'
 import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo'
 
@@ -18,6 +18,8 @@ const StaffMessage = () => {
   let socket = useSelector((state)=>state.socketIO.socket);
   let allStaffs = useSelector((state)=>state.staffInformation.allStaffs)
   let allStudents = useSelector((state)=>state.staffInformation.allStudents)
+  let allAdmins = useSelector((state)=>state.staffInformation.allAdmins)
+
   const [partnerId, setpartnerId] = useState('')
   const [partnerName, setpartnerName] = useState('')
   const [partnerCommonId, setpartnerCommonId] = useState('')
@@ -50,6 +52,7 @@ const StaffMessage = () => {
   const fetchAll =()=>{
     let studentEndpoint = 'http://localhost:7777/student/allstudents'
     let staffEndPoint = 'http://localhost:7777/student/allstaffs'
+    let adminEndpoint = 'http://localhost:7777/student/alladmins';
       if(allStaffs.length==0){
         dispatch(setFetching(true))
         axios.get(staffEndPoint)
@@ -67,6 +70,17 @@ const StaffMessage = () => {
         axios.get(studentEndpoint)
         .then((res)=>{
           dispatch(fetchAllStudents(res.data))
+          dispatch(setFetching(false))
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+      }
+      if (allAdmins.length==0) {
+        dispatch(setFetching(true))
+        axios.get(adminEndpoint)
+        .then((res)=>{
+          dispatch(fetchAllAdmins(res.data))
           dispatch(setFetching(false))
         })
         .catch((err)=>{
@@ -103,6 +117,7 @@ const StaffMessage = () => {
     if (allMessages[partnerId]==undefined || allMessages[partnerId]==null) {
       axios.post('http://localhost:7777/staff/createchat', chatId)
       .then((res)=>{
+        console.log(res.data)
         setpartnerCommonId(res.data.created._id);
         commonId = partnerId
         setallMessages(
@@ -129,13 +144,13 @@ const StaffMessage = () => {
     <>
         <div className="StaffMessage flex w-screen flex-col md:flex-row bg-slate-300 relative ring-0">
             <DashboardNav className=' order-1'/>
-            {/* {fetching && <Loader/>}
-            {fetching==false && <> */}
-              <div className='flex w-full md:basis-11/12 flex-row h-screen border-2'>
+            {fetching && <Loader/>}
+            {fetching==false && <>
+              <div className='grid grid-cols-1 gap-2 md:gap-0 md:flex w-full md:basis-11/12 flex-row h-screen border-2'>
                 <MessageMainDiv messages={allMessages[partnerId]} sendMessage={sendMessage} partnerName={partnerName} partnerCommonId={partnerCommonId} />
                 <MessageOtherDiv setPartner={setPartner}/>
               </div>
-            {/* </>} */}
+            </>}
         </div>
     </>
   )
