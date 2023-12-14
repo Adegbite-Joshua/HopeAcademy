@@ -7,6 +7,7 @@ import axios from 'axios'
 import * as Yup from 'yup';
 import { subjects } from '../../constants/subjects'
 import DisplayToast from '../../src/CustomHooks/DisplayToast'
+import MessageSchool from '../../src/Components/MessageSchool'
 
 
 
@@ -15,6 +16,8 @@ const SignUpPage = () => {
     document.querySelector('title').innerText = 'Sign Up | Student'; 
 
     const navigate = useNavigate()
+    const [fileType, setfileType] = useState('.jpeg, .jpg, .gif, .tif, .psd');
+
 
     const [signingUp, setsigningUp] = useState(false)
     const [imageBase64, setimageBase64] = useState('')
@@ -66,6 +69,7 @@ const SignUpPage = () => {
             tasks: []
         }
         console.log(details);
+        console.log(imageBase64);
         let endpoint = 'http://localhost:7777/student/signup'
         if (imageBase64 != '') {
             setsigningUp(true)
@@ -75,15 +79,14 @@ const SignUpPage = () => {
                     if (res.status == 200) {
                         DisplayToast('success', 'Account Successfully Created')
                         navigate("/student/signin");
-                    } else if (res.status == 11000) {
-                        DisplayToast('error', 'Email Entered Already Exists')
-                        setsigningUp(false)
-                    } else if (res.status == 401) {
-                        DisplayToast('error', 'Error! Ensure You Fill All Reqired Informations Correctly')
-                        setsigningUp(false)
                     }
                 })
                 .catch((err) => {
+                    if (err.response.status == 478) {
+                        DisplayToast('error', 'Email Already Exists')
+                    } else {
+                        DisplayToast('error', 'An Error Occurred, Pease try Again')
+                    }
                     setsigningUp(false)
                     console.log(err);
                 })
@@ -188,18 +191,19 @@ const SignUpPage = () => {
                         <label htmlFor='state'>State</label>
                         <input type='text' className='w-full border-2 rounded-md p-2 h-12' {...formik.getFieldProps('state')} placeholder='State' id='state' name='state' />
                         <small className='text-danger'>{formik.touched.state && formik.errors.state}</small><br />
-                        <div style={{ aspectRatio: '1' }} className='w-3/6 mx-auto rounded-lg bg-black opacity-3/6 my-2 flex justify-center items-center'>
-                            <h3 className='text-white'>Profile Picture</h3>
+                        <div style={{ aspectRatio: '1' }} className='w-3/6 mx-auto rounded-lg overflow-hidden bg-black opacity-3/6 my-2 flex justify-center items-center'>
+                            {imageBase64 ? <img src={imageBase64} className='w-full h-full' alt="" /> : <h3 className='text-white'>Profile Picture</h3>}
                         </div>
-                        <input type="file" onChange={(e) => selectImage(e)} name="pictureUrl" className='w-full file:mr-4 file:py-2 file:rounded-md file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 rounded-md p-2 h-12' id="" />
+                        <input type="file" accept={fileType} onChange={(e) => selectImage(e)} name="pictureUrl" className='w-full file:mr-4 file:py-2 file:rounded-md file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 rounded-md p-2 h-12' id="" />
                         <button type='submit' className='w-full rounded-3xl block my-2 text-center p-2 bg-blue-500' disabled={signingUp ? true : false}>{signingUp ? 'Signing Up' : 'Sign Up'}</button>
                         <p>Already have an account? <Link className='inline text-blue-700' to='/student/signin'>Sign In</Link></p>
                     </form>
                 </div>
                 <div style={{backgroundImage: "url('/teachers/gallary6.jpg')"}} className="signupOtherDiv  rounded-5 flex items-center justify-center">
-                    <span className='px-3 py-2 rounded-3xl bg-blue-600 text-white'><Link to='/student/signin'>Sign In</Link></span>
+                    <span className='px-3 py-2 rounded-3xl bg-blue-600 text-white'><Link to='/stduent/signin'>Sign In</Link></span>
                 </div>
             </div>
+            <MessageSchool/>
         </>
     )
 }
