@@ -19,7 +19,7 @@ const StaffSubmit = () => {
   }
   return (
     <>
-        <div className=' StaffSubmit containerAll'>
+        <div className=' StaffSubmit containerAll h-screen'>
             <DashboardNav/>
             {fetching && <Loader/>}
             {fetching==false && <>

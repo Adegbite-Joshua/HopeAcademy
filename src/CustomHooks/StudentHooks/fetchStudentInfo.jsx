@@ -32,11 +32,12 @@ const fetchStudentInfo = () => {
               dispatch(fetchStudent(res.data))
               dispatch(setFetched(false))
               socket.emit('connectSocketId', res.data._id);
-            } else {
-              DisplayToast('error', 'Invalid Token')
-              navigate('/student/signin')
-              console.log('error');
             }
+          })
+          .catch((err)=>{
+            DisplayToast('error', 'Invalid Token')
+            navigate('/student/signin')
+            console.log('error');
           })
       }
 

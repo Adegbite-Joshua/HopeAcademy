@@ -96,7 +96,6 @@ const Student = () => {
 
   const setDefault=()=>{
     if(paramsValue.email && Object.keys(staffInfo).length > 0 && staffInfo.constructor === Object){
-      console.log(paramsValue)
       setcategory(0);
       setmainindex(staffInfo.class);
       setemail(paramsValue.email);
@@ -106,7 +105,7 @@ const Student = () => {
   }
   return (
     <>
-        <div className=' relative flex w-screen h-auto md:h-screen flex-col md:flex-row bg-slate-300 ring-0'>
+        <div className=' relative flex w-screen h-screen flex-col md:flex-row bg-slate-300 ring-0'>
             <DashboardNav/>
             {fetching && <Loader/>}
             {fetching==false && <>

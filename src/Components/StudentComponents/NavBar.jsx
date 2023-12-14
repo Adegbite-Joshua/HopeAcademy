@@ -1,10 +1,16 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const NavBar = () => {
+    const navigate = useNavigate();
     const openNavPop = () => {
         document.getElementById('mySidenav').classList.toggle('responsive')
     }
+
+    const signOut = () => {
+        navigate('/student/signin')
+        localStorage.removeItem('studentToken')
+      }
     return (
         <>
             <div id="mySidenav" className="sidenav z-50 sticky top-0 bg-blue-600 text-center flex flex-col items-center justify-center px-5">
@@ -18,7 +24,7 @@ const NavBar = () => {
                 <NavLink to='/student/notifications' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-calendar mr-2'></i>Notifications</span></NavLink>
                 <NavLink to='/student/feepayment' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-dollar-sign mr-2'></i>Payments</span></NavLink>
                 <NavLink to='/student/profile' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-cog mr-2'></i>Profile</span></NavLink>
-                <NavLink to='/' className="nav-link"><span className='flex items-center'><i className='hidden fas fa-sign-out-alt mr-2'></i>Sign Out</span></NavLink>
+                <button onClick={signOut} className="nav-link"><span className='flex items-center'><i className='hidden fas fa-sign-out-alt mr-2'></i>Sign Out</span></button>
                 <span id='openPop' className='p-2 rounded-md border-2 border-white md:hidden' onClick={openNavPop}>
                     <i className='fa fa-bars text-white'></i>
                 </span>

@@ -2,6 +2,7 @@ import React , {useState, useEffect}from 'react'
 import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/DashboardNav'
 import SettingMainDiv from '../../src/Components/StaffComponents/StaffSetting/SettingMainDiv'
 import SettingOtherDiv from '../../src/Components/StaffComponents/StaffSetting/SettingOtherDiv'
+import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo'
 import Loader from '../../src/Loader'
 
 const StaffSetting = () => {

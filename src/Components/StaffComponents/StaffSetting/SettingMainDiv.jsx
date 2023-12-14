@@ -9,10 +9,11 @@ const SettingMainDiv = ({disp}) => {
         <div className="SettingMainDiv middleDiv">
             {disp=='allSettings'?<><ProfiileUpdate/>
             <SocialMediaUpdate/>
-            <SubjectSetting/></>: ''}
+            {/* <SubjectSetting/> */}
+            </>: ''}
             {disp=='profile'?<ProfiileUpdate/>:''}
             {disp=='social'?<SocialMediaUpdate/>:''}
-            {disp=='subject'?<SubjectSetting/>:''}
+            {/* {disp=='subject'?<SubjectSetting/>:''} */}
         </div>
     </>
   )

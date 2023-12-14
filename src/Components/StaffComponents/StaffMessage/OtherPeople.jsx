@@ -22,7 +22,7 @@ const OtherPeople = ({setPartner}) => {
               <option value="5">SSS3</option>
             </select>
             {allStudentsInfo.length>0?allStudentsInfo[viewing].length>0?allStudentsInfo[viewing].map((student, index)=>(
-            <People key={index} mainindex={viewing} name={`${student.firstName} ${student.lastName}`} id={student._id} img='/vite.svg' email={student.email} setPartner={setPartner} identity='Student'/>
+            <People key={index} mainindex={viewing} name={`${student.firstName} ${student.lastName}`} id={student._id} img={student.pictureUrl} email={student.email} setPartner={setPartner} identity='Student'/>
             )): <People name='No name' img='jkd' email='kkk'/>:''}
         </div>
     </>
