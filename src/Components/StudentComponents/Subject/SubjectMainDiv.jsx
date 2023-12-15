@@ -6,7 +6,7 @@ import SubjectPerformance from './SubjectPerformance'
 import './style.scss'
 import SubjectResource from './SubjectResource'
 import PerformanceContainer from './PerformanceContainer';
-import ResourcesContainer from './ResourcesCOntainer';
+import ResourcesContainer from './ResourcesContainer';
 import { useSelector } from 'react-redux';
 import fetchClassTeachersComp from '../../../CustomHooks/StudentHooks/fetchClassTeachers'
 import { subjects } from '../../../../constants/subjects'
@@ -21,13 +21,7 @@ const SubjectMainDiv = ({ func, subjectDetails }) => {
     const [viewing, setviewing] = useState('Performance');
     const [studentResources, setstudentResources] = useState([]);
     const [classTeachers] = fetchClassTeachersComp();
-
-    // const measure =()=>{
-    //     // document.getElementById("subjectContainer").scrollTop = document.getElementById("subjectContainer").scrollHeight
-    //     // console.log(document.getElementById("subjectContainer").scrollBottom)
-    //     // console.log(document.getElementById("subjectContainer").scrollHeight)
-    // }
-    // subjectContainer.scrollTop = subjectContainer.scrollHeight;      allStaffs[subjectIndex].subjectInfo.subjectName
+    
     const setresources = (resources) => {
         setstudentResources(resources)
     }
