@@ -22,7 +22,7 @@ const LandingPageNav = ({ percent }) => {
         <nav className="bg-blue-500 p-4 text-white h-28 ">
             <div className="flex justify-between items-center h-full p-5 relative">
                 <Link to='/' className='h-full flex flex-row justify-center items-center gap-3'>
-                    <img src="/vite.svg" className='w-32 h-full' alt="" />
+                    <img src="/school_logo.png" className='w-32 h-full' alt="" />
                     <h6>HOPE Academy</h6>
                 </Link>
                 <button onClick={showNavBar} className='p-2 border-2 rounded-lg md:hidden'><i className='fa fa-bars'></i></button>

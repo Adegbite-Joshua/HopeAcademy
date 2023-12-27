@@ -11,10 +11,10 @@ const ContactUsMap = () => {
         Email: <a href="mailto:adegbitejoshua07@gmail.com">adegbitejoshua07@gmail.com</a>
       </p>
       <p className="mb-2">
-        Facebook: <Link to="/contact" className="text-blue-500">Adegbite Joshua</Link>
+        Facebook: <Link to="/contact_us" className="text-blue-500">Adegbite Joshua</Link>
       </p>
       <p className="mb-2">
-        Twitter: <Link to="/contact" className="text-blue-500">info@.com</Link>
+        Twitter: <Link to="/contact_us" className="text-blue-500">info@.com</Link>
       </p>
       <p className="mb-2">
         Telephone: <a href="tel:+2347015886456">+2347015886456</a>
