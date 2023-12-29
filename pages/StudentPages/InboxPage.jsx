@@ -139,7 +139,8 @@ const InboxPage = () => {
           senderId: studentInfo._id,
           partnerCommonId: partnerCommonId 
       }
-      let endpoint = 'http://localhost:7777/student/sendmessage'
+      let endpoint = 'http://localhost:7777/send_message'
+      axios.post(endpoint, {messageDetails, partnerId})
       socket.emit('sendMessage', messageDetails, partnerId)
       setallMessages((prevAllMessages) => {
         let newAll = { ...prevAllMessages };

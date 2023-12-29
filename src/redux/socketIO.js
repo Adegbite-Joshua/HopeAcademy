@@ -5,7 +5,7 @@ import socketClient from 'socket.io-client'
 export const socketIO = createSlice({
     name: 'socketIO',
     initialState:{
-        socket: socketClient('https://hopeacademysocketio.glitch.me'),
+        socket: socketClient('https://horn-efficient-headphones.glitch.me'),
     },
     reducers: {
         setSocket: (state, action)=>{
