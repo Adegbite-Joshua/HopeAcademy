@@ -1,20 +1,8 @@
 {
-    "rewrites": [
-      {"source": "/(.*)", "destination": "/index.html"}
-    ],
-    "routes": [
-      {
-        "src": "/static/(.*)",
-        "dest": "/static/$1"
-      },
-      {
-        "src": "/favicon.ico",
-        "dest": "/favicon.ico"
-      },
-      {
-        "src": "/robots.txt",
-        "dest": "/robots.txt"
-      }
-    ]
-  }
-  
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}
