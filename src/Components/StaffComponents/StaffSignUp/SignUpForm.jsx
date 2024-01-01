@@ -10,7 +10,10 @@ import FileViewer from '../../../FileViewer';
 import DisplayToast from '../../../CustomHooks/DisplayToast';
 import { updateAllStaffs,updateAStaff , setFetchingState} from '../../../redux/adminInformation';
 import fetchBanksList from '../../../CustomHooks/fetchBanksList';
+import { subjects } from '../../../../constants/subjects';
 // import FetchAllStudentsAndStaffs from '../../CustomHooks/AdminHooks/FetchAllStudentsAndStaffs'
+
+
 const SignUpForm = ({type, data}) => {
   const dispatch = useDispatch();
   const [fileType, setfileType] = useState('.jpeg, .jpg, .gif, .tif, .psd');
@@ -18,7 +21,6 @@ const SignUpForm = ({type, data}) => {
   const [states, LGAs] = FetchStatesAndLGAs();
   const [banksList] = fetchBanksList();
   const [accountName, setaccountName] = useState('Account Name Will Show Here')
-  const [name, setname] = useState('jhherjhjhh');
 
   const formik = useFormik({
     initialValues: {
@@ -31,7 +33,8 @@ const SignUpForm = ({type, data}) => {
       accountNumber: type == 'edit' ? data?.accountNumber : '',
       bankName: type == 'edit' ? data?.bankName : '',
       bankCode: type == 'edit' ? data?.bankCode : '',
-      staffIndex: 0,
+      staffIndex: type == 'signup' ? null : 0,
+      adminToken: '',
       class: 0,
       address: type == 'edit' ? data?.address : '',
       localGovernment: type == 'edit' ? data?.localGovernment : '',
@@ -45,11 +48,12 @@ const SignUpForm = ({type, data}) => {
       email: Yup.string().email('Invalid email').required('Required'),
       password: type!='edit'?Yup.string().min(5, 'Too Short').max(40, 'Too Long').required('Required'): Yup.string(),
       address: Yup.string().min(2, 'Too Short').max(230, 'Too Long').required('Required'),
-      localGovernment: Yup.string().required('Please Select A Local Government'),
-      state: Yup.string().required('Please Select A State'),
+      // state: Yup.string().required('Please Select A State'),
       imageBase64: Yup.string().required('Please Select An Image'),
-      accountNumber: Yup.string().matches(/^\d{10}$/, 'Account Number must be exactly 10 digits').required('Account Number Is Required'),
-      bankCode: Yup.string().required('Please Select A Bank'),
+      // localGovernment: Yup.string().required('Please Select A Local Government'),
+      adminToken: Yup.string().required('Admin token is required'),
+      accountNumber: type == 'edit' ? Yup.string().matches(/^\d{10}$/, 'Account Number must be exactly 10 digits').required('Account Number Is Required') : Yup.string(),
+      bankCode: type == 'edit' ? Yup.string().required('Please Select A Bank') : Yup.string(),
     }),
     onSubmit: (values)=>{
       submit(values);
@@ -75,6 +79,7 @@ const SignUpForm = ({type, data}) => {
       password: values.password,
       staffIndex: values.staffIndex,
       imageBase64,
+      adminToken: values.adminToken,
       accountName: values.accountName,
       accountNumber: values.accountNumber,
       bankName: values.bankName,
@@ -90,7 +95,7 @@ const SignUpForm = ({type, data}) => {
           other: ''
       },
       subjectInfo: {
-          subjectName: subjects[values.staffIndex],
+          subjectName: subjects[values?.staffIndex],
           subjectDescription: '',
           subjectPicUrl: ''
       },
@@ -100,7 +105,7 @@ const SignUpForm = ({type, data}) => {
       axios.post(endpoint, details)
       .then((res)=>{
         if(res.status==200){
-          let [show] = DisplayToast('success', 'Account Created Successfully')
+          DisplayToast('success', 'Account Created Successfully')
           formik.resetForm();
           if(type=='signup'){
             navigate("/staff/signin")
@@ -108,16 +113,16 @@ const SignUpForm = ({type, data}) => {
             dispatch(updateAllStaffs({index: values.class, newData: values}))
           }
         } else if(res.status==11000){
-          let [show] = DisplayToast('error', 'Email Already Exist')
+          DisplayToast('error', 'Email Already Exist')
           setsigningUp(false)
         } else if(res.status==401){
-          let [show] = DisplayToast('error', 'Error! Ensure You Fill All Reqired Informations Correctly')
+          DisplayToast('error', 'Error! Ensure You Fill All Reqired Informations Correctly')
           setsigningUp(false)
         }
       })
       .catch((err)=>{
           console.log(err);
-          let [show] = DisplayToast('error', 'An Unknown Error Occurred, Please Try Again')
+          DisplayToast('error', 'An Unknown Error Occurred, Please Try Again')
       })
     }
     if(type=='edit') {
@@ -126,7 +131,7 @@ const SignUpForm = ({type, data}) => {
       axios.post(endpoint, updateDetails)
       .then((res)=>{
         if(res.status==200){
-          let [show] = DisplayToast('success', 'Account Updated Successfully')
+          DisplayToast('success', 'Account Updated Successfully')
           formik.resetForm();
           if(type=='signup'){
             navigate("/staff/signin")
@@ -134,19 +139,19 @@ const SignUpForm = ({type, data}) => {
             dispatch(updateAStaff({index: values.class, newData: {...data, ...updateDetails, _id: data._id}}))
           }
         } else if(res.status==11000){
-          let [show] = DisplayToast('error', 'Email Already Exist')
-          // setsigningUp(false)
+          DisplayToast('error', 'Email Already Exist')
+          setsigningUp(false)
         } else if(res.status==401){
-          let [show] = DisplayToast('error', 'Error! Ensure You Fill All Reqired Informations Correctly')
-          // setsigningUp(false)
+          DisplayToast('error', 'Error! Ensure You Fill All Reqired Informations Correctly')
+          setsigningUp(false)
         } else {
-          let [show] = DisplayToast('error', 'An Error Occurred! Please Try Again')
+          DisplayToast('error', 'An Error Occurred! Please Try Again')
         }
       })
       .catch((err)=>{
           console.log(err);
-          let [show] = DisplayToast('error', 'An Error Occurred! Please Try Again')
-          // setsigningUp(false)
+          DisplayToast('error', 'An Error Occurred! Please Try Again')
+          setsigningUp(false)
       })
     }
   }
@@ -263,17 +268,22 @@ const SignUpForm = ({type, data}) => {
                   {formik.touched.localGovernment && formik.errors.localGovernment ? (<p className="mt-2 text-sm text-red-600">{formik.errors.localGovernment}</p>) : null}
                 </div>    
                 <div className="mb-4">
+                  <label htmlFor="adminToken" className='text-white'> Admin Token</label>
+                  <input type="text" name='adminToken' id='adminToken' {...formik.getFieldProps('adminToken')} className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-md  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Admin Token' />
+                  {formik.touched.adminToken && formik.errors.adminToken ? (<p className="mt-2 text-sm text-red-600">{formik.errors.adminToken}</p>) : null}
+                </div>    
+                <div className="mb-4">
                   <label htmlFor="" className='w-full'>
                     <span className="sr-only">Choose File To Upload</span>
                     <input type="file" accept={fileType} onChange={(e) => selectFile(e)} className=' w-full my-1 block text-sm text-slate-500 file:mr-4 file:py-2 file:rounded-md file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100' />
                   </label>
                   {formik.touched.imageBase64 && formik.errors.imageBase64 ? (<p className="mt-2 text-sm text-red-600">{formik.errors.imageBase64}</p>) : null}
                 </div>
-                <div className=' w-full md:w-3/6 aspect-square block mx-auto'>
+                <div className=' w-full md:w-3/6 aspect-square block rounded-lg mx-auto overflow-hidden'>
                     {imageBase64 ? <>
                         <FileViewer fileLink={imageBase64} fileType={fileType} />
                     </> : <>
-                        <div className=' bg-black flex w-full h-full items-center justify-center rounded-lg'>
+                        <div className=' bg-black flex w-full h-full items-center justify-center'>
                             <p className=' text-white text-center'>Profile Picture</p>
                         </div>
                     </>}
