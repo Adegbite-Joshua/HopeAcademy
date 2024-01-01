@@ -112,16 +112,19 @@ const SignUpForm = ({type, data}) => {
           } else {
             dispatch(updateAllStaffs({index: values.class, newData: values}))
           }
-        } else if(res.status==11000){
-          DisplayToast('error', 'Email Already Exist')
-          setsigningUp(false)
-        } else if(res.status==401){
-          DisplayToast('error', 'Error! Ensure You Fill All Reqired Informations Correctly')
-          setsigningUp(false)
-        }
+        } 
       })
       .catch((err)=>{
           console.log(err);
+          if(res.status==478){
+            DisplayToast('error', 'Email already exist')
+            setsigningUp(false)
+          } else if(res.status==477){
+            DisplayToast('error', 'Invalid admin token')
+            setsigningUp(false)
+          } else {
+            
+          }
           DisplayToast('error', 'An Unknown Error Occurred, Please Try Again')
       })
     }

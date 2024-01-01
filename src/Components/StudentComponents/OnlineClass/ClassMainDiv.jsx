@@ -72,11 +72,7 @@ const ClassMainDiv = ({startClass, classId, setstartClass }) => {
     const joinClass = () => {
         setjoiningClass(true);
         setrequestMade(true);
-        const peer = new Peer(undefined, {
-            host: 'localhost',
-            port: 9999,
-            path: '/peerjs',
-        });
+        const peer = new Peer();
         peer.on('open', (id) => {
             console.log('Student ID: ', id);
             socket.emit('userJoined', { userType: 'student', userId: id, roomId: `class_video${0}${classId}` })

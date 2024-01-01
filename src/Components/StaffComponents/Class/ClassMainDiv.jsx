@@ -37,11 +37,7 @@ const ClassMainDiv = ({startClass, endClass, setendClass}) => {
 
     const broadcastClass = () => {
         // Start the class video
-        const peer = new Peer(undefined, {
-            host: 'localhost',
-            port: 9999,
-            path: '/peerjs',
-        });
+        const peer = new Peer();
         
         peer.on('open', (id) => {
             console.log('Teacher ID: ', id);

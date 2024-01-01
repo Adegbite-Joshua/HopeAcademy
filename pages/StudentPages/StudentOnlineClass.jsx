@@ -5,11 +5,11 @@ import fetchStudentInfo from '../../src/CustomHooks/StudentHooks/fetchStudentInf
 import NavBar from '../../src/Components/StudentComponents/NavBar';
 import ClassMainDiv from '../../src/Components/StudentComponents/OnlineClass/ClassMainDiv';
 import ClassSideDiv from '../../src/Components/StudentComponents/OnlineClass/ClassSideDiv';
+import Loader from '../../src/Loader';
 
 const StudentOnlineClass = () => {
   document.querySelector('title').innerText = 'Online Class | Student'; 
-  const [studentInfo, fetching] = fetchStudentInfo();
-  const [studentNotifications, notificationFetchingState] = fetchStudentInfo();
+  const [studentInfo, fetching, termDetails] = fetchStudentInfo();  
   const [notificationType, setnotificationType] = useState('all')
   const [notifications, setnotifications] = useState([]);
   const [startClass, setstartClass] = useState(false);
@@ -26,12 +26,10 @@ const StudentOnlineClass = () => {
     <>
       <div id='pageContainer' className="grid h-screen md:flex md:flex-row bg-slate-300 relative ring-0">
         <NavBar />
-        <ClassMainDiv startClass={startClass} classId={classId} setstartClass={setstartClass} />
-        <ClassSideDiv startClassFunction={startClassFunction} />
-        {/* {!notificationFetchingState && <>
-                <NotificationMainDiv notifications={notifications} />
-                <NotificationOtherSide setNotificationType={setNotificationType} searchNotification={searchNotification}/>
-            </>} */}
+        {fetching ? <Loader/> : <>
+          <ClassMainDiv startClass={startClass} classId={classId} setstartClass={setstartClass} />
+          <ClassSideDiv startClassFunction={startClassFunction} />
+        </>}
       </div>
     </>
   )
