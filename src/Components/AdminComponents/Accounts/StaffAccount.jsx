@@ -46,7 +46,7 @@ const StaffAccount = () => {
             const [show] = DisplayToast('success', 'Operation Cancelled')    
             return;
         }
-        let endpoint = 'http://localhost:7777/admin/delete_account';
+        let endpoint = 'https://hopeacademy.vercel.app/admin/delete_account';
         let details = {
             accountClass:staffClass, 
             type:'staff',

@@ -48,7 +48,7 @@ const StudentDashboard = () => {
         email: studentInfo.email,
         token: localStorage.getItem('studentToken')
       }
-      let endpoint = 'http://localhost:7777/student/addtotask'
+      let endpoint = 'https://hopeacademy.vercel.app/student/addtotask'
       axios.post(endpoint, taskDetails)
         .then((res)=>{
           setaddingTask(false)

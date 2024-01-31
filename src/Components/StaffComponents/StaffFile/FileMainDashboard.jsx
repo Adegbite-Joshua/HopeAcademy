@@ -30,7 +30,7 @@ const FileMainDashboard = () => {
       fileType
     }
     console.log(fileDetails);
-    let fileEndpoint = 'http://localhost:7777/staff/upload'
+    let fileEndpoint = 'https://hopeacademy.vercel.app/staff/upload'
     try {
       const response = await axios.post(fileEndpoint, fileDetails)
       console.log(response);

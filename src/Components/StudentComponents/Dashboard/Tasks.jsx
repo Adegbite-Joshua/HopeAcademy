@@ -9,7 +9,7 @@ const Tasks = ({ task, date, empty, wholeTask, index }) => {
     let studentInfo = useSelector((state) => state.studentInformation.studentInformation);
     let dispatch = useDispatch();
     const deleteTask = () => {
-        let endpoint = 'http://localhost:7777/student/deletetask'
+        let endpoint = 'https://hopeacademy.vercel.app/student/deletetask'
         axios.post(endpoint, { token: localStorage.getItem('studentToken'), wholeTask })
             .then((res) => {
                 console.log(res.data);
@@ -20,7 +20,7 @@ const Tasks = ({ task, date, empty, wholeTask, index }) => {
             })
     }
     const updateTask = () => {
-        let endpoint = 'http://localhost:7777/student/updatetask'
+        let endpoint = 'https://hopeacademy.vercel.app/student/updatetask'
         let taskDetails = {
             taskDate: 'qwertyu',
             taskTime: 'qwertyu',

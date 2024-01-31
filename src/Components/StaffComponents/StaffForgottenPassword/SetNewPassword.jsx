@@ -10,7 +10,7 @@ const SetNewPassword = ({token}) => {
   
 
   useEffect(()=>{
-    axios.post('http://localhost:7777/staff/check_password_link_validity', {token})
+    axios.post('https://hopeacademy.vercel.app/staff/check_password_link_validity', {token})
     .then((res)=>{
       console.log(res)
       if(res.status==203){

@@ -26,7 +26,7 @@ export default function AlertDialogSlide({showDialog, setDialog, text}) {
         startingTime: Date.now(),
         email: studentDetails.email
     }
-    axios.post('http://localhost:7777/student/start_entrance_test', studentEntranceDetails)
+    axios.post('https://hopeacademy.vercel.app/student/start_entrance_test', studentEntranceDetails)
     .then((res)=>{
         if (res.status==200) {
           localStorage.setItem('startingTime', JSON.stringify(Date.now()))

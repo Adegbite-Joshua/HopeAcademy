@@ -16,7 +16,7 @@ const StaffNotification = () => {
   useEffect(() => {
     const performOnload = async()=>{
       dispatch(shownStaffNotifications(0));
-      const endpoint = 'http://localhost:7777/staff/read_notifications';
+      const endpoint = 'https://hopeacademy.vercel.app/staff/read_notifications';
       if(staffInfo){
         let readNotification = await axios.post(endpoint, {id: staffInfo._id})
       }

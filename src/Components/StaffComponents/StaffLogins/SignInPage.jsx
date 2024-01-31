@@ -27,7 +27,7 @@ const SignInPage = () => {
     }),
     onSubmit: (values) => {
       console.log(values);
-      let endpoint = 'http://localhost:7777/staff/signin'
+      let endpoint = 'https://hopeacademy.vercel.app/staff/signin'
       axios.post(endpoint, values)
         .then((res) => {
           console.log('success');

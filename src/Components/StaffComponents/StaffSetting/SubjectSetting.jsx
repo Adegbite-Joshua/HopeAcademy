@@ -27,7 +27,7 @@ const SubjectSetting = () => {
       let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
       
       const fetchStaffInformation = ()=>{
-        let endpoint = 'http://localhost:7777/staff/dashboard'
+        let endpoint = 'https://hopeacademy.vercel.app/staff/dashboard'
         let staffEmail = localStorage.getItem('staffemail')
         let staffPassword = localStorage.getItem('staffpassword')
         let staffClass = localStorage.getItem('staffclass')
@@ -58,7 +58,7 @@ const SubjectSetting = () => {
       }
       const validateStaff =()=>{
         let token = localStorage.token
-        let validateEndpoint = 'http://localhost:7777/staff/validatetoken'
+        let validateEndpoint = 'https://hopeacademy.vercel.app/staff/validatetoken'
         axios.get(validateEndpoint, {headers : {
           "Authorization": `Bearer ${token}`,
           "Content-Toe": "application/json",
@@ -99,7 +99,7 @@ const SubjectSetting = () => {
             subjectName: subjects[staffIndex]
         }
         // console.log(details);
-        let endpoint = 'http://localhost:7777/staff/updatesubject'
+        let endpoint = 'https://hopeacademy.vercel.app/staff/updatesubject'
         axios.post(endpoint, details)
         .then((response)=>{
             console.log(response);

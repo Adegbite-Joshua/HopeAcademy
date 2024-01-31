@@ -44,7 +44,7 @@ export default StudentResultPage
 //   useEffect(() => {
 //     const performOnload = async()=>{
 //       dispatch(shownStudentNotifications(0));
-//       const endpoint = 'http://localhost:7777/student/read_notifications';
+//       const endpoint = 'https://hopeacademy.vercel.app/student/read_notifications';
 //       if(studentInfo){
 //         let readNotification = await axios.post(endpoint, {id: studentInfo._id})
 //       }

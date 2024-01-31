@@ -27,7 +27,7 @@ const NewAcademicTerm = () => {
           isChecked: Yup.boolean().oneOf([true], 'You must accept the terms and conditions'),
         }),
         onSubmit: (values) => {
-          axios.post('http://localhost:7777/admin/start_new_academic_term', values)
+          axios.post('https://hopeacademy.vercel.app/admin/start_new_academic_term', values)
           .then((res)=>{
             console.log(res)
             if (res.status==200){

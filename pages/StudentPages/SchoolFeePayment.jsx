@@ -40,7 +40,7 @@ const SchoolFeePayment = () => {
                     studentClass: studentInfo.class,
                     email: studentInfo.email
                 });
-                axios.post('http://localhost:7777/student/fee_payment', {
+                axios.post('https://hopeacademy.vercel.app/student/fee_payment', {
                     type: paymentType,
                     amount: paymentAmount,
                     ref: reference,

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 const MessageStudent = ({category, mainindex, individualEmail, partnerName }) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   const messageStudent = async()=>{
-    let sendMessageEndpoint = 'http://localhost:7777/staff/message'
+    let sendMessageEndpoint = 'https://hopeacademy.vercel.app/staff/message'
     let messageBody = {
       messageSenderClass: staffInfo.class,
       messageSenderEmail: staffInfo.email,

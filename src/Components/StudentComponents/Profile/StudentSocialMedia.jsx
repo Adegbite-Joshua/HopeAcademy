@@ -23,7 +23,7 @@ const StudentSocialMedia = () => {
             'links.whatsapplink': whatsapplink,
             'links.otherlink': otherlink,
         }
-        let endpoint = 'http://localhost:7777/student/updateinfo'
+        let endpoint = 'https://hopeacademy.vercel.app/student/updateinfo'
         try {
             const upload = await axios.post(endpoint, { details, token: localStorage.token })
             console.log(upload);

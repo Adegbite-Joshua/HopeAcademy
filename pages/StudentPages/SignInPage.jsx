@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import DisplayToast from '../../src/CustomHooks/DisplayToast'
 import LandingPageNav from '../../src/Components/LandingPageNav'
-
+import LandingPageFooter from '../../src/Components/LandingPages/Footer'
 
 
 const SignInPage = () => {
@@ -31,7 +31,7 @@ const SignInPage = () => {
         //     .required('Required')
         // }),
         onSubmit: (values) => {
-            let endpoint = 'http://localhost:7777/student/signin'
+            let endpoint = 'https://hopeacademy.vercel.app/student/signin'
             axios.post(endpoint, values)
                 .then((res) => {
                     console.log(res);
@@ -81,6 +81,7 @@ const SignInPage = () => {
                     <button className=' w-24 px-3 py-2 rounded-full bg-blue-500 cursor-pointer hover:bg-blue-600'><Link to='/student/signup'>Sign Up</Link></button>
                 </div>
             </div>
+            <LandingPageFooter/>
         </>
 
     )

@@ -17,7 +17,7 @@ const StudentMainDIv = ({category, mainindex, individualEmail, partnerName, clas
   const saveStudentsAssesment =()=>{
     console.log(assessment)
     let allAssessment = {...assessment, staffClass: Number(staffInfo.class), studentEmail: individualEmail, subjectIndex: Number(staffInfo.class) }
-    let endpoint = 'http://localhost:7777/staff/submitstudentsassessment'
+    let endpoint = 'https://hopeacademy.vercel.app/staff/submitstudentsassessment'
     axios.post(endpoint, allAssessment)
     .then((res)=>{
       console.log(res)

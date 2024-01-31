@@ -22,7 +22,7 @@ const NewPasswordForm = ({ userDetails }) => {
     };
 
     const saveNewPassword = () => {
-        axios.post('http://localhost:7777/staff/change_password', {
+        axios.post('https://hopeacademy.vercel.app/staff/change_password', {
             staffClass: userDetails.staffClass,
             email: userDetails.email,
             newPassword

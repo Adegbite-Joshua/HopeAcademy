@@ -27,7 +27,7 @@ const SocialMediaUpdate = () => {
       email: staffInfo.email
     }
     // console.log(updateDetails);
-    let infoendpoint = 'http://localhost:7777/staff/updateinfo'
+    let infoendpoint = 'https://hopeacademy.vercel.app/staff/updateinfo'
     axios.post(infoendpoint, updateDetails)
     .then((res)=>{
       console.log(res.data);

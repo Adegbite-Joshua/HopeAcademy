@@ -21,7 +21,7 @@ const LandingPageNav = ({ percent }) => {
     <div className='sticky top-0 z-50'>
         <nav className="bg-blue-500 p-4 text-white h-28 ">
             <div className="flex justify-between items-center h-full p-5 relative">
-                <Link to='/' className='h-full flex flex-row justify-center items-center gap-3'>
+                <Link to='/' className='h-full flex md:flex-row justify-center items-center gap-3'>
                     <img src="/school_logo.png" className='w-32 h-full' alt="" />
                     <h6>HOPE Academy</h6>
                 </Link>
@@ -38,7 +38,7 @@ const LandingPageNav = ({ percent }) => {
                     </div>
                     <div className=" my-5 relative group md:my-auto">
                         <span className='cursor-pointer' onClick={() => showSubLink('signInSubLink')}>Sign In</span>
-                        <div id='signInSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
+                        <div id='signInSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-white md:text-blue-800 p-2 rounded shadow-md">
                             <Link to="/student/signin" className='block border-b-2 mb-3'>Student</Link>
                             <Link to="/staff/signin" className='block border-b-2 mb-3'>Staff</Link>
                             <Link to="/admin/signin" className='block border-b-2 mb-3'>Admin</Link>

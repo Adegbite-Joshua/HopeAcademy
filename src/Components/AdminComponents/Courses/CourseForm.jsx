@@ -63,7 +63,7 @@ const CourseForm = () => {
             staffId: Yup.string().required('Please select a staff')
         }),
         onSubmit: (values) => {
-          axios.post('http://localhost:7777/admin/create_course', values)
+          axios.post('https://hopeacademy.vercel.app/admin/create_course', values)
           .then((res)=>{
               if(res.status==200){
                 displayToast('success', 'Course Added Successfully')

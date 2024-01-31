@@ -12,7 +12,7 @@ const TestWelcomeAndInput = () => {
 
     const handleStartTest = () => {
         if (email.trim() && password.trim()) {
-          axios.post('http://localhost:7777/student/entrancetestsignin', {email, password})
+          axios.post('https://hopeacademy.vercel.app/student/entrancetestsignin', {email, password})
           .then((res)=>{
             if (res.status==200) {
                 sessionStorage.setItem('entrance_test_login', JSON.stringify({email,password}))

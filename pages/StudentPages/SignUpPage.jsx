@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import { subjects } from '../../constants/subjects'
 import DisplayToast from '../../src/CustomHooks/DisplayToast'
 import MessageSchool from '../../src/Components/MessageSchool'
+import LandingPageFooter from '../../src/Components/LandingPages/Footer'
 
 
 
@@ -70,7 +71,7 @@ const SignUpPage = () => {
         }
         console.log(details);
         console.log(imageBase64);
-        let endpoint = 'http://localhost:7777/student/signup'
+        let endpoint = 'https://hopeacademy.vercel.app/student/signup'
         if (imageBase64 != '') {
             setsigningUp(true)
             axios.post(endpoint, details)
@@ -157,16 +158,16 @@ const SignUpPage = () => {
                     <form onSubmit={formik.handleSubmit}>
                         <label htmlFor="firstName">First Name</label>
                         <input {...formik.getFieldProps('firstName')} className='w-full border-2 rounded-md p-2 h-12 my-2' type="text" id='firstName' name='firstName' placeholder='First Name' />
-                        <small className='text-danger'>{formik.touched.firstName && formik.errors.firstName}</small><br />
+                        <small className='text-red-500'>{formik.touched.firstName && formik.errors.firstName}</small><br />
                         <label htmlFor="lastName">Last Name</label>
                         <input {...formik.getFieldProps('lastName')} className='w-full border-2 rounded-md p-2 h-12 my-2' id='lastName' name='lastName' type="text" placeholder='Last Name' />
-                        <small className='text-danger'>{formik.touched.lastName && formik.errors.lastName}</small><br />
+                        <small className='text-red-500'>{formik.touched.lastName && formik.errors.lastName}</small><br />
                         <label htmlFor="email">Email</label>
                         <input {...formik.getFieldProps('email')} className='w-full border-2 rounded-md p-2 h-12 my-2' id='email' name='email' type="text" placeholder='Email' />
-                        <small className='text-danger'>{formik.touched.email && formik.errors.email}</small><br />
+                        <small className='text-red-500'>{formik.touched.email && formik.errors.email}</small><br />
                         <label htmlFor="password">Password</label>
                         <input {...formik.getFieldProps('password')} className='w-full border-2 rounded-md p-2 h-12 my-2' id='password' name='password' type="password" placeholder='Password' />
-                        <small className='text-danger'>{formik.touched.password && formik.errors.password}</small><br />
+                        <small className='text-red-500'>{formik.touched.password && formik.errors.password}</small><br />
                         <label htmlFor="clas">Class</label>
                         <select name="clas" id="clas" onChange={formik.handleChange} required className='w-full border-2 rounded-md p-2 h-12 my-2'>
                             <option value="0">JSS1</option>
@@ -184,13 +185,13 @@ const SignUpPage = () => {
                         </select>
                         <label htmlFor='address'>Address</label>
                         <input type='text' className='w-full border-2 rounded-md p-2 h-12' {...formik.getFieldProps('address')} placeholder='Address' id='address' name='address' />
-                        <small className='text-danger'>{formik.touched.address && formik.errors.address}</small><br />
+                        <small className='text-red-500'>{formik.touched.address && formik.errors.address}</small><br />
                         <label htmlFor='localGovernment'>Local Goverment</label>
                         <input type='text' className='w-full border-2 rounded-md p-2 h-12' {...formik.getFieldProps('localGovernment')} placeholder='Local Goverment' id='localGovernment' name='localGovernment' />
-                        <small className='text-danger'>{formik.touched.localGovernment && formik.errors.localGovernment}</small><br />
+                        <small className='text-red-500'>{formik.touched.localGovernment && formik.errors.localGovernment}</small><br />
                         <label htmlFor='state'>State</label>
                         <input type='text' className='w-full border-2 rounded-md p-2 h-12' {...formik.getFieldProps('state')} placeholder='State' id='state' name='state' />
-                        <small className='text-danger'>{formik.touched.state && formik.errors.state}</small><br />
+                        <small className='text-red-500'>{formik.touched.state && formik.errors.state}</small><br />
                         <div style={{ aspectRatio: '1' }} className='w-3/6 mx-auto rounded-lg overflow-hidden bg-black opacity-3/6 my-2 flex justify-center items-center'>
                             {imageBase64 ? <img src={imageBase64} className='w-full h-full' alt="" /> : <h3 className='text-white'>Profile Picture</h3>}
                         </div>
@@ -203,6 +204,7 @@ const SignUpPage = () => {
                     <span className='px-3 py-2 rounded-3xl bg-blue-600 text-white'><Link to='/stduent/signin'>Sign In</Link></span>
                 </div>
             </div>
+            <LandingPageFooter/>
             <MessageSchool/>
         </>
     )

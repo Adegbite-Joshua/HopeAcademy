@@ -30,7 +30,7 @@ const StudentsSubject = () => {
     }, [])
     const validateStudent =()=>{
       let token = localStorage.token
-      let validateEndpoint = 'http://localhost:7777/student/validatedashboard'
+      let validateEndpoint = 'https://hopeacademy.vercel.app/student/validatedashboard'
       axios.get(validateEndpoint, {headers : {
         "Authorization": `Bearer ${token}`,
         "Content-Toe": "application/json",
@@ -50,7 +50,7 @@ const StudentsSubject = () => {
     const fetchStudentInformation =()=>{
       if(Object.keys(studentInfo).length === 0 && studentInfo.constructor === Object){
         dispatch(setFetched(true))
-        let endpoint = 'http://localhost:7777/student/dashboard'
+        let endpoint = 'https://hopeacademy.vercel.app/student/dashboard'
         let details = {
           class: Number(localStorage.getItem('studentclass')),
           password: localStorage.getItem('studentpassword'),
@@ -67,7 +67,7 @@ const StudentsSubject = () => {
         })
       }
       if(allStaffs.length==0){
-        let staffEndPoint = 'http://localhost:7777/student/allstaffs'
+        let staffEndPoint = 'https://hopeacademy.vercel.app/student/allstaffs'
         dispatch(setFetched(true))
         axios.get(staffEndPoint)
         .then((res)=>{

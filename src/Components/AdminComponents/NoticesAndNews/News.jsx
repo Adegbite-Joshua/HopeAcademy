@@ -26,7 +26,7 @@ const News = ({data}) => {
 
 
   const deleteNews = async () => {
-    let endpoint = 'http://localhost:7777/admin/delete_notice_and_news'
+    let endpoint = 'https://hopeacademy.vercel.app/admin/delete_notice_and_news'
     if(!data._id){
       DisplayToast('error', 'Cannot Delete Newly Added News Or Notice');
       return;

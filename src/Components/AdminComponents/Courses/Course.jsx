@@ -10,7 +10,7 @@ const Course = ({subjectName, teacherName, email, subjectImage, id, courseClass,
   const dispatch = useDispatch();
   
   const deleteCourse = async()=>{
-    let endpoint = 'http://localhost:7777/admin/delete_course'
+    let endpoint = 'https://hopeacademy.vercel.app/admin/delete_course'
     let deleted = await axios.post(endpoint, {courseId:id, class: courseClass})
     if (deleted.status==200) {
       let [show] = DisplayToast('success', 'Course Deleted Successfully')

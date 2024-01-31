@@ -41,7 +41,7 @@ const Question = ({formType, a, b, c, d, question, correctAnswer, id}) => {
             seteditOption('update')
             localOption='update'
         } else if(localOption=='add'){
-            let endpoint = 'http://localhost:7777/admin/add_entrance_question';
+            let endpoint = 'https://hopeacademy.vercel.app/admin/add_entrance_question';
             let details = {
                 question: questionValue,
                 options: [optionA, optionB, optionC, optionD],
@@ -60,7 +60,7 @@ const Question = ({formType, a, b, c, d, question, correctAnswer, id}) => {
                 let [show] = DisplayToast('error', 'An Error Occurred, Please Try Again');
             })
         } else if(localOption=='update'){
-            let endpoint = 'http://localhost:7777/admin/update_entrance_question';
+            let endpoint = 'https://hopeacademy.vercel.app/admin/update_entrance_question';
             let details = {
                 _id: id,
                 question: questionValue,

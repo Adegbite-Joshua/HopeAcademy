@@ -45,7 +45,7 @@ const SignUpForm = () => {
       imageBase64: Yup.string().required('Please select an image'),
     }),
     onSubmit: (values) => {
-      axios.post('http://localhost:7777/admin/sign_up', values)
+      axios.post('https://hopeacademy.vercel.app/admin/sign_up', values)
       .then((res)=>{
         DisplayToast('success', 'Signup successful!')
         navigate('/admin/signin');

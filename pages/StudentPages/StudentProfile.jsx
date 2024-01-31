@@ -32,7 +32,7 @@ const StudentProfile = () => {
 
     const validateStudent =()=>{
       let token = localStorage.token
-      let validateEndpoint = 'http://localhost:7777/student/validatedashboard'
+      let validateEndpoint = 'https://hopeacademy.vercel.app/student/validatedashboard'
       axios.get(validateEndpoint, {headers : {
         "Authorization": `Bearer ${token}`,
         "Content-Toe": "application/json",

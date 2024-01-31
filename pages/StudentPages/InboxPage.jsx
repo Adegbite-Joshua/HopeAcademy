@@ -36,9 +36,9 @@ const InboxPage = () => {
 
 
     const fetchAll =()=>{
-      let studentEndpoint = 'http://localhost:7777/student/allstudents';
-      let staffEndPoint = 'http://localhost:7777/student/allstaffs';
-      let adminEndPoint = 'http://localhost:7777/student/alladmins';
+      let studentEndpoint = 'https://hopeacademy.vercel.app/student/allstudents';
+      let staffEndPoint = 'https://hopeacademy.vercel.app/student/allstaffs';
+      let adminEndPoint = 'https://hopeacademy.vercel.app/student/alladmins';
         if(allStaffs.length==0){
           dispatch(setFetched(true))
           axios.get(staffEndPoint)
@@ -109,7 +109,7 @@ const InboxPage = () => {
         secondId: studentInfo._id
       }
       if (allMessages[partnerId]==undefined || allMessages[partnerId]==null) {
-        axios.post('http://localhost:7777/student/createchat', chatId)
+        axios.post('https://hopeacademy.vercel.app/student/createchat', chatId)
         .then((res)=>{
           console.log(res.data.created._id);
           setpartnerCommonId(res.data.created._id);
@@ -139,7 +139,7 @@ const InboxPage = () => {
           senderId: studentInfo._id,
           partnerCommonId: partnerCommonId 
       }
-      let endpoint = 'http://localhost:7777/send_message'
+      let endpoint = 'https://hopeacademy.vercel.app/send_message'
       axios.post(endpoint, {messageDetails, partnerId})
       socket.emit('sendMessage', messageDetails, partnerId)
       setallMessages((prevAllMessages) => {

@@ -38,7 +38,7 @@ const SignInForm = () => {
 
   const signIn = async(values)=>{
     if (!otpSent) {
-        axios.post('http://localhost:7777/admin/send_otp', {email: values.email})
+        axios.post('https://hopeacademy.vercel.app/admin/send_otp', {email: values.email})
         .then((res)=>{
           if (res.status==200) {
             setOtp(res.data.otp)
@@ -52,7 +52,7 @@ const SignInForm = () => {
     } else {
         if(otp==otpInput) {
           console.log('hi')
-          axios.post('http://localhost:7777/admin/sign_in', {...values})
+          axios.post('https://hopeacademy.vercel.app/admin/sign_in', {...values})
           .then((res)=>{
             if (res.status==200) {
               localStorage.setItem('adminToken', res.data.token)

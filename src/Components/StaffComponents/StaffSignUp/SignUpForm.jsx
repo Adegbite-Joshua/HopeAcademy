@@ -101,7 +101,7 @@ const SignUpForm = ({type, data}) => {
       },
     }
     if(type=='create' || type=='signup') {
-      let endpoint = 'http://localhost:7777/staff/signup'
+      let endpoint = 'https://hopeacademy.vercel.app/staff/signup'
       axios.post(endpoint, details)
       .then((res)=>{
         if(res.status==200){
@@ -129,7 +129,7 @@ const SignUpForm = ({type, data}) => {
       })
     }
     if(type=='edit') {
-      let endpoint = 'http://localhost:7777/admin/update_staff'
+      let endpoint = 'https://hopeacademy.vercel.app/admin/update_staff'
       let {links, password, ...updateDetails} = details;
       axios.post(endpoint, updateDetails)
       .then((res)=>{
@@ -170,7 +170,7 @@ const SignUpForm = ({type, data}) => {
     let accountNumber = document.getElementById('accountNumber').value
     if (accountNumber.length==10 && bankCode != ''){
       setaccountName('Fetching Your Details...')
-      let getAccountDetails = await axios.get(`http://localhost:7777/get_account_details?bankCode=${bankCode}&accountNumber=${accountNumber}`)
+      let getAccountDetails = await axios.get(`https://hopeacademy.vercel.app/get_account_details?bankCode=${bankCode}&accountNumber=${accountNumber}`)
       if(getAccountDetails.status){
         formik.setFieldValue('accountName',getAccountDetails.account_name)
         setaccountName(getAccountDetails.account_name)

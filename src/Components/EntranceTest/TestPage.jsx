@@ -54,7 +54,7 @@ const TestPage = () => {
   }, []);
 
   const fetchQuestions =()=>{
-    axios.post('http://localhost:7777/student/get_entrance_test_questions', {email: studentDetails?.email})
+    axios.post('https://hopeacademy.vercel.app/student/get_entrance_test_questions', {email: studentDetails?.email})
     .then((res)=>{
       if (res.status==200) {
         setquestions(res.data.questions)
@@ -111,7 +111,7 @@ const TestPage = () => {
       email: studentDetails.email,
       selectedAnswer: answerIndex
     }
-    let endpoint = 'http://localhost:7777/student/select_answer'
+    let endpoint = 'https://hopeacademy.vercel.app/student/select_answer'
       axios.post(endpoint, values)
       .then((res)=>{
         console.log(res);
@@ -131,7 +131,7 @@ const TestPage = () => {
   }
 
   const submitTest =()=>{
-    axios.post('http://localhost:7777/student/submit_entrance_test', {email:studentDetails.email})
+    axios.post('https://hopeacademy.vercel.app/student/submit_entrance_test', {email:studentDetails.email})
     .then((res)=>{
       settestScore(res.data);
       setCalculatorDialog(true);

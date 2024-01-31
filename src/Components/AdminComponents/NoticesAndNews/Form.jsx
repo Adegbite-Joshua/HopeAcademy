@@ -25,8 +25,8 @@ const Form = ({type, data, closePopup }) => {
     }),
     onSubmit: async(values)=>{
       console.log(values)
-      let addEndpoint = 'http://localhost:7777/admin/add_notices_and_news';
-      let editEndpoint = 'http://localhost:7777/admin/edit_notices_and_news';
+      let addEndpoint = 'https://hopeacademy.vercel.app/admin/add_notices_and_news';
+      let editEndpoint = 'https://hopeacademy.vercel.app/admin/edit_notices_and_news';
       if(type=='edit' && !data?._id){
         DisplayToast('error', 'You Cannot Update Or Delete Newly Added News Or Notice')
         return;

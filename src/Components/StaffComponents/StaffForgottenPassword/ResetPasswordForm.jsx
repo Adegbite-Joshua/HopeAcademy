@@ -8,7 +8,7 @@ const ResetPasswordForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:7777/staff/send_password_link', { email, staffClass })
+        axios.post('https://hopeacademy.vercel.app/staff/send_password_link', { email, staffClass })
             .then((res) => {
                 console.log(res)
                 if (res.status == 200) {

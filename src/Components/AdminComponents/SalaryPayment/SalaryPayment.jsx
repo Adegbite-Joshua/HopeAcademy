@@ -25,7 +25,7 @@ const SalaryPayment = () => {
   const fetchAccountDetails = async()=>{
       if (accountNumberString.length == 10 && bankCodeString != ''){
         setaccountName('Fetching Your Details...')
-        let getAccountDetails = await axios.get(`http://localhost:7777/get_account_details?bankCode=${bankCode}&accountNumber=${accountNumber}`)
+        let getAccountDetails = await axios.get(`https://hopeacademy.vercel.app/get_account_details?bankCode=${bankCode}&accountNumber=${accountNumber}`)
         if(getAccountDetails.status){
             console.log(getAccountDetails)
             setaccountName(getAccountDetails.data.account_name)
@@ -51,7 +51,7 @@ const SalaryPayment = () => {
     if(!confirmPayment){
         return;
     }
-    let endpoint = 'http://localhost:7777/admin/pay_staffs_salary'
+    let endpoint = 'https://hopeacademy.vercel.app/admin/pay_staffs_salary'
     let payStaff = await axios.post(endpoint, {class: staffClass, adminToken})
     if (payStaff.status==200) {
         let [show] = DisplayToast('success', 'Payment Process Has Started')
@@ -68,7 +68,7 @@ const SalaryPayment = () => {
         DisplayToast('error', 'Please Set The Account Number, Bank Or The Amount')
         return;
     }
-    let endpoint = 'http://localhost:7777/admin/send_money';
+    let endpoint = 'https://hopeacademy.vercel.app/admin/send_money';
     axios.post(endpoint, {accountNumber, bankCode, amount})
     .then((res)=>{
         if(res.status==200){
@@ -80,7 +80,7 @@ const SalaryPayment = () => {
   }
 
   useEffect(()=>{
-    axios.get('http://localhost:7777/admin/paystack_balance')
+    axios.get('https://hopeacademy.vercel.app/admin/paystack_balance')
     .then((res)=>{
         if(res.status==200) setaccountBalance(`${res.data.toLocaleString()}.00`)
     })

@@ -21,7 +21,7 @@ const StudentProfileUpdate = () => {
             state: studentInfo.state
         },
         onSubmit: async (values) => {
-            let endpoint = 'http://localhost:7777/student/updateinfo'
+            let endpoint = 'https://hopeacademy.vercel.app/student/updateinfo'
             // const update = await axios.post(endpoint, {...values, token})
             axios.post(endpoint, { ...values, token })
                 .then((res) => {
