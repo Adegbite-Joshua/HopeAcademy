@@ -16,7 +16,7 @@ const ResultsMainDiv = ({studentInfo, studentAcademicResults, resultIndex}) => {
   }, [studentAcademicResults, resultIndex])
   
   const school = {
-    logoUrl: '/vite.svg',
+    logoUrl: '/school_logo.png',
     name: 'HOPE Academy',
     address: '123 School Street, Cityville, State, 12345',
     email: 'adegbitejoshua07@gmail.com',

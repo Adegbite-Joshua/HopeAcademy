@@ -33,8 +33,7 @@ const PerformanceContainer = ({subjectDetails}) => {
             subjectName: subjects[subjectDetails?.subjectIndex],
             fileDescription: document.getElementById('fileDescription').value
         }
-        console.log(submitDetails);
-        let endpoint = 'http://localhost:7777/student/sendsubmit'
+        let endpoint = 'https://hopeacademy.vercel.app/student/sendsubmit'
         // let {fileName, ...rest} = submitDetails
         axios.post(endpoint, submitDetails)
         .then((res)=>{

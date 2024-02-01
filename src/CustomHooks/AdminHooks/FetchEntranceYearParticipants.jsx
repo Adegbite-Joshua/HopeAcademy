@@ -14,7 +14,7 @@ const FetchEntranceYearParticipants = (year) => {
       try {
         if (!entranceParticipants[year] && Object.keys(adminInfo).length != 0 && adminInfo.constructor === Object) {
           dispatch(setFetchingState(true));
-          const endpoint = 'http://localhost:7777/admin/get_entrance_year_participants';
+          const endpoint = 'https://hopeacademy.vercel.app/admin/get_entrance_year_participants';
           const res = await axios.post(endpoint, {year});
           
           if (res.status === 200) {

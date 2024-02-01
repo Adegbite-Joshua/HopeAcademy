@@ -19,7 +19,7 @@ const MessageSchool = () => {
         },
         onSubmit: (values) => {
             console.log(values);
-            let messageEndpoint = 'http://localhost:7777/student/messageschool'
+            let messageEndpoint = 'https://hopeacademy.vercel.app/student/messageschool'
             axios.post(messageEndpoint, values)
                 .then((response) => {
                     if (response.status == 200) {

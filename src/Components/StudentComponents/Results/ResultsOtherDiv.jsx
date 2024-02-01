@@ -3,7 +3,6 @@ import { subjects } from '../../../../constants/subjects'
 import { stringClass } from '../../../../constants/stringClass'
 
 const ResultsOtherDiv = ({studentAcademicResults, setresultIndex}) => {
-  console.log(studentAcademicResults);
   return (
     <>
         <div className="otherDiv order-3 md:order-none basis-full md:basis-4/12 md:h-screen block bg-white overflow-y-auto mt-16 md:mt-0 p-5">

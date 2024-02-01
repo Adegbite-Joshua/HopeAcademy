@@ -11,7 +11,7 @@ const FetchNoticesAndNews = () => {
     async function fetchData() {
       try {
           if(noticesAndNews.length==0) {
-            const endpoint = 'http://localhost:7777/admin/get_notices_and_news';
+            const endpoint = 'https://hopeacademy.vercel.app/admin/get_notices_and_news';
             const res = await axios.get(endpoint);
             
             if (res.status === 200) {

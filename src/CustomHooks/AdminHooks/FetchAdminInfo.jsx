@@ -21,7 +21,7 @@ const FetchAdminInfo = () => {
       try {
         if (Object.keys(adminInfo).length === 0 && adminInfo.constructor === Object) {
           dispatch(setFetchingState(true));
-          const endpoint = 'http://localhost:7777/admin/dashboard';
+          const endpoint = 'https://hopeacademy.vercel.app/admin/dashboard';
           const token = localStorage.adminToken;
           const res = await axios.post(endpoint, { token });
           
@@ -43,7 +43,7 @@ const FetchAdminInfo = () => {
 
     //   try {
     //     if (Object.keys(staffNotifications).length === 0 && staffNotifications.constructor === Object) {
-    //       const endpoint = 'http://localhost:7777/admin/notifications';
+    //       const endpoint = 'https://hopeacademy.vercel.app/admin/notifications';
     //       const id = localadminInfo._id;
     //       const res = await axios.post(endpoint, { id });
 

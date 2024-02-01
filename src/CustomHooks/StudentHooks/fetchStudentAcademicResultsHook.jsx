@@ -14,7 +14,7 @@ const fetchStudentAcademicResultsHook = () => {
         async function fetchData() {
             if (Object.keys(studentInfo).length >= 1 && studentInfo.constructor === Object && studentAcademicResults.length === 0) {
                 dispatch(setFetchedResults(true))
-                let endpoint = 'http://localhost:7777/student/academic_results'
+                let endpoint = 'https://hopeacademy.vercel.app/student/academic_results'
                 let getStudentResults = await axios.post(endpoint, { id: studentInfo._id })
                 console.table(getStudentResults)
                 if (getStudentResults.status == 200) {

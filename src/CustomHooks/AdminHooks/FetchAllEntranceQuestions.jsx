@@ -17,7 +17,7 @@ const FetchEntranceQuestions = () => {
       try {
         if (entranceQuestions.length === 0 && Object.keys(adminInfo).length != 0 && adminInfo.constructor === Object) {
           dispatch(setFetchingState(true));  
-          let endpoint = 'http://localhost:7777/admin/get_entrance_questions'
+          let endpoint = 'https://hopeacademy.vercel.app/admin/get_entrance_questions'
           axios.get(endpoint)
           .then((res)=>{
             if(res.status==200){

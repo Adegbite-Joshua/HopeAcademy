@@ -14,7 +14,7 @@ const fetchStudentNotificationsCompo = () => {
     async function fetchData() { 
       try {
         if (Object.keys(studentInfo).length >= 1 && studentInfo.constructor === Object && Object.keys(studentNotifications).length === 0 && studentNotifications.constructor === Object) {
-          const endpoint = 'http://localhost:7777/student/notifications';
+          const endpoint = 'https://hopeacademy.vercel.app/student/notifications';
           const id = studentInfo._id;
           const res = await axios.post(endpoint, { id });
 

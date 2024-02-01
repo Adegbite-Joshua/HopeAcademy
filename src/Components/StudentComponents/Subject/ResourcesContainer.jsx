@@ -8,7 +8,7 @@ const ResourcesContainer = ({subjectDetails, func, studentResources}) => {
   let studentInfo = useSelector((state)=>state.studentInformation.studentInformation);
   let fetching = useSelector((state)=>state.studentInformation.staffFetchingState);
   const fetchResources = ()=>{
-    let endpoint = 'http://localhost:7777/student/fetchsubjectresources'
+    let endpoint = 'https://hopeacademy.vercel.app/student/fetchsubjectresources'
     let payload = {
       class: studentInfo.class,
       subject: subjects[subjectDetails.subjectIndex]

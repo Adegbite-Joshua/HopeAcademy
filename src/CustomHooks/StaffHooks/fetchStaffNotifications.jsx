@@ -15,7 +15,7 @@ const fetchStaffNotificationsCompo = () => {
     async function fetchData() {
       try {
         if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
-          const endpoint = 'http://localhost:7777/staff/dashboard';
+          const endpoint = 'https://hopeacademy.vercel.app/staff/dashboard';
           const token = localStorage.token;
           const res = await axios.post(endpoint, { token });
 
@@ -33,7 +33,7 @@ const fetchStaffNotificationsCompo = () => {
 
       try {
         if (Object.keys(staffNotifications).length === 0 && staffNotifications.constructor === Object) {
-          const endpoint = 'http://localhost:7777/staff/notifications';
+          const endpoint = 'https://hopeacademy.vercel.app/staff/notifications';
           const id = staffInfo._id;
           const res = await axios.post(endpoint, { id });
 

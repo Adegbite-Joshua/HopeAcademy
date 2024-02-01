@@ -14,7 +14,7 @@ const fetchSubjectStudents = () => {
     async function fetchData() {
       try {
         if (classStudents.length == 0 && Object.keys(staffInfo).length >= 1 && staffInfo.constructor === Object) {
-            let classStudentsEndpoint = 'http://localhost:7777/staff/fetchclassstudents'
+            let classStudentsEndpoint = 'https://hopeacademy.vercel.app/staff/fetchclassstudents'
             dispatch(setFetching(true))
             axios.post(classStudentsEndpoint, {class: Number(localStorage.getItem('staffclass')), staffIndex: Number(staffInfo.staffIndex)})
             .then((res)=>{

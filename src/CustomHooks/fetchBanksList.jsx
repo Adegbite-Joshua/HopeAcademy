@@ -12,7 +12,7 @@ const fetchBanksList = () => {
     async function fetchData() {
       try {
           if(banksList.length==0) {
-            const endpoint = 'http://localhost:7777/banks_list';
+            const endpoint = 'https://hopeacademy.vercel.app/banks_list';
             const res = await axios.get(endpoint);
             
             if (res.status === 200) {

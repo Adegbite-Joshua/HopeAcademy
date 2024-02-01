@@ -18,7 +18,7 @@ const fetchStudentInfo = () => {
     async function fetchData() {
       if (Object.keys(studentInfo).length === 0 && studentInfo.constructor === Object) {
         dispatch(setFetched(true))
-        let endpoint = 'http://localhost:7777/student/dashboard'
+        let endpoint = 'https://hopeacademy.vercel.app/student/dashboard'
         let token = localStorage.getItem('studentToken')
         axios.get(endpoint, {
           headers: {
@@ -41,7 +41,7 @@ const fetchStudentInfo = () => {
           })
       }
 
-      let endpoint = 'http://localhost:7777/student/term_details'
+      let endpoint = 'https://hopeacademy.vercel.app/student/term_details'
       let getTermDetails = await axios.get(endpoint)
       if (getTermDetails.status == 200) {
         dispatch(fetchTermDetails(getTermDetails.data))

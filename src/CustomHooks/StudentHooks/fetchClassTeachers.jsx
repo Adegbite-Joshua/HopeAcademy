@@ -15,7 +15,7 @@ const fetchClassTeachersComp = () => {
     async function fetchData() {
       if (Object.keys(studentInfo).length >= 1 && studentInfo.constructor === Object) {
         dispatch(setFetched(true))
-        let endpoint = `http://localhost:7777/student/class_teachers?studentClass=${studentInfo.class}`
+        let endpoint = `https://hopeacademy.vercel.app/student/class_teachers?studentClass=${studentInfo.class}`
         axios.get(endpoint)
           .then((res) => {
             if (res.status == 200) {

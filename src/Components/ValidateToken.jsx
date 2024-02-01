@@ -10,10 +10,6 @@ const ValidateToken = () => {
     const [display, setdisplay] = useState('false')
     
     const showSnackBar = () => {
-        // Get the snackbar DIV
-        // var x = document.getElementById("snackbarContainer");
-        // console.log(document.getElementById("snackbarContainer"));
-        // x.className = "show";
         setdisplay(true)
         setTimeout(()=>setdisplay(false), 3000);
     }
@@ -24,7 +20,7 @@ const ValidateToken = () => {
 
     const validateStaff =()=>{
         let token = localStorage.token
-        let validateEndpoint = 'http://localhost:7777/staff/validatetoken'
+        let validateEndpoint = 'https://hopeacademy.vercel.app/staff/validatetoken'
         axios.get(validateEndpoint, {headers : {
           "Authorization": `Bearer ${token}`,
           "Content-Toe": "application/json",
