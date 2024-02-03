@@ -3,6 +3,7 @@ import axios from 'axios'
 import DisplayToast from '../../../CustomHooks/DisplayToast';
 import { useSelector, useDispatch } from 'react-redux';
 import { addEntranceQuestion } from '../../../redux/adminInformation';
+import { backendurl } from '../../../../constants/backendurl';
 
 
 const Question = ({formType, a, b, c, d, question, correctAnswer, id}) => {
@@ -41,7 +42,7 @@ const Question = ({formType, a, b, c, d, question, correctAnswer, id}) => {
             seteditOption('update')
             localOption='update'
         } else if(localOption=='add'){
-            let endpoint = 'https://hopeacademy.vercel.app/admin/add_entrance_question';
+            let endpoint = `${backendurl}admin/add_entrance_question`;
             let details = {
                 question: questionValue,
                 options: [optionA, optionB, optionC, optionD],
@@ -60,7 +61,7 @@ const Question = ({formType, a, b, c, d, question, correctAnswer, id}) => {
                 let [show] = DisplayToast('error', 'An Error Occurred, Please Try Again');
             })
         } else if(localOption=='update'){
-            let endpoint = 'https://hopeacademy.vercel.app/admin/update_entrance_question';
+            let endpoint = `${backendurl}admin/update_entrance_question`;
             let details = {
                 _id: id,
                 question: questionValue,

@@ -9,6 +9,8 @@ import { subjects } from '../../constants/subjects'
 import DisplayToast from '../../src/CustomHooks/DisplayToast'
 import MessageSchool from '../../src/Components/MessageSchool'
 import LandingPageFooter from '../../src/Components/LandingPages/Footer'
+import { backendurl } from '../../constants/backendurl';
+
 
 
 
@@ -71,7 +73,7 @@ const SignUpPage = () => {
         }
         console.log(details);
         console.log(imageBase64);
-        let endpoint = 'https://hopeacademy.vercel.app/student/signup'
+        let endpoint = `${backendurl}student/signup`
         if (imageBase64 != '') {
             setsigningUp(true)
             axios.post(endpoint, details)

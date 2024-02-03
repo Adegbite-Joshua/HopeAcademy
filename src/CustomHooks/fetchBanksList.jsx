@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setbanksList, } from '../redux/generalInformation';
 import axios from 'axios';
+import { backendurl } from '../../constants/backendurl';
+
+
 
 const fetchBanksList = () => {
   const banksList = useSelector((state) => state.generalInformation.banksList);
@@ -12,7 +15,7 @@ const fetchBanksList = () => {
     async function fetchData() {
       try {
           if(banksList.length==0) {
-            const endpoint = 'https://hopeacademy.vercel.app/banks_list';
+            const endpoint = `${backendurl}banks_list`;
             const res = await axios.get(endpoint);
             
             if (res.status === 200) {

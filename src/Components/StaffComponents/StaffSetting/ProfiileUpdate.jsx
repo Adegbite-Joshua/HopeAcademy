@@ -1,6 +1,9 @@
 import React , {useState}from 'react'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
+import { backendurl } from '../../../../constants/backendurl';
+
+
 
 
 const ProfiileUpdate = () => {
@@ -25,7 +28,7 @@ const ProfiileUpdate = () => {
     }
     // let spread = {...updateDetails}
     console.log(updateDetails);
-    let infoendpoint = 'https://hopeacademy.vercel.app/staff/updateinfo'
+    let infoendpoint = `${backendurl}staff/updateinfo`
     axios.post(infoendpoint, updateDetails)
     .then((res)=>{
       console.log(res.data);

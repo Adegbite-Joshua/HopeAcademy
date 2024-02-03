@@ -1,6 +1,8 @@
 import React from 'react'
 import { useFormik } from 'formik'
 import axios from 'axios'
+import { backendurl } from '../../../../constants/backendurl';
+
 
 
 const StudentSocialMedia = () => {
@@ -23,7 +25,7 @@ const StudentSocialMedia = () => {
             'links.whatsapplink': whatsapplink,
             'links.otherlink': otherlink,
         }
-        let endpoint = 'https://hopeacademy.vercel.app/student/updateinfo'
+        let endpoint = `${backendurl}student/updateinfo`
         try {
             const upload = await axios.post(endpoint, { details, token: localStorage.token })
             console.log(upload);

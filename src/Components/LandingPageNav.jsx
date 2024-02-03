@@ -27,10 +27,10 @@ const LandingPageNav = ({ percent }) => {
                 </Link>
                 <button onClick={showNavBar} className='p-2 border-2 rounded-lg md:hidden'><i className='fa fa-bars'></i></button>
                 <div id='adminNavBar' className="md:flex md:space-x-10 h-screen md:h-full">
-                    <Link to="/" className='my-5 md:my-auto'>Home</Link>
-                    <div className=" my-5 relative group md:my-auto">
+                    <Link to="/" className='my-4 md:my-auto'>Home</Link>
+                    <div className=" my-5 py-4 md:py-0 relative group md:my-auto">
                         <span className='cursor-pointer' onClick={() => showSubLink('signUpSubLink')}>Sign Up</span>
-                        <div id='signUpSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-gray-800 p-2 rounded shadow-md">
+                        <div id='signUpSubLink' className="w-40 absolute hidden md:group-hover:block bg-white text-white md:text-blue-800 p-2 rounded shadow-md">
                             <Link to="/student/signup" className='block border-b-2 mb-3'>Student</Link>
                             <Link to="/staff/signup" className='block border-b-2 mb-3'>Staff</Link>
                             <Link to="/admin/signup" className='block border-b-2 mb-3'>Admin</Link>

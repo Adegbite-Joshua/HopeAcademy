@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import FetchAllStudentsAndStaffs from '../../../CustomHooks/AdminHooks/FetchAllStudentsAndStaffs'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { backendurl } from '../../../../constants/backendurl';
 
 
 
@@ -63,7 +64,7 @@ const CourseForm = () => {
             staffId: Yup.string().required('Please select a staff')
         }),
         onSubmit: (values) => {
-          axios.post('https://hopeacademy.vercel.app/admin/create_course', values)
+          axios.post(`${backendurl}admin/create_course`, values)
           .then((res)=>{
               if(res.status==200){
                 displayToast('success', 'Course Added Successfully')

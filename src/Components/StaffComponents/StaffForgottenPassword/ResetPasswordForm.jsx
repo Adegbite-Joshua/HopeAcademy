@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios'
+import { backendurl } from '../../../../constants/backendurl';
+
+
 
 
 const ResetPasswordForm = () => {
@@ -8,7 +11,7 @@ const ResetPasswordForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://hopeacademy.vercel.app/staff/send_password_link', { email, staffClass })
+        axios.post(`${backendurl}staff/send_password_link`, { email, staffClass })
             .then((res) => {
                 console.log(res)
                 if (res.status == 200) {

@@ -3,6 +3,8 @@ import React from 'react'
 import axios from 'axios'
 import { fetchStudent, setFetched } from '../../../redux/studentInformation'
 import { useSelector, useDispatch } from 'react-redux'
+import { backendurl } from '../../../../constants/backendurl';
+
 
 
 const StudentProfileUpdate = () => {
@@ -21,7 +23,7 @@ const StudentProfileUpdate = () => {
             state: studentInfo.state
         },
         onSubmit: async (values) => {
-            let endpoint = 'https://hopeacademy.vercel.app/student/updateinfo'
+            let endpoint = `${backendurl}student/updateinfo`
             // const update = await axios.post(endpoint, {...values, token})
             axios.post(endpoint, { ...values, token })
                 .then((res) => {

@@ -7,6 +7,7 @@ import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo';
 import {shownStaffNotifications} from '../../src/redux/staffInformation';
 import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/DashboardNav';
 import NotificationMainDiv from '../../src/Components/StaffComponents/StaffNotification/NotificationMainDiv';
+import { backendurl } from '../../constants/backendurl';
 
 const StaffNotification = () => {
   const [staffInfo, fetching, staffNotifications, notificationFetchingState] = fetchStaffInfo();
@@ -16,7 +17,7 @@ const StaffNotification = () => {
   useEffect(() => {
     const performOnload = async()=>{
       dispatch(shownStaffNotifications(0));
-      const endpoint = 'https://hopeacademy.vercel.app/staff/read_notifications';
+      const endpoint = `${backendurl}staff/read_notifications`;
       if(staffInfo){
         let readNotification = await axios.post(endpoint, {id: staffInfo._id})
       }

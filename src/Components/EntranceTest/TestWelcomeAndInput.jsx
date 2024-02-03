@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import DisplayToast from '../../CustomHooks/DisplayToast';
+import { backendurl } from '../../../../constants/backendurl';
+
 
 
 const TestWelcomeAndInput = () => {
@@ -12,7 +14,7 @@ const TestWelcomeAndInput = () => {
 
     const handleStartTest = () => {
         if (email.trim() && password.trim()) {
-          axios.post('https://hopeacademy.vercel.app/student/entrancetestsignin', {email, password})
+          axios.post(`${backendurl}student/entrancetestsignin`, {email, password})
           .then((res)=>{
             if (res.status==200) {
                 sessionStorage.setItem('entrance_test_login', JSON.stringify({email,password}))

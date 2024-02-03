@@ -3,13 +3,16 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchStudent } from '../../../redux/studentInformation'
 // import { , setFetched } from '../../redux/studentInformation'
+import { backendurl } from '../../../../constants/backendurl';
+
+
 
 
 const Tasks = ({ task, date, empty, wholeTask, index }) => {
     let studentInfo = useSelector((state) => state.studentInformation.studentInformation);
     let dispatch = useDispatch();
     const deleteTask = () => {
-        let endpoint = 'https://hopeacademy.vercel.app/student/deletetask'
+        let endpoint = `${backendurl}student/deletetask`
         axios.post(endpoint, { token: localStorage.getItem('studentToken'), wholeTask })
             .then((res) => {
                 console.log(res.data);
@@ -20,7 +23,7 @@ const Tasks = ({ task, date, empty, wholeTask, index }) => {
             })
     }
     const updateTask = () => {
-        let endpoint = 'https://hopeacademy.vercel.app/student/updatetask'
+        let endpoint = `${backendurl}student/updatetask`
         let taskDetails = {
             taskDate: 'qwertyu',
             taskTime: 'qwertyu',

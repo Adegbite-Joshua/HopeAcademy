@@ -3,6 +3,7 @@ import axios from 'axios';
 import DisplayToast from '../../../CustomHooks/DisplayToast';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateAllCourses, setFetchingState } from '../../../redux/adminInformation';
+import { backendurl } from '../../../../constants/backendurl';
 
 
 
@@ -10,7 +11,7 @@ const Course = ({subjectName, teacherName, email, subjectImage, id, courseClass,
   const dispatch = useDispatch();
   
   const deleteCourse = async()=>{
-    let endpoint = 'https://hopeacademy.vercel.app/admin/delete_course'
+    let endpoint = `${backendurl}admin/delete_course`
     let deleted = await axios.post(endpoint, {courseId:id, class: courseClass})
     if (deleted.status==200) {
       let [show] = DisplayToast('success', 'Course Deleted Successfully')

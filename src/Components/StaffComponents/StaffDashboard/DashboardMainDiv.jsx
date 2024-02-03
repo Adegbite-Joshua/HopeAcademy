@@ -1,14 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import StaffGroup from './StaffGroup'
+import { useSelector } from 'react-redux'
 import SubmittedTest from './SubmittedTest'
 import TopStudents from './TopStudents'
-import { fetchStaff } from '../../../redux/staffInformation'
 
 const DashboardMainDiv = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
   // const [staffInfo, setstaffInfo] = useState(useSelector((state)=>state.staffInformation.staffInformation))
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation);
 

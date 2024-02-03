@@ -1,10 +1,14 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { backendurl } from '../../../../constants/backendurl';
+
+
+
 
 const MessageStudent = ({category, mainindex, individualEmail, partnerName }) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   const messageStudent = async()=>{
-    let sendMessageEndpoint = 'https://hopeacademy.vercel.app/staff/message'
+    let sendMessageEndpoint = `${backendurl}staff/message`
     let messageBody = {
       messageSenderClass: staffInfo.class,
       messageSenderEmail: staffInfo.email,

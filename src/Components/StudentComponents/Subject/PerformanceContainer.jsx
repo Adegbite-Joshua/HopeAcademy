@@ -6,6 +6,8 @@ import axios from 'axios'
 import { subjects } from '../../../../constants/subjects';
 import DisplayToast from '../../../CustomHooks/DisplayToast';
 // import subjects from '../../subjectArray';
+import { backendurl } from '../../../../constants/backendurl';
+
 
 
 const PerformanceContainer = ({subjectDetails}) => {
@@ -33,7 +35,7 @@ const PerformanceContainer = ({subjectDetails}) => {
             subjectName: subjects[subjectDetails?.subjectIndex],
             fileDescription: document.getElementById('fileDescription').value
         }
-        let endpoint = 'https://hopeacademy.vercel.app/student/sendsubmit'
+        let endpoint = `${backendurl}student/sendsubmit`
         // let {fileName, ...rest} = submitDetails
         axios.post(endpoint, submitDetails)
         .then((res)=>{

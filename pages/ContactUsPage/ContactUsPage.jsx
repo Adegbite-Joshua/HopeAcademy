@@ -8,6 +8,7 @@ import LandingPageFooter from '../../src/Components/LandingPages/Footer'
 
 
 const ContactUsPage = () => {
+  document.querySelector('title').innerText = 'Contact Us | Hope Academy'; 
     
   return (
     <>

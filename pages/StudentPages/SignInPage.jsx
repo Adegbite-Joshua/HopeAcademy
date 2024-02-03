@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import DisplayToast from '../../src/CustomHooks/DisplayToast'
 import LandingPageNav from '../../src/Components/LandingPageNav'
 import LandingPageFooter from '../../src/Components/LandingPages/Footer'
+import { backendurl } from '../../constants/backendurl';
+
 
 
 const SignInPage = () => {
@@ -31,7 +33,7 @@ const SignInPage = () => {
         //     .required('Required')
         // }),
         onSubmit: (values) => {
-            let endpoint = 'https://hopeacademy.vercel.app/student/signin'
+            let endpoint = `${backendurl}student/signin`
             axios.post(endpoint, values)
                 .then((res) => {
                     console.log(res);

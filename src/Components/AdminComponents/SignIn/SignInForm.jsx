@@ -6,6 +6,8 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import DisplayToast from '../../../CustomHooks/DisplayToast';
+import { backendurl } from '../../../../constants/backendurl';
+
 
 
 
@@ -38,7 +40,7 @@ const SignInForm = () => {
 
   const signIn = async(values)=>{
     if (!otpSent) {
-        axios.post('https://hopeacademy.vercel.app/admin/send_otp', {email: values.email})
+        axios.post(`${backendurl}admin/send_otp`, {email: values.email})
         .then((res)=>{
           if (res.status==200) {
             setOtp(res.data.otp)
@@ -52,7 +54,7 @@ const SignInForm = () => {
     } else {
         if(otp==otpInput) {
           console.log('hi')
-          axios.post('https://hopeacademy.vercel.app/admin/sign_in', {...values})
+          axios.post(`${backendurl}admin/sign_in`, {...values})
           .then((res)=>{
             if (res.status==200) {
               localStorage.setItem('adminToken', res.data.token)

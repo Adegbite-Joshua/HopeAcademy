@@ -1,6 +1,5 @@
 import React from 'react'
 import ResetPasswordForm from './ResetPasswordForm';
-// import jwt from 'jsonwebtoken';
 
 
 const SendLink = () => {

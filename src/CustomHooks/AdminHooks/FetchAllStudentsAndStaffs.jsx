@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAllStudents, setAllStaffs, setFetchingState } from '../../redux/adminInformation';
 import axios from 'axios';
+import { backendurl } from '../../../constants/backendurl';
+
+
 
 const FetchAllStudentsAndStaffs = () => {
   const allStudents = useSelector((state) => state.adminInformation.allStudents);
@@ -15,7 +18,7 @@ const FetchAllStudentsAndStaffs = () => {
       try {
         if (allStudents.length == 0 && Object.keys(adminInfo).length != 0 && adminInfo.constructor === Object) {
           dispatch(setFetchingState(true));
-          const endpoint = 'https://hopeacademy.vercel.app/admin/all_students';
+          const endpoint = `${backendurl}admin/all_students`;
           const res = await axios.get(endpoint);
           
           if (res.status == 200) {
@@ -32,7 +35,7 @@ const FetchAllStudentsAndStaffs = () => {
 
       try {
         if (allStaffs.length == 0) {
-          const endpoint = 'https://hopeacademy.vercel.app/admin/all_staffs';
+          const endpoint = `${backendurl}admin/all_staffs`;
           const res = await axios.get(endpoint);
           
           if (res.status == 200) {

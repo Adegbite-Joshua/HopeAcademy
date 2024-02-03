@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import Loader from '../../src/Loader'
 import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo'
 import fetchSubjectStudents from '../../src/CustomHooks/StaffHooks/fetchSubjectStudents'
+import { backendurl } from '../../constants/backendurl'
 
 
 
@@ -31,7 +32,7 @@ const Student = () => {
   
   const fetchStaffInformation = async()=>{
     console.log(classStudents);
-    let endpoint = 'https://hopeacademy.vercel.app/staff/dashboard'
+    let endpoint = `${backendurl}staff/dashboard`
     let staffEmail = localStorage.getItem('staffemail')
     let staffPassword = localStorage.getItem('staffpassword')
     let staffClass = Number(localStorage.getItem('staffclass'))
@@ -63,7 +64,7 @@ const Student = () => {
   }
   const validateStaff =()=>{
     let token = localStorage.token
-    let validateEndpoint = 'https://hopeacademy.vercel.app/staff/validatetoken'
+    let validateEndpoint = `${backendurl}staff/validatetoken`
     axios.get(validateEndpoint, {headers : {
       "Authorization": `Bearer ${token}`,
       "Content-Toe": "application/json",

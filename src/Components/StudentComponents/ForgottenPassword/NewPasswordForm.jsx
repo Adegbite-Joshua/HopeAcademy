@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { backendurl } from '../../../../constants/backendurl';
+
+
 
 const NewPasswordForm = ({ userDetails }) => {
     const [newPassword, setNewPassword] = useState('');
@@ -22,7 +25,7 @@ const NewPasswordForm = ({ userDetails }) => {
     };
 
     const saveNewPassword = () => {
-        axios.post('https://hopeacademy.vercel.app/student/change_password', {
+        axios.post(`${backendurl}student/change_password`, {
             studentClass: userDetails.studentClass,
             email: userDetails.email,
             newPassword

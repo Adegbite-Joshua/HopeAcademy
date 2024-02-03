@@ -4,6 +4,9 @@ import fetchStudentAcademicResultsHook from '../../src/CustomHooks/StudentHooks/
 import NavBar from '../../src/Components/StudentComponents/NavBar';
 import ResultsMainDiv from '../../src/Components/StudentComponents/Results/ResultsMainDiv';
 import ResultsOtherDiv from '../../src/Components/StudentComponents/Results/ResultsOtherDiv';
+import { backendurl } from '../../constants/backendurl';
+
+
 
 const StudentResultPage = () => {
   const [studentInfo, fetching, termDetails] = fetchStudentInfo();  
@@ -44,7 +47,7 @@ export default StudentResultPage
 //   useEffect(() => {
 //     const performOnload = async()=>{
 //       dispatch(shownStudentNotifications(0));
-//       const endpoint = 'https://hopeacademy.vercel.app/student/read_notifications';
+//       const endpoint = `${backendurl}student/read_notifications`;
 //       if(studentInfo){
 //         let readNotification = await axios.post(endpoint, {id: studentInfo._id})
 //       }

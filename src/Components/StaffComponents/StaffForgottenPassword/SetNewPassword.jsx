@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import NewPasswordForm from './NewPasswordForm';
+import { backendurl } from '../../../../constants/backendurl';
+
 
 
 const SetNewPassword = ({token}) => {
@@ -10,7 +12,7 @@ const SetNewPassword = ({token}) => {
   
 
   useEffect(()=>{
-    axios.post('https://hopeacademy.vercel.app/staff/check_password_link_validity', {token})
+    axios.post(`${backendurl}staff/check_password_link_validity`, {token})
     .then((res)=>{
       console.log(res)
       if(res.status==203){

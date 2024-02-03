@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setEntranceParticipants, setFetchingState } from '../../redux/adminInformation';
 import axios from 'axios';
+import { backendurl } from '../../../constants/backendurl';
+
+
 
 const FetchEntranceYearParticipants = (year) => {
   const entranceParticipants = useSelector((state) => state.adminInformation.entranceParticipants);
@@ -14,7 +17,7 @@ const FetchEntranceYearParticipants = (year) => {
       try {
         if (!entranceParticipants[year] && Object.keys(adminInfo).length != 0 && adminInfo.constructor === Object) {
           dispatch(setFetchingState(true));
-          const endpoint = 'https://hopeacademy.vercel.app/admin/get_entrance_year_participants';
+          const endpoint = `${backendurl}admin/get_entrance_year_participants`;
           const res = await axios.post(endpoint, {year});
           
           if (res.status === 200) {

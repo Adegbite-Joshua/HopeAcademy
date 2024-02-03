@@ -2,6 +2,9 @@ import axios from 'axios'
 import React, {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import SnackBar from './SnackBar'
+import { backendurl } from '../../constants/backendurl';
+
+
 
 const ValidateToken = () => {
     const navigate = useNavigate()
@@ -20,7 +23,7 @@ const ValidateToken = () => {
 
     const validateStaff =()=>{
         let token = localStorage.token
-        let validateEndpoint = 'https://hopeacademy.vercel.app/staff/validatetoken'
+        let validateEndpoint = `${backendurl}staff/validatetoken`
         axios.get(validateEndpoint, {headers : {
           "Authorization": `Bearer ${token}`,
           "Content-Toe": "application/json",

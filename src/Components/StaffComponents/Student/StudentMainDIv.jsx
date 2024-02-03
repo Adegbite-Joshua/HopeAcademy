@@ -6,6 +6,9 @@ import { useSelector } from 'react-redux'
 import ButtonComp from '../../ButtonComp'
 import axios from 'axios'
 import SnackBar from '../../SnackBar'
+import { backendurl } from '../../../../constants/backendurl';
+
+
 
 
 const StudentMainDIv = ({category, mainindex, individualEmail, partnerName, classStudents}) => {
@@ -17,7 +20,7 @@ const StudentMainDIv = ({category, mainindex, individualEmail, partnerName, clas
   const saveStudentsAssesment =()=>{
     console.log(assessment)
     let allAssessment = {...assessment, staffClass: Number(staffInfo.class), studentEmail: individualEmail, subjectIndex: Number(staffInfo.class) }
-    let endpoint = 'https://hopeacademy.vercel.app/staff/submitstudentsassessment'
+    let endpoint = `${backendurl}staff/submitstudentsassessment`
     axios.post(endpoint, allAssessment)
     .then((res)=>{
       console.log(res)

@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchStaff, setFetching, fetchStaffNotifications, setNotificationFetching, fetchClassStudents } from '../../redux/staffInformation';
 import axios from 'axios';
+import { backendurl } from '../../../constants/backendurl';
+
+
 
 const fetchSubjectStudents = () => {
   const staffInfo = useSelector((state) => state.staffInformation.staffInformation);
@@ -14,7 +17,7 @@ const fetchSubjectStudents = () => {
     async function fetchData() {
       try {
         if (classStudents.length == 0 && Object.keys(staffInfo).length >= 1 && staffInfo.constructor === Object) {
-            let classStudentsEndpoint = 'https://hopeacademy.vercel.app/staff/fetchclassstudents'
+            let classStudentsEndpoint = `${backendurl}staff/fetchclassstudents`
             dispatch(setFetching(true))
             axios.post(classStudentsEndpoint, {class: Number(localStorage.getItem('staffclass')), staffIndex: Number(staffInfo.staffIndex)})
             .then((res)=>{

@@ -7,6 +7,9 @@ import fetchStudentInfo from '../../src/CustomHooks/StudentHooks/fetchStudentInf
 import { fetchAllStaffs, fetchStudent, setFetched } from '../../src/redux/studentInformation'
 import NavBar from '../../src/Components/StudentComponents/NavBar'
 import Loader from '../../src/Loader'
+import { backendurl } from '../../constants/backendurl';
+
+
 
 
 const StudentsSubject = () => {
@@ -30,7 +33,7 @@ const StudentsSubject = () => {
     }, [])
     const validateStudent =()=>{
       let token = localStorage.token
-      let validateEndpoint = 'https://hopeacademy.vercel.app/student/validatedashboard'
+      let validateEndpoint = `${backendurl}student/validatedashboard`
       axios.get(validateEndpoint, {headers : {
         "Authorization": `Bearer ${token}`,
         "Content-Toe": "application/json",
@@ -50,7 +53,7 @@ const StudentsSubject = () => {
     const fetchStudentInformation =()=>{
       if(Object.keys(studentInfo).length === 0 && studentInfo.constructor === Object){
         dispatch(setFetched(true))
-        let endpoint = 'https://hopeacademy.vercel.app/student/dashboard'
+        let endpoint = `${backendurl}student/dashboard`
         let details = {
           class: Number(localStorage.getItem('studentclass')),
           password: localStorage.getItem('studentpassword'),
@@ -67,7 +70,7 @@ const StudentsSubject = () => {
         })
       }
       if(allStaffs.length==0){
-        let staffEndPoint = 'https://hopeacademy.vercel.app/student/allstaffs'
+        let staffEndPoint = `${backendurl}student/allstaffs`
         dispatch(setFetched(true))
         axios.get(staffEndPoint)
         .then((res)=>{

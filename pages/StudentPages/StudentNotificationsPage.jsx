@@ -6,6 +6,9 @@ import fetchStudentInfo from '../../src/CustomHooks/StudentHooks/fetchStudentInf
 import {shownStudentNotifications} from '../../src/redux/studentInformation';
 import NavBar from '../../src/Components/StudentComponents/NavBar';
 import NotificationMainDiv from '../../src/Components/StudentComponents/Notification/NotificationMainDiv';
+import { backendurl } from '../../constants/backendurl';
+
+
 
 const StudentNotificationsPage = () => {
   document.querySelector('title').innerText = 'Notifications | Student'; 
@@ -17,7 +20,7 @@ const StudentNotificationsPage = () => {
   useEffect(() => {
     const performOnload = async()=>{
       dispatch(shownStudentNotifications(0));
-      const endpoint = 'https://hopeacademy.vercel.app/student/read_notifications';
+      const endpoint = `${backendurl}student/read_notifications`;
       if(studentInfo){
         await axios.post(endpoint, {id: studentInfo._id})
       }

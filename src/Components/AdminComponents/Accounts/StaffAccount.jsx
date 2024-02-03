@@ -5,6 +5,8 @@ import PopUp from '../../PopUp';
 import FetchAllStudentsAndStaffs from '../../../CustomHooks/AdminHooks/FetchAllStudentsAndStaffs';
 import DisplayToast from '../../../CustomHooks/DisplayToast';
 import SignUpForm from '../../StaffComponents/StaffSignUp/SignUpForm';
+import { backendurl } from '../../../../constants/backendurl';
+
 
 
 const StaffAccount = () => {
@@ -43,10 +45,10 @@ const StaffAccount = () => {
     const deleteAccount =(id, name)=>{
         let confirmDelete = confirm(`Are You Sure You Want To Delete Account For ${name}`)
         if(!confirmDelete){
-            const [show] = DisplayToast('success', 'Operation Cancelled')    
+            DisplayToast('success', 'Operation Cancelled')    
             return;
         }
-        let endpoint = 'https://hopeacademy.vercel.app/admin/delete_account';
+        let endpoint = `${backendurl}admin/delete_account`;
         let details = {
             accountClass:staffClass, 
             type:'staff',
@@ -56,13 +58,13 @@ const StaffAccount = () => {
         .then((res)=>{
             if(res.status==200){
                 dispatch(deleteAStudent({index:staffClass, id}))
-                const [show] = DisplayToast('success', 'Account Deleted Successfully')    
+                DisplayToast('success', 'Account Deleted Successfully')    
             } else {
-                const [show] = DisplayToast('error', 'An Error Occurred, Please Try Again')    
+                DisplayToast('error', 'An Error Occurred, Please Try Again')    
             }
         })
         .catch((error)=>{
-            const [show] = DisplayToast('error', 'An Error Occurred, Please Try Again')    
+            DisplayToast('error', 'An Error Occurred, Please Try Again')    
             console.log(error)
         })
       }

@@ -46,7 +46,7 @@ const ResultsMainDiv = ({studentInfo, studentAcademicResults, resultIndex}) => {
         <div className='DashboardMainDiv relative order-5 md:order-none mt-16 md:mt-0 h-screen basis-full md:basis-7/12 p-5 overflow-y-auto'>
             <button onClick={generatePdf} className=' print:hidden sticky top-2 left-full bg-blue-200 p-2 rounded-md' >Download Result </button>
             <div id="pdf-content">
-              <Result results={results} studentName={student.name} matricNumber={student.matricNumber} schoolName={school.name} address={school.address} contactNumber={school.contactNumber} logoUrl={school.logoUrl}/>
+              <Result results={results} studentName={student.name} studentPictureUrl={student.pictureUrl} matricNumber={student.matricNumber} schoolName={school.name} address={school.address} contactNumber={school.contactNumber} logoUrl={school.logoUrl}/>
             </div>
             {/* {results?.length> 0? results.map((notification)=>(
                 // <Notification id={notification.senderId} name={notification.name} message={notification.message} type={notification.type || 'submit'}/>

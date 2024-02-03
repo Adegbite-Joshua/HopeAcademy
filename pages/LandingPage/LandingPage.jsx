@@ -11,7 +11,8 @@ import MessageSchool from '../../src/Components/MessageSchool'
 
 
 const LandingPage = () => {
-  // window.onscroll(()=>showHeight())
+  document.querySelector('title').innerText = 'Hope Academy'; 
+
   return (
     <>
         <LandingPageNav/>

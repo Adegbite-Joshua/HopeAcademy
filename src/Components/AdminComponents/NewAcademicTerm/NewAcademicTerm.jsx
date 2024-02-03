@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import axios from 'axios'
 import FetchAdminInfo from '../../../CustomHooks/AdminHooks/FetchAdminInfo';
 import DisplayToast from '../../../CustomHooks/DisplayToast';
+import { backendurl } from '../../../../constants/backendurl';
 
 
 const NewAcademicTerm = () => {
@@ -27,7 +28,7 @@ const NewAcademicTerm = () => {
           isChecked: Yup.boolean().oneOf([true], 'You must accept the terms and conditions'),
         }),
         onSubmit: (values) => {
-          axios.post('https://hopeacademy.vercel.app/admin/start_new_academic_term', values)
+          axios.post(`${backendurl}admin/start_new_academic_term`, values)
           .then((res)=>{
             console.log(res)
             if (res.status==200){

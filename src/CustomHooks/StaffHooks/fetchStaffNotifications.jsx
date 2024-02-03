@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchStaff, setFetching, fetchStaffNotifications, setNotificationFetching } from '../../redux/staffInformation';
 import axios from 'axios';
+import { backendurl } from '../../../constants/backendurl';
+
+
 
 const fetchStaffNotificationsCompo = () => {
   const staffInfo = useSelector((state) => state.staffInformation.staffInformation);
@@ -15,7 +18,7 @@ const fetchStaffNotificationsCompo = () => {
     async function fetchData() {
       try {
         if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
-          const endpoint = 'https://hopeacademy.vercel.app/staff/dashboard';
+          const endpoint = `${backendurl}staff/dashboard'`;
           const token = localStorage.token;
           const res = await axios.post(endpoint, { token });
 
@@ -33,7 +36,7 @@ const fetchStaffNotificationsCompo = () => {
 
       try {
         if (Object.keys(staffNotifications).length === 0 && staffNotifications.constructor === Object) {
-          const endpoint = 'https://hopeacademy.vercel.app/staff/notifications';
+          const endpoint = `${backendurl}staff/notifications`;
           const id = staffInfo._id;
           const res = await axios.post(endpoint, { id });
 

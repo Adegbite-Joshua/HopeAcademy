@@ -7,6 +7,8 @@ import axios from 'axios';
 import DisplayToast from '../../../CustomHooks/DisplayToast';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteAStudent, setFetchingState } from '../../../redux/adminInformation';
+import { backendurl } from '../../../../constants/backendurl';
+
 
 
 const StudentAccount = () => {
@@ -48,7 +50,7 @@ const StudentAccount = () => {
             const [show] = DisplayToast('success', 'Operation Cancelled')    
             return;
         }
-        let endpoint = 'https://hopeacademy.vercel.app/admin/delete_account';
+        let endpoint = `${backendurl}admin/delete_account`;
         let details = {
             accountClass:studentClass, 
             type:'student',

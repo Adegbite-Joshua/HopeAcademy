@@ -10,6 +10,8 @@ import { fetchAllStaffs, fetchStudent, setFetched } from '../../src/redux/studen
 // import Loader from '../../src/Components/StudentComponents/Loader'
 import ProfileMainDiv from '../../src/Components/StudentComponents/Profile/ProfileMainDiv'
 import ProfileOtherDiv from '../../src/Components/StudentComponents/Profile/ProfileOtherDiv'
+import { backendurl } from '../../constants/backendurl';
+
 
 
 const StudentProfile = () => {
@@ -32,7 +34,7 @@ const StudentProfile = () => {
 
     const validateStudent =()=>{
       let token = localStorage.token
-      let validateEndpoint = 'https://hopeacademy.vercel.app/student/validatedashboard'
+      let validateEndpoint = `${backendurl}student/validatedashboard`
       axios.get(validateEndpoint, {headers : {
         "Authorization": `Bearer ${token}`,
         "Content-Toe": "application/json",

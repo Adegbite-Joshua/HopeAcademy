@@ -9,6 +9,7 @@ import { fetchAllAdmins, fetchAllStaffs, fetchAllStudents, fetchStudent, setFetc
 import fetchStudentInfo from '../../src/CustomHooks/StudentHooks/fetchStudentInfo'
 import NavBar from '../../src/Components/StudentComponents/NavBar'
 import Loader from '../../src/Components/StudentComponents/Loader'
+import { backendurl } from '../../constants/backendurl';
 
 
 
@@ -36,9 +37,9 @@ const InboxPage = () => {
 
 
     const fetchAll =()=>{
-      let studentEndpoint = 'https://hopeacademy.vercel.app/student/allstudents';
-      let staffEndPoint = 'https://hopeacademy.vercel.app/student/allstaffs';
-      let adminEndPoint = 'https://hopeacademy.vercel.app/student/alladmins';
+      let studentEndpoint = `${backendurl}student/allstudents`;
+      let staffEndPoint = `${backendurl}student/allstaffs`;
+      let adminEndPoint = `${backendurl}student/alladmins`;
         if(allStaffs.length==0){
           dispatch(setFetched(true))
           axios.get(staffEndPoint)
@@ -109,7 +110,7 @@ const InboxPage = () => {
         secondId: studentInfo._id
       }
       if (allMessages[partnerId]==undefined || allMessages[partnerId]==null) {
-        axios.post('https://hopeacademy.vercel.app/student/createchat', chatId)
+        axios.post(`${backendurl}student/createchat`, chatId)
         .then((res)=>{
           console.log(res.data.created._id);
           setpartnerCommonId(res.data.created._id);
@@ -139,7 +140,7 @@ const InboxPage = () => {
           senderId: studentInfo._id,
           partnerCommonId: partnerCommonId 
       }
-      let endpoint = 'https://hopeacademy.vercel.app/send_message'
+      let endpoint = `${backendurl}send_message`
       axios.post(endpoint, {messageDetails, partnerId})
       socket.emit('sendMessage', messageDetails, partnerId)
       setallMessages((prevAllMessages) => {

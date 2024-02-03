@@ -3,12 +3,15 @@ import React, {useEffect, useState}from 'react'
 import { useSelector } from 'react-redux';
 import { subjects } from '../../../../constants/subjects';
 import SubjectResource from './SubjectResource'
+import { backendurl } from '../../../../constants/backendurl';
+
+
 
 const ResourcesContainer = ({subjectDetails, func, studentResources}) => {
   let studentInfo = useSelector((state)=>state.studentInformation.studentInformation);
   let fetching = useSelector((state)=>state.studentInformation.staffFetchingState);
   const fetchResources = ()=>{
-    let endpoint = 'https://hopeacademy.vercel.app/student/fetchsubjectresources'
+    let endpoint = `${backendurl}student/fetchsubjectresources`
     let payload = {
       class: studentInfo.class,
       subject: subjects[subjectDetails.subjectIndex]

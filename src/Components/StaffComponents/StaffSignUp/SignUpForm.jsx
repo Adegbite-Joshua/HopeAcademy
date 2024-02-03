@@ -12,6 +12,9 @@ import { updateAllStaffs,updateAStaff , setFetchingState} from '../../../redux/a
 import fetchBanksList from '../../../CustomHooks/fetchBanksList';
 import { subjects } from '../../../../constants/subjects';
 // import FetchAllStudentsAndStaffs from '../../CustomHooks/AdminHooks/FetchAllStudentsAndStaffs'
+import { backendurl } from '../../../../constants/backendurl';
+
+
 
 
 const SignUpForm = ({type, data}) => {
@@ -101,7 +104,7 @@ const SignUpForm = ({type, data}) => {
       },
     }
     if(type=='create' || type=='signup') {
-      let endpoint = 'https://hopeacademy.vercel.app/staff/signup'
+      let endpoint = `${backendurl}staff/signup`
       axios.post(endpoint, details)
       .then((res)=>{
         if(res.status==200){
@@ -129,7 +132,7 @@ const SignUpForm = ({type, data}) => {
       })
     }
     if(type=='edit') {
-      let endpoint = 'https://hopeacademy.vercel.app/admin/update_staff'
+      let endpoint = `${backendurl}admin/update_staff`
       let {links, password, ...updateDetails} = details;
       axios.post(endpoint, updateDetails)
       .then((res)=>{

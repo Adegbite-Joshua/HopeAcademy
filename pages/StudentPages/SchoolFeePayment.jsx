@@ -4,6 +4,8 @@ import axios from 'axios';
 import NavBar from '../../src/Components/StudentComponents/NavBar'
 import fetchStudentInfo from '../../src/CustomHooks/StudentHooks/fetchStudentInfo'
 import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStudentFeeStatus'
+import { backendurl } from '../../constants/backendurl';
+
 
 
 const SchoolFeePayment = () => {
@@ -40,7 +42,7 @@ const SchoolFeePayment = () => {
                     studentClass: studentInfo.class,
                     email: studentInfo.email
                 });
-                axios.post('https://hopeacademy.vercel.app/student/fee_payment', {
+                axios.post(`${backendurl}student/fee_payment`, {
                     type: paymentType,
                     amount: paymentAmount,
                     ref: reference,

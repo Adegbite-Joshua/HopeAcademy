@@ -4,6 +4,7 @@ import axios from 'axios'
 import { fetchStudent, setFetched, fetchTermDetails } from '../../redux/studentInformation';
 import { useNavigate } from 'react-router-dom';
 import DisplayToast from '../DisplayToast';
+import { backendurl } from '../../../constants/backendurl';
 
 
 const fetchStudentInfo = () => {
@@ -18,7 +19,7 @@ const fetchStudentInfo = () => {
     async function fetchData() {
       if (Object.keys(studentInfo).length === 0 && studentInfo.constructor === Object) {
         dispatch(setFetched(true))
-        let endpoint = 'https://hopeacademy.vercel.app/student/dashboard'
+        let endpoint = `${backendurl}student/dashboard`
         let token = localStorage.getItem('studentToken')
         axios.get(endpoint, {
           headers: {
@@ -41,7 +42,7 @@ const fetchStudentInfo = () => {
           })
       }
 
-      let endpoint = 'https://hopeacademy.vercel.app/student/term_details'
+      let endpoint = `${backendurl}student/term_details`
       let getTermDetails = await axios.get(endpoint)
       if (getTermDetails.status == 200) {
         dispatch(fetchTermDetails(getTermDetails.data))

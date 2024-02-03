@@ -2,7 +2,12 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import FileViewer from '../../../FileViewer'
-// import FileView from '../StaffSubmit/FileView'
+import { backendurl } from '../../../../constants/backendurl';
+
+
+
+
+
 const FileMainDashboard = () => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   const [fileType, setfileType] = useState('.txt, .pdf, .doc, .docx, .rtf, .ppt, .pptx')
@@ -30,7 +35,7 @@ const FileMainDashboard = () => {
       fileType
     }
     console.log(fileDetails);
-    let fileEndpoint = 'https://hopeacademy.vercel.app/staff/upload'
+    let fileEndpoint = `${backendurl}staff/upload`
     try {
       const response = await axios.post(fileEndpoint, fileDetails)
       console.log(response);
@@ -63,7 +68,7 @@ const FileMainDashboard = () => {
                 </select>
                 <label htmlFor="" className='w-full'>
                     <span className="sr-only">Choose Fil To Upload</span>
-                    <input type="file" accept={fileType} onChange={(e)=>selectFile(e)} className=' w-full my-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100' />
+                    <input type="file" accept={fileType} onChange={(e)=>selectFile(e)} className=' w-full my-1 block text-sm text-slate-500 file:mr-4 file:py-2 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100' />
                 </label>
                 <div className=' w-full md:w-3/6 aspect-square block mx-auto'>
                   {fileBase64 && fileType?<>

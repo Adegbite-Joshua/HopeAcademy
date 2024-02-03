@@ -2,7 +2,6 @@ import React , {useState, useEffect}from 'react'
 import ReceiverMessages from './ReceiverMessages'
 import SenderMessages from './SenderMessages'
 import { useSelector } from 'react-redux' 
-import axios from 'axios'
 
 const MessageMainDiv = ({partnerName, messages, partnerCommonId, sendMessage}) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)

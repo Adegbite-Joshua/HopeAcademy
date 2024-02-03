@@ -6,6 +6,8 @@ import Calculator from './Calculator';
 import axios from 'axios';
 import DisplayToast from '../../CustomHooks/DisplayToast';
 import ResultComponent from './ResultComponent';
+import { backendurl } from '../../../../constants/backendurl';
+
 
 
 const Fireworks = () => {
@@ -54,7 +56,7 @@ const TestPage = () => {
   }, []);
 
   const fetchQuestions =()=>{
-    axios.post('https://hopeacademy.vercel.app/student/get_entrance_test_questions', {email: studentDetails?.email})
+    axios.post(`${backendurl}student/get_entrance_test_questions`, {email: studentDetails?.email})
     .then((res)=>{
       if (res.status==200) {
         setquestions(res.data.questions)
@@ -111,7 +113,7 @@ const TestPage = () => {
       email: studentDetails.email,
       selectedAnswer: answerIndex
     }
-    let endpoint = 'https://hopeacademy.vercel.app/student/select_answer'
+    let endpoint = `${backendurl}student/select_answer`
       axios.post(endpoint, values)
       .then((res)=>{
         console.log(res);
@@ -131,7 +133,7 @@ const TestPage = () => {
   }
 
   const submitTest =()=>{
-    axios.post('https://hopeacademy.vercel.app/student/submit_entrance_test', {email:studentDetails.email})
+    axios.post(`${backendurl}student/submit_entrance_test`, {email:studentDetails.email})
     .then((res)=>{
       settestScore(res.data);
       setCalculatorDialog(true);

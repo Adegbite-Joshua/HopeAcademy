@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import ButtonComp from '../../ButtonComp'
 import FileViewer from '../../../FileViewer'
 import { fetchStaff } from '../../../redux/staffInformation'
+import { backendurl } from '../../../../constants/backendurl';
+
 
 
 const SubjectSetting = () => {
@@ -27,7 +29,7 @@ const SubjectSetting = () => {
       let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
       
       const fetchStaffInformation = ()=>{
-        let endpoint = 'https://hopeacademy.vercel.app/staff/dashboard'
+        let endpoint = `${backendurl}staff/dashboard`
         let staffEmail = localStorage.getItem('staffemail')
         let staffPassword = localStorage.getItem('staffpassword')
         let staffClass = localStorage.getItem('staffclass')
@@ -58,7 +60,7 @@ const SubjectSetting = () => {
       }
       const validateStaff =()=>{
         let token = localStorage.token
-        let validateEndpoint = 'https://hopeacademy.vercel.app/staff/validatetoken'
+        let validateEndpoint = `${backendurl}staff/validatetoken`
         axios.get(validateEndpoint, {headers : {
           "Authorization": `Bearer ${token}`,
           "Content-Toe": "application/json",
@@ -99,7 +101,7 @@ const SubjectSetting = () => {
             subjectName: subjects[staffIndex]
         }
         // console.log(details);
-        let endpoint = 'https://hopeacademy.vercel.app/staff/updatesubject'
+        let endpoint = `${backendurl}staff/updatesubject`
         axios.post(endpoint, details)
         .then((response)=>{
             console.log(response);

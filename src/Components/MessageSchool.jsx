@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import React, { useState } from 'react'
 import DisplayToast from '../CustomHooks/DisplayToast';
+import { backendurl } from '../../constants/backendurl';
+
 
 const MessageSchool = () => {
     const openForm = () => {
@@ -19,7 +21,7 @@ const MessageSchool = () => {
         },
         onSubmit: (values) => {
             console.log(values);
-            let messageEndpoint = 'https://hopeacademy.vercel.app/student/messageschool'
+            let messageEndpoint = `${backendurl}student/messageschool`
             axios.post(messageEndpoint, values)
                 .then((response) => {
                     if (response.status == 200) {

@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchStudentNotifications, setNotificationFetching } from '../../redux/studentInformation';
 import axios from 'axios';
+import { backendurl } from '../../../constants/backendurl';
+
 
 const fetchStudentNotificationsCompo = () => {
   const studentInfo = useSelector((state) => state.studentInformation.studentInformation);
@@ -14,7 +16,7 @@ const fetchStudentNotificationsCompo = () => {
     async function fetchData() { 
       try {
         if (Object.keys(studentInfo).length >= 1 && studentInfo.constructor === Object && Object.keys(studentNotifications).length === 0 && studentNotifications.constructor === Object) {
-          const endpoint = 'https://hopeacademy.vercel.app/student/notifications';
+          const endpoint = `${backendurl}student/notifications`;
           const id = studentInfo._id;
           const res = await axios.post(endpoint, { id });
 

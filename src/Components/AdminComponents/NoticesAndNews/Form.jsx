@@ -7,6 +7,8 @@ import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import * as Yup from 'yup';
 import { deletenoticesAndNews, } from '../../../redux/generalInformation';
+import { backendurl } from '../../../../constants/backendurl';
+
 
 
 const Form = ({type, data, closePopup }) => {
@@ -25,8 +27,8 @@ const Form = ({type, data, closePopup }) => {
     }),
     onSubmit: async(values)=>{
       console.log(values)
-      let addEndpoint = 'https://hopeacademy.vercel.app/admin/add_notices_and_news';
-      let editEndpoint = 'https://hopeacademy.vercel.app/admin/edit_notices_and_news';
+      let addEndpoint = `${backendurl}admin/add_notices_and_news`;
+      let editEndpoint = `${backendurl}admin/edit_notices_and_news`;
       if(type=='edit' && !data?._id){
         DisplayToast('error', 'You Cannot Update Or Delete Newly Added News Or Notice')
         return;

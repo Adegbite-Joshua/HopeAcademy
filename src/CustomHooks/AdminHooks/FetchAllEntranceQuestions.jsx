@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { setEntranceQuestions, setFetchingState } from '../../redux/adminInformation';
+import { backendurl } from '../../../constants/backendurl';
 
 
 const FetchEntranceQuestions = () => {
@@ -17,7 +18,7 @@ const FetchEntranceQuestions = () => {
       try {
         if (entranceQuestions.length === 0 && Object.keys(adminInfo).length != 0 && adminInfo.constructor === Object) {
           dispatch(setFetchingState(true));  
-          let endpoint = 'https://hopeacademy.vercel.app/admin/get_entrance_questions'
+          let endpoint = `${backendurl}admin/get_entrance_questions`
           axios.get(endpoint)
           .then((res)=>{
             if(res.status==200){

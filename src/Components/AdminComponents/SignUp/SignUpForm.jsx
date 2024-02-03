@@ -4,8 +4,9 @@ import * as Yup from 'yup';
 import axios from 'axios'
 import FileViewer from '../../../FileViewer';
 import {useNavigate} from 'react-router-dom';
-import { toast } from 'react-toastify';
 import DisplayToast from '../../../CustomHooks/DisplayToast';
+import { backendurl } from '../../../../constants/backendurl';
+
 
 
 const SignUpForm = () => {
@@ -45,7 +46,7 @@ const SignUpForm = () => {
       imageBase64: Yup.string().required('Please select an image'),
     }),
     onSubmit: (values) => {
-      axios.post('https://hopeacademy.vercel.app/admin/sign_up', values)
+      axios.post(`${backendurl}admin/sign_up`, values)
       .then((res)=>{
         DisplayToast('success', 'Signup successful!')
         navigate('/admin/signin');

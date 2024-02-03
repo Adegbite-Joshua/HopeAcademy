@@ -2,6 +2,8 @@ import { useFormik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
+
+
 const StudentScoreTable = ({func, index,}) => {
     let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
     let classStudents = useSelector((state)=>state.staffInformation.classStudents)

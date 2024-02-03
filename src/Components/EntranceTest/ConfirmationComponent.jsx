@@ -9,6 +9,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { backendurl } from '../../../../constants/backendurl';
+
 
 
 
@@ -26,7 +28,7 @@ export default function AlertDialogSlide({showDialog, setDialog, text}) {
         startingTime: Date.now(),
         email: studentDetails.email
     }
-    axios.post('https://hopeacademy.vercel.app/student/start_entrance_test', studentEntranceDetails)
+    axios.post(`${backendurl}student/start_entrance_test`, studentEntranceDetails)
     .then((res)=>{
         if (res.status==200) {
           localStorage.setItem('startingTime', JSON.stringify(Date.now()))

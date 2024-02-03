@@ -4,6 +4,7 @@ import { fetchStaff, setFetching, fetchStaffNotifications, setNotificationFetchi
 import axios from 'axios';
 import DisplayToast from '../DisplayToast';
 import { useNavigate } from 'react-router-dom';
+import { backendurl } from '../../../constants/backendurl';
 
 
 
@@ -21,7 +22,7 @@ const fetchStaffInfo = () => {
     async function fetchData() {
       try {
         if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
-          const endpoint = 'https://hopeacademy.vercel.app/staff/dashboard';
+          const endpoint = `${backendurl}staff/dashboard`;
           const token = localStorage.staffToken;
           const res = await axios.post(endpoint, { token });
 
@@ -43,7 +44,7 @@ const fetchStaffInfo = () => {
 
       try {
         if (Object.keys(staffNotifications).length === 0 && staffNotifications.constructor === Object) {
-          const endpoint = 'https://hopeacademy.vercel.app/staff/notifications';
+          const endpoint = `${backendurl}staff/notifications`;
           const id = staffInfo._id;
           const res = await axios.post(endpoint, { id });
 
@@ -84,7 +85,7 @@ export default fetchStaffInfo;
 
 //     useEffect(()=>{
 //         if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
-//           let endpoint = 'https://hopeacademy.vercel.app/staff/dashboard'
+//           let endpoint = `${backendurl}staff/dashboard`
 //           let token = localStorage.token
 //           axios.post(endpoint, {token})
 //           .then((res)=>{

@@ -11,6 +11,8 @@ import Tasks from '../../src/Components/StudentComponents/Dashboard/Tasks'
 import fetchStudentInfo from '../../src/CustomHooks/StudentHooks/fetchStudentInfo'
 import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStudentFeeStatus'
 import FetchNoticesAndNews from '../../src/CustomHooks/FetchNoticesAndNews'
+import { backendurl } from '../../constants/backendurl';
+
 
 
 
@@ -48,7 +50,7 @@ const StudentDashboard = () => {
         email: studentInfo.email,
         token: localStorage.getItem('studentToken')
       }
-      let endpoint = 'https://hopeacademy.vercel.app/student/addtotask'
+      let endpoint = `${backendurl}student/addtotask`
       axios.post(endpoint, taskDetails)
         .then((res)=>{
           setaddingTask(false)

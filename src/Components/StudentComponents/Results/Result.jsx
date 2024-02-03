@@ -4,7 +4,7 @@ import { stringClass } from '../../../../constants/stringClass'
 import './style.scss'
 
 
-const Result = ({ logoUrl, schoolName, address, contactNumber, studentName, matricNumber, className, results }) => {
+const Result = ({ logoUrl, schoolName, address, contactNumber, studentName, studentPictureUrl, matricNumber, className, results }) => {
   const getRemark = (score) => {
     if (score >= 90 && score <= 100) {
       return 'Excellent';
@@ -40,7 +40,7 @@ const Result = ({ logoUrl, schoolName, address, contactNumber, studentName, matr
         <table className='w-full' style={{ margin: '0 auto' }}>
           <tbody>
             <tr>
-              <td className='flex justify-center items-center'><img src={logoUrl} alt="Student" style={{ width: '80px', height: '80px' }} /></td>
+              <td className='flex justify-center items-center'><img src={studentPictureUrl} alt="Student" style={{ width: '80px', height: '80px' }} /></td>
               <td>
                 <p className='text-left px-3'><strong>Name:</strong><span className='float-right'> {studentName}</span></p>
                 <p className='text-left px-3'><strong>Matric Number:</strong><span className='float-right'> {matricNumber}</span></p>

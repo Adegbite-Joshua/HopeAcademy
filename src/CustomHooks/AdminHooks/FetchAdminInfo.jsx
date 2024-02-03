@@ -4,6 +4,8 @@ import { setAdminInfo, setFetchingState } from '../../redux/adminInformation';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import DisplayToast from '../DisplayToast';
+import { backendurl } from '../../../constants/backendurl';
+
 
 
 
@@ -21,7 +23,7 @@ const FetchAdminInfo = () => {
       try {
         if (Object.keys(adminInfo).length === 0 && adminInfo.constructor === Object) {
           dispatch(setFetchingState(true));
-          const endpoint = 'https://hopeacademy.vercel.app/admin/dashboard';
+          const endpoint = `${backendurl}admin/dashboard`;
           const token = localStorage.adminToken;
           const res = await axios.post(endpoint, { token });
           
@@ -43,7 +45,7 @@ const FetchAdminInfo = () => {
 
     //   try {
     //     if (Object.keys(staffNotifications).length === 0 && staffNotifications.constructor === Object) {
-    //       const endpoint = 'https://hopeacademy.vercel.app/admin/notifications';
+    //       const endpoint = `${backendurl}admin/notifications`;
     //       const id = localadminInfo._id;
     //       const res = await axios.post(endpoint, { id });
 

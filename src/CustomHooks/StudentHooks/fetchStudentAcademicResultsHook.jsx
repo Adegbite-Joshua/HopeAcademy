@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios'
 import { fetchStudentAcademicResults, setFetchedResults } from '../../redux/studentInformation';
+import { backendurl } from '../../../constants/backendurl';
 
 
 const fetchStudentAcademicResultsHook = () => {
@@ -14,7 +15,7 @@ const fetchStudentAcademicResultsHook = () => {
         async function fetchData() {
             if (Object.keys(studentInfo).length >= 1 && studentInfo.constructor === Object && studentAcademicResults.length === 0) {
                 dispatch(setFetchedResults(true))
-                let endpoint = 'https://hopeacademy.vercel.app/student/academic_results'
+                let endpoint = `${backendurl}student/academic_results`
                 let getStudentResults = await axios.post(endpoint, { id: studentInfo._id })
                 console.table(getStudentResults)
                 if (getStudentResults.status == 200) {

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deletenoticesAndNews, } from '../../../redux/generalInformation';
 import PopUp from '../../PopUp';
 import Form from './Form';
+import { backendurl } from '../../../../constants/backendurl';
 
 
 
@@ -26,7 +27,7 @@ const News = ({data}) => {
 
 
   const deleteNews = async () => {
-    let endpoint = 'https://hopeacademy.vercel.app/admin/delete_notice_and_news'
+    let endpoint = `${backendurl}admin/delete_notice_and_news`
     if(!data._id){
       DisplayToast('error', 'Cannot Delete Newly Added News Or Notice');
       return;
