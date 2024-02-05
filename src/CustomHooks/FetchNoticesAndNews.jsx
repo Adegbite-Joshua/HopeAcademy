@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setnoticesAndNews, } from '../redux/generalInformation';
 import axios from 'axios';
-import { backendurl } from '../../../constants/backendurl';
+import { backendurl } from '../../constants/backendurl';
 
 
 

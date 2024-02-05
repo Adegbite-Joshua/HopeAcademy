@@ -1,1 +1,3 @@
-export const backendurl = 'https://hopeacademybackend.vercel.app/'
+const backendurl = 'https://hopeacademybackend.vercel.app/'
+
+export {backendurl}

@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import { backendurl } from '../../../../constants/backendurl';
+import { backendurl } from '../../../constants/backendurl';
 
 
 

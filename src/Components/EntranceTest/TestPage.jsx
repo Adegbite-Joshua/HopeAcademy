@@ -6,7 +6,7 @@ import Calculator from './Calculator';
 import axios from 'axios';
 import DisplayToast from '../../CustomHooks/DisplayToast';
 import ResultComponent from './ResultComponent';
-import { backendurl } from '../../../../constants/backendurl';
+import { backendurl } from '../../../constants/backendurl';
 
 
 

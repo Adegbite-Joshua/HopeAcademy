@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import DisplayToast from '../../CustomHooks/DisplayToast';
-import { backendurl } from '../../../../constants/backendurl';
+import { backendurl } from '../../../constants/backendurl';
 
 
 
