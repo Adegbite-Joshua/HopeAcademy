@@ -5,6 +5,7 @@ import NavBar from '../../src/Components/StudentComponents/NavBar';
 import ResultsMainDiv from '../../src/Components/StudentComponents/Results/ResultsMainDiv';
 import ResultsOtherDiv from '../../src/Components/StudentComponents/Results/ResultsOtherDiv';
 import { backendurl } from '../../constants/backendurl';
+import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStudentFeeStatus';
 
 
 
@@ -12,7 +13,10 @@ const StudentResultPage = () => {
   const [studentInfo, fetching, termDetails] = fetchStudentInfo();  
   const [studentAcademicResults, fetchingResults] = fetchStudentAcademicResultsHook();
   const [localResults, setlocalResults] = useState();
-  const [resultIndex, setresultIndex] = useState(0)
+  const [resultIndex, setresultIndex] = useState(0);
+  checkStudentFeeStatus();
+
+
   useEffect(()=>{
     setlocalResults([...studentAcademicResults, ...studentAcademicResults, ...studentAcademicResults])
   }, [studentAcademicResults])

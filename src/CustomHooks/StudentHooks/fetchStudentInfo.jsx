@@ -37,7 +37,7 @@ const fetchStudentInfo = () => {
           })
           .catch((err)=>{
             DisplayToast('error', 'Invalid Token')
-            navigate('/student/signin')
+            // navigate('/student/signin')
             console.log('error');
           })
       }

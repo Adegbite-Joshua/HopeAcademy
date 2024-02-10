@@ -74,7 +74,7 @@ const SignInPage = () => {
                         <input className='form-input p-2 my-2 border-2 rounded-md' {...formik.getFieldProps('email')} id='email' name='email' type="email" placeholder='Student Email Address' />
                         <label htmlFor="password">Password</label>
                         <input className='form-input p-2 my-2 border-2 rounded-md' {...formik.getFieldProps('password')} id='password' name='password' type="password" placeholder='Password' />
-                        <button type='submit' className='btn bg-green-500 text-white rounded p-2 hover:bg-green-600 focus:outline-none'>Sign In</button>
+                        <button type='submit' className='btn bg-blue-500 text-white rounded p-2 hover:bg-blue-600 focus:outline-none'>Sign In</button>
                         <Link to='/student/forgottenpassword' className='text-red-500 hover:underline'>Forgotten Password?</Link>
                         <p>New here? <Link to='/student/signup' className='text-blue-500 hover:underline inline'>Sign Up</Link></p>
                     </form>

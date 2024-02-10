@@ -85,13 +85,13 @@ const SchoolFeePayment = () => {
                                 {paymentDisplayOption === 'indebt' && (
                                     <div className="flex justify-center space-x-2">
                                         <button
-                                            className={`p-2 rounded-md ${paymentType === 'full' ? 'bg-green-300' : 'bg-gray-300'} text-white`}
+                                            className={`p-2 rounded-md ${paymentType == 'full' ? 'bg-green-500' : 'bg-red-400'} text-white`}
                                             onClick={() => handlePaymentTypeChange('full')}
                                         >
                                             Full Payment
                                         </button>
                                         <button
-                                            className={`btn ${paymentType === 'half' ? 'bg-green-500' : 'bg-gray-300'} text-white`}
+                                            className={`p-2 rounded-md ${paymentType == 'half' ? 'bg-green-500' : 'bg-red-400'} text-white`}
                                             onClick={() => handlePaymentTypeChange('half')}
                                         >
                                             Half Payment
@@ -118,7 +118,7 @@ const SchoolFeePayment = () => {
                             </div>
                             <div className="text-center">
                                 <button
-                                    className={`p-2 rounded-md ${paymentType === '' ? 'bg-gray-300 cursor-not-allowed' : 'bg-yellow text-white'}`}
+                                    className={`p-2 rounded-md text-white ${paymentType === '' ? 'bg-red-400 cursor-not-allowed' : 'bg-green-500'}`}
                                     onClick={initializePayment}
                                     disabled={paymentType === ''}
                                 >

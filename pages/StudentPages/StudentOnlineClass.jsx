@@ -6,6 +6,7 @@ import NavBar from '../../src/Components/StudentComponents/NavBar';
 import ClassMainDiv from '../../src/Components/StudentComponents/OnlineClass/ClassMainDiv';
 import ClassSideDiv from '../../src/Components/StudentComponents/OnlineClass/ClassSideDiv';
 import Loader from '../../src/Loader';
+import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStudentFeeStatus';
 
 const StudentOnlineClass = () => {
   document.querySelector('title').innerText = 'Online Class | Student'; 
@@ -15,6 +16,7 @@ const StudentOnlineClass = () => {
   const [startClass, setstartClass] = useState(false);
   const [classId, setclassId] = useState('');
   const dispatch = useDispatch();
+  checkStudentFeeStatus();
 
 
   const startClassFunction =(id)=>{

@@ -8,6 +8,7 @@ import { fetchAllStaffs, fetchStudent, setFetched } from '../../src/redux/studen
 import NavBar from '../../src/Components/StudentComponents/NavBar'
 import Loader from '../../src/Loader'
 import { backendurl } from '../../constants/backendurl';
+import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStudentFeeStatus'
 
 
 
@@ -16,6 +17,7 @@ const StudentsSubject = () => {
     document.querySelector("title").innerText = `Subjects`
     const [subjectDetails, setsubjectDetails ] = useState({subjectIndex: 0, index: 0})
     const dispatch = useDispatch();
+    checkStudentFeeStatus();
     const toggleSideNav =()=>{
         document.getElementById('SubjectSideDiv').classList.toggle('SubjectSideDiv')
     }

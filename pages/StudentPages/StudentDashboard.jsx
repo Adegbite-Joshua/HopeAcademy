@@ -26,8 +26,7 @@ const StudentDashboard = () => {
     document.querySelector("title").innerText = `Dashboard`;
     let values = useParams()
     let socket = useSelector((state)=>state.socketIO.socket);
-    const [paymentDisplayOption] = checkStudentFeeStatus();
-    paymentDisplayOption=='indebt'?navigate('/feepayment'):'';
+    checkStudentFeeStatus();
 
     const closeAddToTask = () => {
       document.getElementById('popup').classList.remove("open-popup")

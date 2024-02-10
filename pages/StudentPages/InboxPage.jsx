@@ -10,6 +10,7 @@ import fetchStudentInfo from '../../src/CustomHooks/StudentHooks/fetchStudentInf
 import NavBar from '../../src/Components/StudentComponents/NavBar'
 import Loader from '../../src/Components/StudentComponents/Loader'
 import { backendurl } from '../../constants/backendurl';
+import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStudentFeeStatus'
 
 
 
@@ -26,6 +27,7 @@ const InboxPage = () => {
     let allStudents = useSelector((state)=>state.studentInformation.allStudents);
     let allAdmins = useSelector((state)=>state.studentInformation.allAdmins);
     let socket = useSelector((state)=>state.socketIO.socket);
+    checkStudentFeeStatus();
     const [partnerId, setpartnerId] = useState('')
     const [partnerName, setpartnerName] = useState('')
     const [partnerCommonId, setpartnerCommonId] = useState('')

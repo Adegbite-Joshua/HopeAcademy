@@ -7,6 +7,7 @@ import {shownStudentNotifications} from '../../src/redux/studentInformation';
 import NavBar from '../../src/Components/StudentComponents/NavBar';
 import NotificationMainDiv from '../../src/Components/StudentComponents/Notification/NotificationMainDiv';
 import { backendurl } from '../../constants/backendurl';
+import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStudentFeeStatus';
 
 
 
@@ -17,6 +18,7 @@ const StudentNotificationsPage = () => {
   const [notificationType, setnotificationType] = useState('all')
   const [notifications, setnotifications] = useState([]);
   const dispatch = useDispatch();
+  checkStudentFeeStatus();
   useEffect(() => {
     const performOnload = async()=>{
       dispatch(shownStudentNotifications(0));
