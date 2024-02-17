@@ -24,13 +24,13 @@ const StudentProfile = () => {
     
     let studentInfo = useSelector((state)=>state.studentInformation.studentInformation);
     let fetching = useSelector((state)=>state.studentInformation.studentFetchingState);
-    checkStudentFeeStatus();
 
     useEffect(() => {
-      validateStudent()
+      validateStudent();
     }, [])
-    const dispatch = useDispatch();
     checkStudentFeeStatus();
+    const dispatch = useDispatch();
+
 
     const validateStudent =()=>{
       let token = localStorage.token

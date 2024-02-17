@@ -94,7 +94,7 @@ function App() {
           body={latestNotification.message}
           timeout={9000}
           onClick={() =>{
-            const Tab = window.open('http://http://localhost:2000/', '_blank');
+            const Tab = window.open('https://hopeacademy.vercel.app', '_blank');
             if (Tab) {
               Tab.focus();
             }

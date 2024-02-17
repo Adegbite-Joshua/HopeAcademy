@@ -17,7 +17,6 @@ const StudentsSubject = () => {
     document.querySelector("title").innerText = `Subjects`
     const [subjectDetails, setsubjectDetails ] = useState({subjectIndex: 0, index: 0})
     const dispatch = useDispatch();
-    checkStudentFeeStatus();
     const toggleSideNav =()=>{
         document.getElementById('SubjectSideDiv').classList.toggle('SubjectSideDiv')
     }
@@ -29,6 +28,7 @@ const StudentsSubject = () => {
     const [studentInfo, fetching, termDetails] = fetchStudentInfo();  
     let allStaffs = useSelector((state)=>state.studentInformation.allStaffs);
     
+    checkStudentFeeStatus();
     useEffect(() => {
       // fetchStudentInformation()
       // validateStudent()

@@ -26,8 +26,7 @@ const InboxPage = () => {
     let allStaffs = useSelector((state)=>state.studentInformation.allStaffs);
     let allStudents = useSelector((state)=>state.studentInformation.allStudents);
     let allAdmins = useSelector((state)=>state.studentInformation.allAdmins);
-    let socket = useSelector((state)=>state.socketIO.socket);
-    checkStudentFeeStatus();
+    let socket = useSelector((state)=>state.socketIO.socket);    
     const [partnerId, setpartnerId] = useState('')
     const [partnerName, setpartnerName] = useState('')
     const [partnerCommonId, setpartnerCommonId] = useState('')
@@ -77,10 +76,11 @@ const InboxPage = () => {
         }
 
     }
+    
+    checkStudentFeeStatus();
 
     useEffect(() => {
       fetchAll();
-
       const handleMessage = (messageDetails) => {
         if(allMessages[messageDetails.senderId]!=undefined){
           setallMessages((prevAllMessages) => {

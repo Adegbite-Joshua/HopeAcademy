@@ -16,7 +16,10 @@ const StudentOnlineClass = () => {
   const [startClass, setstartClass] = useState(false);
   const [classId, setclassId] = useState('');
   const dispatch = useDispatch();
+
   checkStudentFeeStatus();
+  useEffect(()=>{
+  }, [])
 
 
   const startClassFunction =(id)=>{

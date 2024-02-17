@@ -7,7 +7,6 @@ import checkStudentFeeStatus from '../../src/CustomHooks/StudentHooks/checkStude
 import { backendurl } from '../../constants/backendurl';
 
 
-
 const SchoolFeePayment = () => {
     document.querySelector('title').innerText = 'Fee Payment | Student'; 
     const [studentInfo, fetching, termDetails] = fetchStudentInfo();
@@ -17,7 +16,7 @@ const SchoolFeePayment = () => {
     const [paymentDisplayOption] = checkStudentFeeStatus();
 
     useEffect(() => {
-      setfullAmount(termDetails.schoolFees)
+      setfullAmount(termDetails.schoolFees);
     }, [termDetails])
     
 
@@ -28,11 +27,11 @@ const SchoolFeePayment = () => {
 
     const initializePayment = async () => {
         var handler = PaystackPop.setup({
-            key: 'pk_test_020bedb6004bb3a95bb5589b33405add7e4e79a2', // Replace with your public key
+            key: 'pk_test_020bedb6004bb3a95bb5589b33405add7e4e79a2',
             email: studentInfo.email,
             amount: paymentAmount * 100,
             currency: 'NGN',
-            ref: 'PROADE' + Math.floor(Math.random() * 1000000000 + 1),
+            ref: 'HopeAcademyPayment' + Math.floor(Math.random() * 1000000000 + 1),
             callback: function (response) {
                 var reference = response.reference;
                 console.log({

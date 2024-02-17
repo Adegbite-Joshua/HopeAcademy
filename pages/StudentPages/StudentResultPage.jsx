@@ -14,9 +14,9 @@ const StudentResultPage = () => {
   const [studentAcademicResults, fetchingResults] = fetchStudentAcademicResultsHook();
   const [localResults, setlocalResults] = useState();
   const [resultIndex, setresultIndex] = useState(0);
+
+
   checkStudentFeeStatus();
-
-
   useEffect(()=>{
     setlocalResults([...studentAcademicResults, ...studentAcademicResults, ...studentAcademicResults])
   }, [studentAcademicResults])
