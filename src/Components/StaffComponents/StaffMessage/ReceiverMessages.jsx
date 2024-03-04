@@ -4,7 +4,7 @@ const ReceiverMessages = ({ message, date, src }) => {
   return (
     <div className="relative w-64 md:w-96 h-auto bg-slate-300 m-1 rounded-lg rounded-tl-none p-2">
       <img
-        src={src ? src : 'vite.svg'}
+        src="/school_logo.png" 
         className="h-12 w-12 float-left"
         alt=""
       />

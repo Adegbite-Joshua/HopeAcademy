@@ -68,7 +68,7 @@ const SignInPage = () => {
               <option value={5}>SSS 3</option>
             </select>
             <label htmlFor="">Password</label>
-            <input onChange={formik.handleChange} type="text" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-md  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Password' name='password' />
+            <input onChange={formik.handleChange} type="password" className='w-full border-slate-900 focus:ring-4 focus:ring-purple focus:outline-none p-2 hover:boder-0 focus:ring-0 rounded-md  placeholder-slate-400 contrast-more:border-slate-400 contrast-more:placeholder-slate-50' placeholder='Staff Password' name='password' />
             <input type="checkbox" className='accent-red-400' name="" id="" /><small className='text-white'>Remenber me</small>
             <button type='submit' className='block py-2 bg-orange-500 w-full rounded-md hover:bg-orange-300'>Sign In</button>
             <p>New here? <Link to='/staff/signin' className='inline text-blue-500  hover:underline'>Sign Up</Link></p>
