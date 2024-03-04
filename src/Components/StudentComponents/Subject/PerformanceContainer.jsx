@@ -58,9 +58,9 @@ const PerformanceContainer = ({subjectDetails}) => {
       <ResultsDisplay subjectIndex={subjectDetails?.index} />
     </div>
     <div className="flex gap-2 text-center mt-3">
-      <SubjectPerformance />
-      <SubjectPerformance />
-      <SubjectPerformance />
+      <SubjectPerformance  text='Classwork Performance'/>
+      <SubjectPerformance  text='Assignment Performance'/>
+      <SubjectPerformance  text='Exam Performance'/>
     </div>
     <div>
       <h4>Submit Your Work to Your Teacher</h4>

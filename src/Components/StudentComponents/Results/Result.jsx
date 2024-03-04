@@ -2,6 +2,7 @@ import React from 'react'
 import { subjects } from '../../../../constants/subjects'
 import { stringClass } from '../../../../constants/stringClass'
 import './style.scss'
+import fetchStudentInfo from '../../../CustomHooks/StudentHooks/fetchStudentInfo'
 
 
 const Result = ({ logoUrl, schoolName, address, contactNumber, studentName, studentPictureUrl, matricNumber, className, results }) => {
@@ -22,8 +23,9 @@ const Result = ({ logoUrl, schoolName, address, contactNumber, studentName, stud
       return 'Invalid Score';
     }
   }
+  const [studentInfo, fetching, termDetails] = fetchStudentInfo();  
 
-  let { term = 'default term', class: clas, year, ...result } = results || {};
+  let { term = '1st term', class: clas, year, ...result } = results || {};
 
   return (
     <div className='print:w-screen' style={{ textAlign: 'center'}}>
@@ -45,7 +47,7 @@ const Result = ({ logoUrl, schoolName, address, contactNumber, studentName, stud
                 <p className='text-left px-3'><strong>Name:</strong><span className='float-right'> {studentName}</span></p>
                 <p className='text-left px-3'><strong>Matric Number:</strong><span className='float-right'> {matricNumber}</span></p>
                 <p className='text-left px-3'><strong>Class:</strong><span className='float-right'> {stringClass[clas]}</span></p>
-                <p className='text-left px-3 flex'><strong>Session:</strong><span className='ms-auto'> {term} Term </span><span className='float-right'>| Year: {year}</span></p>
+                <p className='text-left px-3 flex'><strong>Session:</strong><span className='ms-auto'> {termDetails.term == 1 ? '1st' : termDetails.term ==2 ? '2nd' : '3rd'} Term </span><span className='float-right'>| Year: {termDetails.year}</span></p>
               </td>
             </tr>
           </tbody>
