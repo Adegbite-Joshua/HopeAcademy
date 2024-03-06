@@ -15,13 +15,13 @@ const SubjectSideDiv = ({ toggleSideNav, func2 }) => {
     }
     return (
         <>
-            <div id='SubjectSideDiv' className='topSpace'>
+            <div id='SubjectSideDiv' className='topSpace overflow-y-auto'>
                 <h3 className='text-center'>Subjects
                     <span id='toggleIcon' onClick={toggleSideNav} className='float-right border-2 p-2 rounded-3'>
                         <i className='fa fa-close'></i>
                     </span>
                 </h3>
-                <div className='w-full h-80vh overflow-y-auto SubjectSide'>
+                <div className='w-full h-80vh SubjectSide'>
                     {studentSubject.map((subject, index) => (
                         <Subject func={func2} subjectIndex={subject.subject} index={subject.index} name={subjects[subject.subject]} key={index} toggleSideNav={toggleSideNav} />
                     ))}

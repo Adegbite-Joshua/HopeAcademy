@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import DisplayToast from '../../../CustomHooks/DisplayToast';
 
 
 const Navbar = () => {
@@ -20,7 +21,7 @@ const Navbar = () => {
   return (
     <nav className="bg-blue-500 p-4 text-white h-28 sticky top-0">
       <div className="flex justify-between items-center h-full p-5 relative">
-        <img src="/vite.svg" className='w-32 h-full' alt="" />
+        <img src="/school_logo.png" className='w-32 h-full' alt="" />
         <button onClick={showNavBar} className='p-2 border-2 rounded-lg md:hidden'><i className='fa fa-bars'></i></button>
         <div id='adminNavBar' className="md:flex md:space-x-10 h-screen md:h-full">
           <Link to="/admin/dashboard" className='my-auto'>Dashboard</Link>

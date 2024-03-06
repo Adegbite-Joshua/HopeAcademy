@@ -16,13 +16,13 @@ const StudentMainDiv = ({ welcomeNote }) => {
     let extractedNewAndNotices;
     if (!fetching) {
         studentInfo ? studentInfo.subjects.map((subject, index) => {
-            if (index <= 2) {
+            if (index <= 5) {
                 studentSubject.push(subject.subjectIndex)
             } else {
                 return
             }
         }) : ''
-        extractedNewAndNotices = noticesAndNews ? noticesAndNews.filter((annouce, index) => index <= 3) : ''
+        extractedNewAndNotices = noticesAndNews ? noticesAndNews.filter((annouce, index) => index <= 5) : ''
     }
     let term = [
         '1st Term',
@@ -51,7 +51,8 @@ const StudentMainDiv = ({ welcomeNote }) => {
                     </div>
                 </div>
                 <div className="announcementDiv mt-4">
-                    <h3 className="text-xl font-semibold mb-2">Notices And News <Link className="float-right text-blue-500" to='/student/notices_and_news'>See All</Link></h3>
+                    <h3 className="text-xl font-semibold mb-2">Notices And News</h3>
+                    {/* <Link className="float-right text-blue-500" to='/student/notices_and_news'>See All</Link> */}
                     {!fetching ? extractedNewAndNotices.length > 0 ? extractedNewAndNotices.map((value, index) => (
                         value.type=='news'?<News key={index} data={value}/>:<Notice key={index} data={value}/>
                     )) : (<News data={{head: 'Empty', type: 'blog', body: 'No News Or Notice Here Yet'}}/>) : ''}

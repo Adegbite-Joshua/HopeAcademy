@@ -7,7 +7,7 @@ const StudentErrorPage = () => {
     document.querySelector("title").innerText = `404 - Error Page`
   return (
     <>
-        <div>
+        <div id='pageContainer' className="grid h-screen md:flex md:flex-row bg-slate-300 relative ring-0">
           <NavBar/>
           <ErrorMainDiv/>
         </div>
