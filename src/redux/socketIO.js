@@ -28,11 +28,12 @@ export const socketIO = createSlice({
         },
         closeIO: (state)=>{
             state.io.close()
+            state.io.off('connect')
         }
     }
 
 });
 
-export const {setSocket, setIO} = socketIO.actions;
+export const {setSocket, setIO, closeIO} = socketIO.actions;
 export default socketIO.reducer;
 
