@@ -7,7 +7,8 @@ export const socketIO = createSlice({
     initialState:{
         // socket: socketClient('https://horn-efficient-headphones.glitch.me'),
         socket: io("https://horn-efficient-headphones.glitch.me", {
-            withCredentials: true,
+            // withCredentials: true,
+            path: '/server',
             cert: process.env.NODE_ENV === 'production' ? process.env.SSL_CERT : '',
             key: process.env.NODE_ENV === 'production' ? process.env.SSL_KEY : '',
             reconnection: true,
