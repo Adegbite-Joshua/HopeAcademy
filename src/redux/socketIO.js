@@ -12,7 +12,7 @@ export const socketIO = createSlice({
             cert: process.env.NODE_ENV === 'production' ? process.env.SSL_CERT : '',
             key: process.env.NODE_ENV === 'production' ? process.env.SSL_KEY : '',
             reconnection: true,
-            transports: ['websockets', 'polling'],
+            transports: ['websocket', 'polling'],
             reconnectAttempts: 5,
             // extraHeaders: {
             //   "my-custom-header": "hopeacademy"
