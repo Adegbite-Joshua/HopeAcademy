@@ -59,6 +59,11 @@ function App() {
   const socket = useSelector((state) => state.socketIO.socket);
   const dispatch = useDispatch();
   const [latestNotification, setlatestNotification] = useState({});
+  if(socket){
+    socket.on('connect', ()=>{
+      socket.emit('joined', 'Hello')
+    })
+  }
   useEffect(()=>{
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', ()=>{

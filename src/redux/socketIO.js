@@ -8,10 +8,15 @@ export const socketIO = createSlice({
         // socket: socketClient('https://horn-efficient-headphones.glitch.me'),
         socket: io("https://horn-efficient-headphones.glitch.me", {
             withCredentials: true,
-            extraHeaders: {
-              "my-custom-header": "hopeacademy"
-            }
-          }),
+            cert: process.env.NODE_ENV === 'production' ? process.env.SSL_CERT : '',
+            key: process.env.NODE_ENV === 'production' ? process.env.SSL_KEY : '',
+            reconnection: true,
+            transports: ['websockets', 'polling'],
+            reconnectAttempts: 5,
+            // extraHeaders: {
+            //   "my-custom-header": "hopeacademy"
+            // }
+        }),
     },
     reducers: {
         setSocket: (state, action)=>{
