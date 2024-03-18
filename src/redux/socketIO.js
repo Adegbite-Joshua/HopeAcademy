@@ -25,6 +25,9 @@ export const socketIO = createSlice({
         },
         setIO: (state, action)=>{
             state.io = action.payload
+        },
+        closeIO: (state)=>{
+            state.io.close()
         }
     }
 
