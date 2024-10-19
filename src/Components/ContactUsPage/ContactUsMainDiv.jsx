@@ -6,7 +6,7 @@ const ContactUsMainDiv = () => {
       <img
         src="teachers/teacher13.jpg"
         className="w-full h-3/4 object-cover"
-        alt=""
+        alt="Contact us"
       />
       <div className="w-full h-1/4 bg-light flex flex-col items-center justify-center text-center">
         <h1 className="text-3xl font-semibold mb-2">Contact</h1>

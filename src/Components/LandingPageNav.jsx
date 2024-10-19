@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
+import { motion } from "framer-motion";
 
 
-
-const LandingPageNav = ({ percent }) => {
-    const showSideBar = () => {
-        document.getElementById('navUl').classList.toggle('responsive')
-    }
-
+const LandingPageNav = () => {
     const showSubLink = (container) => {
         document.getElementById(container).classList.toggle('responsive')
     }
@@ -17,9 +13,22 @@ const LandingPageNav = ({ percent }) => {
     }
     const [percentage, setpercentage] = useState(0)
     window.onscroll = () => setpercentage((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100)
+
+    const containerVariants = {
+        hidden: { opacity: 0, y: -100 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.8,
+            ease: 'easeInOut',
+          },
+        },
+      };
+      
     return(
-    <div className='sticky top-0 z-50'>
-        <nav className="bg-blue-500 p-4 text-white h-28 ">
+    <motion.nav initial="hidden" whileInView="visible" variants={containerVariants} className='sticky top-0 z-50'>
+        <div className="bg-blue-700 p-4 text-white h-28 ">
             <div className="flex justify-between items-center h-full p-5 relative">
                 <Link to='/' className='h-full flex md:flex-row justify-center items-center gap-3'>
                     <img src="/school_logo.png" className='w-32 h-full' alt="" />
@@ -48,12 +57,12 @@ const LandingPageNav = ({ percent }) => {
                     <Link to="/about_us" className=' my-5 md:my-auto'>About Us</Link>
                 </div>
             </div>
-        </nav>
-        <div className='w-full bg-red-400' style={{ height: '8px' }}>
-            <div style={{ width: `${percentage}%` }} className='h-full bg-yellow-400'>
+        </div>
+        <div className='w-full bg-red-600' style={{ height: '8px' }}>
+            <div style={{ width: `${percentage}%` }} className='h-full bg-yellow-500'>
             </div>
         </div>
-    </div>
+    </motion.nav>
     )
 }
 

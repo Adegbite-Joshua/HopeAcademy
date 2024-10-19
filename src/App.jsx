@@ -4,7 +4,6 @@ import './../node_modules/font-awesome/css/font-awesome.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route } from "react-router-dom";
-// import LandingPage from './Components/LandingPages/LandingPage';
 import EntranceTest from './Components/EntranceTest/EntranceTest';
 import TestPage from './Components/EntranceTest/TestPage';
 import TestInstructions from './Components/EntranceTest/TestInstructions';
