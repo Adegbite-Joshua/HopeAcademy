@@ -378,20 +378,7 @@ $color: red;
         flex-basis: 100% !important;
     }
 }
-.signupOtherDiv{
-    flex-basis: 60%;
-    background-image: url(teachers/gallary4.png);
-    background-position: cover;
-    background-size: 100% 100%;
-    display: flex;
-    justify-content: end;
-    align-items: start;
-    padding: 2rem;
-    @media (max-width: 768px) {
-        flex-basis: 0;
-        display: none;
-    }
-}
+
 #subjects{
     // height: 100px !important;
     &::-webkit-scrollbar{

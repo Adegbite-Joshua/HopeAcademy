@@ -10,15 +10,17 @@ import DisplayToast from '../../src/CustomHooks/DisplayToast'
 import MessageSchool from '../../src/Components/MessageSchool'
 import LandingPageFooter from '../../src/Components/LandingPages/Footer'
 import { backendurl } from '../../constants/backendurl';
+import { Box, Chip, FormControl, InputLabel, MenuItem, OutlinedInput, Select, useTheme } from '@mui/material'
 
 
 
 
 
 const SignUpPage = () => {
-    document.querySelector('title').innerText = 'Sign Up | Student'; 
+    document.querySelector('title').innerText = 'Sign Up | Student';
 
     const navigate = useNavigate()
+    const theme = useTheme();
     const [fileType, setfileType] = useState('.jpeg, .jpg, .gif, .tif, .psd');
 
 
@@ -93,9 +95,9 @@ const SignUpPage = () => {
                     setsigningUp(false)
                     console.log(err);
                 })
-            } else {
-                DisplayToast('error', 'Please Select An Image')
-            }
+        } else {
+            DisplayToast('error', 'Please Select An Image')
+        }
     }
 
     const formik = useFormik({
@@ -151,13 +153,53 @@ const SignUpPage = () => {
             setimageBase64(reader.result)
         }
     }
+
+    const ITEM_HEIGHT = 48;
+    const ITEM_PADDING_TOP = 8;
+    const MenuProps = {
+        PaperProps: {
+            style: {
+                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                width: 250,
+            },
+        },
+    };
+
+    function getStyles(name, personName, theme) {
+        return {
+            fontWeight: personName.includes(name)
+                ? theme.typography.fontWeightMedium
+                : theme.typography.fontWeightRegular,
+        };
+    }
+
+    const [selectedSubjects, setSelectedSubjects] = useState([0, 1]);
+
+    const handleSelectSubjects = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setSelectedSubjects(
+            typeof value === 'string' ? value.split(',') : value,
+        );
+    };
+
+    const [studentClass, setStudentClass] = useState('');
+
+    const handleClassChange = (event) => {
+        setStudentClass(event.target.value);
+    };
+
     return (
         <>
             <LandingPageNav />
             <h3 className='text-center bg-light m-0 p-3'>Sign Up Page</h3>
-            <div className="flex w-full p-4 topSpace bg-light gap-3 relative">
-                <div className="border signup rounded-5 p-5 flex flex-col">
-                    <form onSubmit={formik.handleSubmit}>
+            <div className="flex flex-col-reverse md:flex-row w-full p-4 topSpace bg-light gap-3 relative">
+                <div className="border rounded-5 p-5 flex flex-col relative">
+                    <div className='absolute -z-10 left-0 right-0 top-0 bottom-0'>
+                        <img src="/school_logo.png" alt="School Logo" className='sticky -z-10 top-32 w-full h-44' />
+                    </div>
+                    <form className='bg-white bg-opacity-75' onSubmit={formik.handleSubmit}>
                         <label htmlFor="firstName">First Name</label>
                         <input {...formik.getFieldProps('firstName')} className='w-full border-2 rounded-md p-2 h-12 my-2' type="text" id='firstName' name='firstName' placeholder='First Name' />
                         <small className='text-red-500'>{formik.touched.firstName && formik.errors.firstName}</small><br />
@@ -170,21 +212,66 @@ const SignUpPage = () => {
                         <label htmlFor="password">Password</label>
                         <input {...formik.getFieldProps('password')} className='w-full border-2 rounded-md p-2 h-12 my-2' id='password' name='password' type="password" placeholder='Password' />
                         <small className='text-red-500'>{formik.touched.password && formik.errors.password}</small><br />
-                        <label htmlFor="clas">Class</label>
-                        <select name="clas" id="clas" onChange={formik.handleChange} required className='w-full border-2 rounded-md p-2 h-12 my-2'>
-                            <option value="0">JSS1</option>
-                            <option value="1">JSS2</option>
-                            <option value="2">JSS3</option>
-                            <option value="3">SSS1</option>
-                            <option value="4">SSS2</option>
-                            <option value="5">SSS3</option>
-                        </select>
-                        <label htmlFor="subjects">Subjects</label>
-                        <select onChange={formik.handleChange} className='w-full border-2 rounded-md p-2 my-2' multiple name='subjects' id="subjects">
-                            {subjects.map((subject, index)=>(
-                                <option selected={index<=1} disabled={index<=1} value={index}>{subject}</option>
-                            ))}                            
-                        </select>
+                        <FormControl className='w-full border-2 rounded-md h-12 my-4' sx={{ m: 1, minWidth: 120 }}>
+                            <Select
+                                value={studentClass}
+                                name="clas"
+                                id="clas"
+                                onChange={(e) => {
+                                    handleClassChange(e);
+                                    formik.handleChange(e);
+                                }}
+                                displayEmpty
+                                required
+                                inputProps={{ 'aria-label': 'Without label' }}
+                            >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={0}>JSS 1</MenuItem>
+                                <MenuItem value={1}>JSS 2</MenuItem>
+                                <MenuItem value={2}>JSS 3</MenuItem>
+                                <MenuItem value={3}>SSS 1</MenuItem>
+                                <MenuItem value={4}>SSS 2</MenuItem>
+                                <MenuItem value={5}>SSS 3</MenuItem>
+
+                            </Select>
+                        </FormControl>
+                        <div className='p-2'>
+                            <FormControl className='w-full border-2 rounded-md p-2 my-5' >
+                                <InputLabel id="subjects-label">Subjects</InputLabel>
+                                <Select
+                                    labelId="subjects-label"
+                                    id="subjects"
+                                    name='subjects'
+                                    multiple
+                                    value={selectedSubjects}
+                                    onChange={(e) => {
+                                        handleSelectSubjects(e);
+                                        formik.handleChange(e);
+                                    }}
+                                    input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                                    renderValue={(selected) => (
+                                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                            {selected.map((value) => (
+                                                <Chip key={value} label={subjects[value]} />
+                                            ))}
+                                        </Box>
+                                    )}
+                                    MenuProps={MenuProps}
+                                >
+                                    {subjects.map((subject, index) => (
+                                        <MenuItem
+                                            key={subject}
+                                            value={index}
+                                            style={getStyles(subject, selectedSubjects, theme)}
+                                        >
+                                            {subject}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </div>
                         <label htmlFor='address'>Address</label>
                         <input type='text' className='w-full border-2 rounded-md p-2 h-12' {...formik.getFieldProps('address')} placeholder='Address' id='address' name='address' />
                         <small className='text-red-500'>{formik.touched.address && formik.errors.address}</small><br />
@@ -202,12 +289,13 @@ const SignUpPage = () => {
                         <p>Already have an account? <Link className='inline text-blue-700' to='/student/signin'>Sign In</Link></p>
                     </form>
                 </div>
-                <div style={{backgroundImage: "url('/teachers/gallary6.jpg')"}} className="signupOtherDiv  rounded-5 flex items-center justify-center">
-                    <span className='px-3 py-2 rounded-3xl bg-blue-600 text-white'><Link to='/stduent/signin'>Sign In</Link></span>
+                <div className="basis-3/5 rounded-5 relative">
+                    <img src="/teachers/gallary6.jpg" className='w-full h-auto sticky top-10' alt="" />
+                    <span className=' absolute top-0 right-0 m-2 px-3 py-2 rounded-3xl bg-blue-600 text-white'><Link to='/stduent/signin'>Sign In</Link></span>
                 </div>
             </div>
-            <LandingPageFooter/>
-            <MessageSchool/>
+            <LandingPageFooter />
+            <MessageSchool />
         </>
     )
 }
