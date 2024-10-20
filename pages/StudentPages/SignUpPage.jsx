@@ -75,6 +75,7 @@ const SignUpPage = () => {
         }
         console.log(details);
         console.log(imageBase64);
+        return;
         let endpoint = `${backendurl}student/signup`
         if (imageBase64 != '') {
             setsigningUp(true)
@@ -165,7 +166,7 @@ const SignUpPage = () => {
         },
     };
 
-    function getStyles(name, personName, theme) {
+    const getStyles = (name, personName, theme) => {
         return {
             fontWeight: personName.includes(name)
                 ? theme.typography.fontWeightMedium
@@ -193,7 +194,7 @@ const SignUpPage = () => {
     return (
         <>
             <LandingPageNav />
-            <h3 className='text-center bg-light m-0 p-3'>Sign Up Page</h3>
+            <h3 className='text-center text-2xl bg-light m-0 p-3'>Welcome to <span className='text-3xl font-bold text-blue-600'>HOPE Academy</span></h3>
             <div className="flex flex-col-reverse md:flex-row w-full p-4 topSpace bg-light gap-3 relative">
                 <div className="border rounded-5 p-5 flex flex-col relative">
                     <div className='absolute -z-10 left-0 right-0 top-0 bottom-0'>
@@ -212,9 +213,12 @@ const SignUpPage = () => {
                         <label htmlFor="password">Password</label>
                         <input {...formik.getFieldProps('password')} className='w-full border-2 rounded-md p-2 h-12 my-2' id='password' name='password' type="password" placeholder='Password' />
                         <small className='text-red-500'>{formik.touched.password && formik.errors.password}</small><br />
-                        <FormControl className='w-full border-2 rounded-md h-12 my-4' sx={{ m: 1, minWidth: 120 }}>
+                        <div className="p-2 flex justify-center">
+                        <FormControl className='w-full border-2 rounded-md my-4' sx={{ m: 1, minWidth: 120 }}>
+                            <InputLabel id="class-label" className='z-10 bg-white'>Class</InputLabel>
                             <Select
-                                value={studentClass}
+                                value={studentClass}                                
+                                labelId="class-label"
                                 name="clas"
                                 id="clas"
                                 onChange={(e) => {
@@ -237,41 +241,40 @@ const SignUpPage = () => {
 
                             </Select>
                         </FormControl>
-                        <div className='p-2'>
-                            <FormControl className='w-full border-2 rounded-md p-2 my-5' >
-                                <InputLabel id="subjects-label">Subjects</InputLabel>
-                                <Select
-                                    labelId="subjects-label"
-                                    id="subjects"
-                                    name='subjects'
-                                    multiple
-                                    value={selectedSubjects}
-                                    onChange={(e) => {
-                                        handleSelectSubjects(e);
-                                        formik.handleChange(e);
-                                    }}
-                                    input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-                                    renderValue={(selected) => (
-                                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                            {selected.map((value) => (
-                                                <Chip key={value} label={subjects[value]} />
-                                            ))}
-                                        </Box>
-                                    )}
-                                    MenuProps={MenuProps}
-                                >
-                                    {subjects.map((subject, index) => (
-                                        <MenuItem
-                                            key={subject}
-                                            value={index}
-                                            style={getStyles(subject, selectedSubjects, theme)}
-                                        >
-                                            {subject}
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
                         </div>
+                        <FormControl className='w-full border-2 rounded-md p-2 my-5' >
+                            <InputLabel id="subjects-label"  className='z-10 bg-white'>Subjects</InputLabel>
+                            <Select
+                                labelId="subjects-label"
+                                id="subjects"
+                                name='subjects'
+                                multiple
+                                value={selectedSubjects}
+                                onChange={(e) => {
+                                    handleSelectSubjects(e);
+                                    formik.handleChange(e);
+                                }}
+                                input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                                renderValue={(selected) => (
+                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                        {selected.map((value) => (
+                                            <Chip key={value} label={subjects[value]} />
+                                        ))}
+                                    </Box>
+                                )}
+                                MenuProps={MenuProps}
+                            >
+                                {subjects.map((subject, index) => (
+                                    <MenuItem
+                                        key={subject}
+                                        value={index}
+                                        style={getStyles(subject, selectedSubjects, theme)}
+                                    >
+                                        {subject}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
                         <label htmlFor='address'>Address</label>
                         <input type='text' className='w-full border-2 rounded-md p-2 h-12' {...formik.getFieldProps('address')} placeholder='Address' id='address' name='address' />
                         <small className='text-red-500'>{formik.touched.address && formik.errors.address}</small><br />
