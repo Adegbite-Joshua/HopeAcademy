@@ -73,9 +73,6 @@ const SignUpPage = () => {
             subjects: fullsubjects,
             tasks: []
         }
-        console.log(details);
-        console.log(imageBase64);
-        return;
         let endpoint = `${backendurl}student/signup`
         if (imageBase64 != '') {
             setsigningUp(true)
@@ -242,12 +239,14 @@ const SignUpPage = () => {
                             </Select>
                         </FormControl>
                         </div>
-                        <FormControl className='w-full border-2 rounded-md p-2 my-5' >
+                        <FormControl className='w-full border border-black rounded-md p-2 my-5' >
                             <InputLabel id="subjects-label"  className='z-10 bg-white'>Subjects</InputLabel>
                             <Select
                                 labelId="subjects-label"
                                 id="subjects"
                                 name='subjects'
+                                error={false}
+                                onError={(e)=>console.log(e, 'error')}
                                 multiple
                                 value={selectedSubjects}
                                 onChange={(e) => {
