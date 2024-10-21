@@ -4,7 +4,7 @@ const ContactUsMainDiv = () => {
   return (
     <div className="ContactUsMainDiv relative h-screen">
       <img
-        src="teachers/teacher13.jpg"
+        src="teachers/teacher19.jpg"
         className="w-full h-3/4 object-cover"
         alt="Contact us"
       />
