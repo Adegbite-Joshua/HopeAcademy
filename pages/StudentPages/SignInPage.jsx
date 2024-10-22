@@ -7,11 +7,14 @@ import DisplayToast from '../../src/CustomHooks/DisplayToast'
 import LandingPageNav from '../../src/Components/LandingPageNav'
 import LandingPageFooter from '../../src/Components/LandingPages/Footer'
 import { backendurl } from '../../constants/backendurl';
+import { CircularProgress } from '@mui/material'
 
 
 
 const SignInPage = () => {
     document.querySelector('title').innerText = 'Sign In | Student';
+
+    const [submittingForm, setSubmittingForm] = useState(false);
 
     const navigate = useNavigate()
     const formik = useFormik({
@@ -21,20 +24,23 @@ const SignInPage = () => {
             email: ''
         },
         onSubmit: (values) => {
+            setSubmittingForm(true);
             let endpoint = `${backendurl}student/signin`
             axios.post(endpoint, values)
                 .then((res) => {
                     console.log(res);
-                    if (res.status == 200) {
+                    setSubmittingForm(false);
+                    if (res?.status == 200) {
                         localStorage.studentToken = res.data.token
                         DisplayToast('success', 'Successfully Signed In')
                         navigate("/student/dashboard")
                     }
                 })
                 .catch((err) => {
-                    if (err.response.status == 477) {
+                    setSubmittingForm(false);
+                    if (err?.response?.status == 477) {
                         DisplayToast('error', 'Incorrect Password')
-                    } else if (err.response.status == 478) {
+                    } else if (err?.response?.status == 478) {
                         DisplayToast('error', 'Invalid Email Address')
                     } else {
                         DisplayToast('error', 'Error Logging You In')
@@ -52,6 +58,7 @@ const SignInPage = () => {
                         <img src="/school_logo.png" alt="School Logo" className='sticky -z-10 top-32 w-full h-44' />
                     </div>
                     <form onSubmit={formik.handleSubmit} className="bg-white bg-opacity-75 flex flex-col gap-4">
+                        <h3 className='text-center text-blue-600 font-bold text-3xl'>Student Sign In</h3>
                         <label htmlFor="class">Class</label>
                         <select name="class" id="class" {...formik.getFieldProps('class')} required className='form-select p-2 border-2 rounded-md'>
                             <option value={0}>JSS 1</option>
@@ -65,7 +72,9 @@ const SignInPage = () => {
                         <input className='form-input p-2 mb-2 border-2 rounded-md' {...formik.getFieldProps('email')} id='email' name='email' type="email" placeholder='Student Email Address' />
                         <label htmlFor="password">Password</label>
                         <input className='form-input p-2 mb-2 border-2 rounded-md' {...formik.getFieldProps('password')} id='password' name='password' type="password" placeholder='Password' />
-                        <button type='submit' className='btn bg-blue-500 text-white rounded p-2 hover:bg-blue-600 focus:outline-none'>Sign In</button>
+                        <button type='submit' className='btn bg-blue-500 text-white rounded p-2 hover:bg-blue-600 focus:outline-none'>
+                            {submittingForm ?  <CircularProgress color='inherit' size={30} />  : <span>Sign In</span>}
+                        </button>
                         <Link to='/student/forgottenpassword' className='text-red-500 hover:underline'>Forgotten Password?</Link>
                         <p>New here? <Link to='/student/signup' className='text-blue-500 hover:underline inline'>Sign Up</Link></p>
                     </form>

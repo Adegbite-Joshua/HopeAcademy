@@ -27,7 +27,7 @@ const SubjectMainDiv = ({ func, subjectDetails }) => {
     }
     return (
         <>
-            <div className='SubjectMainDiv p-20 pt-4 md:pt-20 md:mt-10 overflow-auto'>
+            <div className='SubjectMainDivs basis-full md:basis-8/12 p-20 pt-4 md:pt-20 md:mt-10 overflow-auto'>
                 <h3 className='top-0 text-center'>{subjects[Number(subjectDetails.subjectIndex)]}<span id='toggleIcon' onClick={func} className='float-right border-2 p-2 rounded-3'><i className='fa fa-bars'></i></span></h3>
                 <div className='w-full flex justify-between px-4 mt-3'>
                     <a className='cursor-pointer' onClick={() => setviewing('Performance')}>C/A & Performance</a>

@@ -1,27 +1,33 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import { backendurl } from '../../../../constants/backendurl';
+import { CircularProgress } from '@mui/material';
+import DisplayToast from '../../../CustomHooks/DisplayToast';
 
 
 
 const ResetPasswordForm = () => {
     const [email, setEmail] = useState('');
     const [studentClass, setstudentClass] = useState('');
+    const [submittingForm, setSubmittingForm] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setSubmittingForm(true);
         axios.post(`${backendurl}student/send_password_link`, { email, studentClass })
             .then((res) => {
                 console.log(res)
+                setSubmittingForm(false);
                 if (res.status == 200) {
-                    alert('Email sent')
+                    DisplayToast('success', 'Email sent')
                     setEmail('')
                     setstudentClass('')
                 } else if (res.status == 403) {
-                    alert('Invalid Student Information')
+                    DisplayToast('error', 'Invalid Student Information')
                 }
             })
             .catch((error) => {
+                setSubmittingForm(false);
                 console.log(error)
             })
 
@@ -53,8 +59,8 @@ const ResetPasswordForm = () => {
                     required
                 />
             </div>
-            <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
-                Reset Password
+            <button type="submit" disabled={submittingForm} className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+                { submittingForm ?  <CircularProgress color='inherit' size={30} /> : <span>Reset Password</span> }
             </button>
         </form>
     );

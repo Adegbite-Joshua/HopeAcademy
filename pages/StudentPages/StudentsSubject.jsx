@@ -90,10 +90,10 @@ const StudentsSubject = () => {
         <div className='grid h-screen md:flex md:flex-row bg-slate-300 relative ring-0'>
             <NavBar/>
             {fetching && <Loader/>}
-            {fetching==false && <>
+            {fetching==false && <div className='flex overflow-x-auto'>
               <SubjectMainDiv subjectDetails={subjectDetails} func={toggleSideNav}/>
               <SubjectSideDiv toggleSideNav={toggleSideNav} func2={setVieingSubject}/>
-            </>}
+            </div>}
         </div>
     </>
   )

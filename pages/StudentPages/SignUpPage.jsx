@@ -198,6 +198,7 @@ const SignUpPage = () => {
                         <img src="/school_logo.png" alt="School Logo" className='sticky -z-10 top-32 w-full h-44' />
                     </div>
                     <form className='bg-white bg-opacity-75' onSubmit={formik.handleSubmit}>
+                        <h3 className='text-center text-blue-600 font-bold text-3xl'>Create An Account Form</h3>
                         <label htmlFor="firstName">First Name</label>
                         <input {...formik.getFieldProps('firstName')} className='w-full border-2 rounded-md p-2 h-12 my-2' type="text" id='firstName' name='firstName' placeholder='First Name' />
                         <small className='text-red-500'>{formik.touched.firstName && formik.errors.firstName}</small><br />
@@ -226,7 +227,7 @@ const SignUpPage = () => {
                                 required
                                 inputProps={{ 'aria-label': 'Without label' }}
                             >
-                                <MenuItem value="">
+                                <MenuItem disabled value="">
                                     <em>None</em>
                                 </MenuItem>
                                 <MenuItem value={0}>JSS 1</MenuItem>

@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { backendurl } from '../../../../constants/backendurl';
+import DisplayToast from '../../../CustomHooks/DisplayToast';
+import { CircularProgress } from '@mui/material';
 
 
 
@@ -9,6 +11,7 @@ const NewPasswordForm = ({ userDetails }) => {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordsMatch, setPasswordsMatch] = useState(true);
+    const [submittingForm, setSubmittingForm] = useState(false);
     const navigate = useNavigate();
 
 
@@ -25,20 +28,24 @@ const NewPasswordForm = ({ userDetails }) => {
     };
 
     const saveNewPassword = () => {
+        setSubmittingForm(true);
         axios.post(`${backendurl}student/change_password`, {
             studentClass: userDetails.studentClass,
             email: userDetails.email,
             newPassword
         }).then((res) => {
+            setSubmittingForm(false);
             if (res.status == 200) {
-                alert('Password changed successfully')
-                navigate('/signin')
+                DisplayToast('success', 'Password changed successfully');
+                navigate('/student/signin');
             } else {
-                alert('Error in saving your password, please try again')
+                DisplayToast('error', 'Error in saving your password, please try again');
             }
         })
             .catch((error) => {
                 console.log(error);
+                setSubmittingForm(false);
+                DisplayToast('error', 'Error in saving your password, please try again');
             })
     }
 
@@ -78,9 +85,9 @@ const NewPasswordForm = ({ userDetails }) => {
             <button
                 className={`w-full bg-blue-500 text-white p-2 rounded ${passwordsMatch ? 'hover:bg-blue-600' : 'cursor-not-allowed opacity-50'}`}
                 onClick={saveNewPassword}
-                disabled={!passwordsMatch}
+                disabled={!passwordsMatch || submittingForm }
             >
-                Change Password
+                {submittingForm ?  <CircularProgress color='inherit' size={30} /> : <span>Change Password</span> }
             </button>
         </div>
     );

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { backendurl } from '../../../../constants/backendurl';
+import DisplayToast from '../../../CustomHooks/DisplayToast';
 
 
 
@@ -33,17 +34,17 @@ const NewPasswordForm = ({ userDetails }) => {
             newPassword
         }).then((res) => {
             if (res.status == 200) {
-                alert('Password changed successfully')
-                navigate('/signin')
+                DisplayToast('success', 'Password changed successfully')
+                navigate('/staff/signin')
             } else {
-                alert('Error in saving your password, please try again')
+                DisplayToast('error', 'Error in saving your password, please try again')
             }
         })
         .catch((error) => {
             console.log(error);
+            DisplayToast('error', 'Error in saving your password, please try again')
         })
     }
-
 
     return (
         <div>
