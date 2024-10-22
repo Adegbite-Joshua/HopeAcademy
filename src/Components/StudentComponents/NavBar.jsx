@@ -23,7 +23,7 @@ const NavBar = () => {
             <NavLink className={({ isActive }) => isActive ? 'border-b-4 font-bold text-white' : 'text-white'} to='/student/notifications'><span className='flex items-center'><i className='hidden fas fa-calendar mr-2'></i>Notifications</span></NavLink>
             <NavLink className={({ isActive }) => isActive ? 'border-b-4 font-bold text-white' : 'text-white'} to='/student/feepayment'><span className='flex items-center'><i className='hidden fas fa-dollar-sign mr-2'></i>Payments</span></NavLink>
             <NavLink className={({ isActive }) => isActive ? 'border-b-4 font-bold text-white' : 'text-white'} to='/student/profile'><span className='flex items-center'><i className='hidden fas fa-cog mr-2'></i>Profile</span></NavLink>
-            <button onClick={signOut}><span className='flex items-center'><i className='hidden fas fa-sign-out-alt mr-2'></i>Sign Out</span></button>
+            <button onClick={signOut}><span className='flex items-center bg-red-500 p-2 rounded-md'><i className='hidden fas fa-sign-out-alt mr-2'></i>Sign Out</span></button>
             <span id='openPop' className='p-2 rounded-md border-2 border-white md:hidden' onClick={openNavPop}>
                 <i className='fa fa-bars text-white'></i>
             </span>

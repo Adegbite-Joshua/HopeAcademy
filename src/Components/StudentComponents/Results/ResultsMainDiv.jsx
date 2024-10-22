@@ -18,16 +18,16 @@ const ResultsMainDiv = ({studentInfo, studentAcademicResults, resultIndex}) => {
   const school = {
     logoUrl: '/school_logo.png',
     name: 'HOPE Academy',
-    address: '123 School Street, Cityville, State, 12345',
+    address: 'Ogbomoso, Oyo State, Nigeria',
     email: 'adegbitejoshua07@gmail.com',
     contactNumber: '+234701586456',
   };
 
   const student = {
+    ...studentInfo,
     name: `${studentInfo?.firstName} ${studentInfo?.lastName}`,
     matricNumber: studentInfo?.matricNumber,
   };
-//  console.log(studentAcademicResults.reverse())
 
   const generatePdf = () => {
     const input = document.getElementById('pdf-content');
