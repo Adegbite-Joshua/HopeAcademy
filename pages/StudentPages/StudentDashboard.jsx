@@ -34,7 +34,7 @@ const StudentDashboard = () => {
 
   return (
     <>
-      <div className='grid grid-cols-1 overflow-y-auto md:flex allWrap border-2 md:h-screen'>
+      <div className='overflow-y-auto flex md:flex allWrap border-2 md:h-screen'>
         <NavBar />
         {fetching && <Loader />}
         {!fetching && (

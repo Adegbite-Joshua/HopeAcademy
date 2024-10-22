@@ -77,7 +77,7 @@ const StudentMainDiv = ({ welcomeNote }) => {
 
     return (
         <>
-            <div className="StudentMainDiv p-4">
+            <div className="basis-10/12 p-4">
                 <div className="w-3/4 mx-auto bg-white shadow-lg rounded-lg p-4 flex flex-col md:flex-row justify-between">
                     <div>
                         <p className="text-xl font-semibold mb-4">Hi {studentInfo.firstName} {welcomeNote}</p>

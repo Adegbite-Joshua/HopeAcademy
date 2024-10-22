@@ -87,10 +87,10 @@ const StudentsSubject = () => {
     }
   return (
     <>
-        <div className='grid h-screen md:flex md:flex-row bg-slate-300 relative ring-0'>
+        <div className='shrink-0 h-screen flex md:flex-row bg-slate-300 relative ring-0'>
             <NavBar/>
             {fetching && <Loader/>}
-            {fetching==false && <div className='flex overflow-x-auto'>
+            {fetching==false && <div className='basis-10/12 flex shrink-0 overflow-x-auto'>
               <SubjectMainDiv subjectDetails={subjectDetails} func={toggleSideNav}/>
               <SubjectSideDiv toggleSideNav={toggleSideNav} func2={setVieingSubject}/>
             </div>}

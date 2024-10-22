@@ -33,11 +33,11 @@ const ResourcesContainer = ({subjectDetails, func, studentResources}) => {
   }, [subjectDetails])
 
   return (
-    <>
+    <div className='w-full'>
         {studentResources.length>0?studentResources.map((resource, index)=>(
           <SubjectResource resource={resource}/>
         )): <p className='p-2 text-center'>This Subject Has No Resources</p>}
-    </>
+    </div>
   )
 }
 

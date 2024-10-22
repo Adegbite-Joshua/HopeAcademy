@@ -29,12 +29,12 @@ const StudentOnlineClass = () => {
   
   return (
     <>
-      <div id='pageContainer' className="grid h-screen md:flex md:flex-row bg-slate-300 relative ring-0">
+      <div id='pageContainer' className="h-screen flex md:flex-row bg-slate-300 relative ring-0">
         <NavBar />
-        {fetching ? <Loader/> : <>
+        {fetching ? <Loader/> : <div className='basis-10/12 flex shrink-0 overflow-x-auto'>
           <ClassMainDiv startClass={startClass} classId={classId} setstartClass={setstartClass} />
           <ClassSideDiv startClassFunction={startClassFunction} />
-        </>}
+        </div>}
       </div>
     </>
   )

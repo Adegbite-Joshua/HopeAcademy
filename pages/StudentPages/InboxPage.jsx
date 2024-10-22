@@ -154,13 +154,13 @@ const InboxPage = () => {
 
   return (
     <>
-        <div className='flex w-full allWrap h-screen overflow-hidden'>
+        <div className='flex flex-col md:flex-row h-screen overflow-hidden'>
             <NavBar/>
             {fetching==true && (<Loader/>)}
-            {fetching==false && (<>
+            {fetching==false && (<div className='basis-10/12 flex shrink-0 overflow-x-auto'>
               <InboxMainDiv messages={allMessages[partnerId]} toggleSideNav={toggleSideNav} sendMessage={sendMessage} partnerName={partnerName} partnerCommonId={partnerCommonId} />
               <OtherUsers  toggleSideNav={toggleSideNav} func2={setAll}/>
-            </>)}
+            </div>)}
         </div>
     </>
   )

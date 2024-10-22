@@ -8,9 +8,7 @@ import axios from 'axios'
 
 const InboxMainDiv = ({ toggleSideNav, partnerName, messages, partnerCommonId, sendMessage }) => {
     useEffect(() => {
-        // console.log(document.getElementById("messageContainer").scrollHeight)
         document.getElementById("messageContainer").scrollTop = document.getElementById("messageContainer").scrollHeight
-        // showPartnerName()
     }, [messages])
     let studentInfo = useSelector((state) => state.studentInformation.studentInformation);
     let allStaffs = useSelector((state) => state.studentInformation.allStaffs);
@@ -18,20 +16,9 @@ const InboxMainDiv = ({ toggleSideNav, partnerName, messages, partnerCommonId, s
     let fetching = useSelector((state) => state.studentInformation.staffFetchingState);
     const [messageInput, setmessageInput] = useState('')
     let chattingWithName = ''
-    // const showPartnerName =()=>{
-    //     if(category==0 && mainindex!=''){
-    //         alert('yes')
-    //         let ff = allStaffs[mainindex].find((individual, index)=>individual.email=individualEmail)
-    //         console.log(allStaffs[mainindex])
-    //      } else if(category==1 && mainindex!=''){
-    //         alert('no')
-    //          let gg = allStudents[mainindex].find((individual, index)=>individual.email=individualEmail)
-    //          console.log(gg)
-    //       }
-    // }
     return (
         <>
-            <div className='InboxMainDiv h-full border-r-2 overflow-y-auto md:border-blue-500 p-5 relative topSpace'>
+            <div className='basis-full md:basis-8/12 h-full border-r-2 overflow-y-auto md:border-blue-500 p-5 relative topSpace'>
                 <h3 className='sticky top-0 text-center'>
                     Adegbite Joshua
                     <span id='toggleIco' onClick={toggleSideNav} className=' md:hidden float-right border-2 p-2 rounded'>
@@ -63,7 +50,7 @@ const InboxMainDiv = ({ toggleSideNav, partnerName, messages, partnerCommonId, s
                                 sendMessage(messageInput);
                                 message.value = '';
                             }}>
-                            <i className="fa fa-paper-plane text-2xl hover:text-2xl text-blue-500 duration-150"></i>
+                                <i className="fa fa-paper-plane text-2xl hover:text-2xl text-blue-500 duration-150"></i>
                             </button>
                         </div>
                     </div>

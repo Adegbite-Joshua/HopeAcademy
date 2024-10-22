@@ -14,8 +14,8 @@ const SubjectSideDiv = ({ toggleSideNav, func2 }) => {
         }) : ''
     }
     return (
-        <div id='SubjectSideDiv' className='topSpace basis-0 md:basis-4/12 overflow-y-auto'>
-            <h3 className='text-center'>Subjects
+        <div id='SubjectSideDiv' className='topSpace border basis-0 md:basis-4/12 overflow-y-auto'>
+            <h3 className='text-center text-3xl font-bold my-5'>Subjects
                 <span id='toggleIcon' onClick={toggleSideNav} className='float-right border-2 p-2 rounded-3'>
                     <i className='fa fa-close'></i>
                 </span>

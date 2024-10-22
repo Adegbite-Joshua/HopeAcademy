@@ -28,17 +28,15 @@ const SubjectMainDiv = ({ func, subjectDetails }) => {
     return (
         <>
             <div className='SubjectMainDivs basis-full md:basis-8/12 p-20 pt-4 md:pt-20 md:mt-10 overflow-auto'>
-                <h3 className='top-0 text-center'>{subjects[Number(subjectDetails.subjectIndex)]}<span id='toggleIcon' onClick={func} className='float-right border-2 p-2 rounded-3'><i className='fa fa-bars'></i></span></h3>
-                <div className='w-full flex justify-between px-4 mt-3'>
-                    <a className='cursor-pointer' onClick={() => setviewing('Performance')}>C/A & Performance</a>
-                    <a className='cursor-pointer' onClick={() => setviewing('Resources')}>Resources</a>
+                <h3 className='top-0 text-center text-2xl font-bold'>{subjects[Number(subjectDetails.subjectIndex)]}<span id='toggleIcon' onClick={func} className='float-right border-2 p-2 rounded-3'><i className='fa fa-bars'></i></span></h3>
+                <div className='w-full grid grid-cols-2 px-4 mt-3'>
+                    <button className={`${viewing == "Performance" ? "bg-blue-400" : "bg-slate-200"} cursor-pointer border-l border-r p-2`} onClick={() => setviewing('Performance')}>C/A & Performance</button>
+                    <button className={`${viewing == "Resources" ? "bg-blue-400" : "bg-slate-200"} cursor-pointer border-l border-r p-2`} onClick={() => setviewing('Resources')}>Resources</button>
                 </div>
                 <div id='subjectContainer' className='subjectContainer w-full mt-3'>
                     {viewing === 'Performance' ? <PerformanceContainer subjectDetails={subjectDetails} /> : ''}
                     {viewing === 'Resources' ? <ResourcesContainer func={setresources} studentResources={studentResources} subjectDetails={subjectDetails} /> : ''}
-                    {/* {viewing==='Class'?<ResourcesContainer/>:''} */}
                 </div>
-                {/* {document.getElementById("subjectContainer").onscroll = measure} */}
             </div>
         </>
 
