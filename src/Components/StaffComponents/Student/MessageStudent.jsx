@@ -5,7 +5,7 @@ import { backendurl } from '../../../../constants/backendurl';
 
 
 
-const MessageStudent = ({category, mainindex, individualEmail, partnerName }) => {
+const MessageStudent = ({category, studentEmail, partnerName }) => {
   let staffInfo = useSelector((state)=>state.staffInformation.staffInformation)
   const messageStudent = async()=>{
     let sendMessageEndpoint = `${backendurl}staff/message`
@@ -14,7 +14,7 @@ const MessageStudent = ({category, mainindex, individualEmail, partnerName }) =>
       messageSenderEmail: staffInfo.email,
       receiverRelationship: 'student',
       receiverClass: category,
-      receiverEmail: individualEmail,
+      receiverEmail: studentEmail,
       senderRelationship: 'staff',
       messageBody: document.getElementById('message').value
     }
@@ -32,7 +32,7 @@ const MessageStudent = ({category, mainindex, individualEmail, partnerName }) =>
         <div className='w-full md:w-6/12 block mx-auto'>
             <textarea name="" id="message" className='w-full focus:outline-0 focus:ring-2 focus::ring-blue-600' rows={5} placeholder='Your Message here'>
             </textarea>
-            <button onClick={messageStudent} className='w-full my-2 p-2 rounded-md text-center bg-blue-600 hover:bg-blue-500'>{individualEmail?`Send To ${partnerName}`:'Select A Students Name'}</button>
+            <button onClick={messageStudent} className='w-full my-2 p-2 rounded-md text-center bg-blue-600 hover:bg-blue-500'>{studentEmail?`Send To ${partnerName}`:'Select A Students Name'}</button>
         </div>
     </>
   )

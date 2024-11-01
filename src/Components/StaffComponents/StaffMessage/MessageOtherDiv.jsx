@@ -4,7 +4,7 @@ import OtherStaff from './OtherStaff'
 import OtherAdmins from './OtherAdmins'
 
 const MessageOtherDiv = ({setPartner}) => {
-  const [messaging, setmessaging] = useState('other')
+  const [messaging, setmessaging] = useState('student')
   return (
     <>
         <div className=" MessageOtherDiv order-1 md:order-none md:basis-4/12 md:h-full bg-slate-300 overflow-y-auto mt-16 md:mt-0 border-2">

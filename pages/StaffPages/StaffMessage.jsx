@@ -101,7 +101,7 @@ const StaffMessage = () => {
       senderName: `${staffInfo.firstName} ${staffInfo.lastName}`,
       partnerCommonId: partnerCommonId
     }
-    let endpoint = 'https://hopeacademy.vercel.app/send_message'
+    let endpoint = `${backendurl}send_message`
     axios.post(endpoint, { messageDetails, partnerId })
     socket.emit('sendMessage', messageDetails, partnerId)
     setallMessages((prevAllMessages) => {
@@ -118,11 +118,10 @@ const StaffMessage = () => {
       firstId: partnerId,
       secondId: staffInfo._id
     }
-    console.log(chatId)
+
     if (allMessages[partnerId] == undefined || allMessages[partnerId] == null) {
-      axios.post('https://hopeacademy.vercel.app/staff/createchat', chatId)
+      axios.post(`${backendurl}staff/createchat`, chatId)
         .then((res) => {
-          console.log(res.data)
           setpartnerCommonId(res.data.created._id);
           commonId = partnerId
           setallMessages(

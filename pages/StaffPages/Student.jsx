@@ -16,73 +16,20 @@ import { backendurl } from '../../constants/backendurl'
 const Student = () => {
   const [staffInfo, fetching, staffNotifications, notificationFetchingState] = fetchStaffInfo();
   const [category, setcategory] = useState(null)
-  const [mainindex, setmainindex] = useState(null)
-  const [individualEmail, setemail] = useState(null)
+  const [mainindex, setmainindex] = useState(staffInfo?.class)
+  const [studentIndex, setStudentIndex] = useState(0);
+  const [studentEmail, setStudentEmail] = useState(null);
   const [partnerName, setpartnerName] = useState('')
   const dispatch = useDispatch()
   let paramsValue = useParams();
   const [classStudents] = fetchSubjectStudents();
   // let classStudents = useSelector((state)=>state.staffInformation.classStudents)
-  const setViewingMessage =(cat, main, email)=>{
-    console.log(cat, main, email);
-    category!=''?setcategory(cat):''
-    mainindex!=''?setmainindex(main):''
-    individualEmail!=''?setemail(email):''
+  const setViewingMessage =(cat, index, email)=>{    
+    setcategory(cat);
+    setStudentIndex(index);
+    setStudentEmail(email)
   }
-  
-  const fetchStaffInformation = async()=>{
-    console.log(classStudents);
-    let endpoint = `${backendurl}staff/dashboard`
-    let staffEmail = localStorage.getItem('staffemail')
-    let staffPassword = localStorage.getItem('staffpassword')
-    let staffClass = Number(localStorage.getItem('staffclass'))
-    let details = {
-        staffClass,
-        staffEmail,
-        staffPassword
-    }
-    // try{
-    //   if (Object.keys(staffInfo).length === 0 && staffInfo.constructor === Object) {
-    //     axios.post(endpoint, details)
-    //     .then((res)=>{
-    //         if (res.status==200) {
-    //           dispatch(fetchStaff(res.data))
-    //           dispatch(setFetching(false))
-    //           setDefault()
-    //         } else if(res.status != 200){
-    //             state.staffInformation = 'error'
-    //         }
-    //     })
-    //     .catch((err)=>{
-    //         console.log(err);
-    //     })
-    //   }
-    // } catch (error){
-    //   console.log(error)
-    // }
-    
-  }
-  const validateStaff =()=>{
-    let token = localStorage.token
-    let validateEndpoint = `${backendurl}staff/validatetoken`
-    axios.get(validateEndpoint, {headers : {
-      "Authorization": `Bearer ${token}`,
-      "Content-Toe": "application/json",
-      "Accept": "application/json"
-    }})
-    .then((res)=>{
-      console.log(res);
-      if (res.status == 200) {
-        fetchStaffInformation()
-      } else{
-        navigate('/signin')
-      }
-    })
-    .catch((error)=>{
-      navigate('/signin')
-      console.log(error);
-    })
-  }
+
   useEffect(() => {
     // validateStaff()
     // console.log({class: Number(localStorage.getItem('staffclass')), subjectIndex: staffInfo.subjectIndex})
@@ -99,7 +46,7 @@ const Student = () => {
     if(paramsValue.email && Object.keys(staffInfo).length > 0 && staffInfo.constructor === Object){
       setcategory(0);
       setmainindex(staffInfo.class);
-      setemail(paramsValue.email);
+      setStudentIndex(paramsValue.email);
       console.log(classStudents.find((student, index)=>student.email==paramsValue.email).firstName)
       setpartnerName(classStudents.find((student, index)=>student.email==paramsValue.email).firstName)
     }
@@ -110,7 +57,7 @@ const Student = () => {
             <DashboardNav/>
             {fetching && <Loader/>}
             {fetching==false && <>
-              <StudentMainDIv category={category} mainindex={mainindex} individualEmail={individualEmail} classStudents={classStudents} partnerName={partnerName} />
+              <StudentMainDIv category={category} studentIndex={studentIndex} studentEmail={studentEmail} partnerName={partnerName} />
               <StudentOtherDiv func={setViewingMessage} func2={setPartnerName}/>
             </>}
         </div>
