@@ -19,7 +19,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="bg-blue-500 p-4 text-white h-28 sticky top-0">
+    <nav className="bg-blue-700 p-4 text-white h-28 sticky top-0">
       <div className="flex justify-between items-center h-full p-5 relative">
         <img src="/school_logo.png" className='w-32 h-full' alt="" />
         <button onClick={showNavBar} className='p-2 border-2 rounded-lg md:hidden'><i className='fa fa-bars'></i></button>

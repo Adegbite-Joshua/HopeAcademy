@@ -23,14 +23,14 @@ const TestWelcomeAndInput = () => {
           })
           .catch((error)=>{
             console.log(error)
-            if(error.response.status==478){
+            if(error?.response?.status==478){
                 DisplayToast('error', 'Test Already Taken')
             } else {
                 DisplayToast('error', 'Invalid Account Details')
             }
           })
         } else {
-          alert('Please enter both email and password.');
+            DisplayToast('error', 'Please enter both email and password.');
         }
     };
 

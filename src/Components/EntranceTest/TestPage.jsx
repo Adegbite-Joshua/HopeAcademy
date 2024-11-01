@@ -149,8 +149,8 @@ const TestPage = () => {
         <LandingPageNav />
         <div className="w-full mx-auto p-6">
         <h2 className="text-2xl font-semibold mb-4 text-center">Test Page</h2>
-        <div class="flex justify-end">
-          <i class='fa fa-calculator my-auto' style={{fontSize: 30}} onClick={()=>setshowCalculatorDialog(true)}></i>
+        <div class="flex gap-3 justify-end">
+          <i class='fa fa-calculator my-auto cursor-pointer' style={{fontSize: 30}} onClick={()=>setshowCalculatorDialog(true)}></i>
           <Timer remainingTime={remainingTime} />
         </div>
         

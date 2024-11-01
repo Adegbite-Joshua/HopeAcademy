@@ -9,9 +9,6 @@ import Loader from '../../src/Loader'
 import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo'
 import fetchSubjectStudents from '../../src/CustomHooks/StaffHooks/fetchSubjectStudents'
 
-// import {Redirect} from 'react-router-dom'
-
-
 
 const StaffDashboard = () => {
   const [staffInfo, fetching, staffNotifications, notificationFetchingState] = fetchStaffInfo();

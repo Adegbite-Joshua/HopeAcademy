@@ -77,7 +77,7 @@ export default function AlertDialogSlide({showDialog, setDialog, text}) {
           className="w-full p-2 mb-2 text-lg rounded border"
         />
       <div className="grid grid-cols-4 gap-2">
-        <button className="p-2 bg-gray-200 hover:bg-gray-300 text-center" onClick={() => setDialog(false)}>x</button>
+        <button className="p-2 bg-gray-200 hover:bg-gray-300 text-center" onClick={() => setDialog(false)}><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
         <button className="p-2 bg-gray-200 hover:bg-gray-300 text-center" onClick={() => handleButtonClick('7')}>7</button>
         <button className="p-2 bg-gray-200 hover:bg-gray-300 text-center" onClick={() => handleButtonClick('8')}>8</button>
         <button className="p-2 bg-gray-200 hover:bg-gray-300 text-center" onClick={() => handleButtonClick('9')}>9</button>

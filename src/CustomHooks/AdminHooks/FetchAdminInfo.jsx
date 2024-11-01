@@ -33,13 +33,13 @@ const FetchAdminInfo = () => {
             dispatch(setFetchingState(false));
             socket.emit('connectSocketId', res.data._id);
           } else if (res.response.status == 407) {
-            DisplayToast('error', 'Invalid Or Expired Admin Token')
+            DisplayToast('error', 'Invalid or expired token')
             navigate('/admin/signin')
           }
         }
       } catch (error) {
-          DisplayToast('error', 'Invalid Or Expired Admin Token')
-          navigate('/admin/signin')
+          DisplayToast('error', 'Invalid or expired token')
+          // navigate('/admin/signin')
           console.log(error);
       }
 

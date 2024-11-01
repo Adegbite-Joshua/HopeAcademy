@@ -3,6 +3,7 @@ import ClassMainDiv from '../../src/Components/StaffComponents/Class/ClassMainDi
 import ClassOtherDiv from '../../src/Components/StaffComponents/Class/ClassOtherDiv'
 import DashboardNav from '../../src/Components/StaffComponents/StaffDashboard/DashboardNav'
 import fetchStaffInfo from '../../src/CustomHooks/StaffHooks/fetchStaffInfo'
+import Loader from '../../src/Loader'
 
 
 

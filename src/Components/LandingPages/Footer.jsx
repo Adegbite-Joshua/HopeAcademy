@@ -12,6 +12,7 @@ const LandingPageFooter = () => {
         <div className="p-8">
             <h3 className='text-2xl font-semibold mb-2'>Overview</h3>
             <Link className='text-blue-400' to='/'>Home</Link>
+            <Link className='text-blue-400' to='/entrance_test'>Entrance Exam</Link>
             <Link className='text-blue-400' to='/student/signin'>Student Sign In</Link>
             <Link className='text-blue-400' to='/staff/signin'>Staff Sign In</Link>
             <Link className='text-blue-400' to='/admin/signin'>Admin Sign In</Link>
@@ -28,7 +29,7 @@ const LandingPageFooter = () => {
       </div>
       <div className='bg-light py-2 px-5 flex flex-col md:flex-row items-center justify-between'>
         <p className='text-sm md:ms-5'><small>HOPE Academy | Copyright © 2024</small></p>
-        <a href='https://github.com/Adegbite-Joshua' target='blank' className='block text-sm md:me-5'><small>Website by PROADE</small></a>
+        <a href='https://github.com/Adegbite-Joshua' target='blank' className='block text-sm md:me-5'><small>Website by <a href="https://github.com/Adegbite-Joshua" className='inline text-blue-400 font-bold'>PROADE</a></small></a>
       </div>
     </>
   );
